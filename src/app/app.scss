@@ -14,3 +14,22 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.toolbar-background-md{
+    background: #f7ef36;
+
+}
+
+.cont_menu{
+    background: #f7ef36;
+}
+
+
+.avatar{
+    max-width: 50%;
+    margin-left: 6em;
+}
+
+.separador{
+    border-style: double;
+    margin-left: 1em;
+}

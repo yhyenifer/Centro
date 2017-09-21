@@ -1,0 +1,30 @@
+page-home-cliente {
+    .toolbar-background-md {
+        
+        background: #f7ef36;
+    }
+    .text-center{
+        text-align: center; 
+    }
+    .gana{
+        max-width: 50%;
+    }
+    .camara{
+        background-color: red;
+        border-radius: 25em;
+    }
+
+    .letra12{
+        font-size: 12px;
+    }
+
+    .row {
+        margin-left: 38px;
+        margin-right: 0;
+        margin-bottom: 2em;
+     }
+
+     .swiper-pagination-bullet-active{
+         background: #f7ef36;
+     }
+}
