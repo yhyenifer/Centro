@@ -1,3 +1,5 @@
+import { ListHeader } from 'ionic-angular/umd';
+import { isTab } from 'ionic-angular/navigation/nav-util';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
@@ -23,22 +25,36 @@ export class SubirFacturaPage {
   infoFactura$: FirebaseListObservable<Factura[]>
   public base64Image;
   alertCtrl: AlertController;
+  almacenes: FirebaseListObservable<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, alertCtrl: AlertController, private database: AngularFireDatabase) {
     this.base64Image = this.navParams.get("base64Image");
     this.uid = this.navParams.get("uid");
     this.alertCtrl = alertCtrl;
     this.infoFactura$ = this.database.list('factura');
+    this.almacenes = this.database.list('/Almacen');
+  }
+
+  ListarAlmacen(){
+    this.almacenes = this.database.list('/Almacen',{
+      query: {
+        orderByChild: 'nombre'
+      }
+
+    });
+    console.log("uid"+this.almacenes);
+
   }
 
   ionViewDidLoad() {
     this.base64Image = this.navParams.get("base64Image");
     this.uid = this.navParams.get("uid");
+    this.ListarAlmacen();
   }
 
   agregar(){
     let storageRef = firebase.storage().ref();
     // Create a timestamp as filename
-    const filename = Math.floor(Date.now() / 1000);
+    const filename = "factura "+Math.floor(Date.now() / 1000);
 
     // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`img/facturas/${filename}.jpg`);
@@ -71,11 +87,12 @@ export class SubirFacturaPage {
         this.infoFactura$.push({
     
           uid: this.uid,
-        
           almacen: 'cita',
-          estado: 'sinValidar',
+          estado: 'Pendiente',
           url: `img/facturas/'${filename}'.jpg`
     
         })
       }
+
+      
 }
