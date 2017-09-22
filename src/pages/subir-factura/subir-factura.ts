@@ -22,6 +22,7 @@ import firebase from 'firebase';
 export class SubirFacturaPage {
 
   public uid;
+  public nombre;
   factura = {} as Factura;
   infoFactura$: FirebaseListObservable<Factura[]>
   public base64Image;
@@ -54,6 +55,7 @@ export class SubirFacturaPage {
   ionViewDidLoad() {
     this.base64Image = this.navParams.get("base64Image");
     this.uid = this.navParams.get("uid");
+    this.nombre = this.navParams.get("nombre");
 
     //this.almacenes=this.ListarAlmacen();
    
@@ -75,8 +77,8 @@ export class SubirFacturaPage {
      });
   }
 
-  subir(){
-    this.navCtrl.push('HomeClientePage');
+  atras(){
+    this.navCtrl.setRoot('HomeClientePage');
   }
   showSuccesfulUploadAlert() {
     let alert = this.alertCtrl.create({
