@@ -30,7 +30,7 @@ export class MyApp {
   rootPage: any = 'LoginPage'  //HomePage; //esto cambia  para poner el login
   pages: Array<{title: string, component: any}>;
   user= { } as User;
-  nombre="yenifer";
+  nombre= "yenifer";
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 

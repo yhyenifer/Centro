@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { FirebaseServicePrivider } from '../providers/firebase-service/firebase-service';
 import { Camera } from '@ionic-native/camera';
+import { AlmacenServiceProvider } from '../providers/almacen-service/almacen-service';
 
 
 export const firebaseConfig = {
@@ -55,7 +56,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     FirebaseServicePrivider,
-    Camera
+    Camera,
+    AlmacenServiceProvider
   ]
   
 })
