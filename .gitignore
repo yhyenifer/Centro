@@ -22,7 +22,8 @@ dist/
 node_modules/
 tmp/
 temp/
-wwww/
+hooks/
+www/
 platforms/
 plugins/
 plugins/android.json

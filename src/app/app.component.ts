@@ -1,3 +1,4 @@
+import { MisFacturasPage } from '../pages/mis-facturas/mis-facturas';
 import { HomeClientePage } from '../pages/home-cliente/home-cliente';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
@@ -36,12 +37,12 @@ export class MyApp {
        
       this.pages = [
      
-        { title: 'Subir Facturas', component: HomeClientePage },
-        { title: 'Mis Facturas', component: HomeClientePage }, // pendiente de cambio
-        { title: 'Mis Premios', component: HomeClientePage }, // pendiente de cambio
-        { title: 'Premios', component: HomeClientePage }, // pendiente de cambio
-        { title: 'Almacenes', component: HomeClientePage }, // pendiente de cambio
-        { title: 'Eventos', component: HomeClientePage } // pendiente de cambio
+        { title: 'Subir Facturas', component: 'HomeClientePage' },
+        { title: 'Mis Facturas', component: 'MisFacturasPage' }, // pendiente de cambio
+        { title: 'Mis Premios', component: 'HomeClientePage' }, // pendiente de cambio
+        { title: 'Premios', component: 'HomeClientePage' }, // pendiente de cambio
+        { title: 'Almacenes', component: 'HomeClientePage' }, // pendiente de cambio
+        { title: 'Eventos', component: 'HomeClientePage' } // pendiente de cambio
         ];
     });
   }
@@ -51,8 +52,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      // this.statusBar.styleDefault();
+      // this.splashScreen.hide();
       firebase.initializeApp(firebaseConfig);
     });
   }

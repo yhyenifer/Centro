@@ -4,9 +4,9 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  
-    <ion-navbar>
-      <button ion-button menuToggle>
+
+    <ion-navbar  >
+      <button ion-button menuToggle >
         <ion-icon name="menu"></ion-icon>
       </button>
       <ion-title>
@@ -25,11 +25,11 @@
         <!-- esto debe cargar los alamcenes del centro comercial -->
         <!-- <ion-option value=1>almacén 1</ion-option>
         <ion-option value=2>almacén 2</ion-option> -->
-        <ion-item *ngFor="let almacen of almacenes | async">
-            
-            <h2>{{ almacen }}</h2>
-            
-          </ion-item>
+        <ion-option *ngFor="let almacen of almacenes | async">
+
+          <h2>{{ almacen.nombre }}</h2>
+
+        </ion-option>
       </ion-select>
     </ion-item>
     <p></p>

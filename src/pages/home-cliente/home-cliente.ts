@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { AlertController, IonicPage, MenuController, Nav, NavController, NavParams } from 'ionic-angular';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 import { Factura } from '../../app/models/factura';
 import { Camera, CameraOptions } from '@ionic-native/camera'
-import firebase from 'firebase';
+
 /**
  * Generated class for the HomeClientePage page.
  *
@@ -18,7 +18,7 @@ import firebase from 'firebase';
   templateUrl: 'home-cliente.html',
 })
 export class HomeClientePage {
-
+ 
   public uid;
   options1: CameraOptions = {
     quality: 100,
@@ -40,21 +40,26 @@ export class HomeClientePage {
   private imageSrc: string;
   factura = {} as Factura;
   infoFactura$: FirebaseListObservable<Factura[]>
-  constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase, alertCtrl: AlertController) {
-
+  constructor(private camera: Camera, 
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private database: AngularFireDatabase, 
+    alertCtrl: AlertController,
+    public menu: MenuController
+  )
+     {
+    this.menu1Active();
     this.infoFactura$ = this.database.list('factura');
     this.alertCtrl = alertCtrl;
     this.uid = navParams.get("uid");
     console.log('cosa  ' + this.uid);
 
   }
-
-  goBack(){
-    console.log("poping");
-    this.navCtrl.pop();
+ 
+  menu1Active() {
+    this.menu.enable(true, 'menu1');
   }
-
-  async tomarFoto(): Promise<any>{
+   async tomarFoto(): Promise<any>{
     
       try{
         
@@ -108,17 +113,7 @@ export class HomeClientePage {
       base64Image: this.base64Image,
       uid: this.uid
     });
-    // let storageRef = firebase.storage().ref();
-    // // Create a timestamp as filename
-    // const filename = Math.floor(Date.now() / 1000);
 
-    // // Create a reference to 'images/todays-date.jpg'
-    // const imageRef = storageRef.child(`img/facturas/${filename}.jpg`);
-    // imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
-    //   // Do something here when the data is succesfully uploaded!
-    //   this.showSuccesfulUploadAlert();
-    //   this.agregarFoto(filename);
-    // });
 
   }
 
@@ -136,5 +131,13 @@ export class HomeClientePage {
   ionViewDidLoad() {
     this.uid = this.navParams.get("uid");
   }
+
+  ir(){
+    this.navCtrl.push('SubirFacturaPage')
+  
+    
+
+  }
+
 
 }

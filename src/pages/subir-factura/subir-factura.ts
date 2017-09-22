@@ -1,9 +1,10 @@
 import { ListHeader } from 'ionic-angular/umd';
 import { isTab } from 'ionic-angular/navigation/nav-util';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import { Factura } from '../../app/models/factura';
+import { AlmacenServiceProvider } from '../../providers/almacen-service/almacen-service';
 import firebase from 'firebase';
 
 /**
@@ -26,29 +27,36 @@ export class SubirFacturaPage {
   public base64Image;
   alertCtrl: AlertController;
   almacenes: FirebaseListObservable<any>;
-  constructor(public navCtrl: NavController, public navParams: NavParams, alertCtrl: AlertController, private database: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    alertCtrl: AlertController, 
+    private database: AngularFireDatabase,
+    public menu: MenuController,
+    public almacenService: AlmacenServiceProvider
+  ) {
+    this.menu1Active();
     this.base64Image = this.navParams.get("base64Image");
     this.uid = this.navParams.get("uid");
     this.alertCtrl = alertCtrl;
     this.infoFactura$ = this.database.list('factura');
-    this.almacenes = this.database.list('/Almacen');
+    this.almacenes = this.database.list('/Almacen');;
+    console.log(this.almacenes);
+  }
+
+  menu1Active() {
+    this.menu.enable(true, 'menu1');
   }
 
   ListarAlmacen(){
-    this.almacenes = this.database.list('/Almacen',{
-      query: {
-        orderByChild: 'nombre'
-      }
 
-    });
-    console.log("uid"+this.almacenes);
 
   }
 
   ionViewDidLoad() {
     this.base64Image = this.navParams.get("base64Image");
     this.uid = this.navParams.get("uid");
-    this.ListarAlmacen();
+
+    //this.almacenes=this.ListarAlmacen();
+   
   }
 
   agregar(){

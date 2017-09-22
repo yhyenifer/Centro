@@ -1,3 +1,4 @@
+import { Platform } from 'ionic-angular';
 
 import { User } from '../../app/models/user';
 import { Component } from '@angular/core';
@@ -6,6 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthProvider } from '../../providers/auth/auth';
 import { FirebaseServicePrivider } from '../../providers/firebase-service/firebase-service';
 import { FirebaseObjectObservable} from 'angularfire2/database';
+import { MenuController } from 'ionic-angular';
 
 
 
@@ -27,11 +29,18 @@ export class LoginPage {
   	public auth : AuthProvider,
     public alertCtrl : AlertController,
     public navParams : NavParams,
-    public firebaseService: FirebaseServicePrivider
+    public firebaseService: FirebaseServicePrivider,
+    public platform: Platform,
+    public menuCtrl: MenuController,
+    public menu: MenuController
     ) {
-
+      this.menu1Active();
     }
- 
+   
+  //esto es para desactivar los menu en la pantalla login
+    menu1Active() {
+      this.menu.enable(false, 'menu1');
+    }  
 //creacion de usuario (esta correcto)
   signin(){
     this.auth.registerUser(this.user.email,this.user.password)
@@ -70,6 +79,7 @@ export class LoginPage {
       this.tipo.subscribe(usersnapshot=>{
         console.log('tipo de usuario: ',usersnapshot.tipo);
         if (usersnapshot.tipo=="cliente"){
+         
           this.navCtrl.push('HomeClientePage',{
             uid: auth.uid
           });
@@ -92,10 +102,7 @@ export class LoginPage {
   });
   alert.present();
 }) 
-  
-  
     //pendiiente limpiar pagina de login al ir atras
-  
 }
 else{
   let alert = this.alertCtrl.create({
