@@ -80,7 +80,7 @@ export class LoginPage {
         console.log('tipo de usuario: ',usersnapshot.tipo);
         if (usersnapshot.tipo=="cliente"){
          
-          this.navCtrl.push('HomeClientePage',{
+          this.navCtrl.setRoot('HomeClientePage',{
             uid: auth.uid
           });
         }

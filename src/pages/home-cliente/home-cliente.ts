@@ -128,15 +128,16 @@ export class HomeClientePage {
     // clear the previous photo data in the variable
     this.base64Image = "";
   }
+
+ 
   ionViewDidLoad() {
     this.uid = this.navParams.get("uid");
+  
   }
 
   ir(){
-    this.navCtrl.push('SubirFacturaPage')
-  
     
-
+    this.navCtrl.setRoot('SubirFacturaPage');
   }
 
 

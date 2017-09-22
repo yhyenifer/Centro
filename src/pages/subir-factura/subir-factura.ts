@@ -62,6 +62,7 @@ export class SubirFacturaPage {
    
   }
 
+
   agregar(){
     let storageRef = firebase.storage().ref();
     // Create a timestamp as filename

@@ -1,3 +1,5 @@
+import { LoginPage } from '../pages/login/login';
+import { HomeClientePage } from '../pages/home-cliente/home-cliente';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +31,7 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    MyApp,
+    MyApp
 
   ],
   imports: [
@@ -46,7 +48,6 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp
-  
   ],
   providers: [
     StatusBar,
@@ -56,5 +57,6 @@ export const firebaseConfig = {
     FirebaseServicePrivider,
     Camera
   ]
+  
 })
 export class AppModule {}
