@@ -22,12 +22,12 @@ dist/
 node_modules/
 tmp/
 temp/
-
+wwww/
 platforms/
 plugins/
 plugins/android.json
 plugins/ios.json
-
+hooks/
 $RECYCLE.BIN/
 
 .DS_Store
