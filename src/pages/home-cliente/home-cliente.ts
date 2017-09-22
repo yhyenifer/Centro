@@ -20,6 +20,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera'
 export class HomeClientePage {
  
   public uid;
+  public nombre;
+  public email;
+  public puntos;
   options1: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -52,7 +55,8 @@ export class HomeClientePage {
     this.infoFactura$ = this.database.list('factura');
     this.alertCtrl = alertCtrl;
     this.uid = navParams.get("uid");
-    console.log('cosa  ' + this.uid);
+ 
+
 
   }
  
@@ -66,13 +70,13 @@ export class HomeClientePage {
         this.camera.getPicture(this.options1).then((ImageData) => {
           this.base64Image = 'data:image/jpeg;base64,' + ImageData;
         }, (err) => {
-          console.log(err);
+
 
         });
        
       }
       catch(e){
-        console.log(e);
+   
       }
       //this.upload();
       
@@ -81,39 +85,25 @@ export class HomeClientePage {
   async sacarFoto(): Promise<any>{
     try{
       //this.uid = 'asfdfhsfhgjsfhj';
-      console.log(this.uid);
+  
       this.camera.getPicture(this.options2).then((ImageData) => {
         this.base64Image = 'data:image/jpeg;base64,' + ImageData;
       }, (err) => {
-        console.log(err);
+
       });
       
     }
     catch(e){
-      console.log(e);
+
     }
 }
-  // agregarFoto(filename){
 
-  //   //this.uid = 'asfdfhsfhgjsfhj';
-
-  //   this.infoFactura$.push({
-
-  //     uid: this.uid,
-    
-  //     almacen: 'cita',
-  //     estado: 'sinValidar',
-  //     url: `img/facturas/'${filename}'.jpg`
-
-  //   })
-  // }
 
   upload() {
     this.navCtrl.push('SubirFacturaPage',{
       base64Image: this.base64Image,
       uid: this.uid
     });
-
 
   }
 
@@ -132,7 +122,11 @@ export class HomeClientePage {
  
   ionViewDidLoad() {
     this.uid = this.navParams.get("uid");
-  
+    this.nombre =this.navParams.get("nombre");
+    this.email =this.navParams.get("email");
+    this.puntos =this.navParams.get("puntos");
+    console.log('nombre: ' + this.nombre + ' email: '+this.puntos);
+    console.log('email: ' + this.email);
   }
 
   ir(){

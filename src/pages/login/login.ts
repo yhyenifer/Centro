@@ -21,8 +21,8 @@ export class LoginPage {
   user= { } as User;
 
   tipo: FirebaseObjectObservable<any>;
-
-
+  nombre: FirebaseObjectObservable<any>;
+  puntos: FirebaseObjectObservable<any>;
   constructor(
     private afAuth: AngularFireAuth,
   	public navCtrl: NavController,
@@ -76,20 +76,26 @@ export class LoginPage {
    const authObserv= this.afAuth.authState.subscribe(auth => {
      
       this.tipo= this.firebaseService.getUserTipo(auth.uid);
+      this.nombre=this.firebaseService.getUserName(auth.uid);
+      this.puntos=this.firebaseService.getUserPuntos(auth.uid);
       this.tipo.subscribe(usersnapshot=>{
-        console.log('tipo de usuario: ',usersnapshot.tipo);
+       
+        console.log('nombre: '+ usersnapshot.nombre);
         if (usersnapshot.tipo=="cliente"){
-         
           this.navCtrl.setRoot('HomeClientePage',{
-            uid: auth.uid
+            uid: auth.uid,
+            nombre: usersnapshot.nombre,
+            email: auth.email,
+            puntos:  usersnapshot.puntos
           });
+          
         }
         if (usersnapshot.tipo=="admin"){
           this.navCtrl.push('HomeAdminPage');
           
         }
       })
-      console.log("uid: "+ auth.uid);
+
       authObserv.unsubscribe();
     
   

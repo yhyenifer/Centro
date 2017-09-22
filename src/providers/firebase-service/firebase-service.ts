@@ -10,26 +10,47 @@ export class FirebaseServicePrivider {
 
   getUserID(){
 
-    return this.afd.list('/perfil/',{
-
-      query: {
-        orderByChild: 'tipo',
-        equalTo: 'usuario'
-      }
-
-
-    });
+   
 
   }
 
   getUserTipo(userID: String){
-
-    
+     this.afd.list('/perfil/',{
+      
+            query: {
+              orderByChild: 'tipo',
+              equalTo: 'usuario'
+            }
+      
+      
+          });
     return this.afd.object('/perfil/'+ userID);
-
   }
 
+  getUserName(userID: String){
+    this.afd.list('/perfil/',{
+      
+            query: {
+              orderByChild: 'nombre',
+              equalTo: 'usuario'
+            }
+      
+      
+          });
+    return this.afd.object('/perfil/'+ userID);
+  }
   
-
+  getUserPuntos(userID: String){
+    this.afd.list('/perfil/',{
+      
+            query: {
+              orderByChild: 'puntos',
+              equalTo: 'usuario'
+            }
+      
+      
+          });
+    return this.afd.object('/perfil/'+ userID);
+  }
 
 }

@@ -150,18 +150,22 @@ var LoginPage = (function () {
                         .then(function (success) {
                         var authObserv = _this.afAuth.authState.subscribe(function (auth) {
                             _this.tipo = _this.firebaseService.getUserTipo(auth.uid);
+                            _this.nombre = _this.firebaseService.getUserName(auth.uid);
+                            _this.puntos = _this.firebaseService.getUserPuntos(auth.uid);
                             _this.tipo.subscribe(function (usersnapshot) {
-                                console.log('tipo de usuario: ', usersnapshot.tipo);
+                                console.log('nombre: ' + usersnapshot.nombre);
                                 if (usersnapshot.tipo == "cliente") {
                                     _this.navCtrl.setRoot('HomeClientePage', {
-                                        uid: auth.uid
+                                        uid: auth.uid,
+                                        nombre: usersnapshot.nombre,
+                                        email: auth.email,
+                                        puntos: usersnapshot.puntos
                                     });
                                 }
                                 if (usersnapshot.tipo == "admin") {
                                     _this.navCtrl.push('HomeAdminPage');
                                 }
                             });
-                            console.log("uid: " + auth.uid);
                             authObserv.unsubscribe();
                         });
                     }).catch(function (err) {

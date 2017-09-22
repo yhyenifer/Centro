@@ -1,3 +1,5 @@
+import { HomeAdminPage } from '../pages/home-admin/home-admin';
+import { User } from './models/user';
 import { MisFacturasPage } from '../pages/mis-facturas/mis-facturas';
 import { HomeClientePage } from '../pages/home-cliente/home-cliente';
 import { Component, ViewChild } from '@angular/core';
@@ -5,8 +7,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
- import { LoginPage } from '../pages/login/login';
- import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginPage } from '../pages/login/login';
+import { AngularFireAuth } from 'angularfire2/auth';
 
  export const firebaseConfig = {
   apiKey: "AIzaSyDUz7IJOCgsz5Zk9HBoU0cwF9z2Q229LtI",
@@ -21,11 +23,14 @@ import firebase from 'firebase';
 })
 export class MyApp {
    login: LoginPage;
+ 
+ 
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'LoginPage'  //HomePage; //esto cambia  para poner el login
   pages: Array<{title: string, component: any}>;
-  
+  user= { } as User;
+  nombre="yenifer";
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
