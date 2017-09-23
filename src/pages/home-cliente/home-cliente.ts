@@ -23,6 +23,7 @@ export class HomeClientePage {
   public nombre;
   public email;
   public puntos;
+
   options1: CameraOptions = {
     quality: 25,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -55,7 +56,7 @@ export class HomeClientePage {
     this.infoFactura$ = this.database.list('factura');
     this.alertCtrl = alertCtrl;
     this.uid = navParams.get("uid");
- 
+
 
 
   }
@@ -69,6 +70,10 @@ export class HomeClientePage {
         
         this.camera.getPicture(this.options1).then((ImageData) => {
           this.base64Image = 'data:image/jpeg;base64,' + ImageData;
+          this.navCtrl.setRoot('SubirFacturaPage',{
+            base64Image: this.base64Image,
+            uid: this.uid
+          });
         }, (err) => {
 
 
@@ -89,10 +94,14 @@ export class HomeClientePage {
   
       this.camera.getPicture(this.options2).then((ImageData) => {
         this.base64Image = 'data:image/jpeg;base64,' + ImageData;
+        this.navCtrl.setRoot('SubirFacturaPage',{
+          base64Image: this.base64Image,
+          uid: this.uid
+        });
       }, (err) => {
-
+        
       });
-      
+
     }
     catch(e){
 
