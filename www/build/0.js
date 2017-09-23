@@ -84,7 +84,7 @@ var SubirFacturaPage = (function () {
         this.infoFactura$ = this.database.list('factura');
         this.almacenes = this.database.list('/Almacen');
         ;
-        console.log(this.almacenes);
+        console.log(this.selectedvalue);
     }
     SubirFacturaPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu1');
@@ -99,6 +99,7 @@ var SubirFacturaPage = (function () {
     };
     SubirFacturaPage.prototype.agregar = function () {
         var _this = this;
+        //console.log(this.selectedvalue);
         var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
         // Create a timestamp as filename
         var filename = "factura " + Math.floor(Date.now() / 1000);
@@ -125,9 +126,10 @@ var SubirFacturaPage = (function () {
     };
     SubirFacturaPage.prototype.agregarFoto = function (filename) {
         //this.uid = 'asfdfhsfhgjsfhj';
+        console.log(this.selectedvalue);
         this.infoFactura$.push({
             uid: this.uid,
-            almacen: 'cita',
+            almacen: this.selectedvalue,
             estado: 'Pendiente',
             url: "img/facturas/'" + filename + "'.jpg"
         });
@@ -150,6 +152,7 @@ SubirFacturaPage = __decorate([
         __WEBPACK_IMPORTED_MODULE_3__providers_almacen_service_almacen_service__["a" /* AlmacenServiceProvider */]])
 ], SubirFacturaPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=subir-factura.js.map
 
 /***/ })
