@@ -27,6 +27,7 @@ export class SubirFacturaPage {
   public base64Image;
   alertCtrl: AlertController;
   almacenes: FirebaseListObservable<any>;
+  public selectedvalue;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     alertCtrl: AlertController, 
     private database: AngularFireDatabase,
@@ -39,7 +40,7 @@ export class SubirFacturaPage {
     this.alertCtrl = alertCtrl;
     this.infoFactura$ = this.database.list('factura');
     this.almacenes = this.database.list('/Almacen');;
-    console.log(this.almacenes);
+    console.log(this.selectedvalue);
   }
 
   menu1Active() {
@@ -61,6 +62,7 @@ export class SubirFacturaPage {
 
 
   agregar(){
+    //console.log(this.selectedvalue);
     let storageRef = firebase.storage().ref();
     // Create a timestamp as filename
     const filename = "factura "+Math.floor(Date.now() / 1000);
@@ -92,11 +94,11 @@ export class SubirFacturaPage {
   agregarFoto(filename){
     
         //this.uid = 'asfdfhsfhgjsfhj';
-    
+        console.log(this.selectedvalue);
         this.infoFactura$.push({
     
           uid: this.uid,
-          almacen: 'cita',
+          almacen: this.selectedvalue,
           estado: 'Pendiente',
           url: `img/facturas/'${filename}'.jpg`
     

@@ -24,14 +24,14 @@ export class HomeClientePage {
   public email;
   public puntos;
   options1: CameraOptions = {
-    quality: 100,
+    quality: 25,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
     sourceType: 1
   }
   options2: CameraOptions = {
-    quality: 100,
+    quality: 25,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
@@ -76,6 +76,7 @@ export class HomeClientePage {
        
       }
       catch(e){
+
    
       }
       //this.upload();

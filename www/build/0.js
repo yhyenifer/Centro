@@ -84,7 +84,7 @@ var SubirFacturaPage = (function () {
         this.infoFactura$ = this.database.list('factura');
         this.almacenes = this.database.list('/Almacen');
         ;
-        console.log(this.almacenes);
+        console.log(this.selectedvalue);
     }
     SubirFacturaPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu1');
@@ -98,6 +98,7 @@ var SubirFacturaPage = (function () {
     };
     SubirFacturaPage.prototype.agregar = function () {
         var _this = this;
+        //console.log(this.selectedvalue);
         var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
         // Create a timestamp as filename
         var filename = "factura " + Math.floor(Date.now() / 1000);
@@ -124,9 +125,10 @@ var SubirFacturaPage = (function () {
     };
     SubirFacturaPage.prototype.agregarFoto = function (filename) {
         //this.uid = 'asfdfhsfhgjsfhj';
+        console.log(this.selectedvalue);
         this.infoFactura$.push({
             uid: this.uid,
-            almacen: 'cita',
+            almacen: this.selectedvalue,
             estado: 'Pendiente',
             url: "img/facturas/'" + filename + "'.jpg"
         });
@@ -136,14 +138,12 @@ var SubirFacturaPage = (function () {
 SubirFacturaPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-subir-factura',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\subir-factura\subir-factura.html"*/'<!--\n\n  Generated template for the SubirFacturaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar  >\n\n      <button ion-button menuToggle >\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Subir Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n\n\n<ion-content padding>\n\n    <div class="text-center"> \n\n    <img class="factura" [src]="base64Image">\n\n    </div>\n\n    <ion-item>\n\n      <ion-label>Almacén:</ion-label>\n\n      <ion-select >\n\n        <!-- esto debe cargar los alamcenes del centro comercial -->\n\n        <!-- <ion-option value=1>almacén 1</ion-option>\n\n        <ion-option value=2>almacén 2</ion-option> -->\n\n        <ion-option *ngFor="let almacen of almacenes | async">\n\n\n\n          <h2>{{ almacen.nombre }}</h2>\n\n\n\n        </ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <p></p>\n\n    <div class="text-center"> \n\n        <h4>¿Nombre estas seguro de subir esta factura?</h4>\n\n    </div>\n\n    <div class="text-center">\n\n        <button ion-button icon-only class="botones si" (click)="agregar()" >\n\n            Si\n\n        </button>\n\n        <button ion-button icon-only class="botones no" (click)="subir()" >\n\n            No\n\n        </button>\n\n    </div>\n\n    <div class="text-center">\n\n    <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\subir-factura\subir-factura.html"*/,
+        selector: 'page-subir-factura',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\subir-factura\subir-factura.html"*/'<!--\n\n  Generated template for the SubirFacturaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar  >\n\n      <button ion-button menuToggle >\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Subir Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n\n\n<ion-content padding>\n\n    <div class="text-center"> \n\n    <img class="factura" [src]="base64Image">\n\n    </div>\n\n    <ion-item>\n\n      <ion-label>Almacén:</ion-label>\n\n      <ion-select [(ngModel)]="selectedvalue">\n\n        <!-- esto debe cargar los alamcenes del centro comercial -->\n\n        <!-- <ion-option value=1>almacén 1</ion-option>\n\n        <ion-option value=2>almacén 2</ion-option> -->\n\n        <ion-option *ngFor="let almacen of almacenes | async"><h2>{{ almacen.nombre }}</h2></ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <p></p>\n\n    <div class="text-center"> \n\n        <h4>¿Nombre estas seguro de subir esta factura?</h4>\n\n    </div>\n\n    <div class="text-center">\n\n        <button ion-button icon-only class="botones si" (click)="agregar()" >\n\n            Si\n\n        </button>\n\n        <button ion-button icon-only class="botones no" (click)="subir()" >\n\n            No\n\n        </button>\n\n    </div>\n\n    <div class="text-center">\n\n    <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>\n\n    <p>Selected Value: {{ selectedvalue }}</p>\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\subir-factura\subir-factura.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_almacen_service_almacen_service__["a" /* AlmacenServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_almacen_service_almacen_service__["a" /* AlmacenServiceProvider */]) === "function" && _f || Object])
 ], SubirFacturaPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=subir-factura.js.map
 
 /***/ })
