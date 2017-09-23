@@ -48,33 +48,22 @@ export class SubirFacturaPage {
     this.menu.enable(true, 'menu1');
   }
 
-  ListarAlmacen(){
-
-
-  }
-
-  ionViewDidLoad() {
+   ionViewDidLoad() {
     this.base64Image = this.navParams.get("base64Image");
     this.uid = this.navParams.get("uid");
     this.nombre = this.navParams.get("nombre");
-
-    //this.almacenes=this.ListarAlmacen();
    
   }
 
 
   agregar(){
-    //console.log(this.selectedvalue);
-    let storageRef = firebase.storage().ref();
-    // Create a timestamp as filename
-    const filename = "factura "+Math.floor(Date.now() / 1000);
 
-    // Create a reference to 'images/todays-date.jpg'
+    let storageRef = firebase.storage().ref();
+    const filename = "factura "+Math.floor(Date.now() / 1000);
     const imageRef = storageRef.child(`img/facturas/${filename}.jpg`);
     imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
       // Do something here when the data is succesfully uploaded!
       this.showSuccesfulUploadAlert();
-      
       this.agregarFoto(filename);
      });
   }
@@ -83,19 +72,18 @@ export class SubirFacturaPage {
     this.navCtrl.setRoot('HomeClientePage');
   }
   showSuccesfulUploadAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Uploaded!',
-      subTitle: 'Picture is uploaded to Firebase',
-      buttons: ['OK']
-    });
-    alert.present();
+    this.navCtrl.setRoot('MisFacturasPage');
+    // let alert = this.alertCtrl.create({
+    //   title: 'Uploaded!',
+    //   subTitle: 'Picture is uploaded to Firebase',
+    //   buttons: ['OK']
+    // });
+    // alert.present();
 
-    // clear the previous photo data in the variable
-    this.base64Image = "";
+    // // clear the previous photo data in the variable
+    // this.base64Image = "";
   }
   agregarFoto(filename){
-    
-        //this.uid = 'asfdfhsfhgjsfhj';
         console.log(this.selectedvalue);
         this.infoFactura$.push({
     
@@ -106,11 +94,5 @@ export class SubirFacturaPage {
     
         })
       }
-      onSelected(){
-        var seleccion = document.getElementById('almacenes');
-       
-
-        alert(seleccion);
-      }
-      
+         
 }

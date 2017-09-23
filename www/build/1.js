@@ -65,7 +65,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MisFacturasPage = (function () {
-    // facturas= { } as Factura;
     function MisFacturasPage(navCtrl, navParams, database) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;

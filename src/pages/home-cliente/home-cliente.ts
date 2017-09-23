@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { AlertController, IonicPage, MenuController, Nav, NavController, NavParams } from 'ionic-angular';
-
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 import { Factura } from '../../app/models/factura';
 import { Camera, CameraOptions } from '@ionic-native/camera'
@@ -56,13 +55,11 @@ export class HomeClientePage {
     this.infoFactura$ = this.database.list('factura');
     this.alertCtrl = alertCtrl;
     this.uid = navParams.get("uid");
-
-
-
   }
  
   menu1Active() {
     this.menu.enable(true, 'menu1');
+    this.menu.enable(false, 'menu2');
   }
    async tomarFoto(): Promise<any>{
     
@@ -75,17 +72,10 @@ export class HomeClientePage {
             uid: this.uid
           });
         }, (err) => {
-
-
         });
-       
       }
       catch(e){
-
-   
       }
-      //this.upload();
-      
   }
 
   async sacarFoto(): Promise<any>{
@@ -118,17 +108,6 @@ export class HomeClientePage {
 
   }
 
-  showSuccesfulUploadAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Uploaded!',
-      subTitle: 'Picture is uploaded to Firebase',
-      buttons: ['OK']
-    });
-    alert.present();
-
-    // clear the previous photo data in the variable
-    this.base64Image = "";
-  }
 
  
   ionViewDidLoad() {

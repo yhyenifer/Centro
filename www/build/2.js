@@ -167,7 +167,10 @@ var LoginPage = (function () {
                                     });
                                 }
                                 if (usersnapshot.tipo == "admin") {
-                                    _this.navCtrl.push('HomeAdminPage');
+                                    _this.navCtrl.setRoot('HomeAdminPage', {
+                                        nombre: usersnapshot.nombre,
+                                        email: auth.email
+                                    });
                                 }
                             });
                             authObserv.unsubscribe();

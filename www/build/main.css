@@ -19901,8 +19901,12 @@ ion-navbar.toolbar {
   }
 }
 
-.toolbar-background-md {
+#menu1 > div > ion-header > ion-toolbar > div.toolbar-background.toolbar-background-md {
   background: #f7ef36;
+}
+
+#menu2 > div > ion-header > ion-toolbar > div.toolbar-background.toolbar-background-md {
+  background: #F70000;
 }
 
 .cont_menu {
@@ -19917,6 +19921,10 @@ ion-navbar.toolbar {
 .separador {
   border-style: double;
   margin-left: 1em;
+}
+
+page-home-admin .toolbar-background-md {
+  background: #F71515;
 }
 
 page-home-cliente .toolbar-background-md {
@@ -19960,7 +19968,7 @@ page-subir-factura .text-center {
 }
 
 page-subir-factura .factura {
-  max-width: 75%;
+  max-width: 73%;
 }
 
 page-subir-factura .botones {

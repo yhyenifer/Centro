@@ -16,10 +16,7 @@ import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/data
   templateUrl: 'mis-facturas.html',
 })
 export class MisFacturasPage {
-  // facturas= { } as Factura;
- 
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase) {
-  
   }
 
   ionViewDidLoad() {

@@ -41,7 +41,9 @@ export class LoginPage {
   //esto es para desactivar los menu en la pantalla login
     menu1Active() {
       this.menu.enable(false, 'menu1');
-    }  
+    } 
+    
+  
 //creacion de usuario (esta correcto)
   signin(){
     this.auth.registerUser(this.user.email,this.user.password)
@@ -68,9 +70,8 @@ export class LoginPage {
  async login(user: User) 
 {
 
-  if(user.email!=null && user.password!=null){
 
-  
+  if(user.email!=null && user.password!=null){
     this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password ) 
     
  .then((success)=>{
@@ -95,8 +96,10 @@ export class LoginPage {
           
         }
         if (usersnapshot.tipo=="admin"){
-          this.navCtrl.push('HomeAdminPage');
-          
+          this.navCtrl.setRoot('HomeAdminPage',{
+            nombre: usersnapshot.nombre,
+            email: auth.email
+          });
         }
       })
 

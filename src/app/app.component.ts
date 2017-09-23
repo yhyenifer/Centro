@@ -29,7 +29,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'LoginPage'  //HomePage; //esto cambia  para poner el login
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icono: any}>;
+  pagesCentro: Array<{title: string, component: any, icono: any}>;
   user= { } as User;
   nombre=global.nombre;
   constructor(
@@ -43,13 +44,16 @@ export class MyApp {
       this.nombre=global.nombre;
       this.pages = [
      
-        { title: 'Subir Facturas', component: 'HomeClientePage' },
-        { title: 'Mis Facturas', component: 'MisFacturasPage' }, // pendiente de cambio
-        { title: 'Mis Premios', component: 'HomeClientePage' }, // pendiente de cambio
-        { title: 'Premios', component: 'HomeClientePage' }, // pendiente de cambio
-        { title: 'Almacenes', component: 'HomeClientePage' }, // pendiente de cambio
-        { title: 'Eventos', component: 'HomeClientePage' } // pendiente de cambio
+        { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
+        { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' }, // pendiente de cambio
+        { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio
+       
         ];
+      this.pagesCentro = [
+        { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' }, // pendiente de cambio
+        { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio
+        { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio
+      ]  
     });
   }
 

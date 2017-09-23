@@ -22,9 +22,7 @@
     <ion-item>
       <ion-label>Almacén:</ion-label>
       <ion-select [(ngModel)]="selectedvalue">
-        <!-- esto debe cargar los alamcenes del centro comercial -->
-        <!-- <ion-option value=1>almacén 1</ion-option>
-        <ion-option value=2>almacén 2</ion-option> -->
+        <!--  carga los alamcenes del centro comercial -->
         <ion-option *ngFor="let almacen of almacenes | async"><h2>{{ almacen.nombre }}</h2></ion-option>
       </ion-select>
     </ion-item>
@@ -42,7 +40,7 @@
     </div>
     <div class="text-center">
     <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>
-    <p>Selected Value: {{ selectedvalue }}</p>
+
   </div>
 
 </ion-content>
