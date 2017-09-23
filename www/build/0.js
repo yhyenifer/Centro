@@ -83,7 +83,6 @@ var SubirFacturaPage = (function () {
         this.alertCtrl = alertCtrl;
         this.infoFactura$ = this.database.list('factura');
         this.almacenes = this.database.list('/Almacen');
-        ;
         console.log(this.selectedvalue);
     }
     SubirFacturaPage.prototype.menu1Active = function () {
@@ -101,8 +100,10 @@ var SubirFacturaPage = (function () {
         var imageRef = storageRef.child("img/facturas/" + filename + ".jpg");
         imageRef.putString(this.base64Image, __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage.StringFormat.DATA_URL).then(function (snapshot) {
             // Do something here when the data is succesfully uploaded!
-            _this.showSuccesfulUploadAlert();
             _this.agregarFoto(filename);
+            _this.navCtrl.setRoot('MisFacturasPage', {
+                uid: _this.uid
+            });
         });
     };
     SubirFacturaPage.prototype.atras = function () {

@@ -40,7 +40,7 @@ export class SubirFacturaPage {
     this.uid = this.navParams.get("uid");
     this.alertCtrl = alertCtrl;
     this.infoFactura$ = this.database.list('factura');
-    this.almacenes = this.database.list('/Almacen');;
+    this.almacenes = this.database.list('/Almacen');
     console.log(this.selectedvalue);
   }
 
@@ -65,6 +65,10 @@ export class SubirFacturaPage {
       // Do something here when the data is succesfully uploaded!
       this.showSuccesfulUploadAlert();
       this.agregarFoto(filename);
+      
+      this.navCtrl.setRoot('MisFacturasPage',{
+        uid: this.uid
+      });
      });
   }
 
