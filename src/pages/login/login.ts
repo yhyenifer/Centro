@@ -1,3 +1,4 @@
+import { global } from '../../app/global';
 import { Platform } from 'ionic-angular';
 
 import { User } from '../../app/models/user';
@@ -78,9 +79,12 @@ export class LoginPage {
       this.tipo= this.firebaseService.getUserTipo(auth.uid);
       this.nombre=this.firebaseService.getUserName(auth.uid);
       this.puntos=this.firebaseService.getUserPuntos(auth.uid);
+      console.log("variable global "+global.nombre);
+      global.nombre="yh";
+      console.log("nueva variable global "+global.nombre);
       this.tipo.subscribe(usersnapshot=>{
-       
-        console.log('nombre: '+ usersnapshot.nombre);
+      
+     
         if (usersnapshot.tipo=="cliente"){
           this.navCtrl.setRoot('HomeClientePage',{
             uid: auth.uid,

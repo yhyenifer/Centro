@@ -1,3 +1,4 @@
+import { global } from './global';
 import { HomeAdminPage } from '../pages/home-admin/home-admin';
 import { User } from './models/user';
 import { MisFacturasPage } from '../pages/mis-facturas/mis-facturas';
@@ -23,14 +24,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class MyApp {
    login: LoginPage;
- 
+
  
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'LoginPage'  //HomePage; //esto cambia  para poner el login
   pages: Array<{title: string, component: any}>;
   user= { } as User;
-  nombre= "yenifer";
+  nombre=global.nombre;
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
@@ -39,7 +40,7 @@ export class MyApp {
     
   ) {
      platform.ready().then(() => {
-       
+      this.nombre=global.nombre;
       this.pages = [
      
         { title: 'Subir Facturas', component: 'HomeClientePage' },

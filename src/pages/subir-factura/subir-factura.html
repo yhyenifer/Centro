@@ -21,13 +21,11 @@
     </div>
     <ion-item>
       <ion-label>Almacén:</ion-label>
-      <ion-select >
-        <!-- esto debe cargar los alamcenes del centro comercial -->
-        <!-- <ion-option value=1>almacén 1</ion-option>
-        <ion-option value=2>almacén 2</ion-option> -->
-        <ion-option *ngFor="let almacen of almacenes | async">
+      <ion-select id="almacenes" >
+      
+        <ion-option *ngFor="let almacen of almacenes | async"  >
 
-          <h2>{{ almacen.nombre }}</h2>
+          <h2 >{{ almacen.nombre }}</h2>
 
         </ion-option>
       </ion-select>

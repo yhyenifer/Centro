@@ -104,6 +104,11 @@ export class SubirFacturaPage {
     
         })
       }
+      onSelected(){
+        var seleccion = document.getElementById('almacenes');
+       
 
+        alert(seleccion);
+      }
       
 }
