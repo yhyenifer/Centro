@@ -1,4 +1,4 @@
-webpackJsonp([5],{
+webpackJsonp([8],{
 
 /***/ 162:
 /***/ (function(module, exports) {
@@ -21,6 +21,18 @@ webpackEmptyAsyncContext.id = 162;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
+		456,
+		7
+	],
+	"../pages/facturas-denegadas/facturas-denegadas.module": [
+		457,
+		6
+	],
+	"../pages/facturas-pendientes/facturas-pendientes.module": [
+		458,
+		5
+	],
 	"../pages/home-admin/home-admin.module": [
 		452,
 		4
@@ -38,7 +50,7 @@ var map = {
 		1
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		456,
+		459,
 		0
 	]
 };
@@ -58,7 +70,7 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 299:
+/***/ 298:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -331,6 +343,9 @@ AppModule = __decorate([
                     { loadChildren: '../pages/mis-facturas/mis-facturas.module#MisFacturasPageModule', name: 'MisFacturasPage', segment: 'mis-facturas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home-cliente/home-cliente.module#HomeClientePageModule', name: 'HomeClientePage', segment: 'home-cliente', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/facturas-aprobadas/facturas-aprobadas.module#FacturasAprobadasPageModule', name: 'FacturasAprobadasPage', segment: 'facturas-aprobadas', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/facturas-denegadas/facturas-denegadas.module#FacturasDenegadasPageModule', name: 'FacturasDenegadasPage', segment: 'facturas-denegadas', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/facturas-pendientes/facturas-pendientes.module#FacturasPendientesPageModule', name: 'FacturasPendientesPage', segment: 'facturas-pendientes', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] }
                 ]
             }),
@@ -413,12 +428,19 @@ var MyApp = (function () {
             _this.pages = [
                 { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
                 { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' },
-                { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio
+                { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio el componente
             ];
             _this.pagesCentro = [
                 { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' },
                 { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' },
-                { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio
+                { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
+            ];
+            _this.pagesAdmin = [
+                { title: 'Validar Facturas', component: 'FacturasPendientesPage', icono: 'checkbox-outline' },
+                { title: 'Administrar Premios', component: 'HomeAdminPage', icono: 'add-circle' },
+                { title: 'Administrar Almacenes', component: 'HomeClientePage', icono: 'cart' },
+                { title: 'Administrar Eventos', component: 'HomeClientePage', icono: 'calendar' },
+                { title: 'Generar Reportes', component: 'HomeClientePage', icono: 'clipboard' } // pendiente de cambio  el componente
             ];
         });
     }
@@ -437,9 +459,9 @@ var MyApp = (function () {
         this.nav.setRoot(page.component);
     };
     MyApp.prototype.salir = function () {
-        console.log("presionamos salir");
         this.afAuth.auth.signOut();
         this.platform.exitApp();
+        this.nav.setRoot('LoginPage');
     };
     return MyApp;
 }());
@@ -448,7 +470,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2FavatarF.png?alt=media&token=fe0bacb2-f133-452b-9b29-7d16403b2af2">\n\n       <p>hola {{nombre}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2FavatarF.png?alt=media&token=fe0bacb2-f133-452b-9b29-7d16403b2af2">\n\n       <p>hola {{nombre}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2FavatarF.png?alt=media&token=fe0bacb2-f133-452b-9b29-7d16403b2af2">\n\n       <p>hola {{nombre}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2FavatarF.png?alt=media&token=fe0bacb2-f133-452b-9b29-7d16403b2af2">\n\n       <p>hola {{nombre}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
@@ -456,7 +478,6 @@ MyApp = __decorate([
         __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */]])
 ], MyApp);
 
-var _a, _b, _c, _d, _e;
 //# sourceMappingURL=app.component.js.map
 
 /***/ })

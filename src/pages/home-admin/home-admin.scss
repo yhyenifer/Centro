@@ -1,8 +1,33 @@
 page-home-admin {
+    .toolbar-title-md{
+        color: white;
+    }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+        color: white;
+    }
 
     .toolbar-background-md {
         
         background: #F71515;
     }
+    .text-center{
+        text-align: center; 
+    }
 
+    .admin{
+        margin-top: 8em;
+    }
+   .lista{
+    margin-top: 9em;
+    margin-left: 15em;
+   }
+    .boton{
+        width: 11em;
+        font-size: 36px;
+        margin-bottom: 1em;
+        background: red;
+        color: white;
+        padding: 6px;
+        border-radius: 1em;
+    }
 }

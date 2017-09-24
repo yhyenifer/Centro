@@ -19923,8 +19923,162 @@ ion-navbar.toolbar {
   margin-left: 1em;
 }
 
+page-facturas-aprobadas .toolbar-title-md {
+  color: white;
+}
+
+page-facturas-aprobadas .bar-button-default-md, page-facturas-aprobadas .bar-button-clear-md-default, page-facturas-aprobadas .bar-button-md-default {
+  color: white;
+}
+
+page-facturas-aprobadas .toolbar-background-md {
+  background: #F71515;
+}
+
+page-facturas-aprobadas .text-center {
+  text-align: center;
+}
+
+page-facturas-aprobadas .groupTabs {
+  border-right-color: white;
+  border-right-style: inset;
+}
+
+page-facturas-aprobadas .tab {
+  font-size: 20px;
+  background-color: #f71515;
+  color: white;
+  margin-left: 9em;
+}
+
+page-facturas-aprobadas .tab2 {
+  text-decoration: underline;
+}
+
+page-facturas-aprobadas .tab:hover {
+  text-decoration: underline;
+}
+
+page-facturas-aprobadas .adminVal {
+  margin-left: 20em;
+  margin-top: 7em;
+}
+
+page-facturas-denegadas .toolbar-title-md {
+  color: white;
+}
+
+page-facturas-denegadas .bar-button-default-md, page-facturas-denegadas .bar-button-clear-md-default, page-facturas-denegadas .bar-button-md-default {
+  color: white;
+}
+
+page-facturas-denegadas .toolbar-background-md {
+  background: #F71515;
+}
+
+page-facturas-denegadas .text-center {
+  text-align: center;
+}
+
+page-facturas-denegadas .groupTabs {
+  border-right-color: white;
+  border-right-style: inset;
+}
+
+page-facturas-denegadas .tab {
+  font-size: 20px;
+  background-color: #f71515;
+  color: white;
+  margin-left: 9em;
+}
+
+page-facturas-denegadas .tab3 {
+  text-decoration: underline;
+}
+
+page-facturas-denegadas .tab:hover {
+  text-decoration: underline;
+}
+
+page-facturas-denegadas .adminVal {
+  margin-left: 20em;
+  margin-top: 7em;
+}
+
+page-facturas-pendientes .toolbar-title-md {
+  color: white;
+}
+
+page-facturas-pendientes .bar-button-default-md, page-facturas-pendientes .bar-button-clear-md-default, page-facturas-pendientes .bar-button-md-default {
+  color: white;
+}
+
+page-facturas-pendientes .toolbar-background-md {
+  background: #F71515;
+}
+
+page-facturas-pendientes .text-center {
+  text-align: center;
+}
+
+page-facturas-pendientes .groupTabs {
+  border-right-color: white;
+  border-right-style: inset;
+}
+
+page-facturas-pendientes .tab {
+  font-size: 20px;
+  background-color: #f71515;
+  color: white;
+  margin-left: 9em;
+}
+
+page-facturas-pendientes .tab1 {
+  text-decoration: underline;
+}
+
+page-facturas-pendientes .tab:hover {
+  text-decoration: underline;
+}
+
+page-facturas-pendientes .adminVal {
+  margin-left: 20em;
+  margin-top: 7em;
+}
+
+page-home-admin .toolbar-title-md {
+  color: white;
+}
+
+page-home-admin .bar-button-default-md, page-home-admin .bar-button-clear-md-default, page-home-admin .bar-button-md-default {
+  color: white;
+}
+
 page-home-admin .toolbar-background-md {
   background: #F71515;
+}
+
+page-home-admin .text-center {
+  text-align: center;
+}
+
+page-home-admin .admin {
+  margin-top: 8em;
+}
+
+page-home-admin .lista {
+  margin-top: 9em;
+  margin-left: 15em;
+}
+
+page-home-admin .boton {
+  width: 11em;
+  font-size: 36px;
+  margin-bottom: 1em;
+  background: red;
+  color: white;
+  padding: 6px;
+  border-radius: 1em;
 }
 
 page-home-cliente .toolbar-background-md {
@@ -19946,6 +20100,7 @@ page-home-cliente .camara {
 
 page-home-cliente .letra12 {
   font-size: 12px;
+  margin-right: 48em;
 }
 
 page-home-cliente .row {
@@ -19958,9 +20113,44 @@ page-home-cliente .swiper-pagination-bullet-active {
   background: #f7ef36;
 }
 
+page-home-cliente .logoEvento {
+  margin-left: 30em;
+}
+
+body {
+  max-width: 1518px;
+}
+
 page-login button.auth {
   color: #000;
   background-color: #f7ef36;
+  margin-left: 10px;
+}
+
+page-login button.register {
+  margin-left: 10px;
+}
+
+page-login .auth:hover:not(.disable-hover) {
+  background-color: #f7ef36;
+}
+
+@media (min-width: 767px) {
+  page-login .logo {
+    margin-left: 45em;
+  }
+  page-login .autenticar {
+    width: 30%;
+    margin-left: 40em;
+  }
+}
+
+page-mis-facturas .toolbar-background-md {
+  background: #f7ef36;
+}
+
+page-mis-facturas .text-center {
+  text-align: center;
 }
 
 page-subir-factura .text-center {

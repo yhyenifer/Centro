@@ -4,7 +4,7 @@ import { User } from './models/user';
 import { MisFacturasPage } from '../pages/mis-facturas/mis-facturas';
 import { HomeClientePage } from '../pages/home-cliente/home-cliente';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav,  Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
@@ -31,6 +31,7 @@ export class MyApp {
   rootPage: any = 'LoginPage'  //HomePage; //esto cambia  para poner el login
   pages: Array<{title: string, component: any, icono: any}>;
   pagesCentro: Array<{title: string, component: any, icono: any}>;
+  pagesAdmin: Array<{title: string, component: any, icono: any}>;
   user= { } as User;
   nombre=global.nombre;
   constructor(
@@ -45,15 +46,22 @@ export class MyApp {
       this.pages = [
      
         { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
-        { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' }, // pendiente de cambio
-        { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio
+        { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' }, 
+        { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio el componente
        
         ];
       this.pagesCentro = [
-        { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' }, // pendiente de cambio
-        { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio
-        { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio
+        { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' }, // pendiente de cambio  el componente
+        { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio  el componente
+        { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
       ]  
+      this.pagesAdmin = [
+        { title: 'Validar Facturas', component: 'FacturasPendientesPage', icono: 'checkbox-outline' },
+        { title: 'Administrar Premios', component: 'HomeAdminPage', icono: 'add-circle' }, // pendiente de cambio  el componente
+        { title: 'Administrar Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio  el componente
+        { title: 'Administrar Eventos', component: 'HomeClientePage', icono: 'calendar' }, // pendiente de cambio  el componente
+        { title: 'Generar Reportes', component: 'HomeClientePage', icono: 'clipboard' } // pendiente de cambio  el componente
+      ]
     });
   }
 
@@ -75,9 +83,10 @@ export class MyApp {
   }
 
 salir(){
-console.log("presionamos salir");
+
 this.afAuth.auth.signOut();
 this.platform.exitApp();
+this.nav.setRoot('LoginPage');
 }
 
 }

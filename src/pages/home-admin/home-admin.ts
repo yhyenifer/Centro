@@ -30,4 +30,9 @@ export class HomeAdminPage {
     this.menu.enable(true, 'menu2');
     this.menu.enable(false, 'menu1');
   }
+
+
+  openPage(page){
+    this.navCtrl.setRoot(page);
+  }
 }

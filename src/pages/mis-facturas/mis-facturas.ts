@@ -1,7 +1,7 @@
 import { Factura } from '../../app/models/factura';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FirebaseObjectObservable, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
+import {  AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 
 /**
@@ -22,7 +22,9 @@ export class MisFacturasPage {
   facturas$: FirebaseListObservable<Factura[]>;
   raizFactura;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+     public database: AngularFireDatabase,
+     public menu: MenuController) {
     this.uid= navParams.get("uid");
     //this.raizFactura = firebase.database().ref();
     this.facturas$ = this.database.list('/factura', {
@@ -31,17 +33,19 @@ export class MisFacturasPage {
         equalTo: this.uid
       }
     });
-
+    this.menu1Active();
     
-    //this.raizFactura.child('factura').orderbychild('uid').equalto(this.uid);
+
+  }
+
+  menu1Active() {
+    this.menu.enable(true, 'menu1');
+    this.menu.enable(false, 'menu2');
   }
 
   ionViewDidLoad() {
     this.uid= this.navParams.get("uid");
-    //this.raizFactura = firebase.database().ref();
-    //this.facturas = this.raizFactura.child('factura').orderbychild('uid').equalto(this.uid);
- 
-  }
+   }
 
   mostrarFactura(factura: Factura){
     //LO que se desee hacer cuando el usuario clique en una factura,

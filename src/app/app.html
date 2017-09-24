@@ -36,12 +36,11 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}
+      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">
+        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}
         <!-- Subir Facturas -->
       </button>
-    <div class="separador"></div>
- 
+   
     <div class="separador"></div>
     <button menuClose ion-item  (click)="salir()">
       <ion-icon name="log-out"></ion-icon> Salir

@@ -1,9 +1,31 @@
+body{
+    max-width: 1518px;
+}
 page-login {
+
+
     button.auth
     {
-       color: #000;
+        color: #000;
         background-color: #f7ef36;
+        margin-left: 10px;
     }
+    button.register{
+        margin-left: 10px;
+    }
+    .auth:hover:not(.disable-hover) {
+        background-color: #f7ef36;
+      }
+      @media (min-width: 767px){
+           .logo{
+               margin-left: 45em;
+           }
+           .autenticar{
+            width: 30%;
+            margin-left: 40em;
+           }
+       }
+      
 }
 
 

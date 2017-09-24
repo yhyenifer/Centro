@@ -20,34 +20,13 @@
 
 
 <ion-content padding>
-    <ion-card>
-      
         <ion-list>
           <!-- se deben ordenar por fecha de la mas reciente a la mas antigua y deben ser las de cada usuario
-          <button ion-item>
-            <ion-icon name="document" item-start></ion-icon>
-          
-            factura 1 - estado
-          </button>
-          <button ion-item>
-              <ion-icon name="document" item-start></ion-icon>
-              factura 2 - estado
-            </button> -->
-
+          -->
             <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura)">
-              <h2>Factura {{i+1}}</h2>
-              <h2>Estado: {{ factura.estado }}</h2>
-              <h3>Almacen: {{ factura.almacen }}</h3>
-            
+             <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} 
             </button>
-            <!-- <ion-item   *ngFor="let factura of facturas$ | async; let i = index">
-                <h2>Factura {{i+1}}</h2>
-                <h2>Estado: {{ factura.estado }}</h2>
-                <h3>Almacen: {{ factura.url }}</h3>
-              
-            </ion-item> -->
-      
         </ion-list>
-      </ion-card>
+   
 
 </ion-content>
