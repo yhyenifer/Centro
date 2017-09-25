@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 162:
+/***/ 163:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,44 +13,44 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 162;
+webpackEmptyAsyncContext.id = 163;
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
-		456,
+		459,
 		7
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
-		457,
+		460,
 		6
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
-		458,
+		461,
 		5
 	],
 	"../pages/home-admin/home-admin.module": [
-		452,
+		455,
 		4
 	],
 	"../pages/home-cliente/home-cliente.module": [
-		454,
+		457,
 		3
 	],
 	"../pages/login/login.module": [
-		455,
+		458,
 		2
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
-		453,
+		456,
 		1
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		459,
+		462,
 		0
 	]
 };
@@ -65,26 +65,129 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 204;
+webpackAsyncContext.id = 205;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 298:
+/***/ 299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return global; });
-var global = {
-    nombre: "",
-    email: "",
-    puntos: 0
+/* unused harmony export firebaseConfig */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(86);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-//# sourceMappingURL=global.js.map
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDUz7IJOCgsz5Zk9HBoU0cwF9z2Q229LtI",
+    authDomain: "tiendq-3d47a.firebaseapp.com",
+    databaseURL: "https://tiendq-3d47a.firebaseio.com",
+    storageBucket: "tiendq-3d47a.appspot.com",
+    messagingSenderId: "12950516640"
+};
+var MyApp = (function () {
+    function MyApp(platform, statusBar, splashScreen, afAuth, storage) {
+        var _this = this;
+        this.platform = platform;
+        this.statusBar = statusBar;
+        this.splashScreen = splashScreen;
+        this.afAuth = afAuth;
+        this.storage = storage;
+        this.rootPage = 'LoginPage'; //HomePage; //esto cambia  para poner el login
+        platform.ready().then(function () {
+            _this.pages = [
+                { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
+                { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' },
+                { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio el componente
+            ];
+            _this.pagesCentro = [
+                { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' },
+                { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' },
+                { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
+            ];
+            _this.pagesAdmin = [
+                { title: 'Validar Facturas', component: 'FacturasPendientesPage', icono: 'checkbox-outline' },
+                { title: 'Administrar Premios', component: 'HomeAdminPage', icono: 'add-circle' },
+                { title: 'Administrar Almacenes', component: 'HomeClientePage', icono: 'cart' },
+                { title: 'Administrar Eventos', component: 'HomeClientePage', icono: 'calendar' },
+                { title: 'Generar Reportes', component: 'HomeClientePage', icono: 'clipboard' } // pendiente de cambio  el componente
+            ];
+        });
+    }
+    MyApp.prototype.initializeApp = function () {
+        this.platform.ready().then(function () {
+            __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.initializeApp(firebaseConfig);
+        });
+    };
+    MyApp.prototype.openPage = function (page) {
+        // // Reset the content nav to have just this page
+        // // we wouldn't want the back button to show in this scenario
+        this.nav.setRoot(page.component);
+    };
+    MyApp.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.storage.get('nombre').then(function (data) {
+            _this.nombre = data;
+            console.log("stotage nomb: " + _this.nombre);
+        });
+        this.storage.get('correo').then(function (data) {
+            _this.correo = data;
+        });
+        this.storage.get('puntos').then(function (data) {
+            _this.puntos = data;
+        });
+        this.storage.get('foto').then(function (data) {
+            _this.foto = data;
+        });
+    };
+    MyApp.prototype.salir = function () {
+        this.afAuth.auth.signOut();
+        this.platform.exitApp();
+        this.nav.setRoot('LoginPage');
+    };
+    return MyApp;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* Nav */])
+], MyApp.prototype, "nav", void 0);
+MyApp = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar admin" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b><br>{{correo}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */],
+        __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */],
+        __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */]])
+], MyApp);
+
+//# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 299:
+/***/ 300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -146,13 +249,13 @@ AuthProvider = __decorate([
 
 /***/ }),
 
-/***/ 300:
+/***/ 301:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirebaseServicePrivider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(153);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -200,6 +303,15 @@ var FirebaseServicePrivider = (function () {
         });
         return this.afd.object('/perfil/' + userID);
     };
+    FirebaseServicePrivider.prototype.getUserFoto = function (userID) {
+        this.afd.list('/perfil/', {
+            query: {
+                orderByChild: 'foto',
+                equalTo: 'usuario'
+            }
+        });
+        return this.afd.object('/perfil/' + userID);
+    };
     return FirebaseServicePrivider;
 }());
 FirebaseServicePrivider = __decorate([
@@ -211,16 +323,16 @@ FirebaseServicePrivider = __decorate([
 
 /***/ }),
 
-/***/ 301:
+/***/ 302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlmacenServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -262,13 +374,13 @@ AlmacenServiceProvider = __decorate([
 
 /***/ }),
 
-/***/ 302:
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(320);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -276,33 +388,35 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 319:
+/***/ 320:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export firebaseConfig */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(451);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2_auth__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_auth_auth__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_firebase_service_firebase_service__ = __webpack_require__(300);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_camera__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_almacen_service_almacen_service__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_auth_auth__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_firebase_service_firebase_service__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_camera__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_almacen_service_almacen_service__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_storage__ = __webpack_require__(154);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -354,7 +468,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_10_angularfire2_auth__["b" /* AngularFireAuthModule */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* ReactiveFormsModule */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* HttpModule */]
+            __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_15__ionic_storage__["a" /* IonicStorageModule */].forRoot()
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* IonicApp */]],
         entryComponents: [
@@ -374,113 +489,7 @@ AppModule = __decorate([
 
 //# sourceMappingURL=app.module.js.map
 
-/***/ }),
-
-/***/ 451:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export firebaseConfig */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(86);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var firebaseConfig = {
-    apiKey: "AIzaSyDUz7IJOCgsz5Zk9HBoU0cwF9z2Q229LtI",
-    authDomain: "tiendq-3d47a.firebaseapp.com",
-    databaseURL: "https://tiendq-3d47a.firebaseio.com",
-    storageBucket: "tiendq-3d47a.appspot.com",
-    messagingSenderId: "12950516640"
-};
-var MyApp = (function () {
-    function MyApp(platform, statusBar, splashScreen, afAuth) {
-        var _this = this;
-        this.platform = platform;
-        this.statusBar = statusBar;
-        this.splashScreen = splashScreen;
-        this.afAuth = afAuth;
-        this.rootPage = 'LoginPage'; //HomePage; //esto cambia  para poner el login
-        this.user = {};
-        this.nombre = __WEBPACK_IMPORTED_MODULE_0__global__["a" /* global */].nombre;
-        platform.ready().then(function () {
-            _this.nombre = __WEBPACK_IMPORTED_MODULE_0__global__["a" /* global */].nombre;
-            _this.pages = [
-                { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
-                { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' },
-                { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio el componente
-            ];
-            _this.pagesCentro = [
-                { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' },
-                { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' },
-                { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
-            ];
-            _this.pagesAdmin = [
-                { title: 'Validar Facturas', component: 'FacturasPendientesPage', icono: 'checkbox-outline' },
-                { title: 'Administrar Premios', component: 'HomeAdminPage', icono: 'add-circle' },
-                { title: 'Administrar Almacenes', component: 'HomeClientePage', icono: 'cart' },
-                { title: 'Administrar Eventos', component: 'HomeClientePage', icono: 'calendar' },
-                { title: 'Generar Reportes', component: 'HomeClientePage', icono: 'clipboard' } // pendiente de cambio  el componente
-            ];
-        });
-    }
-    MyApp.prototype.initializeApp = function () {
-        this.platform.ready().then(function () {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
-            // this.statusBar.styleDefault();
-            // this.splashScreen.hide();
-            __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.initializeApp(firebaseConfig);
-        });
-    };
-    MyApp.prototype.openPage = function (page) {
-        // // Reset the content nav to have just this page
-        // // we wouldn't want the back button to show in this scenario
-        this.nav.setRoot(page.component);
-    };
-    MyApp.prototype.salir = function () {
-        this.afAuth.auth.signOut();
-        this.platform.exitApp();
-        this.nav.setRoot('LoginPage');
-    };
-    return MyApp;
-}());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* Nav */])
-], MyApp.prototype, "nav", void 0);
-MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2FavatarF.png?alt=media&token=fe0bacb2-f133-452b-9b29-7d16403b2af2">\n\n       <p>hola {{nombre}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2FavatarF.png?alt=media&token=fe0bacb2-f133-452b-9b29-7d16403b2af2">\n\n       <p>hola {{nombre}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */],
-        __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */]])
-], MyApp);
-
-//# sourceMappingURL=app.component.js.map
-
 /***/ })
 
-},[302]);
+},[303]);
 //# sourceMappingURL=main.js.map

@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 455:
+/***/ 458:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(463);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(466);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,17 +38,18 @@ LoginPageModule = __decorate([
 
 /***/ }),
 
-/***/ 463:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_global__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_app_component__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(154);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -101,8 +102,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var LoginPage = (function () {
-    function LoginPage(afAuth, navCtrl, auth, alertCtrl, navParams, firebaseService, platform, menuCtrl, menu) {
+    function LoginPage(afAuth, navCtrl, auth, alertCtrl, navParams, firebaseService, platform, menuCtrl, menu, storage, global) {
         this.afAuth = afAuth;
         this.navCtrl = navCtrl;
         this.auth = auth;
@@ -112,6 +114,8 @@ var LoginPage = (function () {
         this.platform = platform;
         this.menuCtrl = menuCtrl;
         this.menu = menu;
+        this.storage = storage;
+        this.global = global;
         this.user = {};
         this.menu1Active();
     }
@@ -145,7 +149,7 @@ var LoginPage = (function () {
     LoginPage.prototype.login = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var alert_1;
+            var alert;
             return __generator(this, function (_a) {
                 if (user.email != null && user.password != null) {
                     this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
@@ -154,10 +158,13 @@ var LoginPage = (function () {
                             _this.tipo = _this.firebaseService.getUserTipo(auth.uid);
                             _this.nombre = _this.firebaseService.getUserName(auth.uid);
                             _this.puntos = _this.firebaseService.getUserPuntos(auth.uid);
-                            console.log("variable global " + __WEBPACK_IMPORTED_MODULE_0__app_global__["a" /* global */].nombre);
-                            __WEBPACK_IMPORTED_MODULE_0__app_global__["a" /* global */].nombre = "yh";
-                            console.log("nueva variable global " + __WEBPACK_IMPORTED_MODULE_0__app_global__["a" /* global */].nombre);
+                            _this.foto = _this.firebaseService.getUserFoto(auth.uid);
                             _this.tipo.subscribe(function (usersnapshot) {
+                                _this.storage.set('nombre', usersnapshot.nombre);
+                                _this.storage.set('correo', auth.email);
+                                _this.storage.set('puntos', usersnapshot.puntos);
+                                _this.storage.set('foto', usersnapshot.foto);
+                                _this.global.ionViewDidLoad();
                                 if (usersnapshot.tipo == "cliente") {
                                     _this.navCtrl.setRoot('HomeClientePage', {
                                         uid: auth.uid,
@@ -186,12 +193,12 @@ var LoginPage = (function () {
                     //pendiiente limpiar pagina de login al ir atras
                 }
                 else {
-                    alert_1 = this.alertCtrl.create({
+                    alert = this.alertCtrl.create({
                         title: 'Autenticación Incorrecta',
                         subTitle: "Faltan datos",
                         buttons: ['Aceptar']
                     });
-                    alert_1.present();
+                    alert.present();
                 }
                 return [2 /*return*/];
             });
@@ -204,17 +211,10 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-list>\n\n\n\n    <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Flogo.png?alt=media&token=8743287f-762a-42b0-ab73-d659ae302dbf">\n\n    <form class="autenticar">\n\n\n\n      <ion-item>\n\n        <ion-label floating>Correo</ion-label>\n\n        <ion-input \n\n          [(ngModel)]="user.email" \n\n          name="email" \n\n          type="text" \n\n          autocapitalize="off" \n\n          required\n\n\n\n        >\n\n        </ion-input>\n\n      </ion-item>\n\n     \n\n      <ion-item>\n\n        <ion-label floating>Contraseña</ion-label>\n\n        <ion-input \n\n          [(ngModel)]="user.password" \n\n          name="password" \n\n          type="password" \n\n          required\n\n        >\n\n        </ion-input>\n\n      </ion-item>\n\n      <div padding >\n\n        <button class="auth"\n\n\n\n            ion-button \n\n            (click)="login(user)" \n\n            type="submit" \n\n            color="primary"\n\n            block\n\n        >\n\n          Autentícate \n\n        </button> \n\n        <p></p>\n\n        <button  class="register"\n\n          ion-button \n\n          (click)="signin()" \n\n          type="submit" \n\n         color="primary"\n\n          block\n\n        >\n\n          Registráte\n\n        </button>\n\n      </div>\n\n    </form>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\login\login.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */]) === "function" && _l || Object])
 ], LoginPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
 //# sourceMappingURL=login.js.map
 
 /***/ })

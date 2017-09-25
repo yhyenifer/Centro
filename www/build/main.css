@@ -19913,13 +19913,18 @@ ion-navbar.toolbar {
   background: #f7ef36;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .avatar {
   max-width: 50%;
   margin-left: 6em;
+  border-radius: 5em;
 }
 
 .separador {
-  border-style: double;
+  border: solid 1px #000000;
   margin-left: 1em;
 }
 
@@ -20100,13 +20105,10 @@ page-home-cliente .camara {
 
 page-home-cliente .letra12 {
   font-size: 12px;
-  margin-right: 48em;
 }
 
 page-home-cliente .row {
-  margin-left: 38px;
-  margin-right: 0;
-  margin-bottom: 2em;
+  margin-bottom: 20px;
 }
 
 page-home-cliente .swiper-pagination-bullet-active {
@@ -20114,7 +20116,16 @@ page-home-cliente .swiper-pagination-bullet-active {
 }
 
 page-home-cliente .logoEvento {
-  margin-left: 30em;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 767px) {
+  page-home-cliente .logoEvento {
+    margin-left: 30em;
+  }
+  page-home-cliente .letra12 {
+    margin-right: 48em;
+  }
 }
 
 body {

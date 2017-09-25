@@ -115,8 +115,8 @@ export class HomeClientePage {
     this.nombre =this.navParams.get("nombre");
     this.email =this.navParams.get("email");
     this.puntos =this.navParams.get("puntos");
-    console.log('nombre: ' + this.nombre + ' email: '+this.puntos);
-    console.log('email: ' + this.email);
+    // console.log('nombre: ' + this.nombre + ' email: '+this.puntos);
+    // console.log('email: ' + this.email);
   }
 
   ir(){

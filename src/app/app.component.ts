@@ -1,4 +1,5 @@
-import { global } from './global';
+import { FirebaseObjectObservable } from 'angularfire2/database';
+import { Storage } from '@ionic/storage';
 import { HomeAdminPage } from '../pages/home-admin/home-admin';
 import { User } from './models/user';
 import { MisFacturasPage } from '../pages/mis-facturas/mis-facturas';
@@ -10,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 import { LoginPage } from '../pages/login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
+
 
  export const firebaseConfig = {
   apiKey: "AIzaSyDUz7IJOCgsz5Zk9HBoU0cwF9z2Q229LtI",
@@ -24,25 +26,26 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class MyApp {
    login: LoginPage;
-
- 
+   nombre: String;
+   correo: String;
+   puntos: number;
+   foto: string;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'LoginPage'  //HomePage; //esto cambia  para poner el login
   pages: Array<{title: string, component: any, icono: any}>;
   pagesCentro: Array<{title: string, component: any, icono: any}>;
   pagesAdmin: Array<{title: string, component: any, icono: any}>;
-  user= { } as User;
-  nombre=global.nombre;
+  
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    public storage: Storage
     
   ) {
      platform.ready().then(() => {
-      this.nombre=global.nombre;
       this.pages = [
      
         { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
@@ -68,10 +71,6 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      // this.statusBar.styleDefault();
-      // this.splashScreen.hide();
       firebase.initializeApp(firebaseConfig);
     });
   }
@@ -82,11 +81,29 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
+  ionViewDidLoad(){
+  
+   this.storage.get('nombre').then((data)=>{
+    this.nombre=data;
+    console.log("stotage nomb: "+ this.nombre);
+   });
+   this.storage.get('correo').then((data)=>{
+     this.correo=data;
+    });
+    this.storage.get('puntos').then((data)=>{
+     this.puntos=data;
+    });
+    this.storage.get('foto').then((data)=>{
+      this.foto=data;
+     });  
+  }
 salir(){
 
 this.afAuth.auth.signOut();
 this.platform.exitApp();
 this.nav.setRoot('LoginPage');
+
+
 }
 
 }

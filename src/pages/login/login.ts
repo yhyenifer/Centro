@@ -1,4 +1,5 @@
-import { global } from '../../app/global';
+import { MyApp } from '../../app/app.component';
+
 import { Platform } from 'ionic-angular';
 
 import { User } from '../../app/models/user';
@@ -9,7 +10,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { FirebaseServicePrivider } from '../../providers/firebase-service/firebase-service';
 import { FirebaseObjectObservable} from 'angularfire2/database';
 import { MenuController } from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage()
@@ -24,6 +25,7 @@ export class LoginPage {
   tipo: FirebaseObjectObservable<any>;
   nombre: FirebaseObjectObservable<any>;
   puntos: FirebaseObjectObservable<any>;
+  foto: FirebaseObjectObservable<any>;
   constructor(
     private afAuth: AngularFireAuth,
   	public navCtrl: NavController,
@@ -33,7 +35,9 @@ export class LoginPage {
     public firebaseService: FirebaseServicePrivider,
     public platform: Platform,
     public menuCtrl: MenuController,
-    public menu: MenuController
+    public menu: MenuController,
+    public storage: Storage,
+    public global: MyApp
     ) {
       this.menu1Active();
     }
@@ -76,17 +80,19 @@ export class LoginPage {
     
  .then((success)=>{
    const authObserv= this.afAuth.authState.subscribe(auth => {
-     
+      
       this.tipo= this.firebaseService.getUserTipo(auth.uid);
       this.nombre=this.firebaseService.getUserName(auth.uid);
       this.puntos=this.firebaseService.getUserPuntos(auth.uid);
-      console.log("variable global "+global.nombre);
-      global.nombre="yh";
-      console.log("nueva variable global "+global.nombre);
+      this.foto=this.firebaseService.getUserFoto(auth.uid);
       this.tipo.subscribe(usersnapshot=>{
-      
-     
+      this.storage.set('nombre', usersnapshot.nombre);
+      this.storage.set('correo', auth.email); 
+      this.storage.set('puntos', usersnapshot.puntos); 
+      this.storage.set('foto', usersnapshot.foto); 
+      this.global.ionViewDidLoad();
         if (usersnapshot.tipo=="cliente"){
+         
           this.navCtrl.setRoot('HomeClientePage',{
             uid: auth.uid,
             nombre: usersnapshot.nombre,
@@ -126,6 +132,7 @@ else{
   alert.present();
 }
 }
+
 
  
 }

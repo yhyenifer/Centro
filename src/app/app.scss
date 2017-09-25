@@ -30,13 +30,17 @@
     background: #f7ef36;
 }
 
+.text-center{
+    text-align: center;
+}
 
 .avatar{
     max-width: 50%;
     margin-left: 6em;
+    border-radius: 5em;
 }
 
 .separador{
-    border-style: double;
+    border: solid 1px #000000;
     margin-left: 1em;
 }
