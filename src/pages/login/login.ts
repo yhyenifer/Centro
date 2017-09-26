@@ -48,6 +48,7 @@ export class LoginPage {
       this.menu.enable(false, 'menu1');
     } 
     
+    
   
 //creacion de usuario (esta correcto)
   signin(){
