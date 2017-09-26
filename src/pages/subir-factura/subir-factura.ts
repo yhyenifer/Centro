@@ -57,19 +57,25 @@ export class SubirFacturaPage {
 
 
   agregar(){
-
     let storageRef = firebase.storage().ref();
     const filename = "factura "+Math.floor(Date.now() / 1000);
     const imageRef = storageRef.child(`img/facturas/${filename}.jpg`);
-    imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
-      // Do something here when the data is succesfully uploaded!
-      this.showSuccesfulUploadAlert();
+    if(this.selectedvalue == undefined){
+      let alert = this.alertCtrl.create({
+        title: 'Seleccione almacen',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+    else{
+      imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+        // Do something here when the data is succesfully uploaded!
       this.agregarFoto(filename);
-      
       this.navCtrl.setRoot('MisFacturasPage',{
-        uid: this.uid
+          uid: this.uid
       });
      });
+    }
   }
 
   atras(){
@@ -89,12 +95,14 @@ export class SubirFacturaPage {
   }
   agregarFoto(filename){
         console.log(this.selectedvalue);
-        this.infoFactura$.push({
+        
+      
+          this.infoFactura$.push({
     
-          uid: this.uid,
-          almacen: this.selectedvalue,
-          estado: 'Pendiente',
-          url: `img/facturas/'${filename}'.jpg`
+            uid: this.uid,
+            almacen: this.selectedvalue,
+            estado: 'Pendiente',
+            url: `img/facturas/'${filename}'.jpg`
     
         })
       }

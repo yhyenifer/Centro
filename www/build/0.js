@@ -98,19 +98,37 @@ var SubirFacturaPage = (function () {
         var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
         var filename = "factura " + Math.floor(Date.now() / 1000);
         var imageRef = storageRef.child("img/facturas/" + filename + ".jpg");
+<<<<<<< HEAD
         imageRef.putString(this.base64Image, __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage.StringFormat.DATA_URL).then(function (snapshot) {
             // Do something here when the data is succesfully uploaded!
             _this.showSuccesfulUploadAlert();
             _this.agregarFoto(filename);
             _this.navCtrl.setRoot('MisFacturasPage', {
                 uid: _this.uid
+=======
+        if (this.selectedvalue == undefined) {
+            var alert_1 = this.alertCtrl.create({
+                title: 'Seleccione almacen',
+                buttons: ['OK']
+>>>>>>> 022b6c52a96e88c2779ef93ae5929d6b091fa89f
             });
-        });
+            alert_1.present();
+        }
+        else {
+            imageRef.putString(this.base64Image, __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage.StringFormat.DATA_URL).then(function (snapshot) {
+                // Do something here when the data is succesfully uploaded!
+                _this.agregarFoto(filename);
+                _this.navCtrl.setRoot('MisFacturasPage', {
+                    uid: _this.uid
+                });
+            });
+        }
     };
     SubirFacturaPage.prototype.atras = function () {
         this.navCtrl.setRoot('HomeClientePage');
     };
     SubirFacturaPage.prototype.showSuccesfulUploadAlert = function () {
+<<<<<<< HEAD
         this.navCtrl.setRoot('MisFacturasPage');
         // let alert = this.alertCtrl.create({
         //   title: 'Uploaded!',
@@ -120,6 +138,16 @@ var SubirFacturaPage = (function () {
         // alert.present();
         // // clear the previous photo data in the variable
         // this.base64Image = "";
+=======
+        var alert = this.alertCtrl.create({
+            title: 'Tu factura esta en espera!',
+            subTitle: 'Gracias por esperar pronto tu factura sera redimida',
+            buttons: ['OK']
+        });
+        alert.present();
+        // clear the previous photo data in the variable
+        this.base64Image = "";
+>>>>>>> 022b6c52a96e88c2779ef93ae5929d6b091fa89f
     };
     SubirFacturaPage.prototype.agregarFoto = function (filename) {
         console.log(this.selectedvalue);
