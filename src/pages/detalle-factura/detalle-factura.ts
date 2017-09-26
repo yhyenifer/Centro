@@ -3,6 +3,7 @@ import { Factura } from '../../app/models/factura';
 import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import firebase from 'firebase';
 
 /**
  * Generated class for the DetalleFacturaPage page.
@@ -25,26 +26,26 @@ export class DetalleFacturaPage {
   nombreCliente: string;
   estado: string;
   almacen: string;
-  valor: number;
   url: string;
   public base64Image: string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private database: AngularFireDatabase,
     public firebaseService: FirebaseServicePrivider, ) {
-      // let storageRef = firebase.storage().ref();
+    let storageRef = firebase.storage().ref();
     this.infoFactura$ = this.database.list('factura');
     this.infoPerfil$ = this.database.list('perfil');
     this.factura = navParams.get('factura');
     this.id = navParams.get('id');
     this.usuario=this.firebaseService.getUserName(this.factura.uid);
-    this.nombreCliente = this.factura.uid;
+    this.usuario.subscribe(nombreCliente=>{
+      this.nombreCliente = nombreCliente.nombre + " "+ nombreCliente.apellido;
+    });
     this.estado = this.factura.estado;
     this.almacen = this.factura.almacen;
-    this.valor= 1000;
-    // this.url = this.factura.url
-    // const imageRef = storageRef.child(this.url);
-    // imageRef.getDownloadURL().then(url =>
-    //   this.base64Image = url);
+    this.url = this.factura.url
+    const imageRef = storageRef.child(this.url);
+    imageRef.getDownloadURL().then(url =>
+    this.base64Image = url);
   }
 
   ionViewDidLoad() {

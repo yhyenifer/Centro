@@ -4,6 +4,7 @@ import { FirebaseListObservable, FirebaseObjectObservable, AngularFireDatabase }
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import firebase from 'firebase';
 /**
  * Generated class for the ValidarFacturasPage page.
  *
@@ -38,20 +39,25 @@ export class ValidarFacturasPage {
     public alertCtrl : AlertController,
     public storage: Storage
   ) {
-      // let storageRef = firebase.storage().ref();
+      let storageRef = firebase.storage().ref();
       this.infoFactura$ = this.database.list('factura');
       this.infoPerfil$ = this.database.list('perfil');
       this.factura = navParams.get('factura');
       this.id = navParams.get('id');
       this.usuario=this.firebaseService.getUserName(this.factura.uid);
       this.puntos=this.firebaseService.getUserName(this.factura.uid);
+      this.puntos.subscribe(nombreCliente=>{
+        this.nombreCliente = nombreCliente.nombre + " "+ nombreCliente.apellido;
+      });
       this.nombreCliente = this.factura.uid;
       this.estado = this.factura.estado;
       this.url = this.factura.url;
       this.almacen = this.factura.almacen;
-      // const imageRef = storageRef.child(this.url);
-      // imageRef.getDownloadURL().then(url =>
-      //   this.base64Image = url);
+      
+
+      const imageRef = storageRef.child(this.url);
+      imageRef.getDownloadURL().then(url =>
+      this.base64Image = url);
         
       this.puntosacum = 0;
       
