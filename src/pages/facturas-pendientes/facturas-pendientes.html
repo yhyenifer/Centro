@@ -37,7 +37,7 @@
   <ion-col>
     <!-- se deben mostrar las 20 facturas en estado pendiente de  la mas antigua a la mas reciente -->
       <ion-list>
-        <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura('ValidarFacturasPage')">
+        <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura, factura.$key)">
           <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} - {{factura.almacen}} 
          </button>      
         </ion-list>

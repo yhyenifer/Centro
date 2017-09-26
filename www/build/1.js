@@ -125,7 +125,7 @@ var SubirFacturaPage = (function () {
             uid: this.uid,
             almacen: this.selectedvalue,
             estado: 'Pendiente',
-            url: "img/facturas/'" + filename + "'.jpg"
+            url: "img/facturas/" + filename + ".jpg"
         });
     };
     return SubirFacturaPage;
