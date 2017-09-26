@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 456:
+/***/ 462:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MisFacturasPageModule", function() { return MisFacturasPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubirFacturaPageModule", function() { return SubirFacturaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mis_facturas__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subir_factura__ = __webpack_require__(471);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MisFacturasPageModule = (function () {
-    function MisFacturasPageModule() {
+var SubirFacturaPageModule = (function () {
+    function SubirFacturaPageModule() {
     }
-    return MisFacturasPageModule;
+    return SubirFacturaPageModule;
 }());
-MisFacturasPageModule = __decorate([
+SubirFacturaPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__mis_facturas__["a" /* MisFacturasPage */],
+            __WEBPACK_IMPORTED_MODULE_2__subir_factura__["a" /* SubirFacturaPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__mis_facturas__["a" /* MisFacturasPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__subir_factura__["a" /* SubirFacturaPage */]),
         ],
     })
-], MisFacturasPageModule);
+], SubirFacturaPageModule);
 
-//# sourceMappingURL=mis-facturas.module.js.map
+//# sourceMappingURL=subir-factura.module.js.map
 
 /***/ }),
 
-/***/ 464:
+/***/ 471:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MisFacturasPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SubirFacturaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_almacen_service_almacen_service__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,53 +61,98 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
- * Generated class for the MisFacturasPage page.
+ * Generated class for the SubirFacturaPage page.
  *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
  */
-var MisFacturasPage = (function () {
-    function MisFacturasPage(navCtrl, navParams, database, menu) {
+var SubirFacturaPage = (function () {
+    function SubirFacturaPage(navCtrl, navParams, alertCtrl, database, menu, almacenService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.database = database;
         this.menu = menu;
-        this.uid = navParams.get("uid");
-        //this.raizFactura = firebase.database().ref();
-        this.facturas$ = this.database.list('/factura', {
-            query: {
-                orderByChild: 'uid',
-                equalTo: this.uid
-            }
-        });
+        this.almacenService = almacenService;
+        this.factura = {};
         this.menu1Active();
-    }
-    MisFacturasPage.prototype.menu1Active = function () {
-        this.menu.enable(true, 'menu1');
-        this.menu.enable(false, 'menu2');
-    };
-    MisFacturasPage.prototype.ionViewDidLoad = function () {
+        this.base64Image = this.navParams.get("base64Image");
         this.uid = this.navParams.get("uid");
+        this.alertCtrl = alertCtrl;
+        this.infoFactura$ = this.database.list('factura');
+        this.almacenes = this.database.list('/Almacen');
+        console.log(this.selectedvalue);
+    }
+    SubirFacturaPage.prototype.menu1Active = function () {
+        this.menu.enable(true, 'menu1');
     };
-    MisFacturasPage.prototype.mostrarFactura = function (factura) {
-        //LO que se desee hacer cuando el usuario clique en una factura,
-        //en la cariable factura esta la info de la factura clickada
-        //this.navCtrl.setRoot('LoginPage');
+    SubirFacturaPage.prototype.ionViewDidLoad = function () {
+        this.base64Image = this.navParams.get("base64Image");
+        this.uid = this.navParams.get("uid");
+        this.nombre = this.navParams.get("nombre");
     };
-    return MisFacturasPage;
+    SubirFacturaPage.prototype.agregar = function () {
+        var _this = this;
+        var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
+        var filename = "factura " + Math.floor(Date.now() / 1000);
+        var imageRef = storageRef.child("img/facturas/" + filename + ".jpg");
+        if (this.selectedvalue == undefined) {
+            var alert_1 = this.alertCtrl.create({
+                title: 'Seleccione almacen',
+                buttons: ['OK']
+            });
+            alert_1.present();
+        }
+        else {
+            imageRef.putString(this.base64Image, __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage.StringFormat.DATA_URL).then(function (snapshot) {
+                // Do something here when the data is succesfully uploaded!
+                _this.agregarFoto(filename);
+                _this.navCtrl.setRoot('MisFacturasPage', {
+                    uid: _this.uid
+                });
+            });
+        }
+    };
+    SubirFacturaPage.prototype.atras = function () {
+        this.navCtrl.setRoot('HomeClientePage');
+    };
+    SubirFacturaPage.prototype.showSuccesfulUploadAlert = function () {
+        this.navCtrl.setRoot('MisFacturasPage');
+        // let alert = this.alertCtrl.create({
+        //   title: 'Uploaded!',
+        //   subTitle: 'Picture is uploaded to Firebase',
+        //   buttons: ['OK']
+        // });
+        // alert.present();
+        // // clear the previous photo data in the variable
+        // this.base64Image = "";
+    };
+    SubirFacturaPage.prototype.agregarFoto = function (filename) {
+        console.log(this.selectedvalue);
+        this.infoFactura$.push({
+            uid: this.uid,
+            almacen: this.selectedvalue,
+            estado: 'Pendiente',
+            url: "img/facturas/'" + filename + "'.jpg"
+        });
+    };
+    return SubirFacturaPage;
 }());
-MisFacturasPage = __decorate([
+SubirFacturaPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-mis-facturas',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\mis-facturas\mis-facturas.html"*/'<!--\n\n  Generated template for the MisFacturasPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n \n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Mis Facturas\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n        <ion-list>\n\n          <!-- se deben ordenar por fecha de la mas reciente a la mas antigua y deben ser las de cada usuario\n\n          -->\n\n            <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura)">\n\n             <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} \n\n            </button>\n\n        </ion-list>\n\n   \n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\mis-facturas\mis-facturas.html"*/,
+        selector: 'page-subir-factura',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\subir-factura\subir-factura.html"*/'<!--\n\n  Generated template for the SubirFacturaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar  >\n\n      <button ion-button menuToggle >\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Subir Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n\n\n<ion-content padding>\n\n    <div class="text-center"> \n\n    <img class="factura" [src]="base64Image">\n\n    </div>\n\n    <ion-item>\n\n      <ion-label>Almacén:</ion-label>\n\n      <ion-select [(ngModel)]="selectedvalue">\n\n        <!--  carga los alamcenes del centro comercial -->\n\n        <ion-option *ngFor="let almacen of almacenes | async"><h2>{{ almacen.nombre }}</h2></ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <p></p>\n\n    <div class="text-center"> \n\n        <h4>¿{{nombre}} estas seguro de subir esta factura?</h4>\n\n    </div>\n\n    <div class="text-center">\n\n        <button ion-button icon-only class="botones si" (click)="agregar()" >\n\n            Si\n\n        </button>\n\n        <button ion-button icon-only class="botones no" (click)="atras()" >\n\n            No\n\n        </button>\n\n    </div>\n\n    <div class="text-center">\n\n    <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>\n\n\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\subir-factura\subir-factura.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
         __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]])
-], MisFacturasPage);
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_almacen_service_almacen_service__["a" /* AlmacenServiceProvider */]])
+], SubirFacturaPage);
 
-//# sourceMappingURL=mis-facturas.js.map
+//# sourceMappingURL=subir-factura.js.map
 
 /***/ })
 

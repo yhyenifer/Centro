@@ -1,4 +1,4 @@
-webpackJsonp([8],{
+webpackJsonp([9],{
 
 /***/ 163:
 /***/ (function(module, exports) {
@@ -23,34 +23,38 @@ webpackEmptyAsyncContext.id = 163;
 var map = {
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
 		459,
-		7
+		8
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
 		460,
-		6
+		7
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
 		461,
-		5
+		6
 	],
 	"../pages/home-admin/home-admin.module": [
 		455,
-		4
+		5
 	],
 	"../pages/home-cliente/home-cliente.module": [
 		457,
-		3
+		4
 	],
 	"../pages/login/login.module": [
 		458,
-		2
+		3
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
 		456,
-		1
+		2
 	],
 	"../pages/subir-factura/subir-factura.module": [
 		462,
+		1
+	],
+	"../pages/validar-facturas/validar-facturas.module": [
+		463,
 		0
 	]
 };
@@ -460,7 +464,8 @@ AppModule = __decorate([
                     { loadChildren: '../pages/facturas-aprobadas/facturas-aprobadas.module#FacturasAprobadasPageModule', name: 'FacturasAprobadasPage', segment: 'facturas-aprobadas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-denegadas/facturas-denegadas.module#FacturasDenegadasPageModule', name: 'FacturasDenegadasPage', segment: 'facturas-denegadas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-pendientes/facturas-pendientes.module#FacturasPendientesPageModule', name: 'FacturasPendientesPage', segment: 'facturas-pendientes', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/validar-facturas/validar-facturas.module#ValidarFacturasPageModule', name: 'ValidarFacturasPage', segment: 'validar-facturas', priority: 'low', defaultHistory: [] }
                 ]
             }),
             __WEBPACK_IMPORTED_MODULE_8_angularfire2__["a" /* AngularFireModule */].initializeApp(firebaseConfig),

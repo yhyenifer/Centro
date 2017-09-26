@@ -20184,3 +20184,43 @@ page-subir-factura .gana {
 page-subir-factura .si {
   margin-right: 3em;
 }
+
+page-validar-facturas .toolbar-title-md {
+  color: white;
+}
+
+page-validar-facturas .bar-button-default-md, page-validar-facturas .bar-button-clear-md-default, page-validar-facturas .bar-button-md-default {
+  color: white;
+}
+
+page-validar-facturas .toolbar-background-md {
+  background: #F71515;
+}
+
+page-validar-facturas .text-center {
+  text-align: center;
+}
+
+page-validar-facturas #valorFactura {
+  margin-top: 2em;
+}
+
+page-validar-facturas #valor > .text-input-md {
+  width: 30%;
+  border: solid 3px #dedede;
+  font-size: 18px;
+}
+
+page-validar-facturas .aprobar {
+  font-size: 35px;
+  margin-top: 4em;
+  background-color: yellow;
+  width: 52%;
+}
+
+page-validar-facturas .denegar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: red;
+  width: 52%;
+}
