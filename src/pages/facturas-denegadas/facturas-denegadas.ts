@@ -48,4 +48,13 @@ export class FacturasDenegadasPage {
 
   }
 
+  mostrarFactura(factura, facturaId){
+    
+        this.navCtrl.setRoot('DetalleFacturaPage', {
+          factura: factura,
+          id: facturaId
+        });
+    
+      }
+
 }

@@ -48,4 +48,13 @@ export class FacturasAprobadasPage {
     this.navCtrl.setRoot(page);
   }
 
+  mostrarFactura(factura, facturaId){
+    
+        this.navCtrl.setRoot('DetalleFacturaPage', {
+          factura: factura,
+          id: facturaId
+        });
+    
+      }
+
 }

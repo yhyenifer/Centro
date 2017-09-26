@@ -36,7 +36,7 @@
     <ion-col>
       <!-- se deben mostrar las 20 facturas en estado denegadas de  la mas reciente  a la mas antigua -->
         <ion-list>
-          <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura)">
+          <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura, factura.$key)">
             <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} - {{factura.almacen}} 
            </button>
         

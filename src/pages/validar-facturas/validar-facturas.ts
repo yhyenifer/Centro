@@ -38,12 +38,9 @@ export class ValidarFacturasPage {
     public alertCtrl : AlertController,
     public storage: Storage
   ) {
-      let storageRef = firebase.storage().ref();
-      
+      // let storageRef = firebase.storage().ref();
       this.infoFactura$ = this.database.list('factura');
       this.infoPerfil$ = this.database.list('perfil');
-      
-
       this.factura = navParams.get('factura');
       this.id = navParams.get('id');
       this.usuario=this.firebaseService.getUserName(this.factura.uid);
@@ -52,12 +49,12 @@ export class ValidarFacturasPage {
       this.estado = this.factura.estado;
       this.url = this.factura.url;
       this.almacen = this.factura.almacen;
-      const imageRef = storageRef.child(this.url);
-      imageRef.getDownloadURL().then(url =>
-        this.base64Image = url);
+      // const imageRef = storageRef.child(this.url);
+      // imageRef.getDownloadURL().then(url =>
+      //   this.base64Image = url);
         
       this.puntosacum = 0;
-        console.log("jnsfbnsf " +this.base64Image);
+      
   }
 
   ionViewDidLoad() {

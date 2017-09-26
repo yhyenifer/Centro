@@ -19928,6 +19928,22 @@ ion-navbar.toolbar {
   margin-left: 1em;
 }
 
+page-detalle-factura .toolbar-title-md {
+  color: white;
+}
+
+page-detalle-factura .bar-button-default-md, page-detalle-factura .bar-button-clear-md-default, page-detalle-factura .bar-button-md-default {
+  color: white;
+}
+
+page-detalle-factura .toolbar-background-md {
+  background: #F71515;
+}
+
+page-detalle-factura .text-center {
+  text-align: center;
+}
+
 page-facturas-aprobadas .toolbar-title-md {
   color: white;
 }

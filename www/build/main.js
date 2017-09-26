@@ -1,4 +1,4 @@
-webpackJsonp([9],{
+webpackJsonp([10],{
 
 /***/ 163:
 /***/ (function(module, exports) {
@@ -21,24 +21,28 @@ webpackEmptyAsyncContext.id = 163;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
+	"../pages/detalle-factura/detalle-factura.module": [
 		457,
+		9
+	],
+	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
+		458,
 		8
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
-		458,
+		459,
 		7
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
-		459,
+		460,
 		6
 	],
 	"../pages/home-admin/home-admin.module": [
-		460,
+		461,
 		5
 	],
 	"../pages/home-cliente/home-cliente.module": [
-		461,
+		462,
 		4
 	],
 	"../pages/login/login.module": [
@@ -46,15 +50,15 @@ var map = {
 		3
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
-		462,
+		463,
 		2
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		463,
+		464,
 		1
 	],
 	"../pages/validar-facturas/validar-facturas.module": [
-		464,
+		465,
 		0
 	]
 };
@@ -78,9 +82,83 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirebaseServicePrivider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(153);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var FirebaseServicePrivider = (function () {
+    function FirebaseServicePrivider(afd) {
+        this.afd = afd;
+    }
+    FirebaseServicePrivider.prototype.getUserID = function () {
+    };
+    FirebaseServicePrivider.prototype.getUserTipo = function (userID) {
+        this.afd.list('/perfil/', {
+            query: {
+                orderByChild: 'tipo',
+                equalTo: 'usuario'
+            }
+        });
+        return this.afd.object('/perfil/' + userID);
+    };
+    FirebaseServicePrivider.prototype.getUserName = function (userID) {
+        this.afd.list('/perfil/', {
+            query: {
+                orderByChild: 'nombre',
+                equalTo: 'usuario'
+            }
+        });
+        return this.afd.object('/perfil/' + userID);
+    };
+    FirebaseServicePrivider.prototype.getUserPuntos = function (userID) {
+        this.afd.list('/perfil/', {
+            query: {
+                orderByChild: 'puntos',
+                equalTo: 'usuario'
+            }
+        });
+        return this.afd.object('/perfil/' + userID);
+    };
+    FirebaseServicePrivider.prototype.getUserFoto = function (userID) {
+        this.afd.list('/perfil/', {
+            query: {
+                orderByChild: 'foto',
+                equalTo: 'usuario'
+            }
+        });
+        return this.afd.object('/perfil/' + userID);
+    };
+    return FirebaseServicePrivider;
+}());
+FirebaseServicePrivider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
+], FirebaseServicePrivider);
+
+//# sourceMappingURL=firebase-service.js.map
+
+/***/ }),
+
+/***/ 299:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* unused harmony export firebaseConfig */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(206);
@@ -182,7 +260,7 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 299:
+/***/ 300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -244,80 +322,6 @@ AuthProvider = __decorate([
 
 /***/ }),
 
-/***/ 300:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirebaseServicePrivider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(153);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var FirebaseServicePrivider = (function () {
-    function FirebaseServicePrivider(afd) {
-        this.afd = afd;
-    }
-    FirebaseServicePrivider.prototype.getUserID = function () {
-    };
-    FirebaseServicePrivider.prototype.getUserTipo = function (userID) {
-        this.afd.list('/perfil/', {
-            query: {
-                orderByChild: 'tipo',
-                equalTo: 'usuario'
-            }
-        });
-        return this.afd.object('/perfil/' + userID);
-    };
-    FirebaseServicePrivider.prototype.getUserName = function (userID) {
-        this.afd.list('/perfil/', {
-            query: {
-                orderByChild: 'nombre',
-                equalTo: 'usuario'
-            }
-        });
-        return this.afd.object('/perfil/' + userID);
-    };
-    FirebaseServicePrivider.prototype.getUserPuntos = function (userID) {
-        this.afd.list('/perfil/', {
-            query: {
-                orderByChild: 'puntos',
-                equalTo: 'usuario'
-            }
-        });
-        return this.afd.object('/perfil/' + userID);
-    };
-    FirebaseServicePrivider.prototype.getUserFoto = function (userID) {
-        this.afd.list('/perfil/', {
-            query: {
-                orderByChild: 'foto',
-                equalTo: 'usuario'
-            }
-        });
-        return this.afd.object('/perfil/' + userID);
-    };
-    return FirebaseServicePrivider;
-}());
-FirebaseServicePrivider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
-], FirebaseServicePrivider);
-
-//# sourceMappingURL=firebase-service.js.map
-
-/***/ }),
-
 /***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -327,7 +331,7 @@ FirebaseServicePrivider = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -394,15 +398,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_device__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2_database__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2_auth__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_auth_auth__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_firebase_service_firebase_service__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_auth_auth__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_firebase_service_firebase_service__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(302);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_almacen_service_almacen_service__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_storage__ = __webpack_require__(154);
@@ -451,9 +455,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                 links: [
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/detalle-factura/detalle-factura.module#DetalleFacturaPageModule', name: 'DetalleFacturaPage', segment: 'detalle-factura', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-aprobadas/facturas-aprobadas.module#FacturasAprobadasPageModule', name: 'FacturasAprobadasPage', segment: 'facturas-aprobadas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-denegadas/facturas-denegadas.module#FacturasDenegadasPageModule', name: 'FacturasDenegadasPage', segment: 'facturas-denegadas', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/validar-facturas/validar-facturas.module#ValidarFacturasPageModule', name: 'ValidarFacturasPage', segment: 'validar-facturas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-pendientes/facturas-pendientes.module#FacturasPendientesPageModule', name: 'FacturasPendientesPage', segment: 'facturas-pendientes', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home-admin/home-admin.module#HomeAdminPageModule', name: 'HomeAdminPage', segment: 'home-admin', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home-cliente/home-cliente.module#HomeClientePageModule', name: 'HomeClientePage', segment: 'home-cliente', priority: 'low', defaultHistory: [] },
