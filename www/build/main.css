@@ -20164,6 +20164,10 @@ page-mis-facturas .text-center {
   text-align: center;
 }
 
+page-subir-factura .toolbar-background-md {
+  background: #f7ef36;
+}
+
 page-subir-factura .text-center {
   text-align: center;
 }

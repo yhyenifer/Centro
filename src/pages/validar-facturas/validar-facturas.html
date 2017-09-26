@@ -20,8 +20,7 @@
   <ion-row>
     <ion-col>
       <!-- datos de la factura -->
-      <h4>Factura:</h4>
-      <p>Factura 1</p>
+   
       <h4>Cliente:</h4>
       <p>Nombre y apellido del cliente</p>
       <h4>Estado:</h4>
@@ -34,7 +33,7 @@
         <h4>Almacén:</h4>
         <p>nombre almacen</p>
       <h4 id="valorFactura">Valor de la Factura:</h4>
-      <ion-input id="valor" [ngClass]="valor" type="number" ></ion-input>
+      <ion-input id="valor" [(ngModel)]="valor" type="number" ></ion-input>
       <p></p>
       <button class="aprobar" (click)="aprobar()"><ion-icon name="checkmark"></ion-icon> Aprobar</button>
       <p></p>

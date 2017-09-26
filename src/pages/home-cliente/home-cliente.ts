@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { AlertController, IonicPage, MenuController, Nav, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { AlertController, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 import { Factura } from '../../app/models/factura';
 import { Camera, CameraOptions } from '@ionic-native/camera'
@@ -40,7 +40,6 @@ export class HomeClientePage {
   alertCtrl: AlertController;
   public photos : any;
   public base64Image : string;
-  private imageSrc: string;
   factura = {} as Factura;
   infoFactura$: FirebaseListObservable<Factura[]>
   constructor(private camera: Camera, 

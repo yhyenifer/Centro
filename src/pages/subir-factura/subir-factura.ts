@@ -1,5 +1,4 @@
-import { ListHeader } from 'ionic-angular/umd';
-import { isTab } from 'ionic-angular/navigation/nav-util';
+import { MyApp } from '../../app/app.component';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
@@ -33,11 +32,12 @@ export class SubirFacturaPage {
     alertCtrl: AlertController, 
     private database: AngularFireDatabase,
     public menu: MenuController,
-    public almacenService: AlmacenServiceProvider
+    public almacenService: AlmacenServiceProvider,
+    public global: MyApp
   ) {
     this.menu1Active();
     this.base64Image = this.navParams.get("base64Image");
-    this.uid = this.navParams.get("uid");
+    
     this.alertCtrl = alertCtrl;
     this.infoFactura$ = this.database.list('factura');
     this.almacenes = this.database.list('/Almacen');
@@ -50,8 +50,8 @@ export class SubirFacturaPage {
 
    ionViewDidLoad() {
     this.base64Image = this.navParams.get("base64Image");
-    this.uid = this.navParams.get("uid");
-    this.nombre = this.navParams.get("nombre");
+    this.uid = this.global.uid;
+    this.nombre = this.global.nombre;
    
   }
 
@@ -62,14 +62,14 @@ export class SubirFacturaPage {
     const imageRef = storageRef.child(`img/facturas/${filename}.jpg`);
     if(this.selectedvalue == undefined){
       let alert = this.alertCtrl.create({
-        title: 'Seleccione almacen',
-        buttons: ['OK']
+        title: 'Error',
+        subTitle: 'Debe seleccionar el almacén de la factura.',
+        buttons: ['Aceptar']
       });
       alert.present();
     }
     else{
       imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
-        // Do something here when the data is succesfully uploaded!
       this.agregarFoto(filename);
       this.navCtrl.setRoot('MisFacturasPage',{
           uid: this.uid
@@ -81,24 +81,8 @@ export class SubirFacturaPage {
   atras(){
     this.navCtrl.setRoot('HomeClientePage');
   }
-  showSuccesfulUploadAlert() {
-    this.navCtrl.setRoot('MisFacturasPage');
-    // let alert = this.alertCtrl.create({
-    //   title: 'Uploaded!',
-    //   subTitle: 'Picture is uploaded to Firebase',
-    //   buttons: ['OK']
-    // });
-    // alert.present();
-
-    // // clear the previous photo data in the variable
-    // this.base64Image = "";
-  }
   agregarFoto(filename){
-        console.log(this.selectedvalue);
-        
-      
           this.infoFactura$.push({
-    
             uid: this.uid,
             almacen: this.selectedvalue,
             estado: 'Pendiente',

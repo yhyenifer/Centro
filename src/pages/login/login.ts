@@ -86,11 +86,17 @@ export class LoginPage {
       this.puntos=this.firebaseService.getUserPuntos(auth.uid);
       this.foto=this.firebaseService.getUserFoto(auth.uid);
       this.tipo.subscribe(usersnapshot=>{
+      this.storage.set('uid', auth.uid);
       this.storage.set('nombre', usersnapshot.nombre);
       this.storage.set('correo', auth.email); 
       this.storage.set('puntos', usersnapshot.puntos); 
-      this.storage.set('foto', usersnapshot.foto); 
-      this.global.ionViewDidLoad();
+      this.storage.set('foto', usersnapshot.foto);
+     
+      this.global.uid= auth.uid;
+      this.global.nombre= usersnapshot.nombre;
+      this.global.correo= auth.email;
+      this.global.puntos= usersnapshot.puntos;
+      this.global.foto= usersnapshot.foto;
         if (usersnapshot.tipo=="cliente"){
          
           this.navCtrl.setRoot('HomeClientePage',{
@@ -134,5 +140,4 @@ else{
 }
 
 
- 
 }

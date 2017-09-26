@@ -46,21 +46,10 @@ export class FacturasPendientesPage {
   }
 
   openPage(page){
-    console.log(page);
-    if (page != 'ValidarFacturasPage'){
       this.navCtrl.setRoot(page);
-      
-    }
-    else{
-        //aqui van los parametros de la factura
-        // esto abre factura detalle
-      this.navCtrl.setRoot(page);
-   
-    }
-    
   }
 
   mostrarFactura(factura){
-    
+    this.navCtrl.setRoot(factura);
   }
 }

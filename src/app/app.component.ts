@@ -1,9 +1,7 @@
-import { FirebaseObjectObservable } from 'angularfire2/database';
+
 import { Storage } from '@ionic/storage';
-import { HomeAdminPage } from '../pages/home-admin/home-admin';
-import { User } from './models/user';
-import { MisFacturasPage } from '../pages/mis-facturas/mis-facturas';
-import { HomeClientePage } from '../pages/home-cliente/home-cliente';
+
+
 import { Component, ViewChild } from '@angular/core';
 import { Nav,  Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -25,6 +23,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: 'app.html'
 })
 export class MyApp {
+   uid: string;
    login: LoginPage;
    nombre: String;
    correo: String;
@@ -75,28 +74,24 @@ export class MyApp {
     });
   }
 
+
+
   openPage(page) {
-    // // Reset the content nav to have just this page
-    // // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if(page.component == "MisFacturasPage"){
+      console.log("misF");
+    this.nav.setRoot(page.component,{
+      uid: this.uid
+    });
+    }
+    else{
+      console.log("nomisF");
+      this.nav.setRoot(page.component);
+    }
   }
 
-  ionViewDidLoad(){
-  
-   this.storage.get('nombre').then((data)=>{
-    this.nombre=data;
-    console.log("stotage nomb: "+ this.nombre);
-   });
-   this.storage.get('correo').then((data)=>{
-     this.correo=data;
-    });
-    this.storage.get('puntos').then((data)=>{
-     this.puntos=data;
-    });
-    this.storage.get('foto').then((data)=>{
-      this.foto=data;
-     });  
-  }
+
+
+ 
 salir(){
 
 this.afAuth.auth.signOut();

@@ -1,6 +1,5 @@
-// import { Storage } from '@ionic/storage/es5/storage';
-import { LoginPage } from '../pages/login/login';
-import { HomeClientePage } from '../pages/home-cliente/home-cliente';
+
+
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,8 +16,7 @@ import { FirebaseServicePrivider } from '../providers/firebase-service/firebase-
 import { Camera } from '@ionic-native/camera';
 import { AlmacenServiceProvider } from '../providers/almacen-service/almacen-service';
 import { IonicStorageModule } from '@ionic/storage';
-import { OrdenarFacturaPipe } from '../pipes/ordenar-factura/ordenar-factura';
-import { PipesModule } from '../pipes/pipes.module';
+
 
 
 

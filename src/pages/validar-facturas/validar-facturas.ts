@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the ValidarFacturasPage page.
  *
@@ -18,14 +18,18 @@ export class ValidarFacturasPage {
   valor : number;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public alertCtrl : AlertController) {
+    public alertCtrl : AlertController,
+    public storage: Storage) {
   }
 
   ionViewDidLoad() {
-   this.nombre="yenifer"; // esto debe cambiar
+    this.storage.get('nombre').then((data)=>{
+      this.nombre=data;
+     });
   }
 
   aprobar(){
+    
     if(this.valor > 0){
     console.log("numero valr: "+ this.valor);
     let alert = this.alertCtrl.create({
