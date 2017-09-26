@@ -42,7 +42,9 @@ export class SubirFacturaPage {
     this.alertCtrl = alertCtrl;
     this.infoFactura$ = this.database.list('factura');
     this.almacenes = this.database.list('/Almacen');
+  
     console.log(this.selectedvalue);
+    
   }
 
   menu1Active() {
