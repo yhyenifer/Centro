@@ -32,7 +32,7 @@ export class MisFacturasPage {
          orderByChild: 'uid',
         equalTo: this.uid
       }
-    });
+    }).map((array) => array.reverse()) as FirebaseListObservable<Factura[]>;
     this.menu1Active();
     
 

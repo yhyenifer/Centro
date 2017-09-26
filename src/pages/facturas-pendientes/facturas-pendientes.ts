@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import { Factura } from '../../app/models/factura';
 
 /**
  * Generated class for the FacturasPendientesPage page.
@@ -14,11 +16,24 @@ import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angul
   templateUrl: 'facturas-pendientes.html',
 })
 export class FacturasPendientesPage {
+  //database: any;
+
+  facturas$: FirebaseListObservable<Factura[]>;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public menu: MenuController) {
+    public menu: MenuController,
+    public database: AngularFireDatabase
+  ) {
       this.menu1Active();
+
+      this.facturas$ = this.database.list('/factura', {
+        query: {
+           orderByChild: 'estado',
+          equalTo: 'Pendiente'
+        }
+      });
+
   }
 
   ionViewDidLoad() {
@@ -42,6 +57,10 @@ export class FacturasPendientesPage {
       this.navCtrl.setRoot(page);
    
     }
+    
+  }
+
+  mostrarFactura(factura){
     
   }
 }
