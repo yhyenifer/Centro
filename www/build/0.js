@@ -98,19 +98,10 @@ var SubirFacturaPage = (function () {
         var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
         var filename = "factura " + Math.floor(Date.now() / 1000);
         var imageRef = storageRef.child("img/facturas/" + filename + ".jpg");
-<<<<<<< HEAD
-        imageRef.putString(this.base64Image, __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage.StringFormat.DATA_URL).then(function (snapshot) {
-            // Do something here when the data is succesfully uploaded!
-            _this.showSuccesfulUploadAlert();
-            _this.agregarFoto(filename);
-            _this.navCtrl.setRoot('MisFacturasPage', {
-                uid: _this.uid
-=======
         if (this.selectedvalue == undefined) {
             var alert_1 = this.alertCtrl.create({
                 title: 'Seleccione almacen',
                 buttons: ['OK']
->>>>>>> 022b6c52a96e88c2779ef93ae5929d6b091fa89f
             });
             alert_1.present();
         }
@@ -128,7 +119,6 @@ var SubirFacturaPage = (function () {
         this.navCtrl.setRoot('HomeClientePage');
     };
     SubirFacturaPage.prototype.showSuccesfulUploadAlert = function () {
-<<<<<<< HEAD
         this.navCtrl.setRoot('MisFacturasPage');
         // let alert = this.alertCtrl.create({
         //   title: 'Uploaded!',
@@ -138,16 +128,6 @@ var SubirFacturaPage = (function () {
         // alert.present();
         // // clear the previous photo data in the variable
         // this.base64Image = "";
-=======
-        var alert = this.alertCtrl.create({
-            title: 'Tu factura esta en espera!',
-            subTitle: 'Gracias por esperar pronto tu factura sera redimida',
-            buttons: ['OK']
-        });
-        alert.present();
-        // clear the previous photo data in the variable
-        this.base64Image = "";
->>>>>>> 022b6c52a96e88c2779ef93ae5929d6b091fa89f
     };
     SubirFacturaPage.prototype.agregarFoto = function (filename) {
         console.log(this.selectedvalue);
@@ -163,7 +143,7 @@ var SubirFacturaPage = (function () {
 SubirFacturaPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-subir-factura',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\subir-factura\subir-factura.html"*/'<!--\n\n  Generated template for the SubirFacturaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar  >\n\n      <button ion-button menuToggle >\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Subir Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n\n\n<ion-content padding>\n\n    <div class="text-center"> \n\n    <img class="factura" [src]="base64Image">\n\n    </div>\n\n    <ion-item>\n\n      <ion-label>Almacén:</ion-label>\n\n      <ion-select [(ngModel)]="selectedvalue">\n\n        <!--  carga los alamcenes del centro comercial -->\n\n        <ion-option *ngFor="let almacen of almacenes | async"><h2>{{ almacen.nombre }}</h2></ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <p></p>\n\n    <div class="text-center"> \n\n        <h4>¿{{nombre}} estas seguro de subir esta factura?</h4>\n\n    </div>\n\n    <div class="text-center">\n\n        <button ion-button icon-only class="botones si" (click)="agregar()" >\n\n            Si\n\n        </button>\n\n        <button ion-button icon-only class="botones no" (click)="atras()" >\n\n            No\n\n        </button>\n\n    </div>\n\n    <div class="text-center">\n\n    <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>\n\n\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\subir-factura\subir-factura.html"*/,
+        selector: 'page-subir-factura',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\subir-factura\subir-factura.html"*/'<!--\n\n  Generated template for the SubirFacturaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar  >\n\n      <button ion-button menuToggle >\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Subir Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n\n\n<ion-content padding>\n\n    <div class="text-center"> \n\n    <img class="factura" [src]="base64Image">\n\n    </div>\n\n    <ion-item>\n\n      <ion-label>Almacén:</ion-label>\n\n      <ion-select [(ngModel)]="selectedvalue">\n\n        <!--  carga los alamcenes del centro comercial -->\n\n        <ion-option *ngFor="let almacen of almacenes | async"><h2>{{ almacen.nombre }}</h2></ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <p></p>\n\n    <div class="text-center"> \n\n        <h4>¿{{nombre}} estas seguro de subir esta factura?</h4>\n\n    </div>\n\n    <div class="text-center">\n\n        <button ion-button icon-only class="botones si" (click)="agregar()" >\n\n            Si\n\n        </button>\n\n        <button ion-button icon-only class="botones no" (click)="atras()" >\n\n            No\n\n        </button>\n\n    </div>\n\n    <div class="text-center">\n\n    <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>\n\n\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\subir-factura\subir-factura.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
