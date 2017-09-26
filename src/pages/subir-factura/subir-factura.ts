@@ -62,23 +62,25 @@ export class SubirFacturaPage {
 
 
   agregar(){
-    //console.log(this.selectedvalue);
     let storageRef = firebase.storage().ref();
-    // Create a timestamp as filename
     const filename = "factura "+Math.floor(Date.now() / 1000);
-
-    // Create a reference to 'images/todays-date.jpg'
     const imageRef = storageRef.child(`img/facturas/${filename}.jpg`);
-    imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
-      // Do something here when the data is succesfully uploaded!
-      
-      
+    if(this.selectedvalue == undefined){
+      let alert = this.alertCtrl.create({
+        title: 'Seleccione almacen',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+    else{
+      imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
+        // Do something here when the data is succesfully uploaded!
       this.agregarFoto(filename);
-      
       this.navCtrl.setRoot('MisFacturasPage',{
-        uid: this.uid
+          uid: this.uid
       });
      });
+    }
   }
 
   subir(){
@@ -86,8 +88,8 @@ export class SubirFacturaPage {
   }
   showSuccesfulUploadAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Uploaded!',
-      subTitle: 'Picture is uploaded to Firebase',
+      title: 'Tu factura esta en espera!',
+      subTitle: 'Gracias por esperar pronto tu factura sera redimida',
       buttons: ['OK']
     });
     alert.present();
@@ -99,12 +101,14 @@ export class SubirFacturaPage {
     
         //this.uid = 'asfdfhsfhgjsfhj';
         console.log(this.selectedvalue);
-        this.infoFactura$.push({
+        
+      
+          this.infoFactura$.push({
     
-          uid: this.uid,
-          almacen: this.selectedvalue,
-          estado: 'Pendiente',
-          url: `img/facturas/'${filename}'.jpg`
+            uid: this.uid,
+            almacen: this.selectedvalue,
+            estado: 'Pendiente',
+            url: `img/facturas/'${filename}'.jpg`
     
         })
       }

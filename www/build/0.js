@@ -97,27 +97,33 @@ var SubirFacturaPage = (function () {
     };
     SubirFacturaPage.prototype.agregar = function () {
         var _this = this;
-        //console.log(this.selectedvalue);
         var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
-        // Create a timestamp as filename
         var filename = "factura " + Math.floor(Date.now() / 1000);
-        // Create a reference to 'images/todays-date.jpg'
         var imageRef = storageRef.child("img/facturas/" + filename + ".jpg");
-        imageRef.putString(this.base64Image, __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage.StringFormat.DATA_URL).then(function (snapshot) {
-            // Do something here when the data is succesfully uploaded!
-            _this.agregarFoto(filename);
-            _this.navCtrl.setRoot('MisFacturasPage', {
-                uid: _this.uid
+        if (this.selectedvalue == undefined) {
+            var alert_1 = this.alertCtrl.create({
+                title: 'Seleccione almacen',
+                buttons: ['OK']
             });
-        });
+            alert_1.present();
+        }
+        else {
+            imageRef.putString(this.base64Image, __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage.StringFormat.DATA_URL).then(function (snapshot) {
+                // Do something here when the data is succesfully uploaded!
+                _this.agregarFoto(filename);
+                _this.navCtrl.setRoot('MisFacturasPage', {
+                    uid: _this.uid
+                });
+            });
+        }
     };
     SubirFacturaPage.prototype.subir = function () {
         this.navCtrl.push('HomeClientePage');
     };
     SubirFacturaPage.prototype.showSuccesfulUploadAlert = function () {
         var alert = this.alertCtrl.create({
-            title: 'Uploaded!',
-            subTitle: 'Picture is uploaded to Firebase',
+            title: 'Tu factura esta en espera!',
+            subTitle: 'Gracias por esperar pronto tu factura sera redimida',
             buttons: ['OK']
         });
         alert.present();
