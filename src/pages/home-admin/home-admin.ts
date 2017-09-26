@@ -23,7 +23,7 @@ export class HomeAdminPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomeAdminPage');
+    
   }
 
   menu1Active() {

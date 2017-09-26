@@ -1,7 +1,5 @@
 import { MyApp } from '../../app/app.component';
-
 import { Platform } from 'ionic-angular';
-
 import { User } from '../../app/models/user';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -11,6 +9,8 @@ import { FirebaseServicePrivider } from '../../providers/firebase-service/fireba
 import { FirebaseObjectObservable} from 'angularfire2/database';
 import { MenuController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Device } from '@ionic-native/device';
+
 
 
 @IonicPage()
@@ -37,7 +37,8 @@ export class LoginPage {
     public menuCtrl: MenuController,
     public menu: MenuController,
     public storage: Storage,
-    public global: MyApp
+    public global: MyApp,
+    private device: Device
     ) {
       this.menu1Active();
     }
@@ -91,12 +92,12 @@ export class LoginPage {
       this.storage.set('correo', auth.email); 
       this.storage.set('puntos', usersnapshot.puntos); 
       this.storage.set('foto', usersnapshot.foto);
-     
       this.global.uid= auth.uid;
       this.global.nombre= usersnapshot.nombre;
       this.global.correo= auth.email;
       this.global.puntos= usersnapshot.puntos;
       this.global.foto= usersnapshot.foto;
+     
         if (usersnapshot.tipo=="cliente"){
          
           this.navCtrl.setRoot('HomeClientePage',{
@@ -108,10 +109,21 @@ export class LoginPage {
           
         }
         if (usersnapshot.tipo=="admin"){
+          var plataforma=this.device.platform;
+          if (plataforma=="Android"){
+            let alert = this.alertCtrl.create({
+              title: 'Error',
+              subTitle: "El acceso por esta aplicación es sólo para Clientes ",
+              buttons: ['Aceptar']
+            });
+            alert.present();
+          }
+          else{
           this.navCtrl.setRoot('HomeAdminPage',{
             nombre: usersnapshot.nombre,
             email: auth.email
           });
+        }
         }
       })
 
@@ -138,6 +150,7 @@ else{
   alert.present();
 }
 }
+
 
 
 }

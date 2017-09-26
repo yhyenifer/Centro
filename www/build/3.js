@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 455:
+/***/ 456:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(465);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ LoginPageModule = __decorate([
 
 /***/ }),
 
-/***/ 464:
+/***/ 465:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46,10 +46,11 @@ LoginPageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_app_component__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_device__ = __webpack_require__(301);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -103,8 +104,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var LoginPage = (function () {
-    function LoginPage(afAuth, navCtrl, auth, alertCtrl, navParams, firebaseService, platform, menuCtrl, menu, storage, global) {
+    function LoginPage(afAuth, navCtrl, auth, alertCtrl, navParams, firebaseService, platform, menuCtrl, menu, storage, global, device) {
         this.afAuth = afAuth;
         this.navCtrl = navCtrl;
         this.auth = auth;
@@ -116,6 +118,7 @@ var LoginPage = (function () {
         this.menu = menu;
         this.storage = storage;
         this.global = global;
+        this.device = device;
         this.user = {};
         this.menu1Active();
     }
@@ -179,10 +182,21 @@ var LoginPage = (function () {
                                     });
                                 }
                                 if (usersnapshot.tipo == "admin") {
-                                    _this.navCtrl.setRoot('HomeAdminPage', {
-                                        nombre: usersnapshot.nombre,
-                                        email: auth.email
-                                    });
+                                    var plataforma = _this.device.platform;
+                                    if (plataforma == "Android") {
+                                        var alert_2 = _this.alertCtrl.create({
+                                            title: 'Error',
+                                            subTitle: "El acceso por esta aplicación es sólo para Clientes ",
+                                            buttons: ['Aceptar']
+                                        });
+                                        alert_2.present();
+                                    }
+                                    else {
+                                        _this.navCtrl.setRoot('HomeAdminPage', {
+                                            nombre: usersnapshot.nombre,
+                                            email: auth.email
+                                        });
+                                    }
                                 }
                             });
                             authObserv.unsubscribe();
@@ -226,7 +240,8 @@ LoginPage = __decorate([
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */],
         __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */]])
+        __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */],
+        __WEBPACK_IMPORTED_MODULE_7__ionic_native_device__["a" /* Device */]])
 ], LoginPage);
 
 //# sourceMappingURL=login.js.map

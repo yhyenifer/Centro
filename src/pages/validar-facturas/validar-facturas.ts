@@ -26,6 +26,7 @@ export class ValidarFacturasPage {
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
      });
+     
   }
 
   aprobar(){

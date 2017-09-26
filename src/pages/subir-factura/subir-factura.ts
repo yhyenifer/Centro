@@ -1,7 +1,8 @@
+import { FirebaseServicePrivider } from '../../providers/firebase-service/firebase-service';
 import { MyApp } from '../../app/app.component';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
-import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Factura } from '../../app/models/factura';
 import { AlmacenServiceProvider } from '../../providers/almacen-service/almacen-service';
 import firebase from 'firebase';
@@ -19,7 +20,7 @@ import firebase from 'firebase';
   templateUrl: 'subir-factura.html',
 })
 export class SubirFacturaPage {
-
+ 
   public uid;
   public nombre;
   factura = {} as Factura;
@@ -52,7 +53,7 @@ export class SubirFacturaPage {
     this.base64Image = this.navParams.get("base64Image");
     this.uid = this.global.uid;
     this.nombre = this.global.nombre;
-   
+    
   }
 
 
