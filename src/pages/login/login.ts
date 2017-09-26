@@ -74,7 +74,6 @@ export class LoginPage {
  async login(user: User) 
 {
 
-
   if(user.email!=null && user.password!=null){
     this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password ) 
     

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import { Factura } from '../../app/models/factura';
+import { ValidarFacturasPage } from '../validar-facturas/validar-facturas';
 
 /**
  * Generated class for the FacturasPendientesPage page.
@@ -60,7 +61,12 @@ export class FacturasPendientesPage {
     
   }
 
-  mostrarFactura(factura){
-    
+  mostrarFactura(factura, facturaId){
+
+    this.navCtrl.setRoot('ValidarFacturasPage', {
+      factura: factura,
+      id: facturaId
+    });
+
   }
 }

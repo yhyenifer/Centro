@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Factura } from '../../app/models/factura';
+import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { FirebaseServicePrivider } from '../../providers/firebase-service/firebase-service';
+import firebase from 'firebase';
 
 /**
  * Generated class for the ValidarFacturasPage page.
@@ -14,15 +18,52 @@ import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angu
   templateUrl: 'validar-facturas.html',
 })
 export class ValidarFacturasPage {
+  public base64Image: string;
+  id : string;
   nombre : String;
   valor : number;
-  constructor(public navCtrl: NavController, 
+  factura : Factura;
+  nombreCliente: string;
+  estado: string;
+  url: string;
+  almacen: string;
+  infoFactura$: FirebaseListObservable<Factura[]>
+  infoPerfil$: FirebaseListObservable<any[]>
+  usuario: FirebaseObjectObservable<any>;
+  puntos: FirebaseObjectObservable<any>;
+  puntosacum :number;
+  constructor(public navCtrl: NavController,
+    public firebaseService: FirebaseServicePrivider, 
     public navParams: NavParams,
+    private database: AngularFireDatabase,
     public alertCtrl : AlertController) {
+      let storageRef = firebase.storage().ref();
+      
+      this.infoFactura$ = this.database.list('factura');
+      this.infoPerfil$ = this.database.list('perfil');
+      
+
+      this.factura = navParams.get('factura');
+      this.id = navParams.get('id');
+      this.usuario=this.firebaseService.getUserName(this.factura.uid);
+      this.puntos=this.firebaseService.getUserName(this.factura.uid);
+      this.nombreCliente = this.factura.uid;
+      this.estado = this.factura.estado;
+      this.url = this.factura.url;
+      this.almacen = this.factura.almacen;
+      const imageRef = storageRef.child(this.url);
+      imageRef.getDownloadURL().then(url =>
+        this.base64Image = url);
+        
+      this.puntosacum = 0;
+        console.log("jnsfbnsf " +this.base64Image);
   }
 
   ionViewDidLoad() {
    this.nombre="yenifer"; // esto debe cambiar
+   this.puntos.subscribe( usersnapshot => {
+    this.puntosacum = parseInt(usersnapshot.puntos)
+  })
   }
 
   aprobar(){
@@ -42,6 +83,19 @@ export class ValidarFacturasPage {
             //y enviar notificacion
             // se decide que por cada 1000 pesos de valor de la 
             //factura se ortoga 1 punto al cliente
+            this.factura.estado = 'Aprobada';
+            
+            this.infoFactura$.update( this.id, {
+              
+                      estado: this.factura.estado,
+                      valor: this.valor
+                                 
+                  })
+            this.puntosacum = Number(this.puntosacum) + Number(this.valor/1000);
+            this.infoPerfil$.update( this.factura.uid, {
+              puntos: this.puntosacum
+            })
+            this.navCtrl.setRoot('FacturasAprobadasPage');
           }
         },
         {
@@ -79,6 +133,15 @@ export class ValidarFacturasPage {
             // va el codigo que debe actualizar el estado de la 
             //factura  a "denegada"  
             //y enviar notificacion
+            this.factura.estado = 'Denegada';
+            
+            this.infoFactura$.update( this.id, {
+              
+                      estado: this.factura.estado
+                                 
+                  })
+
+            this.navCtrl.setRoot('FacturasDenegadasPage');
           
           }
         },
