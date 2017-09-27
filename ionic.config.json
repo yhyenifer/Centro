@@ -1,6 +1,6 @@
 {
   "name": "Centro",
-  "app_id": "",
+  "app_id": "23d4eb27",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
