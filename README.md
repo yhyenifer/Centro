@@ -30,3 +30,4 @@ integracion 25/09/2017 solo front
 integracion 26/09/2017 
 integracion 26/09/2017 solo front
 integracion 26/09/2017 solo front
+integracion 27/09/2017 solo front
