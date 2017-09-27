@@ -47,8 +47,8 @@ ValidarFacturasPageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -132,7 +132,7 @@ var ValidarFacturasPage = (function () {
                                 estado: _this.factura.estado,
                                 valor: _this.valor
                             });
-                            _this.puntosacum = Number(_this.puntosacum) + Number(_this.valor / 1000);
+                            _this.puntosacum = Number(_this.puntosacum) + Number(Math.floor(_this.valor / 1000));
                             _this.infoPerfil$.update(_this.factura.uid, {
                                 puntos: _this.puntosacum
                             });
@@ -196,7 +196,7 @@ var ValidarFacturasPage = (function () {
 ValidarFacturasPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
-        selector: 'page-validar-facturas',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\validar-facturas\validar-facturas.html"*/'<!--\n\n  Generated template for the ValidarFacturasPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Aprobar/Denegar\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-row>\n\n    <ion-col>\n\n      <!-- datos de la factura -->\n\n   \n\n      <h4>Cliente:</h4>\n\n      <p>{{nombreCliente}}</p>\n\n      <h4>Estado:</h4>\n\n      <p>{{estado}}</p>\n\n      <h4>Imagen:</h4>\n\n      <!-- aqui va la imagen de la factura -->\n\n      <img [src]=base64Image> \n\n    </ion-col>\n\n    <ion-col>\n\n        <h4>Almacén:</h4>\n\n        <p>{{almacen}}</p>\n\n      <h4 id="valorFactura">Valor de la Factura:</h4>\n\n      <ion-input id="valor" [(ngModel)]="valor" type="number" ></ion-input>\n\n      <p></p>\n\n      <button class="aprobar" (click)="aprobar()"><ion-icon name="checkmark"></ion-icon> Aprobar</button>\n\n      <p></p>\n\n      <button class="denegar" (click)="denegar()"><ion-icon name="close"></ion-icon> Denegar</button>\n\n    </ion-col> \n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\validar-facturas\validar-facturas.html"*/,
+        selector: 'page-validar-facturas',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\centro\src\pages\validar-facturas\validar-facturas.html"*/'<!--\n\n  Generated template for the ValidarFacturasPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Aprobar/Denegar\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-row>\n\n    <ion-col>\n\n      <!-- datos de la factura -->\n\n   \n\n      <h4>Cliente:</h4>\n\n      <p>{{nombreCliente}}</p>\n\n      <h4>Estado:</h4>\n\n      <p>{{estado}}</p>\n\n      <h4>Imagen:</h4>\n\n      <!-- aqui va la imagen de la factura -->\n\n      <img [src]=base64Image> \n\n    </ion-col>\n\n    <ion-col>\n\n        <h4>Almacén:</h4>\n\n        <p>{{almacen}}</p>\n\n      <h4 id="valorFactura">Valor de la Factura:</h4>\n\n      <ion-input id="valor" [(ngModel)]="valor" type="number" ></ion-input>\n\n      <p></p>\n\n      <button class="aprobar" (click)="aprobar()"><ion-icon name="checkmark"></ion-icon> Aprobar</button>\n\n      <p></p>\n\n      <button class="denegar" (click)="denegar()"><ion-icon name="close"></ion-icon> Denegar</button>\n\n    </ion-col> \n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\centro\src\pages\validar-facturas\validar-facturas.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["i" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */],

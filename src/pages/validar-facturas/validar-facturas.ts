@@ -98,7 +98,7 @@ export class ValidarFacturasPage {
                       valor: this.valor
                                  
                   })
-            this.puntosacum = Number(this.puntosacum) + Number(this.valor/1000);
+            this.puntosacum = Number(this.puntosacum) + Number(Math.floor(this.valor/1000));
             this.infoPerfil$.update( this.factura.uid, {
               puntos: this.puntosacum
             })

@@ -19985,6 +19985,16 @@ page-facturas-aprobadas .adminVal {
   margin-top: 7em;
 }
 
+@media (max-width: 500px) and (min-width: 300px) {
+  page-facturas-aprobadas .tab {
+    margin-left: 0em;
+    font-size: 18px;
+  }
+  page-facturas-aprobadas .adminVal {
+    display: none;
+  }
+}
+
 page-facturas-denegadas .toolbar-title-md {
   color: white;
 }
@@ -20024,6 +20034,16 @@ page-facturas-denegadas .tab:hover {
 page-facturas-denegadas .adminVal {
   margin-left: 20em;
   margin-top: 7em;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-facturas-denegadas .tab {
+    margin-left: 0em;
+    font-size: 18px;
+  }
+  page-facturas-denegadas .adminVal {
+    display: none;
+  }
 }
 
 page-facturas-pendientes .toolbar-title-md {
@@ -20067,6 +20087,16 @@ page-facturas-pendientes .adminVal {
   margin-top: 7em;
 }
 
+@media (max-width: 500px) and (min-width: 300px) {
+  page-facturas-pendientes .tab {
+    margin-left: 0em;
+    font-size: 18px;
+  }
+  page-facturas-pendientes .adminVal {
+    display: none;
+  }
+}
+
 page-home-admin .toolbar-title-md {
   color: white;
 }
@@ -20100,6 +20130,32 @@ page-home-admin .boton {
   color: white;
   padding: 6px;
   border-radius: 1em;
+}
+
+@media (max-width: 320px) {
+  page-home-admin .lista {
+    margin-top: 0em;
+    margin-left: 0em;
+  }
+  page-home-admin .boton {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 450px) and (min-width: 340px) {
+  page-home-admin .lista {
+    margin-top: 0em;
+    margin-left: 0em;
+  }
+  page-home-admin .boton {
+    font-size: 31px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-home-admin .admin {
+    display: none;
+  }
 }
 
 page-home-cliente .toolbar-background-md {
@@ -20142,6 +20198,9 @@ page-home-cliente .logoEvento {
   page-home-cliente .letra12 {
     margin-right: 48em;
   }
+  page-home-cliente .mobile {
+    display: none;
+  }
 }
 
 body {
@@ -20164,11 +20223,11 @@ page-login .auth:hover:not(.disable-hover) {
 
 @media (min-width: 767px) {
   page-login .logo {
-    margin-left: 45em;
+    margin-left: 36em;
   }
   page-login .autenticar {
     width: 30%;
-    margin-left: 40em;
+    margin-left: 33em;
   }
 }
 
