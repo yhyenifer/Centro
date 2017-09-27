@@ -10,6 +10,7 @@ import { FirebaseObjectObservable} from 'angularfire2/database';
 import { MenuController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Device } from '@ionic-native/device';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 
@@ -38,7 +39,8 @@ export class LoginPage {
     public menu: MenuController,
     public storage: Storage,
     public global: MyApp,
-    private device: Device
+    private device: Device,
+    private iap: InAppBrowser
     ) {
       this.menu1Active();
     }
@@ -113,8 +115,24 @@ export class LoginPage {
           if (plataforma=="Android"){
             let alert = this.alertCtrl.create({
               title: 'Error',
-              subTitle: "El acceso por esta aplicación es sólo para Clientes ",
-              buttons: ['Aceptar']
+              subTitle: "El acceso por esta aplicación es sólo para Clientes " ,
+              buttons:[
+                {
+                  text: 'Ir al sitio',
+                  role: 'si',
+                  handler: () => {
+                    this.openLink();            
+                  
+                  }
+                },
+                {
+                  text: 'Aceptar',
+                  role: 'no',
+                  handler: () => {
+                    
+                  }
+                }
+              ]
             });
             alert.present();
           }
@@ -151,6 +169,8 @@ else{
 }
 }
 
-
+openLink(){
+  this.iap.create("https://megacity.herokuapp.com/");
+}
 
 }
