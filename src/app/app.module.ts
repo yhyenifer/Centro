@@ -17,7 +17,7 @@ import { FirebaseServicePrivider } from '../providers/firebase-service/firebase-
 import { Camera } from '@ionic-native/camera';
 import { AlmacenServiceProvider } from '../providers/almacen-service/almacen-service';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 
@@ -52,6 +52,7 @@ export const firebaseConfig = {
     MyApp
   ],
   providers: [Device,
+    InAppBrowser,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
