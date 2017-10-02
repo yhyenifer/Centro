@@ -6,6 +6,8 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { Factura } from '../../app/models/factura';
 import { AlmacenServiceProvider } from '../../providers/almacen-service/almacen-service';
 import firebase from 'firebase';
+import { LoadingController } from 'ionic-angular';
+
 
 /**
  * Generated class for the SubirFacturaPage page.
@@ -31,6 +33,7 @@ export class SubirFacturaPage {
   public selectedvalue;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     alertCtrl: AlertController, 
+    public loadingCtrl: LoadingController,
     private database: AngularFireDatabase,
     public menu: MenuController,
     public almacenService: AlmacenServiceProvider,
@@ -72,6 +75,7 @@ export class SubirFacturaPage {
       alert.present();
     }
     else{
+      this.presentLoading();
       imageRef.putString(this.base64Image, firebase.storage.StringFormat.DATA_URL).then((snapshot)=> {
       this.agregarFoto(filename);
       this.navCtrl.setRoot('MisFacturasPage',{
@@ -93,5 +97,12 @@ export class SubirFacturaPage {
     
         })
       }
-         
+     
+      presentLoading() {
+        let loader = this.loadingCtrl.create({
+          content: "Por favor espere...",
+          duration: 3000
+        });
+        loader.present();
+      }    
 }

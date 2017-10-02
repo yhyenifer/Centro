@@ -65,6 +65,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the SubirFacturaPage page.
  *
@@ -72,9 +73,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var SubirFacturaPage = (function () {
-    function SubirFacturaPage(navCtrl, navParams, alertCtrl, database, menu, almacenService, global) {
+    function SubirFacturaPage(navCtrl, navParams, alertCtrl, loadingCtrl, database, menu, almacenService, global) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.loadingCtrl = loadingCtrl;
         this.database = database;
         this.menu = menu;
         this.almacenService = almacenService;
@@ -109,6 +111,7 @@ var SubirFacturaPage = (function () {
             alert_1.present();
         }
         else {
+            this.presentLoading();
             imageRef.putString(this.base64Image, __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.storage.StringFormat.DATA_URL).then(function (snapshot) {
                 _this.agregarFoto(filename);
                 _this.navCtrl.setRoot('MisFacturasPage', {
@@ -128,6 +131,13 @@ var SubirFacturaPage = (function () {
             url: "img/facturas/" + filename + ".jpg"
         });
     };
+    SubirFacturaPage.prototype.presentLoading = function () {
+        var loader = this.loadingCtrl.create({
+            content: "Por favor espere...",
+            duration: 3000
+        });
+        loader.present();
+    };
     return SubirFacturaPage;
 }());
 SubirFacturaPage = __decorate([
@@ -135,10 +145,11 @@ SubirFacturaPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
         selector: 'page-subir-factura',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\subir-factura\subir-factura.html"*/'<!--\n\n  Generated template for the SubirFacturaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar  >\n\n      <button ion-button menuToggle >\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Subir Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n\n\n<ion-content padding>\n\n    <div class="text-center"> \n\n    <img class="factura" [src]="base64Image">\n\n    </div>\n\n    <ion-item>\n\n      <ion-label>Almacén:</ion-label>\n\n      <ion-select [(ngModel)]="selectedvalue">\n\n        <!--  carga los alamcenes del centro comercial -->\n\n        <ion-option *ngFor="let almacen of almacenes | async"><h2>{{ almacen.nombre }}</h2></ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <p></p>\n\n    <div class="text-center"> \n\n        <h4>¿{{nombre}} estas seguro de subir esta factura?</h4>\n\n    </div>\n\n    <div class="text-center">\n\n        <button ion-button icon-only class="botones si" (click)="agregar()" >\n\n            Si\n\n        </button>\n\n        <button ion-button icon-only class="botones no" (click)="atras()" >\n\n            No\n\n        </button>\n\n    </div>\n\n    <div class="text-center">\n\n    <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>\n\n\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\subir-factura\subir-factura.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavParams */],
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* LoadingController */],
         __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */],
         __WEBPACK_IMPORTED_MODULE_4__providers_almacen_service_almacen_service__["a" /* AlmacenServiceProvider */],
         __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */]])
 ], SubirFacturaPage);

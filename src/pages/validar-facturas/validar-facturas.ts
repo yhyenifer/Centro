@@ -55,8 +55,6 @@ export class ValidarFacturasPage {
       this.estado = this.factura.estado;
       this.url = this.factura.url;
       this.almacen = this.factura.almacen;
-      
-
       const imageRef = storageRef.child(this.url);
       imageRef.getDownloadURL().then(url =>
       this.base64Image = url);
@@ -116,6 +114,10 @@ export class ValidarFacturasPage {
           role: 'no',
           handler: () => {
             //la ventana de confirmacion solo se cierra
+            this.contador= Number(this.contador)+1;
+            this.infoPerfil$.update( this.factura.uid, {
+              notificacion: this.contador
+            })
           }
         }
       ]

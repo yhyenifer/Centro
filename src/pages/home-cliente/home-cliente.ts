@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { AlertController, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 import { Factura } from '../../app/models/factura';
-import { Camera, CameraOptions } from '@ionic-native/camera'
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { LoadingController } from 'ionic-angular';
+
 
 /**
  * Generated class for the HomeClientePage page.
@@ -47,7 +49,8 @@ export class HomeClientePage {
     public navParams: NavParams,
     private database: AngularFireDatabase, 
     alertCtrl: AlertController,
-    public menu: MenuController
+    public menu: MenuController,
+    public loadingCtrl: LoadingController
   )
      {
     this.menu1Active();
@@ -61,9 +64,7 @@ export class HomeClientePage {
     this.menu.enable(false, 'menu2');
   }
    async tomarFoto(): Promise<any>{
-    
       try{
-        
         this.camera.getPicture(this.options1).then((ImageData) => {
           this.base64Image = 'data:image/jpeg;base64,' + ImageData;
           this.navCtrl.setRoot('SubirFacturaPage',{
@@ -79,8 +80,6 @@ export class HomeClientePage {
 
   async sacarFoto(): Promise<any>{
     try{
-      //this.uid = 'asfdfhsfhgjsfhj';
-  
       this.camera.getPicture(this.options2).then((ImageData) => {
         this.base64Image = 'data:image/jpeg;base64,' + ImageData;
         this.navCtrl.setRoot('SubirFacturaPage',{
@@ -122,6 +121,12 @@ export class HomeClientePage {
     
     this.navCtrl.setRoot('SubirFacturaPage');
   }
-
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Cargando imagen...",
+      duration: 3000
+    });
+    loader.present();
+  }
 
 }
