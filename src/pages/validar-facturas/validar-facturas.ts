@@ -32,6 +32,8 @@ export class ValidarFacturasPage {
   usuario: FirebaseObjectObservable<any>;
   puntos: FirebaseObjectObservable<any>;
   puntosacum :number;
+  contador: number;
+  notificacion: FirebaseObjectObservable<any>;
   constructor(public navCtrl: NavController,
     public firebaseService: FirebaseServicePrivider, 
     public navParams: NavParams,
@@ -68,8 +70,10 @@ export class ValidarFacturasPage {
       this.nombre=data;
      });
    this.puntos.subscribe( usersnapshot => {
-    this.puntosacum = parseInt(usersnapshot.puntos)
-  })
+    this.puntosacum = parseInt(usersnapshot.puntos);
+    this.contador= parseInt(usersnapshot.notificacion);
+  });
+  
   }
 
   aprobar(){
@@ -99,8 +103,10 @@ export class ValidarFacturasPage {
                                  
                   })
             this.puntosacum = Number(this.puntosacum) + Number(Math.floor(this.valor/1000));
+            this.contador= Number(this.contador)+1;
             this.infoPerfil$.update( this.factura.uid, {
-              puntos: this.puntosacum
+              puntos: this.puntosacum,
+              notificacion: this.contador
             })
             this.navCtrl.setRoot('FacturasAprobadasPage');
           }

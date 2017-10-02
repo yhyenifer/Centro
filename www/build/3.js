@@ -7,7 +7,7 @@ webpackJsonp([3],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(467);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44,9 +44,9 @@ LoginPageModule = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_app_component__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(155);
@@ -164,6 +164,7 @@ var LoginPage = (function () {
                             _this.tipo = _this.firebaseService.getUserTipo(auth.uid);
                             _this.nombre = _this.firebaseService.getUserName(auth.uid);
                             _this.puntos = _this.firebaseService.getUserPuntos(auth.uid);
+                            _this.notificacion = _this.firebaseService.getUserNotificacion(auth.uid);
                             _this.foto = _this.firebaseService.getUserFoto(auth.uid);
                             _this.tipo.subscribe(function (usersnapshot) {
                                 _this.storage.set('uid', auth.uid);
@@ -171,11 +172,13 @@ var LoginPage = (function () {
                                 _this.storage.set('correo', auth.email);
                                 _this.storage.set('puntos', usersnapshot.puntos);
                                 _this.storage.set('foto', usersnapshot.foto);
+                                _this.storage.set('notificacion', usersnapshot.notificacion);
                                 _this.global.uid = auth.uid;
                                 _this.global.nombre = usersnapshot.nombre;
                                 _this.global.correo = auth.email;
                                 _this.global.puntos = usersnapshot.puntos;
                                 _this.global.foto = usersnapshot.foto;
+                                _this.global.notificacion = usersnapshot.notificacion;
                                 if (usersnapshot.tipo == "cliente") {
                                     _this.navCtrl.setRoot('HomeClientePage', {
                                         uid: auth.uid,

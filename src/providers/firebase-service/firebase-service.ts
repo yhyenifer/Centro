@@ -66,5 +66,18 @@ export class FirebaseServicePrivider {
     return this.afd.object('/perfil/'+ userID);
   }
 
+  getUserNotificacion(userID: String){
+    this.afd.list('/perfil/',{
+      
+            query: {
+              orderByChild: 'notificacion',
+              equalTo: 'usuario'
+            }
+      
+      
+          });
+    return this.afd.object('/perfil/'+ userID);
+  }
+
 
 }

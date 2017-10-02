@@ -3,12 +3,13 @@ import { Storage } from '@ionic/storage';
 
 
 import { Component, ViewChild } from '@angular/core';
-import { Nav,  Platform } from 'ionic-angular';
+import { AlertController, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 import { LoginPage } from '../pages/login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 
  export const firebaseConfig = {
@@ -29,6 +30,8 @@ export class MyApp {
    correo: String;
    puntos: number;
    foto: string;
+   notificacion: number;
+   infoPerfil$: FirebaseListObservable<any[]>
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'LoginPage'  //HomePage; //esto cambia  para poner el login
@@ -41,9 +44,13 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     private afAuth: AngularFireAuth,
-    public storage: Storage
+    public storage: Storage,
+    public alertCtrl : AlertController,
+    private database: AngularFireDatabase
     
   ) {
+    this.notificacion=0;
+    this.infoPerfil$ = this.database.list('perfil');
      platform.ready().then(() => {
       this.pages = [
      
@@ -78,18 +85,45 @@ export class MyApp {
 
   openPage(page) {
     if(page.component == "MisFacturasPage"){
-      console.log("misF");
+
     this.nav.setRoot(page.component,{
       uid: this.uid
     });
     }
     else{
-      console.log("nomisF");
+     
       this.nav.setRoot(page.component);
     }
   }
 
+verNotificacion(){
+  let alert = this.alertCtrl.create({
+    title: 'Información',
+    subTitle: this.notificacion + " de tus facturas han sido modificadas por MegaCity" ,
+    buttons:[
+      {
+        text: 'Aceptar',
+        role: 'si',
+        handler: () => {
+           
+         if (this.notificacion==0){
 
+         } 
+         else{  
+             //cambiar el atributo notificacion a cero
+             this.infoPerfil$.update( this.uid, {
+              notificacion: 0
+            })
+            this.openPage(this.pages[1]);
+              
+
+         }
+        }
+      }
+    ]
+  });
+  alert.present();
+}
 
  
 salir(){

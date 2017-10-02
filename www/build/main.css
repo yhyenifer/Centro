@@ -19917,6 +19917,18 @@ ion-navbar.toolbar {
   text-align: center;
 }
 
+#notifica {
+  font-size: 10px;
+  color: red;
+  float: right;
+  margin-left: 5px;
+  margin-top: -3px;
+}
+
+.notifica {
+  background: #f7ef36;
+}
+
 .avatar {
   max-width: 50%;
   margin-left: 6em;

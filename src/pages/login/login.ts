@@ -27,6 +27,7 @@ export class LoginPage {
   nombre: FirebaseObjectObservable<any>;
   puntos: FirebaseObjectObservable<any>;
   foto: FirebaseObjectObservable<any>;
+  notificacion: FirebaseObjectObservable<any>;
   constructor(
     private afAuth: AngularFireAuth,
   	public navCtrl: NavController,
@@ -87,6 +88,7 @@ export class LoginPage {
       this.tipo= this.firebaseService.getUserTipo(auth.uid);
       this.nombre=this.firebaseService.getUserName(auth.uid);
       this.puntos=this.firebaseService.getUserPuntos(auth.uid);
+      this.notificacion=this.firebaseService.getUserNotificacion(auth.uid);      
       this.foto=this.firebaseService.getUserFoto(auth.uid);
       this.tipo.subscribe(usersnapshot=>{
       this.storage.set('uid', auth.uid);
@@ -94,11 +96,13 @@ export class LoginPage {
       this.storage.set('correo', auth.email); 
       this.storage.set('puntos', usersnapshot.puntos); 
       this.storage.set('foto', usersnapshot.foto);
+      this.storage.set('notificacion', usersnapshot.notificacion);
       this.global.uid= auth.uid;
       this.global.nombre= usersnapshot.nombre;
       this.global.correo= auth.email;
       this.global.puntos= usersnapshot.puntos;
       this.global.foto= usersnapshot.foto;
+      this.global.notificacion= usersnapshot.notificacion;
      
         if (usersnapshot.tipo=="cliente"){
          

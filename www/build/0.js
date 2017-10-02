@@ -7,7 +7,7 @@ webpackJsonp([0],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ValidarFacturasPageModule", function() { return ValidarFacturasPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validar_facturas__ = __webpack_require__(476);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44,9 +44,9 @@ ValidarFacturasPageModule = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ValidarFacturasPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service_firebase_service__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
@@ -107,6 +107,7 @@ var ValidarFacturasPage = (function () {
         });
         this.puntos.subscribe(function (usersnapshot) {
             _this.puntosacum = parseInt(usersnapshot.puntos);
+            _this.contador = parseInt(usersnapshot.notificacion);
         });
     };
     ValidarFacturasPage.prototype.aprobar = function () {
@@ -133,8 +134,10 @@ var ValidarFacturasPage = (function () {
                                 valor: _this.valor
                             });
                             _this.puntosacum = Number(_this.puntosacum) + Number(Math.floor(_this.valor / 1000));
+                            _this.contador = Number(_this.contador) + 1;
                             _this.infoPerfil$.update(_this.factura.uid, {
-                                puntos: _this.puntosacum
+                                puntos: _this.puntosacum,
+                                notificacion: _this.contador
                             });
                             _this.navCtrl.setRoot('FacturasAprobadasPage');
                         }

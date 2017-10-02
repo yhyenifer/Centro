@@ -4,7 +4,8 @@
     <ion-toolbar>
       <ion-title></ion-title>
       <img class="avatar cliente" src={{foto}}>
-       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}</p>
+       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}
+      <br><button class="notifica" (click)="verNotificacion()"> <ion-icon name="mail"  item-start></ion-icon><p id="notifica">{{notificacion}}</p></button></p>
     </ion-toolbar>
   </ion-header>
   <ion-content>
