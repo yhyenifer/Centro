@@ -108,6 +108,9 @@ var ValidarFacturasPage = (function () {
         this.puntos.subscribe(function (usersnapshot) {
             _this.puntosacum = parseInt(usersnapshot.puntos);
             _this.contador = parseInt(usersnapshot.notificacion);
+            _this.puntos.subscribe(function (nombreCliente) {
+                _this.nombreCliente = nombreCliente.nombre + " " + nombreCliente.apellido;
+            });
         });
     };
     ValidarFacturasPage.prototype.aprobar = function () {
