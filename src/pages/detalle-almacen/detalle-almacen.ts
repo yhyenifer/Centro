@@ -15,6 +15,10 @@ import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angul
 })
 export class DetalleAlmacenPage {
 
+  fileT:any[];
+  file:any[];
+  preview:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menu: MenuController) {
     this.menu1Active();
@@ -35,4 +39,13 @@ export class DetalleAlmacenPage {
   guardar(){
     
   }
+  seleccionarFoto(e){
+    this.fileT = e.target.files;
+
+  }
+
+  agregar(){
+    this.file = this.file.concat(this.fileT);
+  }
+
 }

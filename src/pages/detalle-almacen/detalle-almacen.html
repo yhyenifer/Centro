@@ -112,7 +112,12 @@
     </ion-row>
     <ion-row>
         <ion-col>
-                        
+              <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>
+              <button (click)="agregar()"> Agregar</button>
+              <div class="preview">
+                <p>Sin fotos para asignar</p>
+              </div>
+       
         </ion-col> 
         <ion-col class="text-center">
                 <button class="guardar" (click)="Guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>

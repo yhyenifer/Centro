@@ -1,4 +1,4 @@
-webpackJsonp([12],{
+webpackJsonp([10],{
 
 /***/ 163:
 /***/ (function(module, exports) {
@@ -22,52 +22,52 @@ webpackEmptyAsyncContext.id = 163;
 
 var map = {
 	"../pages/detalle-almacen/detalle-almacen.module": [
-		458,
-		11
+		477,
+		23
 	],
 	"../pages/detalle-factura/detalle-factura.module": [
-		459,
-		10
+		458,
+		22
 	],
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
-		460,
-		9
+		459,
+		21
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
-		461,
-		8
+		460,
+		20
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
-		462,
-		7
+		461,
+		19
 	],
 	"../pages/home-admin/home-admin.module": [
-		463,
-		6
+		462,
+		18
 	],
 	"../pages/home-cliente/home-cliente.module": [
-		464,
-		5
+		463,
+		17
 	],
 	"../pages/lista-almacenes/lista-almacenes.module": [
-		465,
-		4
+		478,
+		16
 	],
 	"../pages/login/login.module": [
 		457,
-		3
+		15
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
-		466,
-		2
+		464,
+		14
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		467,
-		1
+		465,
+		13
 	],
 	"../pages/validar-facturas/validar-facturas.module": [
-		468,
-		0
+		466,
+		12
 	]
 };
 function webpackAsyncContext(req) {
@@ -293,7 +293,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}\n\n      <br><button class="notifica" (click)="verNotificacion()"> <ion-icon name="mail"  item-start></ion-icon><p id="notifica">{{notificacion}}</p></button></p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar admin" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b><br>{{correo}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}\n\n      <br><button class="notifica" (click)="verNotificacion()"> <ion-icon name="mail"  item-start></ion-icon><p id="notifica">{{notificacion}}</p></button></p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar admin" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b><br>{{correo}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\app\app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
@@ -505,17 +505,17 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                 links: [
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/detalle-almacen/detalle-almacen.module#DetalleAlmacenPageModule', name: 'DetalleAlmacenPage', segment: 'detalle-almacen', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-factura/detalle-factura.module#DetalleFacturaPageModule', name: 'DetalleFacturaPage', segment: 'detalle-factura', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-aprobadas/facturas-aprobadas.module#FacturasAprobadasPageModule', name: 'FacturasAprobadasPage', segment: 'facturas-aprobadas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-denegadas/facturas-denegadas.module#FacturasDenegadasPageModule', name: 'FacturasDenegadasPage', segment: 'facturas-denegadas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-pendientes/facturas-pendientes.module#FacturasPendientesPageModule', name: 'FacturasPendientesPage', segment: 'facturas-pendientes', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home-admin/home-admin.module#HomeAdminPageModule', name: 'HomeAdminPage', segment: 'home-admin', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home-cliente/home-cliente.module#HomeClientePageModule', name: 'HomeClientePage', segment: 'home-cliente', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/lista-almacenes/lista-almacenes.module#ListaAlmacenesPageModule', name: 'ListaAlmacenesPage', segment: 'lista-almacenes', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/mis-facturas/mis-facturas.module#MisFacturasPageModule', name: 'MisFacturasPage', segment: 'mis-facturas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/validar-facturas/validar-facturas.module#ValidarFacturasPageModule', name: 'ValidarFacturasPage', segment: 'validar-facturas', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/validar-facturas/validar-facturas.module#ValidarFacturasPageModule', name: 'ValidarFacturasPage', segment: 'validar-facturas', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/detalle-almacen/detalle-almacen.module#DetalleAlmacenPageModule', name: 'DetalleAlmacenPage', segment: 'detalle-almacen', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/lista-almacenes/lista-almacenes.module#ListaAlmacenesPageModule', name: 'ListaAlmacenesPage', segment: 'lista-almacenes', priority: 'low', defaultHistory: [] }
                 ]
             }),
             __WEBPACK_IMPORTED_MODULE_9_angularfire2__["a" /* AngularFireModule */].initializeApp(firebaseConfig),
