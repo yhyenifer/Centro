@@ -46,8 +46,11 @@
     </ion-row>
     <ion-row>
         <ion-col>
-        
-              <button> Seleccionar Foto</button>
+              <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>
+              <button (click)="agregar()"> Agregar</button>
+              <div class="preview">
+                <p>Sin fotos para asignar</p>
+              </div>
        
         </ion-col> 
         <ion-col>

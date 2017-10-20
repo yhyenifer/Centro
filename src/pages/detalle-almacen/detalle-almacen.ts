@@ -15,6 +15,10 @@ import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angul
 })
 export class DetalleAlmacenPage {
 
+  fileT:any[];
+  file:any[];
+  preview:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menu: MenuController) {
     this.menu1Active();
@@ -26,6 +30,15 @@ export class DetalleAlmacenPage {
   menu1Active() {
     this.menu.enable(true, 'menu2');
     this.menu.enable(false, 'menu1');
+  }
+
+  seleccionarFoto(e){
+    this.fileT = e.target.files;
+
+  }
+
+  agregar(){
+    this.file = this.file.concat(this.fileT);
   }
 
 }
