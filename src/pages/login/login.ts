@@ -13,7 +13,6 @@ import { Device } from '@ionic-native/device';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
-
 @IonicPage()
 @Component({
   selector: 'page-login',

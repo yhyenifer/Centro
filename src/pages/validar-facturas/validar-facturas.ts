@@ -70,6 +70,9 @@ export class ValidarFacturasPage {
    this.puntos.subscribe( usersnapshot => {
     this.puntosacum = parseInt(usersnapshot.puntos);
     this.contador= parseInt(usersnapshot.notificacion);
+    this.puntos.subscribe(nombreCliente=>{
+      this.nombreCliente = nombreCliente.nombre + " "+ nombreCliente.apellido;
+    });
   });
   
   }
