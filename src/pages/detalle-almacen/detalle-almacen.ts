@@ -28,4 +28,11 @@ export class DetalleAlmacenPage {
     this.menu.enable(false, 'menu1');
   }
 
+  modificar(){
+
+  }
+
+  guardar(){
+    
+  }
 }
