@@ -67,7 +67,7 @@ export class MyApp {
       this.pagesAdmin = [
         { title: 'Validar Facturas', component: 'FacturasPendientesPage', icono: 'checkbox-outline' },
         { title: 'Administrar Premios', component: 'HomeAdminPage', icono: 'add-circle' }, // pendiente de cambio  el componente
-        { title: 'Administrar Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio  el componente
+        { title: 'Administrar Almacenes', component: 'ListaAlmacenesPage', icono: 'cart' }, // pendiente de cambio  el componente
         { title: 'Administrar Eventos', component: 'HomeClientePage', icono: 'calendar' }, // pendiente de cambio  el componente
         { title: 'Generar Reportes', component: 'HomeClientePage', icono: 'clipboard' } // pendiente de cambio  el componente
       ]

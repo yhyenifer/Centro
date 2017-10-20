@@ -19940,6 +19940,22 @@ ion-navbar.toolbar {
   margin-left: 1em;
 }
 
+page-detalle-almacen .toolbar-title-md {
+  color: white;
+}
+
+page-detalle-almacen .bar-button-default-md, page-detalle-almacen .bar-button-clear-md-default, page-detalle-almacen .bar-button-md-default {
+  color: white;
+}
+
+page-detalle-almacen .toolbar-background-md {
+  background: #F71515;
+}
+
+page-detalle-almacen .text-center {
+  text-align: center;
+}
+
 page-detalle-factura .toolbar-title-md {
   color: white;
 }
@@ -20211,6 +20227,32 @@ page-home-cliente .logoEvento {
     margin-right: 48em;
   }
   page-home-cliente .mobile {
+    display: none;
+  }
+}
+
+page-lista-almacenes .toolbar-title-md {
+  color: white;
+}
+
+page-lista-almacenes .bar-button-default-md, page-lista-almacenes .bar-button-clear-md-default, page-lista-almacenes .bar-button-md-default {
+  color: white;
+}
+
+page-lista-almacenes .toolbar-background-md {
+  background: #F71515;
+}
+
+page-lista-almacenes .text-center {
+  text-align: center;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-lista-almacenes .tab {
+    margin-left: 0em;
+    font-size: 18px;
+  }
+  page-lista-almacenes .adminVal {
     display: none;
   }
 }

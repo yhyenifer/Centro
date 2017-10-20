@@ -1,0 +1,27 @@
+page-lista-almacenes {
+    .toolbar-title-md{
+        color: white;
+    }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+        color: white;
+    }
+
+    .toolbar-background-md {
+        
+        background: #F71515;
+    }
+    .text-center{
+        text-align: center; 
+    }
+
+    @media (max-width: 500px ) and (min-width: 300px){
+        .tab{
+            margin-left: 0em;
+            font-size: 18px;
+        }
+        .adminVal{
+            display: none;
+        }
+    }
+
+}
