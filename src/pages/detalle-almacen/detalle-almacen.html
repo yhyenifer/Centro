@@ -21,37 +21,104 @@
     <ion-row>
         <ion-col>
             <ion-item>
-                <ion-label floating>*Nombre</ion-label>
+                <ion-label floating>*Nombre:</ion-label>
                 <ion-input 
                   [(ngModel)]="nombreAlmacen" 
                   name="nombre" 
                   type="text" 
                   autocapitalize="off" 
-                  required
-        
-                >
+                  required>
                 </ion-input>
               </ion-item>
         </ion-col> 
         <ion-col>
             <ion-item>
-                <ion-label>Categoria:</ion-label>
+                <ion-label floating>*Categoria:</ion-label>
                 <ion-select [(ngModel)]="selectedvalue">
-                  <!--  carga los alamcenes del centro comercial -->
+                  <!--  carga las categorias de los almacenes -->
                   <ion-option ><h2>ropa interior</h2></ion-option>
                 </ion-select>
               </ion-item>
         </ion-col>
-
+    </ion-row>
+    <ion-row>
+      <ion-col>
+            <ion-item>
+                    <ion-label floating>Descripción:</ion-label>
+                    <ion-textarea
+                      [(ngModel)]="descAlmacen" 
+                      name="descripcion" 
+                      type="textArea" 
+                      autocapitalize="off" 
+                      class="area"
+                      >
+                    </ion-textarea>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label floating>*Horario de Atención:</ion-label>
+                        <ion-input 
+                          [(ngModel)]="horarioAlmacen" 
+                          name="horario" 
+                          type="text" 
+                          autocapitalize="off">
+                        </ion-input>
+                 </ion-item> 
+                  <br>
+                  <div class="divFoto">
+                 <ion-label >Foto(s):</ion-label>
+                 <button> Seleccionar Foto</button>  
+                </div>   
+               
+    </ion-col> 
+    <ion-col>
+            <ion-item>
+                    <ion-label floating>*Local:</ion-label>
+                    <ion-input 
+                      [(ngModel)]="localAlmacen" 
+                      name="local" 
+                      type="number" 
+                      autocapitalize="off" 
+                      required>
+                    </ion-input>
+                  </ion-item>
+                  <ion-item>
+                        <ion-label floating>Teléfono:</ion-label>
+                        <ion-input 
+                          [(ngModel)]="telAlmacen" 
+                          name="telefono" 
+                          type="tel" 
+                          autocapitalize="off" 
+                        >
+                        </ion-input>
+                 </ion-item> 
+                 <ion-item>
+                        <ion-label floating>Sitio Web:</ion-label>
+                        <ion-input 
+                          [(ngModel)]="webAlmacen" 
+                          name="web" 
+                          type="text" 
+                          autocapitalize="off">
+                        </ion-input>
+                 </ion-item>   
+                 <ion-item>
+                        <ion-label floating>*Estado:</ion-label>
+                        <ion-select [(ngModel)]="selectedvalue"
+                                    >
+                          <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->
+                          <ion-option ><h2>Activo</h2></ion-option>
+                        </ion-select>
+                      </ion-item> 
+    </ion-col> 
     </ion-row>
     <ion-row>
         <ion-col>
-        
-              <button> Seleccionar Foto</button>
-       
+                        
         </ion-col> 
-        <ion-col>
-            <button> guardar</button>
+        <ion-col class="text-center">
+                <button class="guardar" (click)="Guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>
+                <button class="modificar" (click)="Modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>
+                <button class="cancelar" (click)="Cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               
+                
         </ion-col>
 
     </ion-row>

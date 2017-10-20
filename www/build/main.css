@@ -19956,6 +19956,36 @@ page-detalle-almacen .text-center {
   text-align: center;
 }
 
+page-detalle-almacen .guardar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: yellow;
+  width: 52%;
+}
+
+page-detalle-almacen .modificar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: yellow;
+  width: 52%;
+  display: none;
+}
+
+page-detalle-almacen .cancelar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: red;
+  width: 52%;
+}
+
+page-detalle-almacen .text-center {
+  text-align: center;
+}
+
+page-detalle-almacen .divFoto {
+  margin-left: 1em;
+}
+
 page-detalle-factura .toolbar-title-md {
   color: white;
 }
