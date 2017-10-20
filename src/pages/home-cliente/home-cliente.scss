@@ -16,15 +16,31 @@ page-home-cliente {
 
     .letra12{
         font-size: 12px;
+      
+        
     }
 
-    .row {
-        margin-left: 38px;
-        margin-right: 0;
-        margin-bottom: 2em;
-     }
+   .row{
+       margin-bottom: 20px;
+   }
 
      .swiper-pagination-bullet-active{
          background: #f7ef36;
      }
+
+     .logoEvento{
+         margin-bottom: 10px;
+         
+     }
+     @media (min-width: 767px){
+        .logoEvento{
+            margin-left: 30em;
+        } 
+        .letra12{
+            margin-right: 48em;
+     }
+     .mobile{
+         display: none;
+     }
+    }
 }

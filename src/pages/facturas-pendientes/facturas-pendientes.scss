@@ -1,0 +1,50 @@
+page-facturas-pendientes {
+    .toolbar-title-md{
+        color: white;
+    }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+        color: white;
+    }
+
+    .toolbar-background-md {
+        
+        background: #F71515;
+    }
+    .text-center{
+        text-align: center; 
+    }
+
+   .groupTabs{
+    
+    border-right-color: white;
+    border-right-style: inset;;
+   }
+    .tab{
+        font-size: 20px;
+        background-color: #f71515;
+        color: white;
+        margin-left: 9em;
+    }
+    .tab1{
+        text-decoration: underline;
+    }
+    .tab:hover{
+        text-decoration: underline;
+    }
+    .adminVal{
+        margin-left: 20em;
+        margin-top: 7em;
+    
+    }
+
+
+    @media (max-width: 500px ) and (min-width: 300px){
+        .tab{
+            margin-left: 0em;
+            font-size: 18px;
+        }
+        .adminVal{
+            display: none;
+        }
+    }
+}

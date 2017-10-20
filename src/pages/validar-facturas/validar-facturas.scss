@@ -1,0 +1,39 @@
+page-validar-facturas {
+    .toolbar-title-md{
+        color: white;
+    }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+        color: white;
+    }
+
+    .toolbar-background-md {
+        
+        background: #F71515;
+    }
+    .text-center{
+        text-align: center; 
+    }
+
+    #valorFactura{
+        margin-top: 2em;
+    }
+    #valor > .text-input-md{
+        width: 30%;
+        border: solid 3px #dedede;
+        font-size: 18px;
+    }
+    .aprobar{
+        font-size: 35px;
+        margin-top: 4em;
+        background-color: yellow;
+        width: 52%;
+    }
+
+    .denegar{
+        font-size: 35px;
+        margin-top: 1em;
+        background-color: red;
+        width: 52%;
+    }
+
+}

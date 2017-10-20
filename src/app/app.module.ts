@@ -1,21 +1,24 @@
+
+
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
 import { MyApp } from './app.component';
-
-
 import { StatusBar } from '@ionic-native/status-bar';
+import { Device } from '@ionic-native/device';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { FirebaseServicePrivider } from '../providers/firebase-service/firebase-service';
 import { Camera } from '@ionic-native/camera';
+import { AlmacenServiceProvider } from '../providers/almacen-service/almacen-service';
+import { IonicStorageModule } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 
 
 export const firebaseConfig = {
@@ -29,8 +32,8 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    MyApp,
-
+    MyApp
+    
   ],
   imports: [
     BrowserModule,
@@ -40,21 +43,23 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
-    
+    HttpModule,
+    IonicStorageModule.forRoot(),
+       
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp
-  
   ],
-  providers: [
+  providers: [Device,
+    InAppBrowser,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     FirebaseServicePrivider,
-    Camera
-  ]
+    Camera,
+    AlmacenServiceProvider  ]
+  
 })
 export class AppModule {}

@@ -1,3 +1,62 @@
 page-home-admin {
+    .toolbar-title-md{
+        color: white;
+    }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+        color: white;
+    }
+
+    .toolbar-background-md {
+        
+        background: #F71515;
+    }
+    .text-center{
+        text-align: center; 
+    }
+
+    .admin{
+        margin-top: 8em;
+    }
+   .lista{
+    margin-top: 9em;
+    margin-left: 15em;
+   }
+    .boton{
+        width: 11em;
+        font-size: 36px;
+        margin-bottom: 1em;
+        background: red;
+        color: white;
+        padding: 6px;
+        border-radius: 1em;
+    }
+
+    @media (max-width: 320px){
+        .lista{
+            margin-top: 0em;
+            margin-left: 0em;
+        }
+        .boton{
+            font-size: 25px;
+        }
+     }
+
+     @media (max-width: 490px ) and (min-width: 340px){
+        .lista{
+            margin-top: 0em;
+            margin-left: 0em;
+        }
+        .boton{
+            font-size: 33px;
+        }
+
+    }
+
+    @media (max-width: 780px ) and (min-width: 500px){
+        .admin{
+            display: none;
+        }
+    }
+      
 
 }

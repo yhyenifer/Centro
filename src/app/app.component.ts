@@ -1,11 +1,16 @@
-import { HomeClientePage } from '../pages/home-cliente/home-cliente';
+
+import { Storage } from '@ionic/storage';
+
+
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { AlertController, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
- import { LoginPage } from '../pages/login/login';
- import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginPage } from '../pages/login/login';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
 
  export const firebaseConfig = {
   apiKey: "AIzaSyDUz7IJOCgsz5Zk9HBoU0cwF9z2Q229LtI",
@@ -19,54 +24,115 @@ import firebase from 'firebase';
   templateUrl: 'app.html'
 })
 export class MyApp {
+   uid: string;
    login: LoginPage;
+   nombre: String;
+   correo: String;
+   puntos: number;
+   foto: string;
+   notificacion: number;
+   infoPerfil$: FirebaseListObservable<any[]>
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'LoginPage'  //HomePage; //esto cambia  para poner el login
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icono: any}>;
+  pagesCentro: Array<{title: string, component: any, icono: any}>;
+  pagesAdmin: Array<{title: string, component: any, icono: any}>;
   
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    public storage: Storage,
+    public alertCtrl : AlertController,
+    private database: AngularFireDatabase
     
   ) {
+    this.notificacion=0;
+    this.infoPerfil$ = this.database.list('perfil');
      platform.ready().then(() => {
-       
       this.pages = [
      
-        { title: 'Subir Facturas', component: HomeClientePage },
-        { title: 'Mis Facturas', component: HomeClientePage }, // pendiente de cambio
-        { title: 'Mis Premios', component: HomeClientePage }, // pendiente de cambio
-        { title: 'Premios', component: HomeClientePage }, // pendiente de cambio
-        { title: 'Almacenes', component: HomeClientePage }, // pendiente de cambio
-        { title: 'Eventos', component: HomeClientePage } // pendiente de cambio
+        { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
+        { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' }, 
+        { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio el componente
+       
         ];
+      this.pagesCentro = [
+        { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' }, // pendiente de cambio  el componente
+        { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio  el componente
+        { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
+      ]  
+      this.pagesAdmin = [
+        { title: 'Validar Facturas', component: 'FacturasPendientesPage', icono: 'checkbox-outline' },
+        { title: 'Administrar Premios', component: 'HomeAdminPage', icono: 'add-circle' }, // pendiente de cambio  el componente
+        { title: 'Administrar Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio  el componente
+        { title: 'Administrar Eventos', component: 'HomeClientePage', icono: 'calendar' }, // pendiente de cambio  el componente
+        { title: 'Generar Reportes', component: 'HomeClientePage', icono: 'clipboard' } // pendiente de cambio  el componente
+      ]
     });
   }
 
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
       firebase.initializeApp(firebaseConfig);
     });
   }
 
+
+
   openPage(page) {
-    // // Reset the content nav to have just this page
-    // // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if(page.component == "MisFacturasPage"){
+
+    this.nav.setRoot(page.component,{
+      uid: this.uid
+    });
+    }
+    else{
+     
+      this.nav.setRoot(page.component);
+    }
   }
 
+verNotificacion(){
+  let alert = this.alertCtrl.create({
+    title: 'Información',
+    subTitle: this.notificacion + " de tus facturas han sido modificadas por MegaCity" ,
+    buttons:[
+      {
+        text: 'Aceptar',
+        role: 'si',
+        handler: () => {
+           
+         if (this.notificacion==0){
+
+         } 
+         else{  
+             //cambiar el atributo notificacion a cero
+             this.infoPerfil$.update( this.uid, {
+              notificacion: 0
+            })
+            this.openPage(this.pages[1]);
+              
+
+         }
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
+ 
 salir(){
-console.log("presionamos salir");
+
 this.afAuth.auth.signOut();
 this.platform.exitApp();
+this.nav.setRoot('LoginPage');
+
+
 }
 
 }

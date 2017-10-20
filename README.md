@@ -24,3 +24,10 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac.
 
+integracion 22/09/2017
+integracion 23/09/2017
+integracion 25/09/2017 solo front
+integracion 26/09/2017 
+integracion 26/09/2017 solo front
+integracion 26/09/2017 solo front
+integracion 27/09/2017 solo front
