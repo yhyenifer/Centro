@@ -35,6 +35,8 @@ export class DetalleAlmacenPage {
   preview:any;
   almacen = {} as Almacen;
   categoria = {} as Categoria;
+  campos : string;
+  selectEstado : String;
   infoAlmacen$: FirebaseListObservable<Almacen[]>;
   infoCate$: FirebaseListObservable<Categoria[]>;
   infourls$: FirebaseListObservable<urlsAlmacen[]>;
@@ -89,7 +91,7 @@ export class DetalleAlmacenPage {
    if (this.horarioAlmacen==null){
     this.campos=this.campos + "Horario de Atención, ";
   }
-  if (this.estado==null){
+  if (this.selectedEstado==null){
     this.campos=this.campos + "Estado, ";
   }
   let alert = this.alertCtrl.create({
