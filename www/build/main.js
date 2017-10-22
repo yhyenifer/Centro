@@ -1,4 +1,4 @@
-webpackJsonp([10],{
+webpackJsonp([12],{
 
 /***/ 163:
 /***/ (function(module, exports) {
@@ -22,52 +22,52 @@ webpackEmptyAsyncContext.id = 163;
 
 var map = {
 	"../pages/detalle-almacen/detalle-almacen.module": [
-		477,
-		23
+		458,
+		25
 	],
 	"../pages/detalle-factura/detalle-factura.module": [
-		458,
-		22
+		459,
+		24
 	],
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
-		459,
-		21
+		460,
+		23
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
-		460,
-		20
+		461,
+		22
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
-		461,
-		19
+		462,
+		21
 	],
 	"../pages/home-admin/home-admin.module": [
-		462,
-		18
+		463,
+		20
 	],
 	"../pages/home-cliente/home-cliente.module": [
-		463,
-		17
+		464,
+		19
 	],
 	"../pages/lista-almacenes/lista-almacenes.module": [
-		478,
-		16
+		465,
+		18
 	],
 	"../pages/login/login.module": [
 		457,
-		15
+		17
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
-		464,
-		14
+		466,
+		16
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		465,
-		13
+		467,
+		15
 	],
 	"../pages/validar-facturas/validar-facturas.module": [
-		466,
-		12
+		468,
+		14
 	]
 };
 function webpackAsyncContext(req) {
@@ -505,17 +505,18 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                 links: [
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/detalle-almacen/detalle-almacen.module#DetalleAlmacenPageModule', name: 'DetalleAlmacenPage', segment: 'detalle-almacen', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-factura/detalle-factura.module#DetalleFacturaPageModule', name: 'DetalleFacturaPage', segment: 'detalle-factura', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-aprobadas/facturas-aprobadas.module#FacturasAprobadasPageModule', name: 'FacturasAprobadasPage', segment: 'facturas-aprobadas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-denegadas/facturas-denegadas.module#FacturasDenegadasPageModule', name: 'FacturasDenegadasPage', segment: 'facturas-denegadas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-pendientes/facturas-pendientes.module#FacturasPendientesPageModule', name: 'FacturasPendientesPage', segment: 'facturas-pendientes', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home-admin/home-admin.module#HomeAdminPageModule', name: 'HomeAdminPage', segment: 'home-admin', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home-cliente/home-cliente.module#HomeClientePageModule', name: 'HomeClientePage', segment: 'home-cliente', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/lista-almacenes/lista-almacenes.module#ListaAlmacenesPageModule', name: 'ListaAlmacenesPage', segment: 'lista-almacenes', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/mis-facturas/mis-facturas.module#MisFacturasPageModule', name: 'MisFacturasPage', segment: 'mis-facturas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/validar-facturas/validar-facturas.module#ValidarFacturasPageModule', name: 'ValidarFacturasPage', segment: 'validar-facturas', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/detalle-almacen/detalle-almacen.module#DetalleAlmacenPageModule', name: 'DetalleAlmacenPage', segment: 'detalle-almacen', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/lista-almacenes/lista-almacenes.module#ListaAlmacenesPageModule', name: 'ListaAlmacenesPage', segment: 'lista-almacenes', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/facturas-denegadas/facturas-pendientes/facturas-pendientes.module#FacturasPendientesPageModule', name: 'FacturasPendientesPage', segment: 'facturas-pendientes', priority: 'low', defaultHistory: [] }
                 ]
             }),
             __WEBPACK_IMPORTED_MODULE_9_angularfire2__["a" /* AngularFireModule */].initializeApp(firebaseConfig),

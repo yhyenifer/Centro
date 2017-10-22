@@ -1,14 +1,14 @@
 webpackJsonp([17],{
 
-/***/ 463:
+/***/ 457:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeClientePageModule", function() { return HomeClientePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_cliente__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(469);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var HomeClientePageModule = (function () {
-    function HomeClientePageModule() {
+var LoginPageModule = (function () {
+    function LoginPageModule() {
     }
-    return HomeClientePageModule;
+    return LoginPageModule;
 }());
-HomeClientePageModule = __decorate([
+LoginPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__home_cliente__["a" /* HomeClientePage */],
+            __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home_cliente__["a" /* HomeClientePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
         ],
     })
-], HomeClientePageModule);
+], LoginPageModule);
 
-//# sourceMappingURL=home-cliente.module.js.map
+//# sourceMappingURL=login.module.js.map
 
 /***/ }),
 
-/***/ 473:
+/***/ 469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeClientePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_app_component__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_device__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_browser__ = __webpack_require__(302);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -98,166 +101,174 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-/**
- * Generated class for the HomeClientePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var HomeClientePage = (function () {
-    function HomeClientePage(camera, navCtrl, navParams, database, alertCtrl, menu) {
-        var _this = this;
-        this.camera = camera;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.database = database;
-        this.menu = menu;
-        this.firestore = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref('/pushtokens');
-        this.firemsg = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref('/messages');
-        this.options1 = {
-            quality: 25,
-            destinationType: this.camera.DestinationType.DATA_URL,
-            encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE,
-            sourceType: 1
-        };
-        this.options2 = {
-            quality: 25,
-            destinationType: this.camera.DestinationType.DATA_URL,
-            encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE,
-            sourceType: 0
-        };
-        this.factura = {};
-        this.menu1Active();
-        this.infoFactura$ = this.database.list('factura');
-        this.alertCtrl = alertCtrl;
-        this.uid = navParams.get("uid");
-        this.tokensetup().then(function (token) {
-            _this.storetoken(token);
-        });
-    }
-    HomeClientePage.prototype.menu1Active = function () {
-        this.menu.enable(true, 'menu1');
-        this.menu.enable(false, 'menu2');
-    };
-    HomeClientePage.prototype.tomarFoto = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                try {
-                    this.camera.getPicture(this.options1).then(function (ImageData) {
-                        _this.base64Image = 'data:image/jpeg;base64,' + ImageData;
-                        _this.navCtrl.setRoot('SubirFacturaPage', {
-                            base64Image: _this.base64Image,
-                            uid: _this.uid
-                        });
-                    }, function (err) {
-                    });
-                }
-                catch (e) {
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    HomeClientePage.prototype.sacarFoto = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                try {
-                    //this.uid = 'asfdfhsfhgjsfhj';
-                    this.camera.getPicture(this.options2).then(function (ImageData) {
-                        _this.base64Image = 'data:image/jpeg;base64,' + ImageData;
-                        _this.navCtrl.setRoot('SubirFacturaPage', {
-                            base64Image: _this.base64Image,
-                            uid: _this.uid
-                        });
-                    }, function (err) {
-                    });
-                }
-                catch (e) {
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    HomeClientePage.prototype.upload = function () {
-        this.navCtrl.push('SubirFacturaPage', {
-            base64Image: this.base64Image,
-            uid: this.uid,
-            nombre: this.nombre
-        });
-    };
-    HomeClientePage.prototype.ionViewDidLoad = function () {
-        this.uid = this.navParams.get("uid");
-        this.nombre = this.navParams.get("nombre");
-        this.email = this.navParams.get("email");
-        this.puntos = this.navParams.get("puntos");
-        // console.log('nombre: ' + this.nombre + ' email: '+this.puntos);
-        // console.log('email: ' + this.email);
-        FCMPlugin.onNotification(function (data) {
-            if (data.wasTapped) {
-                //Notification was received on device tray and tapped by the user.
-                alert(JSON.stringify(data));
-            }
-            else {
-                //Notification was received in foreground. Maybe the user needs to be notified.
-                alert(JSON.stringify(data));
-            }
-        });
-        FCMPlugin.onTokenRefresh(function (token) {
-            alert(token);
-        });
-    };
-    HomeClientePage.prototype.ir = function () {
-        this.navCtrl.setRoot('SubirFacturaPage');
-    };
-    HomeClientePage.prototype.tokensetup = function () {
-        var promise = new Promise(function (resolve, reject) {
-            FCMPlugin.getToken(function (token) {
-                alert(token);
-                resolve(token);
-            }, function (err) {
-                reject(err);
-            });
-        });
-        return promise;
-    };
-    HomeClientePage.prototype.storetoken = function (t) {
-        this.database.list(this.firestore).push({
-            uid: __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth().currentUser.uid,
-            devtoken: t
-        }).then(function () {
-            alert('Token stored');
-        }).catch(function () {
-            alert('Token not stored');
-        });
-        this.database.list(this.firemsg).push({
-            sendername: 'mauro',
-            message: 'hello'
-        }).then(function () {
-            alert('Message stored');
-        }).catch(function () {
-            alert('Message not stored');
-        });
-    };
-    return HomeClientePage;
-}());
-HomeClientePage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home-cliente',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\home-cliente\home-cliente.html"*/'<!--\n\n  Generated template for the HomeClientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Menú\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n     \n\n  <div class="text-center"> \n\n  <h4 class="text-center">Súbe aquí tú factura para que acumules puntos y redimas por grandes premios.</h4>\n\n  <img class="gana" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fgana.png?alt=media&token=c6d87ebf-ca83-40a6-a5e6-a54e0dba188f">\n\n  <p class="mobile">Tómale una foto a tú factura</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="tomarFoto()">\n\n    <ion-icon name="camera"></ion-icon>\n\n  </button>\n\n  <p class="mobile">O súbela desde tus imágenes</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="sacarFoto()" >\n\n      <ion-icon name="image"></ion-icon>\n\n  </button>\n\n  <!-- <button ion-button icon-only  (click)="upload()">\n\n      subir factura\n\n  </button> -->\n\n\n\n  </div>\n\n  <div class="slide_eventos">\n\n    \n\n      <ion-slides pager  autoplay="2000" loop="true" speed="1000">\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento1</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento2</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                  <ion-col>\n\n                    <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                  </ion-col> \n\n                  <ion-col>\n\n                   <p class="letra12">Descripción del evento3</p>\n\n                  </ion-col>   \n\n                  </ion-row>\n\n            </ion-slide>\n\n          \n\n          </ion-slides>\n\n        \n\n  </div> \n\n\n\n  <!-- <button  (click)="ir()">\n\n    prueba\n\n  </button> -->\n\n  \n\n  </ion-content>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\home-cliente\home-cliente.html"*/,
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]])
-], HomeClientePage);
 
-//# sourceMappingURL=home-cliente.js.map
+
+
+
+
+
+var LoginPage = (function () {
+    function LoginPage(afAuth, navCtrl, auth, alertCtrl, navParams, firebaseService, platform, menuCtrl, menu, storage, global, device, iap) {
+        this.afAuth = afAuth;
+        this.navCtrl = navCtrl;
+        this.auth = auth;
+        this.alertCtrl = alertCtrl;
+        this.navParams = navParams;
+        this.firebaseService = firebaseService;
+        this.platform = platform;
+        this.menuCtrl = menuCtrl;
+        this.menu = menu;
+        this.storage = storage;
+        this.global = global;
+        this.device = device;
+        this.iap = iap;
+        this.user = {};
+        this.menu1Active();
+    }
+    //esto es para desactivar los menu en la pantalla login
+    LoginPage.prototype.menu1Active = function () {
+        this.menu.enable(false, 'menu1');
+    };
+    //creacion de usuario (esta correcto)
+    LoginPage.prototype.signin = function () {
+        var _this = this;
+        this.auth.registerUser(this.user.email, this.user.password)
+            .then(function (user) {
+            // El usuario se ha creado correctamente
+            var alert = _this.alertCtrl.create({
+                title: 'Notifiación',
+                subTitle: "Te has unido con éxito a nuestra comunidad MegaCity",
+                buttons: ['Aceptar']
+            });
+            alert.present();
+        })
+            .catch(function (err) {
+            var alert = _this.alertCtrl.create({
+                title: 'Error',
+                subTitle: err.message,
+                buttons: ['Aceptar']
+            });
+            alert.present();
+        });
+    };
+    //autenticar
+    LoginPage.prototype.login = function (user) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var alert_1;
+            return __generator(this, function (_a) {
+                if (user.email != null && user.password != null) {
+                    this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
+                        .then(function (success) {
+                        var authObserv = _this.afAuth.authState.subscribe(function (auth) {
+                            _this.tipo = _this.firebaseService.getUserTipo(auth.uid);
+                            _this.nombre = _this.firebaseService.getUserName(auth.uid);
+                            _this.puntos = _this.firebaseService.getUserPuntos(auth.uid);
+                            _this.notificacion = _this.firebaseService.getUserNotificacion(auth.uid);
+                            _this.foto = _this.firebaseService.getUserFoto(auth.uid);
+                            _this.tipo.subscribe(function (usersnapshot) {
+                                _this.storage.set('uid', auth.uid);
+                                _this.storage.set('nombre', usersnapshot.nombre);
+                                _this.storage.set('correo', auth.email);
+                                _this.storage.set('puntos', usersnapshot.puntos);
+                                _this.storage.set('foto', usersnapshot.foto);
+                                _this.storage.set('notificacion', usersnapshot.notificacion);
+                                _this.global.uid = auth.uid;
+                                _this.global.nombre = usersnapshot.nombre;
+                                _this.global.correo = auth.email;
+                                _this.global.puntos = usersnapshot.puntos;
+                                _this.global.foto = usersnapshot.foto;
+                                _this.global.notificacion = usersnapshot.notificacion;
+                                if (usersnapshot.tipo == "cliente") {
+                                    _this.navCtrl.setRoot('HomeClientePage', {
+                                        uid: auth.uid,
+                                        nombre: usersnapshot.nombre,
+                                        email: auth.email,
+                                        puntos: usersnapshot.puntos
+                                    });
+                                }
+                                if (usersnapshot.tipo == "admin") {
+                                    var plataforma = _this.device.platform;
+                                    if (plataforma == "Android") {
+                                        var alert_2 = _this.alertCtrl.create({
+                                            title: 'Error',
+                                            subTitle: "El acceso por esta aplicación es sólo para Clientes ",
+                                            buttons: [
+                                                {
+                                                    text: 'Ir al sitio',
+                                                    role: 'si',
+                                                    handler: function () {
+                                                        _this.openLink();
+                                                    }
+                                                },
+                                                {
+                                                    text: 'Aceptar',
+                                                    role: 'no',
+                                                    handler: function () {
+                                                    }
+                                                }
+                                            ]
+                                        });
+                                        alert_2.present();
+                                    }
+                                    else {
+                                        _this.navCtrl.setRoot('HomeAdminPage', {
+                                            nombre: usersnapshot.nombre,
+                                            email: auth.email
+                                        });
+                                    }
+                                }
+                            });
+                            authObserv.unsubscribe();
+                        });
+                    }).catch(function (err) {
+                        var alert = _this.alertCtrl.create({
+                            title: 'Autenticación Incorrecta',
+                            subTitle: "Verifica tú Email y Contraseña",
+                            buttons: ['Aceptar']
+                        });
+                        alert.present();
+                    });
+                    //pendiiente limpiar pagina de login al ir atras
+                }
+                else {
+                    alert_1 = this.alertCtrl.create({
+                        title: 'Autenticación Incorrecta',
+                        subTitle: "Faltan datos",
+                        buttons: ['Aceptar']
+                    });
+                    alert_1.present();
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    LoginPage.prototype.openLink = function () {
+        this.iap.create("https://megacity.herokuapp.com/");
+    };
+    return LoginPage;
+}());
+LoginPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
+        selector: 'page-login',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-list>\n\n\n\n    <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Flogo.png?alt=media&token=8743287f-762a-42b0-ab73-d659ae302dbf">\n\n    <form class="autenticar">\n\n\n\n      <ion-item>\n\n        <ion-label floating>Correo</ion-label>\n\n        <ion-input \n\n          [(ngModel)]="user.email" \n\n          name="email" \n\n          type="text" \n\n          autocapitalize="off" \n\n          required\n\n\n\n        >\n\n        </ion-input>\n\n      </ion-item>\n\n     \n\n      <ion-item>\n\n        <ion-label floating>Contraseña</ion-label>\n\n        <ion-input \n\n          [(ngModel)]="user.password" \n\n          name="password" \n\n          type="password" \n\n          required\n\n        >\n\n        </ion-input>\n\n      </ion-item>\n\n      <div padding >\n\n        <button class="auth"\n\n\n\n            ion-button \n\n            (click)="login(user)" \n\n            type="submit" \n\n            color="primary"\n\n            block\n\n        >\n\n          Autentícate \n\n        </button> \n\n        <p></p>\n\n        <!-- <button  class="register"\n\n          ion-button \n\n          (click)="signin()" \n\n          type="submit" \n\n         color="primary"\n\n          block\n\n        >\n\n          Registráte\n\n        </button> -->\n\n      </div>\n\n    </form>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\login\login.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */],
+        __WEBPACK_IMPORTED_MODULE_7__ionic_native_device__["a" /* Device */],
+        __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
+], LoginPage);
+
+//# sourceMappingURL=login.js.map
 
 /***/ })
 
