@@ -36,7 +36,8 @@
                 <ion-label floating>*Categoría:</ion-label>
                 <ion-select [(ngModel)]="selectedCategoria" required>
                   <!--  carga las categorias de los almacenes -->
-                  <ion-option ><h2>ropa interior</h2></ion-option>
+                  <!-- <ion-option ><h2>ropa interior</h2></ion-option> -->
+                  <ion-option *ngFor="let categoria of infoCate$ | async"><h2>{{ categoria.nombre }}</h2></ion-option>
                 </ion-select>
               </ion-item>
         </ion-col>
@@ -110,10 +111,11 @@
                  </ion-item>   
                  <ion-item>
                         <ion-label floating>*Estado:</ion-label>
-                        <ion-select [(ngModel)]="selectedvalue"
+                        <ion-select [(ngModel)]="selectedEstado"
                                     >
                           <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->
                           <ion-option ><h2>Activo</h2></ion-option>
+                          <ion-option ><h2>Inactivo</h2></ion-option>
                         </ion-select>
                       </ion-item> 
     </ion-col> 

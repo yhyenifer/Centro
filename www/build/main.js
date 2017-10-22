@@ -23,6 +23,7 @@ webpackEmptyAsyncContext.id = 163;
 var map = {
 	"../pages/detalle-almacen/detalle-almacen.module": [
 		458,
+<<<<<<< HEAD
 		28
 	],
 	"../pages/detalle-factura/detalle-factura.module": [
@@ -76,6 +77,53 @@ var map = {
 	"../pages/validar-facturas/validar-facturas.module": [
 		468,
 		0
+=======
+		25
+	],
+	"../pages/detalle-factura/detalle-factura.module": [
+		459,
+		24
+	],
+	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
+		460,
+		23
+	],
+	"../pages/facturas-denegadas/facturas-denegadas.module": [
+		461,
+		22
+	],
+	"../pages/facturas-pendientes/facturas-pendientes.module": [
+		462,
+		21
+	],
+	"../pages/home-admin/home-admin.module": [
+		463,
+		20
+	],
+	"../pages/home-cliente/home-cliente.module": [
+		464,
+		19
+	],
+	"../pages/lista-almacenes/lista-almacenes.module": [
+		465,
+		18
+	],
+	"../pages/login/login.module": [
+		457,
+		17
+	],
+	"../pages/mis-facturas/mis-facturas.module": [
+		466,
+		16
+	],
+	"../pages/subir-factura/subir-factura.module": [
+		467,
+		15
+	],
+	"../pages/validar-facturas/validar-facturas.module": [
+		468,
+		14
+>>>>>>> dddb33375dc5525951e357fbb0c5ea00d1380619
 	]
 };
 function webpackAsyncContext(req) {
@@ -524,8 +572,12 @@ AppModule = __decorate([
                     { loadChildren: '../pages/mis-facturas/mis-facturas.module#MisFacturasPageModule', name: 'MisFacturasPage', segment: 'mis-facturas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/validar-facturas/validar-facturas.module#ValidarFacturasPageModule', name: 'ValidarFacturasPage', segment: 'validar-facturas', priority: 'low', defaultHistory: [] },
+<<<<<<< HEAD
                     { loadChildren: '../pages/lista-premios/lista-premios.module#ListaPremiosPageModule', name: 'ListaPremiosPage', segment: 'lista-premios', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-premios/detalle-premios.module#DetallePremiosPageModule', name: 'DetallePremiosPage', segment: 'detalle-premios', priority: 'low', defaultHistory: [] }
+=======
+                    { loadChildren: '../pages/facturas-denegadas/facturas-pendientes/facturas-pendientes.module#FacturasPendientesPageModule', name: 'FacturasPendientesPage', segment: 'facturas-pendientes', priority: 'low', defaultHistory: [] }
+>>>>>>> dddb33375dc5525951e357fbb0c5ea00d1380619
                 ]
             }),
             __WEBPACK_IMPORTED_MODULE_9_angularfire2__["a" /* AngularFireModule */].initializeApp(firebaseConfig),
