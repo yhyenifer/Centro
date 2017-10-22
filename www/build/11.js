@@ -71,7 +71,16 @@ var DetallePremiosPage = (function () {
         this.alertCtrl = alertCtrl;
         this.storage = storage;
         this.menu = menu;
+        this.ocultar1 = false;
+        this.ocultar2 = false;
         this.menu1Active();
+        this.accion = navParams.get("accion");
+        if (this.accion == 1) {
+            this.ocultar2 = !this.ocultar2;
+        }
+        else {
+            this.ocultar1 = !this.ocultar1;
+        }
     }
     DetallePremiosPage.prototype.ionViewDidLoad = function () {
         var _this = this;
@@ -84,71 +93,149 @@ var DetallePremiosPage = (function () {
         this.menu.enable(false, 'menu1');
     };
     DetallePremiosPage.prototype.validarDatos = function () {
+        this.campos = null;
         if (this.nombrePremio == null) {
             this.campos = "Nombre, ";
         }
         if (this.cantidad == null) {
-            this.campos = this.campos + "Cantidad Disponible, ";
+            if (this.campos == null) {
+                this.campos = "Cantidad Disponible, ";
+            }
+            else {
+                this.campos = this.campos + "Cantidad Disponible, ";
+            }
         }
         else {
             if (this.cantidad < 0) {
-                var alert_1 = this.alertCtrl.create({
+                var alert = this.alertCtrl.create({
                     title: 'Error',
                     subTitle: "La Cantidad Disponible debe ser mayor a Cero",
                     buttons: ['Aceptar']
                 });
-                alert_1.present();
+                alert.present();
+                return false;
             }
         }
         if (this.valorPuntos == null) {
-            this.campos = this.campos + "Valor en Puntos, ";
+            if (this.campos == null) {
+                this.campos = "Valor en Puntos, ";
+            }
+            else {
+                this.campos = this.campos + "Valor en Puntos, ";
+            }
         }
         else {
             if (this.valorPuntos < 0) {
-                var alert_2 = this.alertCtrl.create({
+                var alert = this.alertCtrl.create({
                     title: 'Error',
                     subTitle: "El Valor en Puntos debe ser mayor a Cero",
                     buttons: ['Aceptar']
                 });
-                alert_2.present();
+                alert.present();
+                return false;
             }
         }
         if (this.selectedEstado == null) {
-            this.campos = this.campos + "Estado, ";
+            if (this.campos == null) {
+                this.campos = "Estado, ";
+            }
+            else {
+                this.campos = this.campos + "Estado, ";
+            }
         }
-        var alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: "Verifica los datos ingresados, los campos " + this.campos + "son requeridos",
-            buttons: ['Aceptar']
-        });
-        alert.present();
+        if (this.campos != null) {
+            var alert = this.alertCtrl.create({
+                title: 'Error',
+                subTitle: "Verifica los datos ingresados, los campos " + this.campos + "son requeridos",
+                buttons: ['Aceptar']
+            });
+            alert.present();
+            return false;
+        }
+        else {
+            return true;
+        }
     };
     DetallePremiosPage.prototype.modificar = function () {
+        var _this = this;
+        if (this.validarDatos() == true) {
+            var alert = this.alertCtrl.create({
+                title: 'Confirmación',
+                subTitle: "¿" + this.nombre + " está seguro de Modificar éste Premio?",
+                buttons: [
+                    {
+                        text: 'Si',
+                        role: 'si',
+                        handler: function () {
+                            console.log('si');
+                            //aqui va el codigo de modificar
+                            //notificacion de accion realizada
+                            var alert = _this.alertCtrl.create({
+                                title: 'Notifiación',
+                                subTitle: "Se ha modificado exitosamente el Premio",
+                                buttons: [{
+                                        text: 'Aceptar',
+                                        role: 'Aceptar',
+                                        handler: function () {
+                                            _this.navCtrl.setRoot("ListaPremiosPage");
+                                        }
+                                    }
+                                ]
+                            });
+                            alert.present();
+                        }
+                    },
+                    {
+                        text: 'No',
+                        role: 'no',
+                        handler: function () {
+                        }
+                    }
+                ]
+            });
+            alert.present();
+        }
     };
     DetallePremiosPage.prototype.guardar = function () {
-        this.validarDatos();
-        var alert = this.alertCtrl.create({
-            title: 'Confirmación',
-            subTitle: "¿" + this.nombre + " está seguro de  Agregar éste Premio?",
-            buttons: [
-                {
-                    text: 'Si',
-                    role: 'si',
-                    handler: function () {
-                        console.log('si');
-                        //aqui va el codigo para guardar el premio
+        var _this = this;
+        if (this.validarDatos() == true) {
+            var alert = this.alertCtrl.create({
+                title: 'Confirmación',
+                subTitle: "¿" + this.nombre + " está seguro de  Agregar éste Premio?",
+                buttons: [
+                    {
+                        text: 'Si',
+                        role: 'si',
+                        handler: function () {
+                            console.log('si');
+                            //aqui va el codigo para guardar el premio
+                            //notificacion de accion realizada
+                            var alert = _this.alertCtrl.create({
+                                title: 'Notifiación',
+                                subTitle: "Se ha creado exitosamente el Premio",
+                                buttons: [{
+                                        text: 'Aceptar',
+                                        role: 'Aceptar',
+                                        handler: function () {
+                                            _this.navCtrl.setRoot("ListaPremiosPage");
+                                        }
+                                    }
+                                ]
+                            });
+                            alert.present();
+                        }
+                    },
+                    {
+                        text: 'No',
+                        role: 'no',
+                        handler: function () {
+                            console.log('no');
+                        }
                     }
-                },
-                {
-                    text: 'No',
-                    role: 'no',
-                    handler: function () {
-                        console.log('no');
-                    }
-                }
-            ]
-        });
-        alert.present();
+                ]
+            });
+            alert.present();
+        }
     };
     DetallePremiosPage.prototype.cancelar = function () {
         var _this = this;
@@ -165,7 +252,7 @@ var DetallePremiosPage = (function () {
                         _this.cantidad = null;
                         _this.valorPuntos = null;
                         _this.selectedEstado = "Activo";
-                        // this.navCtrl.setRoot("ListaPremiosPage");
+                        _this.navCtrl.setRoot("ListaPremiosPage");
                     }
                 },
                 {
@@ -183,14 +270,12 @@ var DetallePremiosPage = (function () {
 DetallePremiosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-detalle-premios',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-premios\detalle-premios.html"*/'<!--\n\n  Generated template for the DetallePremiosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      <ion-title>Premio</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Nombre:</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="nombrePremio" \n\n                  name="nombre" \n\n                  type="text" \n\n                  autocapitalize="off" \n\n                  required>\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Cantidad Disponible:</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="cantidad" \n\n                  name="cantidad" \n\n                  type="number" \n\n                  autocapitalize="off" \n\n                  required>\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>Descripción:</ion-label>\n\n                    <ion-textarea\n\n                      [(ngModel)]="descPremio" \n\n                      name="descripcion" \n\n                      type="textArea" \n\n                      autocapitalize="off" \n\n                      class="area"\n\n                      >\n\n                    </ion-textarea>\n\n                  </ion-item>\n\n               \n\n                  <br>\n\n                  <div class="divFoto">\n\n                 <ion-label >Foto: </ion-label>\n\n                 <input type="file"  accept=".jpg, .jpeg, .png" >\n\n                 <div class="preview">\n\n                   <img class="imgPremio" [src]="premioImagen">\n\n                 </div>\n\n                </div>   \n\n               \n\n    </ion-col> \n\n    <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>*Valor  en Puntos:</ion-label>\n\n                    <ion-input \n\n                      [(ngModel)]="valorPuntos" \n\n                      name="puntos" \n\n                      type="number" \n\n                      autocapitalize="off" \n\n                      required>\n\n                    </ion-input>\n\n            </ion-item>\n\n                  \n\n                 \n\n                 <ion-item>\n\n                        <ion-label floating>*Estado:</ion-label>\n\n                        <ion-select [(ngModel)]="selectedEstado"\n\n                                    >\n\n                          <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->\n\n                          <ion-option selected><h2>Activo</h2></ion-option>\n\n                          <ion-option ><h2>Inactivo</h2></ion-option>\n\n                        </ion-select>\n\n                </ion-item> \n\n    </ion-col> \n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n          \n\n        </ion-col> \n\n        <ion-col class="text-center">\n\n                <button class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>\n\n                <button class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                \n\n        </ion-col>\n\n\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-premios\detalle-premios.html"*/,
+        selector: 'page-detalle-premios',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-premios\detalle-premios.html"*/'<!--\n\n  Generated template for the DetallePremiosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      <ion-title>Premio</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Nombre:</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="nombrePremio" \n\n                  name="nombre" \n\n                  type="text" \n\n                  autocapitalize="off" \n\n                  required>\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Cantidad Disponible:</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="cantidad" \n\n                  name="cantidad" \n\n                  type="number" \n\n                  autocapitalize="off" \n\n                  required>\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>Descripción:</ion-label>\n\n                    <ion-textarea\n\n                      [(ngModel)]="descPremio" \n\n                      name="descripcion" \n\n                      type="textArea" \n\n                      autocapitalize="off" \n\n                      class="area"\n\n                      >\n\n                    </ion-textarea>\n\n                  </ion-item>\n\n               \n\n                  <br>\n\n                  <div class="divFoto">\n\n                 <ion-label >Foto: </ion-label>\n\n                 <input type="file"  accept=".jpg, .jpeg, .png" >\n\n                 <div class="preview">\n\n                   <img class="imgPremio" [src]="premioImagen">\n\n                 </div>\n\n                </div>   \n\n               \n\n    </ion-col> \n\n    <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>*Valor  en Puntos:</ion-label>\n\n                    <ion-input \n\n                      [(ngModel)]="valorPuntos" \n\n                      name="puntos" \n\n                      type="number" \n\n                      autocapitalize="off" \n\n                      required>\n\n                    </ion-input>\n\n            </ion-item>\n\n                  \n\n                 \n\n                 <ion-item>\n\n                        <ion-label floating>*Estado:</ion-label>\n\n                        <ion-select [(ngModel)]="selectedEstado"\n\n                                    >\n\n                          <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->\n\n                          <ion-option ><h2>Activo</h2></ion-option>\n\n                          <ion-option ><h2>Inactivo</h2></ion-option>\n\n                        </ion-select>\n\n                </ion-item> \n\n    </ion-col> \n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n          \n\n        </ion-col> \n\n        <ion-col class="text-center">\n\n                <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>\n\n                <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                \n\n        </ion-col>\n\n\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-premios\detalle-premios.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _e || Object])
 ], DetallePremiosPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=detalle-premios.js.map
 
 /***/ })

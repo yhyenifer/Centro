@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, Button, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { Almacen } from '../../app/models/almacen';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import { Categoria } from '../../app/models/categoria';
 import firebase from 'firebase';
 import { urlsAlmacen } from '../../app/models/urlsAlmacen';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the DetalleAlmacenPage page.
  *
@@ -20,7 +21,8 @@ import { urlsAlmacen } from '../../app/models/urlsAlmacen';
 export class DetalleAlmacenPage {
   accion: number;
   id: string;
-
+  ocultar1: boolean     = false;
+  ocultar2: boolean     = false;
   public selectedCategoria;
   public nombreAlmacen;
   public descAlmacen;
@@ -37,14 +39,15 @@ export class DetalleAlmacenPage {
   preview:any;
   almacen = {} as Almacen;
   categoria = {} as Categoria;
-  campos : string;
+  campos : string ="";
   selectEstado : String;
   infoAlmacen$: FirebaseListObservable<Almacen[]>;
   infoCate$: FirebaseListObservable<Categoria[]>;
-  
+  nombre : String;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private database: AngularFireDatabase,
     public menu: MenuController,
+    public storage: Storage,
     public alertCtrl : AlertController) {
     this.menu1Active();
     this.file = [];
@@ -63,13 +66,15 @@ export class DetalleAlmacenPage {
     this.selectedCategoria = this.almacen.categoria;
     this.selectedEstado = this.almacen.estado;
     this.localAlmacen = this.almacen.local;
+    this.ocultar2= !this.ocultar2;
     }
     else{
       this.descAlmacen = "";
       this.telAlmacen = "";
       this.webAlmacen = "";
-      }
-
+      this.ocultar1= !this.ocultar1;
+   
+      } 
     
   } 
   
@@ -78,6 +83,9 @@ export class DetalleAlmacenPage {
     this.file = [];
     this.fileT = [];
     this.selectedCategoria = this.infoCate$[0];
+    this.storage.get('nombre').then((data)=>{
+      this.nombre=data;
+     });
   }
   menu1Active() {
     this.menu.enable(true, 'menu2');
@@ -86,14 +94,25 @@ export class DetalleAlmacenPage {
 
 
   validarDatos(){
+    this.campos=null;
     if (this.nombreAlmacen==null){
       this.campos="Nombre, ";
     }
     if (this.selectedCategoria==null){
+      if(this.campos==null){
+        this.campos="Categoría, ";
+      }
+      else{
      this.campos=this.campos + "Categoría, ";
+      }
    }
    if (this.localAlmacen==null){
+    if(this.campos==null){
+      this.campos="Local, ";
+    }
+    else{
     this.campos=this.campos + "Local, ";
+    }
   }
    else{
     if(this.localAlmacen<0){
@@ -106,51 +125,149 @@ export class DetalleAlmacenPage {
     }
    }
    if (this.horarioAlmacen==null){
+    if(this.campos==null){
+      this.campos="Horario de Atención, ";
+    }
+    else{
     this.campos=this.campos + "Horario de Atención, ";
+    }
   }
   if (this.selectedEstado==null){
+    if(this.campos==null){
+      this.campos="Estado, ";
+    }
+    else{
     this.campos=this.campos + "Estado, ";
+    }
   }
+  if (this.campos!=null){
   let alert = this.alertCtrl.create({
     title: 'Error',
     subTitle: "Verifica los datos ingresados, los campos " + this.campos + "son requeridos",
     buttons: ['Aceptar']
   });
   alert.present();
+  return false;
+  }
+  else{
+    return true;
+  }
   }
 
   modificar(){
     
+    if(this.validarDatos()==true){
+      let alert = this.alertCtrl.create({
+        title: 'Confirmación',
+        subTitle: "¿"+ this.nombre +" está seguro de Modificar éste Almacén?",
+        buttons:[
+          {
+            text: 'Si',
+            role: 'si',
+            handler: () => {
+              console.log('si');
+             //aqui va el codigo de modificar
+
+                //notificacion de accion realizada
+                let alert = this.alertCtrl.create({
+                  title: 'Notifiación',
+                  subTitle: "Se ha modificado exitosamente el Almacén",
+                  buttons: [{
+                    text: 'Aceptar',
+                    role: 'Aceptar',
+                    handler: () => {
+                      this.navCtrl.setRoot("ListaAlmacenesPage");
+                  
+                    } 
+                  }
+                  ]
+                });
+                alert.present();
+                   }
+
+       } 
+       ,
+       {
+         text: 'No',
+         role: 'no',
+         handler: () => {
+           
+         }
+       }]
+       });
+       alert.present();
+}
+    
   }
 
   guardar(){
-    let storageRef = firebase.storage().ref();
-    let filenames: string[] = new Array(10);
-    let urlfotos: string[] = new Array(10);
-    console.log(this.file);
-    for (var index = 0; index < this.file.length; index++) {
-      filenames[index]= ""+this.file[index].name;
-      urlfotos[index]= `img/almacenes/${this.nombreAlmacen}/${filenames[index]}.jpg`;
-      console.log(filenames[index]);
-      const imageRef = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${filenames[index]}.jpg`);
-      imageRef.put(this.file[index]).then((snapshot)=> {
-        
-      });
-    }      
-    //urlfotos = filenames;
-    this.infoAlmacen$.push({
-      nombre: this.nombreAlmacen,
-      descripcion :this.descAlmacen,
-      horario: this.horarioAlmacen,
-      categoria: this.selectedCategoria,
-      local: this.localAlmacen,
-      telefono: this.localAlmacen,
-      web: this.webAlmacen,
-      estado: this.selectedEstado,
-      url: urlfotos
-    });
+    if(this.validarDatos()==true){
+      let alert = this.alertCtrl.create({
+        title: 'Confirmación',
+        subTitle: "¿"+ this.nombre +" está seguro de Crear éste Almacén?",
+        buttons:[
+          {
+            text: 'Si',
+            role: 'si',
+            handler: () => {
+              console.log('si');
+             //aqui va el codigo de crear
+                let storageRef = firebase.storage().ref();
+                let filenames: string[] = new Array(10);
+                let urlfotos: string[] = new Array(10);
+                console.log(this.file);
+                for (var index = 0; index < this.file.length; index++) {
+                  filenames[index]= ""+this.file[index].name;
+                  urlfotos[index]= `img/almacenes/${this.nombreAlmacen}/${filenames[index]}.jpg`;
+                  console.log(filenames[index]);
+                  const imageRef = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${filenames[index]}.jpg`);
+                  imageRef.put(this.file[index]).then((snapshot)=> {
+                    
+                  });
+                }      
+             
+                this.infoAlmacen$.push({
+                  nombre: this.nombreAlmacen,
+                  descripcion :this.descAlmacen,
+                  horario: this.horarioAlmacen,
+                  categoria: this.selectedCategoria,
+                  local: this.localAlmacen,
+                  telefono: this.localAlmacen,
+                  web: this.webAlmacen,
+                  estado: this.selectedEstado,
+                  url: urlfotos
+                });
 
-  }
+                //notificacion de accion realizada
+                let alert = this.alertCtrl.create({
+                  title: 'Notifiación',
+                  subTitle: "Se ha creado exitosamente el Almacén",
+                  buttons: [{
+                    text: 'Aceptar',
+                    role: 'Aceptar',
+                    handler: () => {
+                      this.navCtrl.setRoot("ListaAlmacenesPage");
+                  
+                    } 
+                  }
+                  ]
+                });
+                alert.present();
+                   }
+
+       } 
+       ,
+       {
+         text: 'No',
+         role: 'no',
+         handler: () => {
+           
+         }
+       }]
+       });
+       alert.present();
+}
+}
   
   seleccionarFoto(e){
     this.fileT = e.target.files;
@@ -163,5 +280,37 @@ export class DetalleAlmacenPage {
     this.fileT = [];
     console.log(this.file);
   }
+
+  cancelar(){
+    
+        let alert = this.alertCtrl.create({
+          title: 'Confirmación',
+          subTitle: "¿"+ this.nombre +" está seguro que desea salir sin Guardar?",
+          buttons:[
+            {
+              text: 'Si',
+              role: 'si',
+              handler: () => {
+               
+                this.nombreAlmacen=" ";
+                this.descAlmacen=" ";
+                this.localAlmacen = null; 
+                this.selectedCategoria = null;
+                this.selectedEstado=null;
+                this.navCtrl.setRoot("ListaAlmacenesPage");
+            
+              } 
+             },
+          {
+            text: 'No',
+            role: 'no',
+            handler: () => {
+              
+            }
+          }]
+          });
+          alert.present();
+       
+      }
 
 }
