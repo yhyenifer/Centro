@@ -37,11 +37,15 @@ export class ListaAlmacenesPage {
   mostrarAlmacen(almacen, almacenId){
     this.navCtrl.setRoot('DetalleAlmacenPage',{
       almacen : almacen,
-      id: almacenId
+      id: almacenId,
+      accion: 1
     });
   }
 
   crearAlmacen(){
-    this.navCtrl.setRoot('DetalleAlmacenPage');
+    this.navCtrl.setRoot('DetalleAlmacenPage',{
+     
+      accion: 2
+    });
   }
 }

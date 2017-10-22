@@ -18,6 +18,7 @@ import { urlsAlmacen } from '../../app/models/urlsAlmacen';
   templateUrl: 'detalle-almacen.html',
 })
 export class DetalleAlmacenPage {
+  accion: number;
   id: string;
 
   public selectedCategoria;
@@ -50,7 +51,8 @@ export class DetalleAlmacenPage {
     this.fileT = [];
     this.infoAlmacen$ = this.database.list('Almacen');
     this.infoCate$ = this.database.list('CategoriaAlmacen');
-
+    this.accion= navParams.get("accion");
+    if(this.accion==1){
     this.almacen = navParams.get("almacen");
     this.id = navParams.get("id");
     this.descAlmacen = this.almacen.descripcion;
@@ -61,8 +63,16 @@ export class DetalleAlmacenPage {
     this.selectedCategoria = this.almacen.categoria;
     this.selectedEstado = this.almacen.estado;
     this.localAlmacen = this.almacen.local;
+    }
+    else{
+      this.descAlmacen = "";
+      this.telAlmacen = "";
+      this.webAlmacen = "";
+      }
+
     
-  }
+  } 
+  
 
   ionViewDidLoad() {
     this.file = [];
