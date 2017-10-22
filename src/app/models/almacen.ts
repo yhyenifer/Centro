@@ -2,10 +2,10 @@ export interface Almacen{
     nombre: string;
     descripcion : string;
     horario: string;
-    categoria: number;
+    categoria: string;
     local: number;
     telefono: string;
     web: string;
-    estado: number;
+    estado: string;
     url: string[];
    }

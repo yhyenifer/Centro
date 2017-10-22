@@ -18,6 +18,7 @@ import { urlsAlmacen } from '../../app/models/urlsAlmacen';
   templateUrl: 'detalle-almacen.html',
 })
 export class DetalleAlmacenPage {
+  id: string;
 
   public selectedCategoria;
   public nombreAlmacen;
@@ -39,8 +40,7 @@ export class DetalleAlmacenPage {
   selectEstado : String;
   infoAlmacen$: FirebaseListObservable<Almacen[]>;
   infoCate$: FirebaseListObservable<Categoria[]>;
-  infourls$: FirebaseListObservable<urlsAlmacen[]>;
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private database: AngularFireDatabase,
     public menu: MenuController,
@@ -50,17 +50,24 @@ export class DetalleAlmacenPage {
     this.fileT = [];
     this.infoAlmacen$ = this.database.list('Almacen');
     this.infoCate$ = this.database.list('CategoriaAlmacen');
-    this.descAlmacen = "";
-    this.horarioAlmacen = "";
-    this.telAlmacen = "";
-    this.webAlmacen = "";
-    
+
+    this.almacen = navParams.get("almacen");
+    this.id = navParams.get("id");
+    this.descAlmacen = this.almacen.descripcion;
+    this.horarioAlmacen = this.almacen.horario;
+    this.telAlmacen = this.almacen.telefono;
+    this.webAlmacen = this.almacen.web;
+    this.nombreAlmacen = this.almacen.nombre;
+    this.selectedCategoria = this.almacen.categoria;
+    this.selectedEstado = this.almacen.estado;
+    this.localAlmacen = this.almacen.local;
     
   }
 
   ionViewDidLoad() {
     this.file = [];
     this.fileT = [];
+    this.selectedCategoria = this.infoCate$[0];
   }
   menu1Active() {
     this.menu.enable(true, 'menu2');
@@ -103,7 +110,7 @@ export class DetalleAlmacenPage {
   }
 
   modificar(){
-
+    
   }
 
   guardar(){
