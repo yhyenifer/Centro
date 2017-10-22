@@ -21,7 +21,7 @@ export class DetallePremiosPage {
   descPremio : string;
   cantidad : number;
   valorPuntos : number;
-  estado : string;
+  selectedEstado : string;
   nombre : String;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl : AlertController,
@@ -71,7 +71,7 @@ export class DetallePremiosPage {
        alert.present();
      }
    }
-   if (this.estado==null){
+   if (this.selectedEstado==null){
      this.campos=this.campos + "Estado, ";
    }
     
@@ -133,7 +133,8 @@ export class DetallePremiosPage {
             this.descPremio=" ";
             this.cantidad = null; 
             this.valorPuntos = null;
-            this.navCtrl.setRoot("ListaPremiosPage");
+            this.selectedEstado="Activo";
+            // this.navCtrl.setRoot("ListaPremiosPage");
         
           } 
          },
