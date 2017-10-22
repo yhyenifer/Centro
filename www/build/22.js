@@ -1,14 +1,14 @@
 webpackJsonp([22],{
 
-/***/ 458:
+/***/ 462:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleFacturaPageModule", function() { return DetalleFacturaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FacturasPendientesPageModule", function() { return FacturasPendientesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_factura__ = __webpack_require__(468);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facturas_pendientes__ = __webpack_require__(474);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var DetalleFacturaPageModule = (function () {
-    function DetalleFacturaPageModule() {
+var FacturasPendientesPageModule = (function () {
+    function FacturasPendientesPageModule() {
     }
-    return DetalleFacturaPageModule;
+    return FacturasPendientesPageModule;
 }());
-DetalleFacturaPageModule = __decorate([
+FacturasPendientesPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__detalle_factura__["a" /* DetalleFacturaPage */],
+            __WEBPACK_IMPORTED_MODULE_2__facturas_pendientes__["a" /* FacturasPendientesPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__detalle_factura__["a" /* DetalleFacturaPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__facturas_pendientes__["a" /* FacturasPendientesPage */]),
         ],
     })
-], DetalleFacturaPageModule);
+], FacturasPendientesPageModule);
 
-//# sourceMappingURL=detalle-factura.module.js.map
+//# sourceMappingURL=facturas-pendientes.module.js.map
 
 /***/ }),
 
-/***/ 468:
+/***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetalleFacturaPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service_firebase_service__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FacturasPendientesPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,53 +58,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 /**
- * Generated class for the DetalleFacturaPage page.
+ * Generated class for the FacturasPendientesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var DetalleFacturaPage = (function () {
-    function DetalleFacturaPage(navCtrl, navParams, database, firebaseService) {
-        var _this = this;
+var FacturasPendientesPage = (function () {
+    function FacturasPendientesPage(navCtrl, navParams, menu, database) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.menu = menu;
         this.database = database;
-        this.firebaseService = firebaseService;
-        var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
-        this.infoFactura$ = this.database.list('factura');
-        this.infoPerfil$ = this.database.list('perfil');
-        this.factura = navParams.get('factura');
-        this.id = navParams.get('id');
-        this.usuario = this.firebaseService.getUserName(this.factura.uid);
-        this.usuario.subscribe(function (nombreCliente) {
-            _this.nombreCliente = nombreCliente.nombre + " " + nombreCliente.apellido;
-        });
-        this.estado = this.factura.estado;
-        this.almacen = this.factura.almacen;
-        this.url = this.factura.url;
-        var imageRef = storageRef.child(this.url);
-        imageRef.getDownloadURL().then(function (url) {
-            return _this.base64Image = url;
+        this.menu1Active();
+        this.facturas$ = this.database.list('/factura', {
+            query: {
+                orderByChild: 'estado',
+                equalTo: 'Pendiente'
+            }
         });
     }
-    DetalleFacturaPage.prototype.ionViewDidLoad = function () {
+    FacturasPendientesPage.prototype.ionViewDidLoad = function () {
     };
-    return DetalleFacturaPage;
+    FacturasPendientesPage.prototype.menu1Active = function () {
+        this.menu.enable(true, 'menu2');
+        this.menu.enable(false, 'menu1');
+    };
+    FacturasPendientesPage.prototype.openPage = function (page) {
+        this.navCtrl.setRoot(page);
+    };
+    FacturasPendientesPage.prototype.mostrarFactura = function (factura, facturaId) {
+        this.navCtrl.setRoot('ValidarFacturasPage', {
+            factura: factura,
+            id: facturaId
+        });
+    };
+    return FacturasPendientesPage;
 }());
-DetalleFacturaPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* IonicPage */])(),
-    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
-        selector: 'page-detalle-factura',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-factura\detalle-factura.html"*/'<!--\n\n  Generated template for the ValidarFacturasPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  \n\n  </ion-header>\n\n  <ion-content padding>\n\n    <ion-row>\n\n      <ion-col>\n\n        <!-- datos de la factura -->\n\n     \n\n        <h4>Cliente:</h4>\n\n        <p>{{nombreCliente}}</p>\n\n        <h4>Estado:</h4>\n\n        <p>{{estado}}</p>\n\n        <h4>Imagen:</h4>\n\n        <!-- aqui va la imagen de la factura -->\n\n        <img [src]=base64Image> \n\n      </ion-col>\n\n      <ion-col>\n\n          <h4>Almacén:</h4>\n\n          <p>{{almacen}}</p>\n\n\n\n   </ion-col> \n\n    </ion-row>\n\n  \n\n  </ion-content>\n\n  '/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-factura\detalle-factura.html"*/,
+FacturasPendientesPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-facturas-pendientes',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\facturas-pendientes\facturas-pendientes.html"*/'<!--\n\n  Generated template for the FacturasPendientesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Facturas\n\n      </ion-title>\n\n    </ion-navbar>\n\n    <ion-navbar>\n\n      <ion-row>\n\n        <ion-col class="groupTabs">\n\n\n\n          <button class="tab tab1" (click)="openPage(\'FacturasPendientesPage\')">Pendientes</button>\n\n        </ion-col>\n\n        <ion-col class="groupTabs">\n\n          <button class="tab tab2" (click)="openPage(\'FacturasAprobadasPage\')"> Aprobadas</button>\n\n        </ion-col>\n\n        <ion-col class="">\n\n          <button class="tab tab3" (click)="openPage(\'FacturasDenegadasPage\')">Denegadas</button>\n\n        </ion-col>\n\n      </ion-row>\n\n     </ion-navbar>\n\n  \n\n  </ion-header>\n\n\n\n\n\n<ion-content padding>\n\n<ion-row>\n\n  <ion-col>\n\n    <!-- se deben mostrar las 20 facturas en estado pendiente de  la mas antigua a la mas reciente -->\n\n      <ion-list>\n\n        <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura, factura.$key)">\n\n          <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} - {{factura.almacen}} \n\n         </button>      \n\n        </ion-list>\n\n\n\n  </ion-col>\n\n  <ion-col>\n\n      <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fvalidar.png?alt=media&token=3a31579e-ac19-42e4-bdd0-f35b1a24e1f5">      \n\n  </ion-col>\n\n</ion-row>  \n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\facturas-pendientes\facturas-pendientes.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */]])
-], DetalleFacturaPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
+], FacturasPendientesPage);
 
-//# sourceMappingURL=detalle-factura.js.map
+//# sourceMappingURL=facturas-pendientes.js.map
 
 /***/ })
 

@@ -1,3 +1,4 @@
+import { FirebaseListObservable } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 
@@ -14,7 +15,7 @@ import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angul
   templateUrl: 'lista-almacenes.html',
 })
 export class ListaAlmacenesPage {
-
+  almacenes$: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menu: MenuController) {
     this.menu1Active();
@@ -27,8 +28,12 @@ export class ListaAlmacenesPage {
     this.menu.enable(true, 'menu2');
     this.menu.enable(false, 'menu1');
   }
-
+  // este es para el editar, falta enviar parametros
   mostrarAlmacen(){
+    this.navCtrl.setRoot('DetalleAlmacenPage');
+  }
+
+  crearAlmacen(){
     this.navCtrl.setRoot('DetalleAlmacenPage');
   }
 }

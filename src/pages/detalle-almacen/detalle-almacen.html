@@ -33,8 +33,8 @@
         </ion-col> 
         <ion-col>
             <ion-item>
-                <ion-label floating>*Categoria:</ion-label>
-                <ion-select [(ngModel)]="selectedvalue">
+                <ion-label floating>*Categoría:</ion-label>
+                <ion-select [(ngModel)]="selectedCategoria" required>
                   <!--  carga las categorias de los almacenes -->
                   <ion-option ><h2>ropa interior</h2></ion-option>
                 </ion-select>
@@ -60,13 +60,21 @@
                           [(ngModel)]="horarioAlmacen" 
                           name="horario" 
                           type="text" 
-                          autocapitalize="off">
+                          autocapitalize="off"
+                          required>
                         </ion-input>
                  </ion-item> 
                   <br>
                   <div class="divFoto">
                  <ion-label >Foto(s):</ion-label>
-                 <button> Seleccionar Foto</button>  
+                 <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>
+                 <button  (click)="agregar()"> Agregar</button>
+                 <div class="preview">
+                   <ion-option *ngFor="let f of file ">
+                     
+                     <h2> {{f.name}} </h2>
+                   </ion-option>
+                 </div>
                 </div>   
                
     </ion-col> 
@@ -112,17 +120,13 @@
     </ion-row>
     <ion-row>
         <ion-col>
-              <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>
-              <button (click)="agregar()"> Agregar</button>
-              <div class="preview">
-                <p>Sin fotos para asignar</p>
-              </div>
+              
        
         </ion-col> 
         <ion-col class="text-center">
-                <button class="guardar" (click)="Guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>
-                <button class="modificar" (click)="Modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>
-                <button class="cancelar" (click)="Cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               
+                <button class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>
+                <button class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>
+                <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               
                 
         </ion-col>
 

@@ -1,14 +1,14 @@
 webpackJsonp([19],{
 
-/***/ 461:
+/***/ 465:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FacturasPendientesPageModule", function() { return FacturasPendientesPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaAlmacenesPageModule", function() { return ListaAlmacenesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facturas_pendientes__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_almacenes__ = __webpack_require__(477);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var FacturasPendientesPageModule = (function () {
-    function FacturasPendientesPageModule() {
+var ListaAlmacenesPageModule = (function () {
+    function ListaAlmacenesPageModule() {
     }
-    return FacturasPendientesPageModule;
+    return ListaAlmacenesPageModule;
 }());
-FacturasPendientesPageModule = __decorate([
+ListaAlmacenesPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__facturas_pendientes__["a" /* FacturasPendientesPage */],
+            __WEBPACK_IMPORTED_MODULE_2__lista_almacenes__["a" /* ListaAlmacenesPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__facturas_pendientes__["a" /* FacturasPendientesPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__lista_almacenes__["a" /* ListaAlmacenesPage */]),
         ],
     })
-], FacturasPendientesPageModule);
+], ListaAlmacenesPageModule);
 
-//# sourceMappingURL=facturas-pendientes.module.js.map
+//# sourceMappingURL=lista-almacenes.module.js.map
 
 /***/ }),
 
-/***/ 471:
+/***/ 477:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FacturasPendientesPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListaAlmacenesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,56 +56,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
 /**
- * Generated class for the FacturasPendientesPage page.
+ * Generated class for the ListaAlmacenesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var FacturasPendientesPage = (function () {
-    function FacturasPendientesPage(navCtrl, navParams, menu, database) {
+var ListaAlmacenesPage = (function () {
+    function ListaAlmacenesPage(navCtrl, navParams, menu) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menu = menu;
-        this.database = database;
         this.menu1Active();
-        this.facturas$ = this.database.list('/factura', {
-            query: {
-                orderByChild: 'estado',
-                equalTo: 'Pendiente'
-            }
-        });
     }
-    FacturasPendientesPage.prototype.ionViewDidLoad = function () {
+    ListaAlmacenesPage.prototype.ionViewDidLoad = function () {
     };
-    FacturasPendientesPage.prototype.menu1Active = function () {
+    ListaAlmacenesPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
         this.menu.enable(false, 'menu1');
     };
-    FacturasPendientesPage.prototype.openPage = function (page) {
-        this.navCtrl.setRoot(page);
+    // este es para el editar, falta enviar parametros
+    ListaAlmacenesPage.prototype.mostrarAlmacen = function () {
+        this.navCtrl.setRoot('DetalleAlmacenPage');
     };
-    FacturasPendientesPage.prototype.mostrarFactura = function (factura, facturaId) {
-        this.navCtrl.setRoot('ValidarFacturasPage', {
-            factura: factura,
-            id: facturaId
-        });
+    ListaAlmacenesPage.prototype.crearAlmacen = function () {
+        this.navCtrl.setRoot('DetalleAlmacenPage');
     };
-    return FacturasPendientesPage;
+    return ListaAlmacenesPage;
 }());
-FacturasPendientesPage = __decorate([
+ListaAlmacenesPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-facturas-pendientes',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\facturas-pendientes\facturas-pendientes.html"*/'<!--\n\n  Generated template for the FacturasPendientesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Facturas\n\n      </ion-title>\n\n    </ion-navbar>\n\n    <ion-navbar>\n\n      <ion-row>\n\n        <ion-col class="groupTabs">\n\n\n\n          <button class="tab tab1" (click)="openPage(\'FacturasPendientesPage\')">Pendientes</button>\n\n        </ion-col>\n\n        <ion-col class="groupTabs">\n\n          <button class="tab tab2" (click)="openPage(\'FacturasAprobadasPage\')"> Aprobadas</button>\n\n        </ion-col>\n\n        <ion-col class="">\n\n          <button class="tab tab3" (click)="openPage(\'FacturasDenegadasPage\')">Denegadas</button>\n\n        </ion-col>\n\n      </ion-row>\n\n     </ion-navbar>\n\n  \n\n  </ion-header>\n\n\n\n\n\n<ion-content padding>\n\n<ion-row>\n\n  <ion-col>\n\n    <!-- se deben mostrar las 20 facturas en estado pendiente de  la mas antigua a la mas reciente -->\n\n      <ion-list>\n\n        <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura, factura.$key)">\n\n          <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} - {{factura.almacen}} \n\n         </button>      \n\n        </ion-list>\n\n\n\n  </ion-col>\n\n  <ion-col>\n\n      <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fvalidar.png?alt=media&token=3a31579e-ac19-42e4-bdd0-f35b1a24e1f5">      \n\n  </ion-col>\n\n</ion-row>  \n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\facturas-pendientes\facturas-pendientes.html"*/,
+        selector: 'page-lista-almacenes',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\lista-almacenes\lista-almacenes.html"*/'<!--\n\n  Generated template for the ListaAlmacenesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n      <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-row>\n\n            <ion-col>\n\n              <ion-title>Almacenes</ion-title>\n\n \n\n             </ion-col>\n\n            <ion-col>\n\n              <div class="izq" >\n\n               <button id="new" (click)="crearAlmacen()" ><b>Crear Nuevo Almacén <ion-icon name="add"></ion-icon></b></button>\n\n              </div>\n\n            </ion-col>\n\n        </ion-row>\n\n</ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-row>\n\n        <ion-col>\n\n            <!-- se deben mostrar los almacenes en orden alfabetico-->\n\n            <ion-list>\n\n                <button ion-item  *ngFor="let almacen of almacenes$ | async; let i = index" (click)="mostrarAlmacen()">\n\n                  <ion-icon name="house"></ion-icon> nombre almacen \n\n                 </button>      \n\n                </ion-list>\n\n             \n\n        \n\n          </ion-col>\n\n          <ion-col>\n\n              <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Falmacenes_mega.png?alt=media&token=0364831f-6e19-4ca1-aa21-b9b8fc2d4107">      \n\n          </ion-col>\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\lista-almacenes\lista-almacenes.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
-], FacturasPendientesPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]])
+], ListaAlmacenesPage);
 
-//# sourceMappingURL=facturas-pendientes.js.map
+//# sourceMappingURL=lista-almacenes.js.map
 
 /***/ })
 

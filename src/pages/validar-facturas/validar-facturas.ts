@@ -90,13 +90,10 @@ export class ValidarFacturasPage {
           role: 'si',
           handler: () => {
             console.log('si');
-            // va el codigo que debe actualizar el estado de la 
-            //factura  a "aprobada" y sumar los puntos al cliente 
-            //y enviar notificacion
+         
             // se decide que por cada 1000 pesos de valor de la 
             //factura se ortoga 1 punto al cliente
             this.factura.estado = 'Aprobada';
-            
             this.infoFactura$.update( this.id, {
               
                       estado: this.factura.estado,

@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 465:
+/***/ 467:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubirFacturaPageModule", function() { return SubirFacturaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subir_factura__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subir_factura__ = __webpack_require__(479);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ SubirFacturaPageModule = __decorate([
 
 /***/ }),
 
-/***/ 475:
+/***/ 479:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -143,7 +143,7 @@ var SubirFacturaPage = (function () {
 SubirFacturaPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-subir-factura',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\subir-factura\subir-factura.html"*/'<!--\n\n  Generated template for the SubirFacturaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar  >\n\n      <button ion-button menuToggle >\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Subir Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n\n\n<ion-content padding>\n\n    <div class="text-center"> \n\n    <img class="factura" [src]="base64Image">\n\n    </div>\n\n    <ion-item>\n\n      <ion-label>Almacén:</ion-label>\n\n      <ion-select [(ngModel)]="selectedvalue">\n\n        <!--  carga los alamcenes del centro comercial -->\n\n        <ion-option *ngFor="let almacen of almacenes | async"><h2>{{ almacen.nombre }}</h2></ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <p></p>\n\n    <div class="text-center"> \n\n        <h4>¿{{nombre}} estas seguro de subir esta factura?</h4>\n\n    </div>\n\n    <div class="text-center">\n\n        <button ion-button icon-only class="botones si" (click)="agregar()" >\n\n            Si\n\n        </button>\n\n        <button ion-button icon-only class="botones no" (click)="atras()" >\n\n            No\n\n        </button>\n\n    </div>\n\n    <div class="text-center">\n\n    <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>\n\n\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\subir-factura\subir-factura.html"*/,
+        selector: 'page-subir-factura',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\subir-factura\subir-factura.html"*/'<!--\n\n  Generated template for the SubirFacturaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar  >\n\n      <button ion-button menuToggle >\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Subir Factura\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n\n\n<ion-content padding>\n\n    <div class="text-center"> \n\n    <img class="factura" [src]="base64Image">\n\n    </div>\n\n    <ion-item>\n\n      <ion-label>Almacén:</ion-label>\n\n      <ion-select [(ngModel)]="selectedvalue">\n\n        <!--  carga los alamcenes del centro comercial -->\n\n        <ion-option *ngFor="let almacen of almacenes | async"><h2>{{ almacen.nombre }}</h2></ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <p></p>\n\n    <div class="text-center"> \n\n        <h4>¿{{nombre}} estas seguro de subir esta factura?</h4>\n\n    </div>\n\n    <div class="text-center">\n\n        <button ion-button icon-only class="botones si" (click)="agregar()" >\n\n            Si\n\n        </button>\n\n        <button ion-button icon-only class="botones no" (click)="atras()" >\n\n            No\n\n        </button>\n\n    </div>\n\n    <div class="text-center">\n\n    <p>Súbe tú factura para que acumules puntos y redimas por grandes premios.</p>\n\n\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\subir-factura\subir-factura.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */],

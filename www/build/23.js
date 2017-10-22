@@ -1,14 +1,14 @@
 webpackJsonp([23],{
 
-/***/ 477:
+/***/ 461:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleAlmacenPageModule", function() { return DetalleAlmacenPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FacturasDenegadasPageModule", function() { return FacturasDenegadasPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_almacen__ = __webpack_require__(479);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facturas_denegadas__ = __webpack_require__(473);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var DetalleAlmacenPageModule = (function () {
-    function DetalleAlmacenPageModule() {
+var FacturasDenegadasPageModule = (function () {
+    function FacturasDenegadasPageModule() {
     }
-    return DetalleAlmacenPageModule;
+    return FacturasDenegadasPageModule;
 }());
-DetalleAlmacenPageModule = __decorate([
+FacturasDenegadasPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__detalle_almacen__["a" /* DetalleAlmacenPage */],
+            __WEBPACK_IMPORTED_MODULE_2__facturas_denegadas__["a" /* FacturasDenegadasPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__detalle_almacen__["a" /* DetalleAlmacenPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__facturas_denegadas__["a" /* FacturasDenegadasPage */]),
         ],
     })
-], DetalleAlmacenPageModule);
+], FacturasDenegadasPageModule);
 
-//# sourceMappingURL=detalle-almacen.module.js.map
+//# sourceMappingURL=facturas-denegadas.module.js.map
 
 /***/ }),
 
-/***/ 479:
+/***/ 473:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetalleAlmacenPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FacturasDenegadasPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,43 +57,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 /**
- * Generated class for the DetalleAlmacenPage page.
+ * Generated class for the FacturasDenegadasPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var DetalleAlmacenPage = (function () {
-    function DetalleAlmacenPage(navCtrl, navParams, menu) {
+var FacturasDenegadasPage = (function () {
+    function FacturasDenegadasPage(navCtrl, navParams, menu, database) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menu = menu;
+        this.database = database;
         this.menu1Active();
+        this.facturas$ = this.database.list('/factura', {
+            query: {
+                orderByChild: 'estado',
+                equalTo: 'Denegada'
+            }
+        }).map(function (array) { return array.reverse(); });
     }
-    DetalleAlmacenPage.prototype.ionViewDidLoad = function () {
-    };
-    DetalleAlmacenPage.prototype.menu1Active = function () {
+    FacturasDenegadasPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
         this.menu.enable(false, 'menu1');
     };
-    DetalleAlmacenPage.prototype.seleccionarFoto = function (e) {
-        this.fileT = e.target.files;
+    FacturasDenegadasPage.prototype.openPage = function (page) {
+        this.navCtrl.setRoot(page);
     };
-    DetalleAlmacenPage.prototype.agregar = function () {
-        this.file = this.file.concat(this.fileT);
+    FacturasDenegadasPage.prototype.ionViewDidLoad = function () {
     };
-    return DetalleAlmacenPage;
+    FacturasDenegadasPage.prototype.mostrarFactura = function (factura, facturaId) {
+        this.navCtrl.setRoot('DetalleFacturaPage', {
+            factura: factura,
+            id: facturaId
+        });
+    };
+    return FacturasDenegadasPage;
 }());
-DetalleAlmacenPage = __decorate([
+FacturasDenegadasPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-detalle-almacen',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-almacen\detalle-almacen.html"*/'<!--\n\n  Generated template for the DetalleAlmacenPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      <ion-title>Almacén</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Nombre</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="nombreAlmacen" \n\n                  name="nombre" \n\n                  type="text" \n\n                  autocapitalize="off" \n\n                  required\n\n        \n\n                >\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label>Categoria:</ion-label>\n\n                <ion-select [(ngModel)]="selectedvalue">\n\n                  <!--  carga los alamcenes del centro comercial -->\n\n                  <ion-option ><h2>ropa interior</h2></ion-option>\n\n                </ion-select>\n\n              </ion-item>\n\n        </ion-col>\n\n\n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n              <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>\n\n              <button (click)="agregar()"> Agregar</button>\n\n              <div class="preview">\n\n                <p>Sin fotos para asignar</p>\n\n              </div>\n\n       \n\n        </ion-col> \n\n        <ion-col>\n\n            <button> guardar</button>\n\n        </ion-col>\n\n\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-almacen\detalle-almacen.html"*/,
+        selector: 'page-facturas-denegadas',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\facturas-denegadas\facturas-denegadas.html"*/'<!--\n\n  Generated template for the FacturasPendientesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    \n\n      <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Facturas\n\n        </ion-title>\n\n      </ion-navbar>\n\n      <ion-navbar>\n\n        <ion-row>\n\n          <ion-col class="groupTabs">\n\n            <button class="tab tab1" (click)="openPage(\'FacturasPendientesPage\')">Pendientes</button>\n\n          </ion-col>\n\n          <ion-col class="groupTabs">\n\n            <button class="tab tab2" (click)="openPage(\'FacturasAprobadasPage\')"> Aprobadas</button>\n\n          </ion-col>\n\n          <ion-col class="">\n\n            <button class="tab tab3" (click)="openPage(\'FacturasDenegadasPage\')">Denegadas</button>\n\n          </ion-col>\n\n        </ion-row>\n\n       </ion-navbar>\n\n    \n\n    </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n  <ion-row>\n\n    <ion-col>\n\n      <!-- se deben mostrar las 20 facturas en estado denegadas de  la mas reciente  a la mas antigua -->\n\n        <ion-list>\n\n          <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura, factura.$key)">\n\n            <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} - {{factura.almacen}} \n\n           </button>\n\n        \n\n                    \n\n          </ion-list>\n\n    </ion-col>\n\n    <ion-col>\n\n        <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fdenegar.png?alt=media&token=4d297288-d47c-438e-aea5-7d0f1d0ffb7c">      \n\n    </ion-col>\n\n  </ion-row>  \n\n    \n\n  </ion-content>\n\n  '/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\facturas-denegadas\facturas-denegadas.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object])
-], DetalleAlmacenPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
+], FacturasDenegadasPage);
 
-var _a, _b, _c;
-//# sourceMappingURL=detalle-almacen.js.map
+//# sourceMappingURL=facturas-denegadas.js.map
 
 /***/ })
 

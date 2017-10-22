@@ -13,6 +13,15 @@ page-lista-almacenes {
     .text-center{
         text-align: center; 
     }
+    .izq{
+        float: right;
+    }
+    #new{
+        color: white;
+        background-color: #f71515;
+        font-size: 2rem;
+    }
+  
 
     @media (max-width: 500px ) and (min-width: 300px){
         .tab{

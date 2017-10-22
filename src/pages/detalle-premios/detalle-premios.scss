@@ -1,0 +1,45 @@
+page-detalle-premios {
+    .toolbar-title-md{
+        color: white;
+    }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+        color: white;
+    }
+
+    .toolbar-background-md {
+        
+        background: #F71515;
+    }
+    .text-center{
+        text-align: center; 
+    }
+
+    .guardar{
+        font-size: 35px;
+        margin-top: 1em;
+        background-color: yellow;
+        width: 52%;
+    }
+    .modificar{
+        font-size: 35px;
+        margin-top: 1em;
+        background-color: yellow;
+        width: 52%;
+        display: none;
+    }
+    .cancelar{
+        font-size: 35px;
+        margin-top: 1em;
+        background-color: red;
+        width: 52%;
+    }
+
+    .text-center{
+        text-align: center; 
+    }
+
+   .divFoto{
+    margin-left: 1em;
+   }
+
+}

@@ -20002,6 +20002,52 @@ page-detalle-factura .text-center {
   text-align: center;
 }
 
+page-detalle-premios .toolbar-title-md {
+  color: white;
+}
+
+page-detalle-premios .bar-button-default-md, page-detalle-premios .bar-button-clear-md-default, page-detalle-premios .bar-button-md-default {
+  color: white;
+}
+
+page-detalle-premios .toolbar-background-md {
+  background: #F71515;
+}
+
+page-detalle-premios .text-center {
+  text-align: center;
+}
+
+page-detalle-premios .guardar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: yellow;
+  width: 52%;
+}
+
+page-detalle-premios .modificar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: yellow;
+  width: 52%;
+  display: none;
+}
+
+page-detalle-premios .cancelar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: red;
+  width: 52%;
+}
+
+page-detalle-premios .text-center {
+  text-align: center;
+}
+
+page-detalle-premios .divFoto {
+  margin-left: 1em;
+}
+
 page-facturas-aprobadas .toolbar-title-md {
   color: white;
 }
@@ -20277,12 +20323,63 @@ page-lista-almacenes .text-center {
   text-align: center;
 }
 
+page-lista-almacenes .izq {
+  float: right;
+}
+
+page-lista-almacenes #new {
+  color: white;
+  background-color: #f71515;
+  font-size: 2rem;
+}
+
 @media (max-width: 500px) and (min-width: 300px) {
   page-lista-almacenes .tab {
     margin-left: 0em;
     font-size: 18px;
   }
   page-lista-almacenes .adminVal {
+    display: none;
+  }
+}
+
+page-lista-premios .toolbar-title-md {
+  color: white;
+}
+
+page-lista-premios .bar-button-default-md, page-lista-premios .bar-button-clear-md-default, page-lista-premios .bar-button-md-default {
+  color: white;
+}
+
+page-lista-premios .toolbar-background-md {
+  background: #F71515;
+}
+
+page-lista-premios .text-center {
+  text-align: center;
+}
+
+page-lista-premios .izq {
+  float: right;
+}
+
+page-lista-premios #new {
+  color: white;
+  background-color: #f71515;
+  font-size: 2rem;
+}
+
+page-lista-premios .imgPremio {
+  text-align: center;
+  margin-top: 100px;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-lista-premios .tab {
+    margin-left: 0em;
+    font-size: 18px;
+  }
+  page-lista-premios .adminVal {
     display: none;
   }
 }
