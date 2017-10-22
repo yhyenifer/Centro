@@ -29,8 +29,13 @@
         <ion-col>
             <!-- se deben mostrar los almacenes en orden alfabetico-->
             <ion-list>
+<<<<<<< HEAD
                 <button ion-item *ngFor="let almacen of almacenes$ | async; let i = index"  (click)="mostrarAlmacen()">
                   <ion-icon name="home"></ion-icon> nombre almacen 
+=======
+                <button ion-item  *ngFor="let almacen of almacenes$ | async; let i = index" (click)="mostrarAlmacen(almacen,almacen.$key)">
+                  <ion-icon name="house"></ion-icon> {{almacen.nombre}} 
+>>>>>>> 9ba81190dff555acb940d56eebc8bfa18514703d
                  </button>      
                 </ion-list>
              

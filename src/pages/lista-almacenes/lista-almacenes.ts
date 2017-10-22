@@ -1,6 +1,8 @@
-import { FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
+import { Almacen } from '../../app/models/almacen';
+import firebase from 'firebase';
 
 /**
  * Generated class for the ListaAlmacenesPage page.
@@ -15,22 +17,28 @@ import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angul
   templateUrl: 'lista-almacenes.html',
 })
 export class ListaAlmacenesPage {
-  almacenes$: any;
+  almacenes$: FirebaseListObservable<Almacen[]>;
+  almacen = {} as Almacen; 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    private database: AngularFireDatabase,
     public menu: MenuController) {
     this.menu1Active();
+    this.almacenes$ = this.database.list('Almacen');
   }
 
   ionViewDidLoad() {
-   
+    this.almacenes$ = this.database.list('Almacen');
   }
   menu1Active() {
     this.menu.enable(true, 'menu2');
     this.menu.enable(false, 'menu1');
   }
   // este es para el editar, falta enviar parametros
-  mostrarAlmacen(){
-    this.navCtrl.setRoot('DetalleAlmacenPage');
+  mostrarAlmacen(almacen, almacenId){
+    this.navCtrl.setRoot('DetalleAlmacenPage',{
+      almacen : almacen,
+      id: almacenId
+    });
   }
 
   crearAlmacen(){
