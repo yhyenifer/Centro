@@ -8,4 +8,6 @@ export interface Almacen{
     web: string;
     estado: string;
     url: string[];
+    realurl: string[];
+    img: string[];
    }

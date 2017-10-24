@@ -70,9 +70,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var DetalleAlmacenPage = (function () {
-    function DetalleAlmacenPage(navCtrl, navParams, database, menu, storage, alertCtrl) {
+    function DetalleAlmacenPage(navCtrl, navParams, zone, database, menu, storage, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.zone = zone;
         this.database = database;
         this.menu = menu;
         this.storage = storage;
@@ -85,6 +86,7 @@ var DetalleAlmacenPage = (function () {
         this.menu1Active();
         this.file = [];
         this.fileT = [];
+        this.fileS = [];
         this.infoAlmacen$ = this.database.list('Almacen');
         this.infoCate$ = this.database.list('CategoriaAlmacen');
         this.accion = navParams.get("accion");
@@ -99,6 +101,15 @@ var DetalleAlmacenPage = (function () {
             this.selectedCategoria = this.almacen.categoria;
             this.selectedEstado = this.almacen.estado;
             this.localAlmacen = this.almacen.local;
+            this.almacen.realurl = new Array(this.almacen.url.length);
+            this.almacen.img = new Array(this.almacen.url.length);
+            this.filefoto = new Array(this.file.length);
+            this.volverReal();
+            for (var index = 0; index < this.almacen.url.length; index++) {
+                this.generarFotos(index);
+            }
+            this.fileS = this.almacen.url;
+            console.log("este es" + this.filefoto);
             this.ocultar2 = !this.ocultar2;
         }
         else {
@@ -112,7 +123,9 @@ var DetalleAlmacenPage = (function () {
         var _this = this;
         this.file = [];
         this.fileT = [];
-        this.selectedCategoria = this.infoCate$[0];
+        this.fileS = [];
+        this.fileS = this.almacen.url;
+        //this.selectedCategoria = this.infoCate$[0];
         this.storage.get('nombre').then(function (data) {
             _this.nombre = data;
         });
@@ -120,6 +133,34 @@ var DetalleAlmacenPage = (function () {
     DetalleAlmacenPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
         this.menu.enable(false, 'menu1');
+    };
+    DetalleAlmacenPage.prototype.volverReal = function () {
+        for (var index = 0; index < this.almacen.url.length; index++) {
+            this.almacen.realurl[index] = "img/almacenes/" + this.almacen.nombre + "/" + this.almacen.url[index];
+        }
+        //this.almacen.realurl
+    };
+    DetalleAlmacenPage.prototype.generarFotos = function (index) {
+        var _this = this;
+        //for (var index = 0; index < this.almacen.url.length; index++) {
+        var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
+        var imageRef = storageRef.child(this.almacen.realurl[index]);
+        imageRef.getDownloadURL().then(function (url) {
+            return _this.almacen.img[index] = url;
+        });
+        console.log("contador" + this.almacen.img);
+        //}
+    };
+    DetalleAlmacenPage.prototype.readPhoto = function (file, index) {
+        var _this = this;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            _this.zone.run(function () {
+                var path = e.target;
+                _this.filefoto[index] = path.result;
+            });
+        };
+        reader.readAsDataURL(file);
     };
     DetalleAlmacenPage.prototype.validarDatos = function () {
         this.campos = null;
@@ -144,12 +185,12 @@ var DetalleAlmacenPage = (function () {
         }
         else {
             if (this.localAlmacen < 0) {
-                var alert_1 = this.alertCtrl.create({
+                var alert = this.alertCtrl.create({
                     title: 'Error',
                     subTitle: "El local no es un número correcto",
                     buttons: ['Aceptar']
                 });
-                alert_1.present();
+                alert.present();
             }
         }
         if (this.horarioAlmacen == null) {
@@ -169,12 +210,12 @@ var DetalleAlmacenPage = (function () {
             }
         }
         if (this.campos != null) {
-            var alert_2 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Error',
                 subTitle: "Verifica los datos ingresados, los campos " + this.campos + "son requeridos",
                 buttons: ['Aceptar']
             });
-            alert_2.present();
+            alert.present();
             return false;
         }
         else {
@@ -183,8 +224,10 @@ var DetalleAlmacenPage = (function () {
     };
     DetalleAlmacenPage.prototype.modificar = function () {
         var _this = this;
+        //this.selectedCategoria = this.almacen.categoria;
+        console.log(this.selectedCategoria);
         if (this.validarDatos() == true) {
-            var alert_3 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de Modificar éste Almacén?",
                 buttons: [
@@ -194,7 +237,34 @@ var DetalleAlmacenPage = (function () {
                         handler: function () {
                             console.log('si');
                             //aqui va el codigo de modificar
-                            //notificacion de accion realizada
+                            var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
+                            var filenames = new Array(10);
+                            var urlfotos = new Array(10);
+                            for (var index = 0; index < _this.file.length; index++) {
+                                filenames[index] = "" + _this.file[index].name;
+                                urlfotos[index] = "" + filenames[index];
+                                console.log(filenames[index]);
+                                var imageRef = storageRef.child("img/almacenes/" + _this.nombreAlmacen + "/" + filenames[index]);
+                                imageRef.put(_this.file[index]).then(function (snapshot) {
+                                });
+                            }
+                            for (var index = 0; urlfotos[index] != undefined; index++) {
+                                _this.fileS.splice(_this.fileS.length, 0, urlfotos[index]);
+                            }
+                            //urlfotos.push.apply(urlfotos, this.fileS);
+                            console.log(_this.fileS);
+                            console.log(urlfotos);
+                            _this.infoAlmacen$.update(_this.id, {
+                                nombre: _this.nombreAlmacen,
+                                descripcion: _this.descAlmacen,
+                                horario: _this.horarioAlmacen,
+                                categoria: _this.selectedCategoria,
+                                local: _this.localAlmacen,
+                                telefono: _this.telAlmacen,
+                                web: _this.webAlmacen,
+                                estado: _this.selectedEstado,
+                                url: _this.fileS
+                            }); //notificacion de accion realizada
                             var alert = _this.alertCtrl.create({
                                 title: 'Notifiación',
                                 subTitle: "Se ha modificado exitosamente el Almacén",
@@ -218,13 +288,13 @@ var DetalleAlmacenPage = (function () {
                     }
                 ]
             });
-            alert_3.present();
+            alert.present();
         }
     };
     DetalleAlmacenPage.prototype.guardar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert_4 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de Crear éste Almacén?",
                 buttons: [
@@ -240,9 +310,9 @@ var DetalleAlmacenPage = (function () {
                             console.log(_this.file);
                             for (var index = 0; index < _this.file.length; index++) {
                                 filenames[index] = "" + _this.file[index].name;
-                                urlfotos[index] = "img/almacenes/" + _this.nombreAlmacen + "/" + filenames[index] + ".jpg";
+                                urlfotos[index] = "" + filenames[index];
                                 console.log(filenames[index]);
-                                var imageRef = storageRef.child("img/almacenes/" + _this.nombreAlmacen + "/" + filenames[index] + ".jpg");
+                                var imageRef = storageRef.child("img/almacenes/" + _this.nombreAlmacen + "/" + filenames[index]);
                                 imageRef.put(_this.file[index]).then(function (snapshot) {
                                 });
                             }
@@ -281,7 +351,7 @@ var DetalleAlmacenPage = (function () {
                     }
                 ]
             });
-            alert_4.present();
+            alert.present();
         }
     };
     DetalleAlmacenPage.prototype.seleccionarFoto = function (e) {
@@ -293,6 +363,9 @@ var DetalleAlmacenPage = (function () {
         this.file.push.apply(this.file, this.fileT);
         this.fileT = [];
         console.log(this.file);
+        for (var index = 0; index < this.file.length; index++) {
+            this.readPhoto(this.file[index], index);
+        }
     };
     DetalleAlmacenPage.prototype.cancelar = function () {
         var _this = this;
@@ -327,15 +400,12 @@ var DetalleAlmacenPage = (function () {
 DetalleAlmacenPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-detalle-almacen',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-almacen\detalle-almacen.html"*/'<!--\n\n  Generated template for the DetalleAlmacenPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      <ion-title>Almacén</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Nombre:</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="nombreAlmacen" \n\n                  name="nombre" \n\n                  type="text" \n\n                  autocapitalize="off" \n\n                  required>\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Categoría:</ion-label>\n\n                <ion-select [(ngModel)]="selectedCategoria" required>\n\n            \n\n                  <ion-option *ngFor="let categoria of infoCate$ | async"><h2>{{ categoria.nombre }}</h2></ion-option>\n\n                </ion-select>\n\n              </ion-item>\n\n        </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>Descripción:</ion-label>\n\n                    <ion-textarea\n\n                      [(ngModel)]="descAlmacen" \n\n                      name="descripcion" \n\n                      type="textArea" \n\n                      autocapitalize="off" \n\n                      class="area"\n\n                      >\n\n                    </ion-textarea>\n\n                  </ion-item>\n\n                  <ion-item>\n\n                        <ion-label floating>*Horario de Atención:</ion-label>\n\n                        <ion-input \n\n                          [(ngModel)]="horarioAlmacen" \n\n                          name="horario" \n\n                          type="text" \n\n                          autocapitalize="off"\n\n                          required>\n\n                        </ion-input>\n\n                 </ion-item> \n\n                  <br>\n\n                  <div class="divFoto">\n\n                 <ion-label >Foto(s):</ion-label>\n\n                 <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>\n\n                 <button class="agregar" (click)="agregar()"> Agregar</button>\n\n                 <div class="preview">\n\n                   <ion-option *ngFor="let f of file ">\n\n                     <br>\n\n                     <h6> {{f.name}} </h6>\n\n                   </ion-option>\n\n                 </div>\n\n                </div>   \n\n               \n\n    </ion-col> \n\n    <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>*Local:</ion-label>\n\n                    <ion-input \n\n                      [(ngModel)]="localAlmacen" \n\n                      name="local" \n\n                      type="number" \n\n                      autocapitalize="off" \n\n                      required>\n\n                    </ion-input>\n\n                  </ion-item>\n\n                  <ion-item>\n\n                        <ion-label floating>Teléfono:</ion-label>\n\n                        <ion-input \n\n                          [(ngModel)]="telAlmacen" \n\n                          name="telefono" \n\n                          type="tel" \n\n                          autocapitalize="off" \n\n                        >\n\n                        </ion-input>\n\n                 </ion-item> \n\n                 <ion-item>\n\n                        <ion-label floating>Sitio Web:</ion-label>\n\n                        <ion-input \n\n                          name="web" \n\n                          type="text" \n\n                          autocapitalize="off">\n\n                        </ion-input>\n\n                 </ion-item>   \n\n                 <ion-item>\n\n                        <ion-label floating>*Estado:</ion-label>\n\n                        <ion-select [(ngModel)]="selectedEstado"\n\n                                    >\n\n                          <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->\n\n                          <ion-option  ><h2>Activo</h2></ion-option>\n\n                          <ion-option ><h2>Inactivo</h2></ion-option>\n\n                        </ion-select>\n\n                      </ion-item> \n\n    </ion-col> \n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n              \n\n       \n\n        </ion-col> \n\n        <ion-col class="text-center">\n\n                <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>\n\n                <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                \n\n        </ion-col>\n\n\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-almacen\detalle-almacen.html"*/,
+        selector: 'page-detalle-almacen',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-almacen\detalle-almacen.html"*/'<!--\n\n  Generated template for the DetalleAlmacenPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      <ion-title>Almacén</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Nombre:</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="nombreAlmacen" \n\n                  name="nombre" \n\n                  type="text" \n\n                  autocapitalize="off" \n\n                  required>\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Categoría:</ion-label>\n\n                <ion-select [(ngModel)]="selectedCategoria">\n\n            \n\n                  <ion-option *ngFor="let categoria of infoCate$ | async"><h2>{{ categoria.nombre }}</h2></ion-option>\n\n                </ion-select>\n\n              </ion-item>\n\n        </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>Descripción:</ion-label>\n\n                    <ion-textarea\n\n                      [(ngModel)]="descAlmacen" \n\n                      name="descripcion" \n\n                      type="textArea" \n\n                      autocapitalize="off" \n\n                      class="area"\n\n                      >\n\n                    </ion-textarea>\n\n                  </ion-item>\n\n                  <ion-item>\n\n                        <ion-label floating>*Horario de Atención:</ion-label>\n\n                        <ion-input \n\n                          [(ngModel)]="horarioAlmacen" \n\n                          name="horario" \n\n                          type="text" \n\n                          autocapitalize="off"\n\n                          required>\n\n                        </ion-input>\n\n                 </ion-item> \n\n                  <br>\n\n                  <div class="divFoto">\n\n                 <ion-label >Foto(s):</ion-label>\n\n                 <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>\n\n                 <button class="agregar" (click)="agregar()"> Agregar</button>\n\n                 <div class="preview">\n\n                  <ion-option *ngFor="let nombre of almacen.url; let idx = index ">\n\n                    <br>\n\n                    <h6> {{nombre}} </h6>\n\n                    <img class="brochure-poster" HEIGHT=80 WIDTH=80 src="{{almacen.img[idx]}}"/>\n\n                  </ion-option>\n\n                  <ion-option *ngFor="let f of file, let idx = index ">\n\n                     <br>\n\n                     <h6> {{f.name}} </h6>\n\n                     <img class="brochure-poster" HEIGHT=80 WIDTH=80 src="{{filefoto[idx]}}"/>\n\n                   </ion-option>\n\n\n\n                 </div>\n\n                </div>   \n\n               \n\n    </ion-col> \n\n    <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>*Local:</ion-label>\n\n                    <ion-input \n\n                      [(ngModel)]="localAlmacen" \n\n                      name="local" \n\n                      type="number" \n\n                      autocapitalize="off" \n\n                      required>\n\n                    </ion-input>\n\n                  </ion-item>\n\n                  <ion-item>\n\n                        <ion-label floating>Teléfono:</ion-label>\n\n                        <ion-input \n\n                          [(ngModel)]="telAlmacen" \n\n                          name="telefono" \n\n                          type="tel" \n\n                          autocapitalize="off" \n\n                        >\n\n                        </ion-input>\n\n                 </ion-item> \n\n                 <ion-item>\n\n                        <ion-label floating>Sitio Web:</ion-label>\n\n                        <ion-input \n\n                          name="web" \n\n                          type="text" \n\n                          autocapitalize="off">\n\n                        </ion-input>\n\n                 </ion-item>   \n\n                 <ion-item>\n\n                        <ion-label floating>*Estado:</ion-label>\n\n                        <ion-select [(ngModel)]="selectedEstado"\n\n                                    >\n\n                          <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->\n\n                          <ion-option  ><h2>Activo</h2></ion-option>\n\n                          <ion-option ><h2>Inactivo</h2></ion-option>\n\n                        </ion-select>\n\n                      </ion-item> \n\n    </ion-col> \n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n              \n\n       \n\n        </ion-col> \n\n        <ion-col class="text-center">\n\n                <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>\n\n                <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                \n\n        </ion-col>\n\n\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-almacen\detalle-almacen.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object])
 ], DetalleAlmacenPage);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=detalle-almacen.js.map
 
 /***/ })
