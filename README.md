@@ -27,3 +27,4 @@ Substitute ios for android if not on a Mac.
 sprint 2
 integracion front y back 21-10
 integracion con front 22-10
+integracion con front 24-10
