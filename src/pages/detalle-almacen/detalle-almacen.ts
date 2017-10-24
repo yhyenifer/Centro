@@ -310,7 +310,6 @@ export class DetalleAlmacenPage {
           }]
           });
           alert.present();
-       
       }
 
 }

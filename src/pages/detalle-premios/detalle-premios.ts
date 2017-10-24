@@ -12,7 +12,7 @@ import { Storage } from '@ionic/storage';
 @IonicPage()
 @Component({
   selector: 'page-detalle-premios',
-  templateUrl: 'detalle-premios.html',
+  templateUrl: 'detalle-premios.html';
 })
 export class DetallePremiosPage {
   ocultar1: boolean     = false;
