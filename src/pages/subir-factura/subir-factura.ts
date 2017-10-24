@@ -58,6 +58,7 @@ export class SubirFacturaPage {
     this.base64Image = this.navParams.get("base64Image");
     this.uid = this.global.uid;
     this.nombre = this.global.nombre;
+    console.log(this.base64Image);
     
   }
 

@@ -20303,6 +20303,10 @@ page-home-cliente .logoEvento {
   margin-bottom: 10px;
 }
 
+page-home-cliente .divFoto {
+  display: none;
+}
+
 @media (min-width: 767px) {
   page-home-cliente .logoEvento {
     margin-left: 30em;
@@ -20312,6 +20316,9 @@ page-home-cliente .logoEvento {
   }
   page-home-cliente .mobile {
     display: none;
+  }
+  page-home-cliente .divFoto {
+    display: inline;
   }
 }
 

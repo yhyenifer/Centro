@@ -32,6 +32,9 @@ page-home-cliente {
          margin-bottom: 10px;
          
      }
+     .divFoto{
+         display: none;
+     }
      @media (min-width: 767px){
         .logoEvento{
             margin-left: 30em;
@@ -42,5 +45,8 @@ page-home-cliente {
      .mobile{
          display: none;
      }
+     .divFoto{
+        display: inline;
+    }
     }
 }

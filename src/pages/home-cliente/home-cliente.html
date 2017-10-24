@@ -30,9 +30,11 @@
   <button ion-button icon-only class="camara mobile" (click)="sacarFoto()" >
       <ion-icon name="image"></ion-icon>
   </button>
-  <!-- <button ion-button icon-only  (click)="upload()">
-      subir factura
-  </button> -->
+  <div class="divFoto">
+    <ion-label >Seleccione la foto de tú Factura: </ion-label>
+    <input type="file" (change)="seleccionar($event)"  accept=".jpg, .jpeg, .png"  >
+    <button class="agregar" (click)="agregar()"> Agregar</button>
+   </div>
 
   </div>
   <div class="slide_eventos">
@@ -76,8 +78,7 @@
         
   </div> 
 
-  <!-- <button  (click)="ir()">
-    prueba
-  </button> -->
+ 
+  
   
   </ion-content>
