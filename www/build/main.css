@@ -19985,6 +19985,15 @@ page-detalle-almacen .divFoto {
   margin-left: 1em;
 }
 
+page-detalle-almacen .agregar {
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  margin-left: 94px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 page-detalle-factura .toolbar-title-md {
   color: white;
 }
@@ -20294,6 +20303,10 @@ page-home-cliente .logoEvento {
   margin-bottom: 10px;
 }
 
+page-home-cliente .divFoto {
+  display: none;
+}
+
 @media (min-width: 767px) {
   page-home-cliente .logoEvento {
     margin-left: 30em;
@@ -20303,6 +20316,9 @@ page-home-cliente .logoEvento {
   }
   page-home-cliente .mobile {
     display: none;
+  }
+  page-home-cliente .divFoto {
+    display: inline;
   }
 }
 

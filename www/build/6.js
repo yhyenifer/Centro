@@ -106,7 +106,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
  */
 var HomeClientePage = (function () {
     function HomeClientePage(camera, navCtrl, navParams, database, alertCtrl, menu) {
-        var _this = this;
         this.camera = camera;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -133,9 +132,6 @@ var HomeClientePage = (function () {
         this.infoFactura$ = this.database.list('factura');
         this.alertCtrl = alertCtrl;
         this.uid = navParams.get("uid");
-        this.tokensetup().then(function (token) {
-            _this.storetoken(token);
-        });
     }
     HomeClientePage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu1');
@@ -166,7 +162,6 @@ var HomeClientePage = (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 try {
-                    //this.uid = 'asfdfhsfhgjsfhj';
                     this.camera.getPicture(this.options2).then(function (ImageData) {
                         _this.base64Image = 'data:image/jpeg;base64,' + ImageData;
                         _this.navCtrl.setRoot('SubirFacturaPage', {
@@ -194,60 +189,32 @@ var HomeClientePage = (function () {
         this.nombre = this.navParams.get("nombre");
         this.email = this.navParams.get("email");
         this.puntos = this.navParams.get("puntos");
-        // console.log('nombre: ' + this.nombre + ' email: '+this.puntos);
-        // console.log('email: ' + this.email);
-        FCMPlugin.onNotification(function (data) {
-            if (data.wasTapped) {
-                //Notification was received on device tray and tapped by the user.
-                alert(JSON.stringify(data));
-            }
-            else {
-                //Notification was received in foreground. Maybe the user needs to be notified.
-                alert(JSON.stringify(data));
-            }
-        });
-        FCMPlugin.onTokenRefresh(function (token) {
-            alert(token);
-        });
     };
     HomeClientePage.prototype.ir = function () {
         this.navCtrl.setRoot('SubirFacturaPage');
     };
-    HomeClientePage.prototype.tokensetup = function () {
-        var promise = new Promise(function (resolve, reject) {
-            FCMPlugin.getToken(function (token) {
-                alert(token);
-                resolve(token);
-            }, function (err) {
-                reject(err);
-            });
+    HomeClientePage.prototype.seleccionar = function (e) {
+        this.fileT = e.target.files;
+        console.log(this.fileT);
+        this.navCtrl.setRoot('SubirFacturaPage', {
+            base64Image: this.fileT,
+            uid: this.uid
         });
-        return promise;
     };
-    HomeClientePage.prototype.storetoken = function (t) {
-        this.database.list(this.firestore).push({
-            uid: __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth().currentUser.uid,
-            devtoken: t
-        }).then(function () {
-            alert('Token stored');
-        }).catch(function () {
-            alert('Token not stored');
-        });
-        this.database.list(this.firemsg).push({
-            sendername: 'mauro',
-            message: 'hello'
-        }).then(function () {
-            alert('Message stored');
-        }).catch(function () {
-            alert('Message not stored');
-        });
+    HomeClientePage.prototype.agregar = function () {
+        this.file.push.apply(this.file, this.fileT);
+        this.fileT = [];
+        // this.navCtrl.setRoot('SubirFacturaPage',{
+        //    base64Image :  this.file[0],
+        //   uid: this.uid
+        // });
     };
     return HomeClientePage;
 }());
 HomeClientePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home-cliente',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-cliente\home-cliente.html"*/'<!--\n\n  Generated template for the HomeClientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Menú\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n     \n\n  <div class="text-center"> \n\n  <h4 class="text-center">Súbe aquí tú factura para que acumules puntos y redimas por grandes premios.</h4>\n\n  <img class="gana" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fgana.png?alt=media&token=c6d87ebf-ca83-40a6-a5e6-a54e0dba188f">\n\n  <p class="mobile">Tómale una foto a tú factura</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="tomarFoto()">\n\n    <ion-icon name="camera"></ion-icon>\n\n  </button>\n\n  <p class="mobile">O súbela desde tus imágenes</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="sacarFoto()" >\n\n      <ion-icon name="image"></ion-icon>\n\n  </button>\n\n  <!-- <button ion-button icon-only  (click)="upload()">\n\n      subir factura\n\n  </button> -->\n\n\n\n  </div>\n\n  <div class="slide_eventos">\n\n    \n\n      <ion-slides pager  autoplay="2000" loop="true" speed="1000">\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento1</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento2</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                  <ion-col>\n\n                    <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                  </ion-col> \n\n                  <ion-col>\n\n                   <p class="letra12">Descripción del evento3</p>\n\n                  </ion-col>   \n\n                  </ion-row>\n\n            </ion-slide>\n\n          \n\n          </ion-slides>\n\n        \n\n  </div> \n\n\n\n  <!-- <button  (click)="ir()">\n\n    prueba\n\n  </button> -->\n\n  \n\n  </ion-content>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-cliente\home-cliente.html"*/,
+        selector: 'page-home-cliente',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-cliente\home-cliente.html"*/'<!--\n\n  Generated template for the HomeClientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Menú\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n     \n\n  <div class="text-center"> \n\n  <h4 class="text-center">Súbe aquí tú factura para que acumules puntos y redimas por grandes premios.</h4>\n\n  <img class="gana" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fgana.png?alt=media&token=c6d87ebf-ca83-40a6-a5e6-a54e0dba188f">\n\n  <p class="mobile">Tómale una foto a tú factura</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="tomarFoto()">\n\n    <ion-icon name="camera"></ion-icon>\n\n  </button>\n\n  <p class="mobile">O súbela desde tus imágenes</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="sacarFoto()" >\n\n      <ion-icon name="image"></ion-icon>\n\n  </button>\n\n  <div class="divFoto">\n\n    <ion-label >Seleccione la foto de tú Factura: </ion-label>\n\n    <input type="file" (change)="seleccionar($event)"  accept=".jpg, .jpeg, .png"  >\n\n    <button class="agregar" (click)="agregar()"> Agregar</button>\n\n   </div>\n\n\n\n  </div>\n\n  <div class="slide_eventos">\n\n    \n\n      <ion-slides pager  autoplay="2000" loop="true" speed="1000">\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento1</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento2</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                  <ion-col>\n\n                    <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                  </ion-col> \n\n                  <ion-col>\n\n                   <p class="letra12">Descripción del evento3</p>\n\n                  </ion-col>   \n\n                  </ion-row>\n\n            </ion-slide>\n\n          \n\n          </ion-slides>\n\n        \n\n  </div> \n\n\n\n \n\n  \n\n  \n\n  </ion-content>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-cliente\home-cliente.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],

@@ -29,10 +29,14 @@ export class ListaPremiosPage {
   }
   // este es para el editar, falta enviar parametros
   mostrarPremio(){
-    this.navCtrl.setRoot('DetallePremiosPage');
+    this.navCtrl.setRoot('DetallePremiosPage',{
+      accion: 1
+    });
   }
 
   crearPremio(){
-    this.navCtrl.setRoot('DetallePremiosPage');
-  }
+    this.navCtrl.setRoot('DetallePremiosPage',{
+       accion: 2
+     });
+    }
 }

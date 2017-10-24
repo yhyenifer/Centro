@@ -77,10 +77,14 @@ var ListaPremiosPage = (function () {
     };
     // este es para el editar, falta enviar parametros
     ListaPremiosPage.prototype.mostrarPremio = function () {
-        this.navCtrl.setRoot('DetallePremiosPage');
+        this.navCtrl.setRoot('DetallePremiosPage', {
+            accion: 1
+        });
     };
     ListaPremiosPage.prototype.crearPremio = function () {
-        this.navCtrl.setRoot('DetallePremiosPage');
+        this.navCtrl.setRoot('DetallePremiosPage', {
+            accion: 2
+        });
     };
     return ListaPremiosPage;
 }());

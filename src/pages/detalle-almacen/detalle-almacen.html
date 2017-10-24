@@ -35,8 +35,7 @@
             <ion-item>
                 <ion-label floating>*Categoría:</ion-label>
                 <ion-select [(ngModel)]="selectedCategoria" required>
-                  <!--  carga las categorias de los almacenes -->
-                  <!-- <ion-option ><h2>ropa interior</h2></ion-option> -->
+            
                   <ion-option *ngFor="let categoria of infoCate$ | async"><h2>{{ categoria.nombre }}</h2></ion-option>
                 </ion-select>
               </ion-item>
@@ -69,11 +68,11 @@
                   <div class="divFoto">
                  <ion-label >Foto(s):</ion-label>
                  <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>
-                 <button  (click)="agregar()"> Agregar</button>
+                 <button class="agregar" (click)="agregar()"> Agregar</button>
                  <div class="preview">
                    <ion-option *ngFor="let f of file ">
-                     
-                     <h2> {{f.name}} </h2>
+                     <br>
+                     <h6> {{f.name}} </h6>
                    </ion-option>
                  </div>
                 </div>   
@@ -103,7 +102,6 @@
                  <ion-item>
                         <ion-label floating>Sitio Web:</ion-label>
                         <ion-input 
-                          [(ngModel)]="webAlmacen" 
                           name="web" 
                           type="text" 
                           autocapitalize="off">
@@ -114,7 +112,7 @@
                         <ion-select [(ngModel)]="selectedEstado"
                                     >
                           <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->
-                          <ion-option ><h2>Activo</h2></ion-option>
+                          <ion-option  ><h2>Activo</h2></ion-option>
                           <ion-option ><h2>Inactivo</h2></ion-option>
                         </ion-select>
                       </ion-item> 
@@ -126,8 +124,8 @@
        
         </ion-col> 
         <ion-col class="text-center">
-                <button class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>
-                <button class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>
+                <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>
+                <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>
                 <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               
                 
         </ion-col>

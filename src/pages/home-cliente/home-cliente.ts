@@ -4,7 +4,9 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Factura } from '../../app/models/factura';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import firebase from 'firebase';
-declare var FCMPlugin;
+
+
+
 
 /**
  * Generated class for the HomeClientePage page.
@@ -22,7 +24,9 @@ export class HomeClientePage {
  
   firestore = firebase.database().ref('/pushtokens');
   firemsg = firebase.database().ref('/messages');
-
+  fileT:any[];
+  file:any[];
+  preview:any;
   public uid;
   public nombre;
   public email;
@@ -61,16 +65,7 @@ export class HomeClientePage {
     this.infoFactura$ = this.database.list('factura');
     this.alertCtrl = alertCtrl;
     this.uid = navParams.get("uid");
-
-    this.tokensetup().then((token) => {
-         this.storetoken(token);
-       })
-
-
   }
- 
-  
-
   menu1Active() {
     this.menu.enable(true, 'menu1');
     this.menu.enable(false, 'menu2');
@@ -92,9 +87,11 @@ export class HomeClientePage {
       }
   }
 
+
+
   async sacarFoto(): Promise<any>{
     try{
-      //this.uid = 'asfdfhsfhgjsfhj';
+
   
       this.camera.getPicture(this.options2).then((ImageData) => {
         this.base64Image = 'data:image/jpeg;base64,' + ImageData;
@@ -129,58 +126,33 @@ export class HomeClientePage {
     this.nombre =this.navParams.get("nombre");
     this.email =this.navParams.get("email");
     this.puntos =this.navParams.get("puntos");
-    // console.log('nombre: ' + this.nombre + ' email: '+this.puntos);
-    // console.log('email: ' + this.email);
-    FCMPlugin.onNotification(function(data){
-        if(data.wasTapped){
-           //Notification was received on device tray and tapped by the user.
-           alert( JSON.stringify(data) );
-         }else{
-           //Notification was received in foreground. Maybe the user needs to be notified.
-           alert( JSON.stringify(data) );
-         }
-         });
+ 
     
-       FCMPlugin.onTokenRefresh(function(token){
-           alert( token );
-       });    
   }
 
   ir(){
     
     this.navCtrl.setRoot('SubirFacturaPage');
   }
-  tokensetup() {
-     var promise = new Promise((resolve, reject) => {
-       FCMPlugin.getToken(function(token){
-         alert(token)
-     resolve(token);
-       }, (err) => {
-         reject(err);
- });
-     })
-     return promise;
-   }
+  
 
-   storetoken(t) {
-     this.database.list(this.firestore).push({
-       uid: firebase.auth().currentUser.uid,
-       devtoken: t
-        
-     }).then(() => {
-       alert('Token stored');
-       }).catch(() => {
-         alert('Token not stored');
-       })
+  seleccionar(e){
+    this.fileT = e.target.files;
+    console.log(this.fileT); 
+   
+    this.navCtrl.setRoot('SubirFacturaPage',{
+      base64Image :   this.fileT,
+      uid: this.uid
+    });
+  }
 
-     this.database.list(this.firemsg).push({
-       sendername: 'mauro',//firebase.auth().currentUser.displayName,
-       message: 'hello'
-     }).then(() => {
-       alert('Message stored');
-       }).catch(() => {
-         alert('Message not stored');
-   })  
- }
+  agregar() {
+    this.file.push.apply(this.file, this.fileT);
+    this.fileT = [];
+    // this.navCtrl.setRoot('SubirFacturaPage',{
+    //    base64Image :  this.file[0],
+    //   uid: this.uid
+    // });
+  }
 
 }
