@@ -19,7 +19,6 @@ export class DetalleFacturaClientePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetalleFacturaClientePage');
   }
 
 }

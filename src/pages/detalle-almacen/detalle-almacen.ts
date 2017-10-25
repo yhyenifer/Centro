@@ -22,6 +22,9 @@ import { Storage } from '@ionic/storage';
 })
 export class DetalleAlmacenPage {
   accion: number;
+  conteoFile:number =0;
+  conteoURL: number =0;
+  conteoE: number =0;
   id: string;
   ocultar1: boolean     = false;
   ocultar2: boolean     = false;
@@ -76,6 +79,7 @@ export class DetalleAlmacenPage {
     this.localAlmacen = this.almacen.local;
     this.almacen.realurl = new Array(this.almacen.url.length);
     this.almacen.img = new Array(this.almacen.url.length);
+     this.conteoURL=this.almacen.url.length; 
     
     this.volverReal();
     for (var index = 0; index < this.almacen.url.length; index++) {
@@ -102,12 +106,12 @@ export class DetalleAlmacenPage {
   ionViewDidLoad() {
     this.file = [];
     this.fileT = [];
-    this.fileS = [];
     this.fileS = this.almacen.url;
-    //this.selectedCategoria = this.infoCate$[0];
+    
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
      });
+   
   }
   menu1Active() {
     this.menu.enable(true, 'menu2');
@@ -150,6 +154,17 @@ readPhoto(file, index) {
 
   validarDatos(){
     this.campos=null;
+    
+    if(this.conteoE+this.conteoURL+this.conteoFile<1 ){
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle:  this.nombre +" se ha excedido el número minímo (1) de archivo",
+        buttons:['Aceptar']
+      }
+    );
+    alert.present();
+      
+    }    
     if (this.nombreAlmacen==null){
       this.campos="Nombre, ";
     }
@@ -240,9 +255,7 @@ readPhoto(file, index) {
               this.fileS.splice(this.fileS.length,0,urlfotos[index2]);
               
             }
-              
-            
-            
+      
             //urlfotos.push.apply(urlfotos, this.fileS);
             console.log(this.fileS);
             console.log(urlfotos);
@@ -360,8 +373,23 @@ readPhoto(file, index) {
 }
   
   seleccionarFoto(e){
+    this.conteoE=parseInt(e.target.files.length);
+    if( this.conteoE+this.conteoURL+this.conteoFile<=10){
+     
     this.fileT = e.target.files;
-    console.log(this.fileT);
+    }
+    else{
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle:  this.nombre +" se ha excedido el número máximo (10) de archivos",
+        buttons:['Aceptar']
+      }
+    );
+    alert.present();
+    
+    }
+
+    
   }
 
   agregar(){
@@ -372,6 +400,7 @@ readPhoto(file, index) {
     for (var index = 0; index < this.file.length; index++) {
       this.readPhoto(this.file[index], index);
     }
+    this.conteoFile=this.file.length;
   }
 
   cancelar(){
@@ -403,6 +432,10 @@ readPhoto(file, index) {
           }]
           });
           alert.present();
+      }
+
+      eliminarFoto(idx){
+        //aqui va el evento de eliminar la foto del almacen
       }
 
 }

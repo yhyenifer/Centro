@@ -1,5 +1,4 @@
 page-detalle-factura-cliente {
-
     .toolbar-background-md {
         
         background: #f7ef36;
@@ -7,7 +6,13 @@ page-detalle-factura-cliente {
     .text-center{
         text-align: center; 
     }
-    
+    .gana{
+        max-width: 50%;
+    }
+    .camara{
+        background-color: red;
+        border-radius: 25em;
+    }
 
     .letra12{
         font-size: 12px;
@@ -19,7 +24,10 @@ page-detalle-factura-cliente {
        margin-bottom: 20px;
    }
 
-  
+     .swiper-pagination-bullet-active{
+         background: #f7ef36;
+     }
 
- 
+
+
 }

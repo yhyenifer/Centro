@@ -19994,6 +19994,10 @@ page-detalle-almacen .agregar {
   padding-right: 30px;
 }
 
+page-detalle-almacen .brochure-poster {
+  max-width: 9%;
+}
+
 page-detalle-factura .toolbar-title-md {
   color: white;
 }
@@ -20018,12 +20022,25 @@ page-detalle-factura-cliente .text-center {
   text-align: center;
 }
 
+page-detalle-factura-cliente .gana {
+  max-width: 50%;
+}
+
+page-detalle-factura-cliente .camara {
+  background-color: red;
+  border-radius: 25em;
+}
+
 page-detalle-factura-cliente .letra12 {
   font-size: 12px;
 }
 
 page-detalle-factura-cliente .row {
   margin-bottom: 20px;
+}
+
+page-detalle-factura-cliente .swiper-pagination-bullet-active {
+  background: #f7ef36;
 }
 
 page-detalle-premios .toolbar-title-md {
