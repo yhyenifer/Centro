@@ -35,6 +35,7 @@ export class DetallePremiosPage {
       this.ocultar2= !this.ocultar2;
     }
     else{ //opcion para cuando se va a crear
+     
       this.ocultar1= !this.ocultar1;
 
     }

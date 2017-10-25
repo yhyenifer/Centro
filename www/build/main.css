@@ -19998,6 +19998,10 @@ page-detalle-almacen .brochure-poster {
   max-width: 9%;
 }
 
+page-detalle-almacen .area {
+  max-width: 98%;
+}
+
 page-detalle-factura .toolbar-title-md {
   color: white;
 }
@@ -20071,7 +20075,6 @@ page-detalle-premios .modificar {
   margin-top: 1em;
   background-color: yellow;
   width: 52%;
-  display: none;
 }
 
 page-detalle-premios .cancelar {
@@ -20087,6 +20090,10 @@ page-detalle-premios .text-center {
 
 page-detalle-premios .divFoto {
   margin-left: 1em;
+}
+
+page-detalle-premios .area {
+  max-width: 98%;
 }
 
 page-facturas-aprobadas .toolbar-title-md {
