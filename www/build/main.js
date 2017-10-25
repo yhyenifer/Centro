@@ -1,4 +1,4 @@
-webpackJsonp([14],{
+webpackJsonp([15],{
 
 /***/ 163:
 /***/ (function(module, exports) {
@@ -23,6 +23,10 @@ webpackEmptyAsyncContext.id = 163;
 var map = {
 	"../pages/detalle-almacen/detalle-almacen.module": [
 		458,
+		14
+	],
+	"../pages/detalle-factura-cliente/detalle-factura-cliente.module": [
+		460,
 		13
 	],
 	"../pages/detalle-factura/detalle-factura.module": [
@@ -30,35 +34,35 @@ var map = {
 		12
 	],
 	"../pages/detalle-premios/detalle-premios.module": [
-		460,
+		461,
 		11
 	],
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
-		461,
+		462,
 		10
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
-		462,
+		463,
 		9
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
-		463,
+		464,
 		8
 	],
 	"../pages/home-admin/home-admin.module": [
-		464,
+		465,
 		7
 	],
 	"../pages/home-cliente/home-cliente.module": [
-		465,
+		466,
 		6
 	],
 	"../pages/lista-almacenes/lista-almacenes.module": [
-		466,
+		467,
 		5
 	],
 	"../pages/lista-premios/lista-premios.module": [
-		467,
+		468,
 		4
 	],
 	"../pages/login/login.module": [
@@ -66,15 +70,15 @@ var map = {
 		3
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
-		468,
+		469,
 		2
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		469,
+		470,
 		1
 	],
 	"../pages/validar-facturas/validar-facturas.module": [
-		470,
+		471,
 		0
 	]
 };
@@ -515,6 +519,7 @@ AppModule = __decorate([
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-almacen/detalle-almacen.module#DetalleAlmacenPageModule', name: 'DetalleAlmacenPage', segment: 'detalle-almacen', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-factura/detalle-factura.module#DetalleFacturaPageModule', name: 'DetalleFacturaPage', segment: 'detalle-factura', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/detalle-factura-cliente/detalle-factura-cliente.module#DetalleFacturaClientePageModule', name: 'DetalleFacturaClientePage', segment: 'detalle-factura-cliente', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-premios/detalle-premios.module#DetallePremiosPageModule', name: 'DetallePremiosPage', segment: 'detalle-premios', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-aprobadas/facturas-aprobadas.module#FacturasAprobadasPageModule', name: 'FacturasAprobadasPage', segment: 'facturas-aprobadas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/facturas-denegadas/facturas-denegadas.module#FacturasDenegadasPageModule', name: 'FacturasDenegadasPage', segment: 'facturas-denegadas', priority: 'low', defaultHistory: [] },
