@@ -59,9 +59,9 @@
                   <br>
                   <div class="divFoto">
                  <ion-label >Foto: </ion-label>
-                 <input type="file"  accept=".jpg, .jpeg, .png" >
+                 <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" >
                  <div class="preview">
-                   <img class="imgPremio" [src]="premioImagen">
+                   <img class="imgPremio" [src]="img">
                  </div>
                 </div>   
                

@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { AlertController, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import firebase from 'firebase';
+import { Premio } from '../../app/models/premio';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+
 
 /**
  * Generated class for the DetallePremiosPage page.
@@ -15,7 +19,13 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'detalle-premios.html',
 })
 export class DetallePremiosPage {
-  ocultar1: boolean     = false;
+  url: string
+  id: any;
+  premio = {} as Premio;
+  infoPremio$: FirebaseListObservable<Premio[]>;
+  img: any;
+  file: any;
+  ocultar1: boolean = false;
   ocultar2: boolean     = false;
   accion: number;
   campos : string;
@@ -27,14 +37,27 @@ export class DetallePremiosPage {
   nombre : String;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl : AlertController,
+    public zone: NgZone,
+    private database: AngularFireDatabase,
     public storage: Storage,
     public menu: MenuController) {
+    this.infoPremio$ = this.database.list('premio');
     this.menu1Active();
     this.accion= navParams.get("accion");
     if(this.accion==1){ //opcion para cuando se va a modificar
+      this.premio=navParams.get("premio");
+      this.id = navParams.get("id");
+      this.descPremio = this.premio.descripcion;
+      this.nombrePremio = this.premio.nombre;
+      this.cantidad = this.premio.cantidad;
+      this.valorPuntos = this.premio.valorpuntos;
+      this.selectedEstado = this.premio.estado;
+      this.url = this.premio.url;
+      
       this.ocultar2= !this.ocultar2;
     }
     else{ //opcion para cuando se va a crear
+      this.descPremio = "";
       this.ocultar1= !this.ocultar1;
 
     }
@@ -50,7 +73,24 @@ export class DetallePremiosPage {
     this.menu.enable(true, 'menu2');
     this.menu.enable(false, 'menu1');
   }
-  
+  seleccionarFoto(e){
+    this.file = e.target.files[0];
+    console.log(this.file);
+    this.readPhoto(this.file)
+  }
+  readPhoto(file) {
+    
+       let reader = new FileReader();
+       reader.onload = (e)=>{
+         this.zone.run(()=>{
+           let path:any = e.target;
+           this.img = path.result;
+         });
+         
+       }
+        reader.readAsDataURL(file);
+       
+      }
   validarDatos(){
     this.campos=null;
     if (this.nombrePremio==null){
@@ -173,8 +213,23 @@ export class DetallePremiosPage {
           handler: () => {
             console.log('si');
             //aqui va el codigo para guardar el premio
-        
+            let storageRef = firebase.storage().ref();
+            this.url = this.file.name;
+            const imageRef = storageRef.child(`img/premios/${this.nombrePremio}/${this.file.name}`);
+            imageRef.put(this.file).then((snapshot)=> {
+            
+            });
+            
+            console.log("nombre"+this.infoPremio$);
 
+            this.infoPremio$.push({
+              nombre: this.nombrePremio,
+              descripcion : this.descPremio,
+              cantidad : this.cantidad,
+              valorPuntos : this.valorPuntos,
+              estado : this.selectedEstado,
+              url: this.url
+            });
             //notificacion de accion realizada
              let alert = this.alertCtrl.create({
             title: 'Notifiación',

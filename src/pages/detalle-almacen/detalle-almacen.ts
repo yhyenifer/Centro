@@ -236,8 +236,8 @@ readPhoto(file, index) {
                 
               });
             }
-            for (var index = 0; urlfotos[index]!= undefined; index++) {
-              this.fileS.splice(this.fileS.length,0,urlfotos[index]);
+            for (var index2 = 0; urlfotos[index2]!= undefined; index2++) {
+              this.fileS.splice(this.fileS.length,0,urlfotos[index2]);
               
             }
               

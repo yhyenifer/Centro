@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 468:
+/***/ 469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MisFacturasPageModule", function() { return MisFacturasPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mis_facturas__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mis_facturas__ = __webpack_require__(484);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ MisFacturasPageModule = __decorate([
 
 /***/ }),
 
-/***/ 482:
+/***/ 484:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87,10 +87,10 @@ var MisFacturasPage = (function () {
     MisFacturasPage.prototype.ionViewDidLoad = function () {
         this.uid = this.navParams.get("uid");
     };
-    MisFacturasPage.prototype.mostrarFactura = function (factura) {
+    MisFacturasPage.prototype.mostrarFactura = function (factura, facturaid) {
         //LO que se desee hacer cuando el usuario clique en una factura,
         //en la cariable factura esta la info de la factura clickada
-        //this.navCtrl.setRoot('LoginPage');
+        this.navCtrl.setRoot('DetalleFacturaClientePage');
     };
     return MisFacturasPage;
 }());

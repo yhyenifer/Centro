@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
+import { Premio } from '../../app/models/premio';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import firebase from 'firebase';
 
 /**
  * Generated class for the ListaPremiosPage page.
@@ -14,13 +17,17 @@ import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angul
   templateUrl: 'lista-premios.html',
 })
 export class ListaPremiosPage {
-  premios$: any;
+  premios$: FirebaseListObservable<Premio[]>;
+  premio = {} as Premio;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public menu: MenuController) {
+    public menu: MenuController,
+    private database: AngularFireDatabase,) {
       this.menu1Active();
+      this.premios$ = this.database.list('premios');
   }
 
   ionViewDidLoad() {
+    this.premios$ = this.database.list('premio');
   }
 
   menu1Active() {
@@ -28,8 +35,10 @@ export class ListaPremiosPage {
     this.menu.enable(false, 'menu1');
   }
   // este es para el editar, falta enviar parametros
-  mostrarPremio(){
+  mostrarPremio(premio,premioId){
     this.navCtrl.setRoot('DetallePremiosPage',{
+       premio : premio,
+      id: premioId,
       accion: 1
     });
   }

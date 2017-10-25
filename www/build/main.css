@@ -20010,6 +20010,22 @@ page-detalle-factura .text-center {
   text-align: center;
 }
 
+page-detalle-factura-cliente .toolbar-background-md {
+  background: #f7ef36;
+}
+
+page-detalle-factura-cliente .text-center {
+  text-align: center;
+}
+
+page-detalle-factura-cliente .letra12 {
+  font-size: 12px;
+}
+
+page-detalle-factura-cliente .row {
+  margin-bottom: 20px;
+}
+
 page-detalle-premios .toolbar-title-md {
   color: white;
 }
@@ -20038,7 +20054,6 @@ page-detalle-premios .modificar {
   margin-top: 1em;
   background-color: yellow;
   width: 52%;
-  display: none;
 }
 
 page-detalle-premios .cancelar {
