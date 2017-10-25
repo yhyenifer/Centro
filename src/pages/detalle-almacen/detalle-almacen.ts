@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { AlertController, Button, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { Almacen } from '../../app/models/almacen';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
@@ -6,6 +6,8 @@ import { Categoria } from '../../app/models/categoria';
 import firebase from 'firebase';
 import { urlsAlmacen } from '../../app/models/urlsAlmacen';
 import { Storage } from '@ionic/storage';
+
+
 /**
  * Generated class for the DetalleAlmacenPage page.
  *
@@ -36,6 +38,8 @@ export class DetalleAlmacenPage {
 
   fileT:any[];
   file:any[];
+  filefoto:any[];
+  fileS:string[];
   preview:any;
   almacen = {} as Almacen;
   categoria = {} as Categoria;
@@ -45,16 +49,20 @@ export class DetalleAlmacenPage {
   infoCate$: FirebaseListObservable<Categoria[]>;
   nombre : String;
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    public zone: NgZone,    
     private database: AngularFireDatabase,
     public menu: MenuController,
     public storage: Storage,
     public alertCtrl : AlertController) {
     this.menu1Active();
     this.file = [];
+
     this.fileT = [];
+    this.fileS = [];
     this.infoAlmacen$ = this.database.list('Almacen');
     this.infoCate$ = this.database.list('CategoriaAlmacen');
     this.accion= navParams.get("accion");
+    this.filefoto = new Array(this.file.length);
     if(this.accion==1){
     this.almacen = navParams.get("almacen");
     this.id = navParams.get("id");
@@ -66,6 +74,18 @@ export class DetalleAlmacenPage {
     this.selectedCategoria = this.almacen.categoria;
     this.selectedEstado = this.almacen.estado;
     this.localAlmacen = this.almacen.local;
+    this.almacen.realurl = new Array(this.almacen.url.length);
+    this.almacen.img = new Array(this.almacen.url.length);
+    
+    this.volverReal();
+    for (var index = 0; index < this.almacen.url.length; index++) {
+      this.generarFotos(index);
+      
+    }     
+
+    this.fileS = this.almacen.url;
+    
+    console.log("este es"+this.filefoto);
     this.ocultar2= !this.ocultar2;
     }
     else{
@@ -82,7 +102,9 @@ export class DetalleAlmacenPage {
   ionViewDidLoad() {
     this.file = [];
     this.fileT = [];
-    this.selectedCategoria = this.infoCate$[0];
+    this.fileS = [];
+    this.fileS = this.almacen.url;
+    //this.selectedCategoria = this.infoCate$[0];
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
      });
@@ -91,7 +113,40 @@ export class DetalleAlmacenPage {
     this.menu.enable(true, 'menu2');
     this.menu.enable(false, 'menu1');
   }
+  volverReal(){
+    
+    for (var index = 0; index < this.almacen.url.length; index++) {
+      this.almacen.realurl[index] = `img/almacenes/${this.almacen.nombre}/${this.almacen.url[index]}`;
+      
+    }
+    //this.almacen.realurl
+    
+    
 
+  }
+  generarFotos(index){
+  
+  //for (var index = 0; index < this.almacen.url.length; index++) {
+    let storageRef = firebase.storage().ref();
+    let imageRef = storageRef.child(this.almacen.realurl[index]);
+    imageRef.getDownloadURL().then(url =>
+    this.almacen.img[index] = url);
+    console.log("contador"+this.almacen.img);
+  //}
+}
+readPhoto(file, index) {
+  
+     let reader = new FileReader();
+     reader.onload = (e)=>{
+       this.zone.run(()=>{
+         let path:any = e.target;
+         this.filefoto[index] = path.result;
+       });
+       
+     }
+      reader.readAsDataURL(file);
+     
+    }
 
   validarDatos(){
     this.campos=null;
@@ -155,7 +210,8 @@ export class DetalleAlmacenPage {
   }
 
   modificar(){
-    
+    //this.selectedCategoria = this.almacen.categoria;
+    console.log(this.selectedCategoria);
     if(this.validarDatos()==true){
       let alert = this.alertCtrl.create({
         title: 'Confirmación',
@@ -167,8 +223,42 @@ export class DetalleAlmacenPage {
             handler: () => {
               console.log('si');
              //aqui va el codigo de modificar
+             let storageRef = firebase.storage().ref();
+             let filenames: string[] = new Array(10);
+             let urlfotos: string[] = new Array(10);
 
-                //notificacion de accion realizada
+             for (var index = 0; index < this.file.length; index++) {
+              filenames[index]= ""+this.file[index].name;
+              urlfotos[index]= `${filenames[index]}`;
+              console.log(filenames[index]);
+              const imageRef = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${filenames[index]}`);
+              imageRef.put(this.file[index]).then((snapshot)=> {
+                
+              });
+            }
+            for (var index = 0; urlfotos[index]!= undefined; index++) {
+              this.fileS.splice(this.fileS.length,0,urlfotos[index]);
+              
+            }
+              
+            
+            
+            //urlfotos.push.apply(urlfotos, this.fileS);
+            console.log(this.fileS);
+            console.log(urlfotos);
+             this.infoAlmacen$.update( this.id, {
+              
+                    nombre: this.nombreAlmacen,
+                    descripcion : this.descAlmacen,
+                    horario: this.horarioAlmacen,
+                    categoria: this.selectedCategoria,
+                    local: this.localAlmacen,
+                    telefono: this.telAlmacen,
+                    web: this.webAlmacen,
+                    estado: this.selectedEstado,
+                    url: this.fileS
+                                 
+                  })                //notificacion de accion realizada
                 let alert = this.alertCtrl.create({
                   title: 'Notifiación',
                   subTitle: "Se ha modificado exitosamente el Almacén",
@@ -218,9 +308,9 @@ export class DetalleAlmacenPage {
                 console.log(this.file);
                 for (var index = 0; index < this.file.length; index++) {
                   filenames[index]= ""+this.file[index].name;
-                  urlfotos[index]= `img/almacenes/${this.nombreAlmacen}/${filenames[index]}.jpg`;
+                  urlfotos[index]= `${filenames[index]}`;
                   console.log(filenames[index]);
-                  const imageRef = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${filenames[index]}.jpg`);
+                  const imageRef = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${filenames[index]}`);
                   imageRef.put(this.file[index]).then((snapshot)=> {
                     
                   });
@@ -279,6 +369,9 @@ export class DetalleAlmacenPage {
     this.file.push.apply(this.file, this.fileT);
     this.fileT = [];
     console.log(this.file);
+    for (var index = 0; index < this.file.length; index++) {
+      this.readPhoto(this.file[index], index);
+    }
   }
 
   cancelar(){
