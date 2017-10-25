@@ -34,7 +34,7 @@
         <ion-col>
             <ion-item>
                 <ion-label floating>*Categoría:</ion-label>
-                <ion-select [(ngModel)]="selectedCategoria" required>
+                <ion-select [(ngModel)]="selectedCategoria">
             
                   <ion-option *ngFor="let categoria of infoCate$ | async"><h2>{{ categoria.nombre }}</h2></ion-option>
                 </ion-select>
@@ -70,10 +70,17 @@
                  <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>
                  <button class="agregar" (click)="agregar()"> Agregar</button>
                  <div class="preview">
-                   <ion-option *ngFor="let f of file ">
+                  <ion-option *ngFor="let nombre of almacen.url; let idx = index ">
+                    <br>
+                    <h6> {{nombre}} </h6>
+                    <img class="brochure-poster" HEIGHT=80 WIDTH=80 src="{{almacen.img[idx]}}"/>
+                  </ion-option>
+                  <ion-option *ngFor="let f of file, let idx = index ">
                      <br>
                      <h6> {{f.name}} </h6>
+                     <img class="brochure-poster" HEIGHT=80 WIDTH=80 src="{{filefoto[idx]}}"/>
                    </ion-option>
+
                  </div>
                 </div>   
                

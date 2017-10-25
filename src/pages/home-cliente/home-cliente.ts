@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { AlertController, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 import { Factura } from '../../app/models/factura';
@@ -57,7 +57,8 @@ export class HomeClientePage {
     public navParams: NavParams,
     private database: AngularFireDatabase, 
     alertCtrl: AlertController,
-    public menu: MenuController
+    public menu: MenuController,
+    public zone: NgZone
 
   )
      {
@@ -137,22 +138,27 @@ export class HomeClientePage {
   
 
   seleccionar(e){
-    this.fileT = e.target.files;
-    console.log(this.fileT); 
-   
-    this.navCtrl.setRoot('SubirFacturaPage',{
-      base64Image :   this.fileT,
-      uid: this.uid
-    });
+    this.fileT = e.target.files[0];
+    this.readPhoto(this.fileT);
+  
   }
 
-  agregar() {
-    this.file.push.apply(this.file, this.fileT);
-    this.fileT = [];
-    // this.navCtrl.setRoot('SubirFacturaPage',{
-    //    base64Image :  this.file[0],
-    //   uid: this.uid
-    // });
+  readPhoto(file) {
+
+   let reader = new FileReader();
+   reader.onload = (e)=>{
+     this.zone.run(()=>{
+       let path:any = e.target;
+       this.base64Image= path.result;
+       this.navCtrl.setRoot('SubirFacturaPage',{
+        base64Image :  this.base64Image,
+       uid: this.uid
+     });
+     });
+     
+   }
+    reader.readAsDataURL(file);
+   
   }
 
 }
