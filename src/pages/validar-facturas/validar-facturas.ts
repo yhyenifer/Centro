@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
+import { Cc } from '../../app/models/cc';
 /**
  * Generated class for the ValidarFacturasPage page.
  *
@@ -18,7 +19,9 @@ import firebase from 'firebase';
   templateUrl: 'validar-facturas.html',
 })
 export class ValidarFacturasPage {
+  public cc = {} as Cc;
   public base64Image: string;
+  politica:any;
   id : string;
   nombre : String;
   valor : number;
@@ -32,6 +35,7 @@ export class ValidarFacturasPage {
   usuario: FirebaseObjectObservable<any>;
   puntos: FirebaseObjectObservable<any>;
   puntosacum :number;
+  factor:number;
   contador: number;
   notificacion: FirebaseObjectObservable<any>;
   constructor(public navCtrl: NavController,
@@ -58,12 +62,22 @@ export class ValidarFacturasPage {
       const imageRef = storageRef.child(this.url);
       imageRef.getDownloadURL().then(url =>
       this.base64Image = url);
-        
-      this.puntosacum = 0;
       
+      this.database.list('CentroComercial').subscribe(_data => {
+        this.politica = _data;
+        //console.log(this.politica[0].factorpuntos);
+        this.factor=this.politica[0].factorpuntos;
+        console.log(this.factor);
+      });
+
+      this.puntosacum = 0;
+          
   }
 
   ionViewDidLoad() {
+
+    
+
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
      });
@@ -100,7 +114,7 @@ export class ValidarFacturasPage {
                       valor: this.valor
                                  
                   })
-            this.puntosacum = Number(this.puntosacum) + Number(Math.floor(this.valor/1000));
+            this.puntosacum = Number(this.puntosacum) + Number(Math.floor(this.valor/this.factor));
             this.contador= Number(this.contador)+1;
             this.infoPerfil$.update( this.factura.uid, {
               puntos: this.puntosacum,

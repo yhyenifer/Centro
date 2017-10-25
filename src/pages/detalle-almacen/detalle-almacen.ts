@@ -62,6 +62,7 @@ export class DetalleAlmacenPage {
     this.infoAlmacen$ = this.database.list('Almacen');
     this.infoCate$ = this.database.list('CategoriaAlmacen');
     this.accion= navParams.get("accion");
+    this.filefoto = new Array(this.file.length);
     if(this.accion==1){
     this.almacen = navParams.get("almacen");
     this.id = navParams.get("id");
@@ -75,11 +76,7 @@ export class DetalleAlmacenPage {
     this.localAlmacen = this.almacen.local;
     this.almacen.realurl = new Array(this.almacen.url.length);
     this.almacen.img = new Array(this.almacen.url.length);
-      this.filefoto = new Array(this.file.length);
     
-    
-    
-
     this.volverReal();
     for (var index = 0; index < this.almacen.url.length; index++) {
       this.generarFotos(index);
