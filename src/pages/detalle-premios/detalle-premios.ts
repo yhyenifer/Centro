@@ -50,10 +50,15 @@ export class DetallePremiosPage {
       this.descPremio = this.premio.descripcion;
       this.nombrePremio = this.premio.nombre;
       this.cantidad = this.premio.cantidad;
-      this.valorPuntos = this.premio.valorpuntos;
+      console.log("premio "+this.premio.cantidad);
+      this.valorPuntos = this.premio.valorPuntos;
       this.selectedEstado = this.premio.estado;
-      this.url = this.premio.url;
-      
+      //this.url = this.premio.url;
+      this.url = `img/premios/${this.premio.nombre}/${this.premio.url}`;
+      let storageRef = firebase.storage().ref();
+      let imageRef = storageRef.child(this.url);
+      imageRef.getDownloadURL().then(url =>
+      this.img = url);
       this.ocultar2= !this.ocultar2;
     }
     else{ //opcion para cuando se va a crear
@@ -170,7 +175,34 @@ export class DetallePremiosPage {
             handler: () => {
               console.log('si');
              //aqui va el codigo de modificar
-
+              
+              var name = "";
+             if (this.file != undefined){
+              console.log("cleto"+this.file.name);
+             let storageRef = firebase.storage().ref();
+             //this.url = this.file.name;
+             const imageRefBorrar = storageRef.child(`${this.url}`);
+             name = this.file.name;
+             imageRefBorrar.delete().then((snapshot)=> {
+              
+              });
+                const imageRef = storageRef.child(`img/premios/${this.nombrePremio}/${this.file.name}`);
+                imageRef.put(this.file).then((snapshot)=> {
+              
+              });  
+            }else{
+              name = this.premio.url;
+            }
+              this.infoPremio$.update( this.id, {
+                
+                    nombre: this.nombrePremio,
+                    descripcion : this.descPremio,
+                    cantidad : this.cantidad,
+                    valorPuntos : this.valorPuntos,
+                    estado : this.selectedEstado,
+                    url: name
+                                   
+                    });
                 //notificacion de accion realizada
                 let alert = this.alertCtrl.create({
                   title: 'Notifiación',

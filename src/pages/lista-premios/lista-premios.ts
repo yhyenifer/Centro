@@ -23,7 +23,7 @@ export class ListaPremiosPage {
     public menu: MenuController,
     private database: AngularFireDatabase,) {
       this.menu1Active();
-      this.premios$ = this.database.list('premios');
+      this.premios$ = this.database.list('premio');
   }
 
   ionViewDidLoad() {
@@ -36,6 +36,7 @@ export class ListaPremiosPage {
   }
   // este es para el editar, falta enviar parametros
   mostrarPremio(premio,premioId){
+    console.log("antes "+premio.valorpuntos)
     this.navCtrl.setRoot('DetallePremiosPage',{
        premio : premio,
       id: premioId,

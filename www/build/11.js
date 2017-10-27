@@ -71,6 +71,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var DetallePremiosPage = (function () {
     function DetallePremiosPage(navCtrl, navParams, alertCtrl, zone, database, storage, menu) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
@@ -90,9 +91,16 @@ var DetallePremiosPage = (function () {
             this.descPremio = this.premio.descripcion;
             this.nombrePremio = this.premio.nombre;
             this.cantidad = this.premio.cantidad;
-            this.valorPuntos = this.premio.valorpuntos;
+            console.log("premio " + this.premio.cantidad);
+            this.valorPuntos = this.premio.valorPuntos;
             this.selectedEstado = this.premio.estado;
-            this.url = this.premio.url;
+            //this.url = this.premio.url;
+            this.url = "img/premios/" + this.premio.nombre + "/" + this.premio.url;
+            var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
+            var imageRef = storageRef.child(this.url);
+            imageRef.getDownloadURL().then(function (url) {
+                return _this.img = url;
+            });
             this.ocultar2 = !this.ocultar2;
         }
         else {
@@ -203,6 +211,30 @@ var DetallePremiosPage = (function () {
                         handler: function () {
                             console.log('si');
                             //aqui va el codigo de modificar
+                            var name = "";
+                            if (_this.file != undefined) {
+                                console.log("cleto" + _this.file.name);
+                                var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
+                                //this.url = this.file.name;
+                                var imageRefBorrar = storageRef.child("" + _this.url);
+                                name = _this.file.name;
+                                imageRefBorrar.delete().then(function (snapshot) {
+                                });
+                                var imageRef = storageRef.child("img/premios/" + _this.nombrePremio + "/" + _this.file.name);
+                                imageRef.put(_this.file).then(function (snapshot) {
+                                });
+                            }
+                            else {
+                                name = _this.premio.url;
+                            }
+                            _this.infoPremio$.update(_this.id, {
+                                nombre: _this.nombrePremio,
+                                descripcion: _this.descPremio,
+                                cantidad: _this.cantidad,
+                                valorPuntos: _this.valorPuntos,
+                                estado: _this.selectedEstado,
+                                url: name
+                            });
                             //notificacion de accion realizada
                             var alert = _this.alertCtrl.create({
                                 title: 'Notifiación',

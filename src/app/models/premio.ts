@@ -2,7 +2,7 @@ export interface Premio{
     nombre: string;
     descripcion : string;
     cantidad: number;
-    valorpuntos: number;
+    valorPuntos: number;
     estado: string;
     url: string;
 }
