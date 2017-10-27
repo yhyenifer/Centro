@@ -20002,6 +20002,55 @@ page-detalle-almacen .area {
   max-width: 98%;
 }
 
+page-detalle-eventos .toolbar-title-md {
+  color: white;
+}
+
+page-detalle-eventos .bar-button-default-md, page-detalle-eventos .bar-button-clear-md-default, page-detalle-eventos .bar-button-md-default {
+  color: white;
+}
+
+page-detalle-eventos .toolbar-background-md {
+  background: #F71515;
+}
+
+page-detalle-eventos .text-center {
+  text-align: center;
+}
+
+page-detalle-eventos .guardar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: yellow;
+  width: 52%;
+}
+
+page-detalle-eventos .modificar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: yellow;
+  width: 52%;
+}
+
+page-detalle-eventos .cancelar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: red;
+  width: 52%;
+}
+
+page-detalle-eventos .text-center {
+  text-align: center;
+}
+
+page-detalle-eventos .divFoto {
+  margin-left: 1em;
+}
+
+page-detalle-eventos .area {
+  max-width: 98%;
+}
+
 page-detalle-factura .toolbar-title-md {
   color: white;
 }
@@ -20394,6 +20443,47 @@ page-lista-almacenes #new {
     font-size: 18px;
   }
   page-lista-almacenes .adminVal {
+    display: none;
+  }
+}
+
+page-lista-eventos .toolbar-title-md {
+  color: white;
+}
+
+page-lista-eventos .bar-button-default-md, page-lista-eventos .bar-button-clear-md-default, page-lista-eventos .bar-button-md-default {
+  color: white;
+}
+
+page-lista-eventos .toolbar-background-md {
+  background: #F71515;
+}
+
+page-lista-eventos .text-center {
+  text-align: center;
+}
+
+page-lista-eventos .izq {
+  float: right;
+}
+
+page-lista-eventos #new {
+  color: white;
+  background-color: #f71515;
+  font-size: 2rem;
+}
+
+page-lista-eventos .imgEvento {
+  text-align: center;
+  margin-top: 100px;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-lista-eventos .tab {
+    margin-left: 0em;
+    font-size: 18px;
+  }
+  page-lista-eventos .adminVal {
     display: none;
   }
 }

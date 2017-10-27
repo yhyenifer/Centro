@@ -24,7 +24,8 @@ export class DetallePremiosPage {
   cantidad : number;
   valorPuntos : number;
   selectedEstado : string;
-  nombre : String;
+  nombre : string;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl : AlertController,
     public storage: Storage,
@@ -220,7 +221,7 @@ export class DetallePremiosPage {
             this.descPremio=" ";
             this.cantidad = null; 
             this.valorPuntos = null;
-            this.selectedEstado="Activo";
+          
             this.navCtrl.setRoot("ListaPremiosPage");
         
           } 
