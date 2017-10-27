@@ -70,17 +70,15 @@
                  <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>
                  <button class="agregar" (click)="agregar()"> Agregar</button>
                  <div class="preview">
-                  <ion-option *ngFor="let nombre of almacen.url; let idx = index ">
-                    <br>
-                    <h6> {{nombre}} </h6>
-                    <img class="brochure-poster" HEIGHT=80 WIDTH=80 src="{{almacen.img[idx]}}"/>
-                  </ion-option>
-                  <ion-option *ngFor="let f of file, let idx = index ">
-                     <br>
-                     <h6> {{f.name}} </h6>
-                     <img class="brochure-poster" HEIGHT=80 WIDTH=80 src="{{filefoto[idx]}}"/>
-                   </ion-option>
-
+                    <ion-list>
+                      
+                          <button ion-item *ngFor="let nombre of almacen.url; let idx = index " (click)="eliminarFoto(idx)">
+                              <img class="brochure-poster" src="{{almacen.img[idx]}}"/> 
+                              {{nombre}}                         </button>
+                          <button ion-item *ngFor="let f of file, let idx = index " (click)="eliminarFoto(idx)">
+                              <img class="brochure-poster"  src="{{filefoto[idx]}}"/> 
+                              {{f.name}}                        </button>    
+                      </ion-list>
                  </div>
                 </div>   
                
@@ -123,20 +121,14 @@
                           <ion-option ><h2>Inactivo</h2></ion-option>
                         </ion-select>
                       </ion-item> 
+              <div class="text-center">
+                          <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>
+                          <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>
+                          <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               
+                          
+              </div>     
     </ion-col> 
     </ion-row>
-    <ion-row>
-        <ion-col>
-              
-       
-        </ion-col> 
-        <ion-col class="text-center">
-                <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>
-                <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>
-                <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               
-                
-        </ion-col>
-
-    </ion-row>
+ 
 
 </ion-content>

@@ -1,14 +1,14 @@
 webpackJsonp([14],{
 
-/***/ 458:
+/***/ 461:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleAlmacenPageModule", function() { return DetalleAlmacenPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleFacturaClientePageModule", function() { return DetalleFacturaClientePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_almacen__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_factura_cliente__ = __webpack_require__(478);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var DetalleAlmacenPageModule = (function () {
-    function DetalleAlmacenPageModule() {
+var DetalleFacturaClientePageModule = (function () {
+    function DetalleFacturaClientePageModule() {
     }
-    return DetalleAlmacenPageModule;
+    return DetalleFacturaClientePageModule;
 }());
-DetalleAlmacenPageModule = __decorate([
+DetalleFacturaClientePageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__detalle_almacen__["a" /* DetalleAlmacenPage */],
+            __WEBPACK_IMPORTED_MODULE_2__detalle_factura_cliente__["a" /* DetalleFacturaClientePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__detalle_almacen__["a" /* DetalleAlmacenPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__detalle_factura_cliente__["a" /* DetalleFacturaClientePage */]),
         ],
     })
-], DetalleAlmacenPageModule);
+], DetalleFacturaClientePageModule);
 
-//# sourceMappingURL=detalle-almacen.module.js.map
+//# sourceMappingURL=detalle-factura-cliente.module.js.map
 
 /***/ }),
 
-/***/ 473:
+/***/ 478:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetalleAlmacenPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(155);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetalleFacturaClientePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -64,17 +64,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the DetalleAlmacenPage page.
+ * Generated class for the DetalleFacturaClientePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+<<<<<<< HEAD
 var DetalleAlmacenPage = (function () {
     function DetalleAlmacenPage(navCtrl, navParams, zone, database, menu, storage, alertCtrl) {
+=======
+var DetalleFacturaClientePage = (function () {
+    function DetalleFacturaClientePage(navCtrl, navParams, database, firebaseService) {
+        var _this = this;
+>>>>>>> 25e6af09aceb9fda84b53e89739d25389c69239b
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.zone = zone;
         this.database = database;
+<<<<<<< HEAD
         this.menu = menu;
         this.storage = storage;
         this.alertCtrl = alertCtrl;
@@ -289,8 +296,37 @@ var DetalleAlmacenPage = (function () {
                 ]
             });
             alert_3.present();
+=======
+        this.firebaseService = firebaseService;
+        this.valor = 0;
+        this.puntos = 0;
+        var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
+        this.infoFactura$ = this.database.list('factura');
+        this.factura = navParams.get('factura');
+        this.id = navParams.get('id');
+        this.estado = this.factura.estado;
+        this.url = this.factura.url;
+        var imageRef = storageRef.child(this.url);
+        imageRef.getDownloadURL().then(function (url) {
+            return _this.base64Image = url;
+        });
+        this.database.list('CentroComercial').subscribe(function (_data) {
+            _this.politica = _data;
+            _this.factor = _this.politica[0].factorpuntos;
+        });
+        if (this.estado == "Aprobada") {
+            this.valor = this.factura.valor;
+            this.puntos = Number(Math.floor(this.valor / this.factor));
         }
+        else {
+            this.valor = 0;
+            this.puntos = 0;
+>>>>>>> 25e6af09aceb9fda84b53e89739d25389c69239b
+        }
+    }
+    DetalleFacturaClientePage.prototype.ionViewDidLoad = function () {
     };
+<<<<<<< HEAD
     DetalleAlmacenPage.prototype.guardar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
@@ -409,8 +445,21 @@ DetalleAlmacenPage = __decorate([
         __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
 ], DetalleAlmacenPage);
+=======
+    return DetalleFacturaClientePage;
+}());
+DetalleFacturaClientePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+        selector: 'page-detalle-factura-cliente',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-factura-cliente\detalle-factura-cliente.html"*/'<!--\n  Generated template for the DetalleFacturaClientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      Detalle Factura\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n    <ion-card>\n        <!-- <img src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2FavatarF.png?alt=media&token=fe0bacb2-f133-452b-9b29-7d16403b2af2"> -->\n        <img [src]="base64Image">\n        \n        <!-- <img [src]="fotoFactura"/> -->\n        <ion-card-content>\n        <p><b>$ {{valor}}</b></p>\n        </ion-card-content>\n        <ion-card-content>\n            <p><b>Puntos:</b> {{puntos}}</p>\n        </ion-card-content>\n        <ion-card-content>\n            <p><b>Estado:</b> {{estado}}</p>\n        </ion-card-content>\n      </ion-card>\n\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-factura-cliente\detalle-factura-cliente.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */]])
+], DetalleFacturaClientePage);
+>>>>>>> 25e6af09aceb9fda84b53e89739d25389c69239b
 
-//# sourceMappingURL=detalle-almacen.js.map
+//# sourceMappingURL=detalle-factura-cliente.js.map
 
 /***/ })
 

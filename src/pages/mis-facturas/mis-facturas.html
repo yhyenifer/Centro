@@ -23,7 +23,7 @@
         <ion-list>
           <!-- se deben ordenar por fecha de la mas reciente a la mas antigua y deben ser las de cada usuario
           -->
-            <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura)">
+            <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura, factura.$key)">
              <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} 
             </button>
         </ion-list>

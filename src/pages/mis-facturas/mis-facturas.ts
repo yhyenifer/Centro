@@ -50,7 +50,10 @@ export class MisFacturasPage {
   mostrarFactura(factura, facturaid){
     //LO que se desee hacer cuando el usuario clique en una factura,
     //en la cariable factura esta la info de la factura clickada
-    this.navCtrl.setRoot('DetalleFacturaClientePage');
+    this.navCtrl.push('DetalleFacturaClientePage', {
+      factura: factura,
+      id: facturaid
+    });
   }
 
 }
