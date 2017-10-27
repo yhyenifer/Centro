@@ -169,12 +169,15 @@ var DetalleAlmacenPage = (function () {
         if (this.conteoE + this.conteoURL + this.conteoFile < 1) {
             var alert_1 = this.alertCtrl.create({
                 title: 'Error',
-                subTitle: this.nombre + " se ha excedido el número minímo (1) de archivo",
+                subTitle: this.nombre + " el registro debe tener minímo (1) de archivo",
                 buttons: ['Aceptar']
             });
             alert_1.present();
         }
         if (this.nombreAlmacen == null) {
+            this.campos = "Nombre, ";
+        }
+        if (this.nombreAlmacen == "") {
             this.campos = "Nombre, ";
         }
         if (this.selectedCategoria == null) {
@@ -193,6 +196,14 @@ var DetalleAlmacenPage = (function () {
                 this.campos = this.campos + "Local, ";
             }
         }
+        if (this.localAlmacen * 0 == 0) {
+            if (this.campos == null) {
+                this.campos = "Local, ";
+            }
+            else {
+                this.campos = this.campos + "Local, ";
+            }
+        }
         else {
             if (this.localAlmacen < 0) {
                 var alert_2 = this.alertCtrl.create({
@@ -204,6 +215,14 @@ var DetalleAlmacenPage = (function () {
             }
         }
         if (this.horarioAlmacen == null) {
+            if (this.campos == null) {
+                this.campos = "Horario de Atención, ";
+            }
+            else {
+                this.campos = this.campos + "Horario de Atención, ";
+            }
+        }
+        if (this.horarioAlmacen == "") {
             if (this.campos == null) {
                 this.campos = "Horario de Atención, ";
             }

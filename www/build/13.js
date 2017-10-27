@@ -69,15 +69,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-<<<<<<< HEAD
-var DetalleFacturaClientePage = (function () {
-    function DetalleFacturaClientePage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    DetalleFacturaClientePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad DetalleFacturaClientePage');
-=======
 var DetalleFacturaPage = (function () {
     function DetalleFacturaPage(navCtrl, navParams, database, firebaseService) {
         var _this = this;
@@ -103,19 +94,9 @@ var DetalleFacturaPage = (function () {
         });
     }
     DetalleFacturaPage.prototype.ionViewDidLoad = function () {
->>>>>>> 25e6af09aceb9fda84b53e89739d25389c69239b
     };
     return DetalleFacturaPage;
 }());
-<<<<<<< HEAD
-DetalleFacturaClientePage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-detalle-factura-cliente',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-factura-cliente\detalle-factura-cliente.html"*/'<!--\n\n  Generated template for the DetalleFacturaClientePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Detalle Factura\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-factura-cliente\detalle-factura-cliente.html"*/,
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
-], DetalleFacturaClientePage);
-=======
 DetalleFacturaPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
@@ -125,7 +106,6 @@ DetalleFacturaPage = __decorate([
         __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */],
         __WEBPACK_IMPORTED_MODULE_0__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */]])
 ], DetalleFacturaPage);
->>>>>>> 25e6af09aceb9fda84b53e89739d25389c69239b
 
 //# sourceMappingURL=detalle-factura.js.map
 
