@@ -63,11 +63,7 @@ export class DetallePremiosPage {
       this.ocultar2= !this.ocultar2;
     }
     else{ //opcion para cuando se va a crear
-<<<<<<< HEAD
       this.descPremio = "";
-=======
-     
->>>>>>> 25e6af09aceb9fda84b53e89739d25389c69239b
       this.ocultar1= !this.ocultar1;
 
     }
