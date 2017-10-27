@@ -3,4 +3,5 @@ export interface Factura{
  almacen : string;
  estado: string;
  url: string;
+ valor : number;
 }
