@@ -102,6 +102,9 @@ export class DetallePremiosPage {
     if (this.nombrePremio==null){
       this.campos="Nombre, ";
     }
+    if (this.nombrePremio==""){
+      this.campos="Nombre, ";
+    }
     if (this.cantidad==null){
      if(this.campos==null){
       this.campos="Cantidad Disponible, ";
@@ -111,6 +114,15 @@ export class DetallePremiosPage {
      } 
     
    }
+   if (this.cantidad*1==0){
+    if(this.campos==null){
+     this.campos="Cantidad Disponible, ";
+    }
+    else{
+     this.campos=this.campos + "Cantidad Disponible, ";
+    } 
+   
+  }
    else{
      if(this.cantidad<0){
        let alert = this.alertCtrl.create({
@@ -120,6 +132,14 @@ export class DetallePremiosPage {
        });
        alert.present();
        return false;
+     }
+   }
+   if (this.valorPuntos*1==0){
+    if(this.campos==null){
+      this.campos="Valor en Puntos, ";
+     }
+     else{
+     this.campos=this.campos + "Valor en Puntos, ";
      }
    }
    if (this.valorPuntos==null){

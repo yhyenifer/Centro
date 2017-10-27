@@ -98,6 +98,9 @@ var DetalleEventosPage = (function () {
         if (this.nombreEvento == null) {
             this.campos = "Nombre, ";
         }
+        if (this.nombreEvento == "") {
+            this.campos = "Nombre, ";
+        }
         if (this.fechaEvento == null) {
             if (this.campos == null) {
                 this.campos = "Fecha, ";
@@ -115,6 +118,14 @@ var DetalleEventosPage = (function () {
             }
         }
         if (this.descEvento == null) {
+            if (this.campos == null) {
+                this.campos = "Descripción, ";
+            }
+            else {
+                this.campos = this.campos + "Descripción, ";
+            }
+        }
+        if (this.descEvento == "") {
             if (this.campos == null) {
                 this.campos = "Descripción, ";
             }

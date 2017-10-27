@@ -139,7 +139,18 @@ var DetallePremiosPage = (function () {
         if (this.nombrePremio == null) {
             this.campos = "Nombre, ";
         }
+        if (this.nombrePremio == "") {
+            this.campos = "Nombre, ";
+        }
         if (this.cantidad == null) {
+            if (this.campos == null) {
+                this.campos = "Cantidad Disponible, ";
+            }
+            else {
+                this.campos = this.campos + "Cantidad Disponible, ";
+            }
+        }
+        if (this.cantidad * 1 == 0) {
             if (this.campos == null) {
                 this.campos = "Cantidad Disponible, ";
             }
@@ -156,6 +167,14 @@ var DetallePremiosPage = (function () {
                 });
                 alert_1.present();
                 return false;
+            }
+        }
+        if (this.valorPuntos * 1 == 0) {
+            if (this.campos == null) {
+                this.campos = "Valor en Puntos, ";
+            }
+            else {
+                this.campos = this.campos + "Valor en Puntos, ";
             }
         }
         if (this.valorPuntos == null) {
