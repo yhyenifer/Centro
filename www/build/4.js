@@ -46,6 +46,8 @@ ListaPremiosPageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,6 +60,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the ListaPremiosPage page.
  *
@@ -66,6 +69,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var ListaPremiosPage = (function () {
     function ListaPremiosPage(navCtrl, navParams, menu, database) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menu = menu;
@@ -73,9 +77,43 @@ var ListaPremiosPage = (function () {
         this.premio = {};
         this.menu1Active();
         this.premios$ = this.database.list('premio');
+        this.premios = [];
+        this.database.list('premio').subscribe(function (data) {
+            _this.premios = data;
+            console.log(_this.premios);
+            _this.imagenes = Array(_this.premios.length);
+            for (var index = 0; index < _this.premios.length; index++) {
+                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
+                _this.generarFotos(index);
+            }
+        });
     }
+    ListaPremiosPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.premios = [];
+        this.database.list('premio').subscribe(function (data) {
+            _this.premios = data;
+            console.log(_this.premios);
+            _this.imagenes = Array(_this.premios.length);
+            for (var index = 0; index < _this.premios.length; index++) {
+                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
+                _this.generarFotos(index);
+            }
+        });
+    };
     ListaPremiosPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
         this.premios$ = this.database.list('premio');
+        this.premios = [];
+        this.database.list('premio').subscribe(function (data) {
+            _this.premios = data;
+            console.log(_this.premios);
+            _this.imagenes = Array(_this.premios.length);
+            for (var index = 0; index < _this.premios.length; index++) {
+                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
+                _this.generarFotos(index);
+            }
+        });
     };
     ListaPremiosPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
@@ -89,6 +127,17 @@ var ListaPremiosPage = (function () {
             id: premioId,
             accion: 1
         });
+    };
+    ListaPremiosPage.prototype.generarFotos = function (index) {
+        var _this = this;
+        //for (var index = 0; index < this.almacen.url.length; index++) {
+        var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
+        var imageRef = storageRef.child(this.imagenes[index]);
+        imageRef.getDownloadURL().then(function (url) {
+            _this.imagenes[index] = url;
+            console.log("contador" + _this.imagenes[index]);
+        });
+        //}
     };
     ListaPremiosPage.prototype.crearPremio = function () {
         this.navCtrl.setRoot('DetallePremiosPage', {

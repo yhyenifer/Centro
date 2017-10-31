@@ -17,6 +17,8 @@ import firebase from 'firebase';
   templateUrl: 'lista-premios.html',
 })
 export class ListaPremiosPage {
+  premios: any[];
+  imagenes: string[];
   premios$: FirebaseListObservable<Premio[]>;
   premio = {} as Premio;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -24,10 +26,58 @@ export class ListaPremiosPage {
     private database: AngularFireDatabase,) {
       this.menu1Active();
       this.premios$ = this.database.list('premio');
+      this.premios = [];
+      this.database.list('premio').subscribe(data => {
+
+        this.premios = data;
+        console.log(this.premios);
+        this.imagenes = Array(this.premios.length);
+        for (var index = 0; index < this.premios.length; index++) {
+          
+          
+          this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
+          this.generarFotos(index);
+  
+        }
+      });
+      
+          
+  }
+  
+  ionViewWillEnter(){
+    this.premios = [];
+    this.database.list('premio').subscribe(data => {
+
+      this.premios = data;
+      console.log(this.premios);
+      this.imagenes = Array(this.premios.length);
+      for (var index = 0; index < this.premios.length; index++) {
+        
+        
+        this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
+        this.generarFotos(index);
+
+      }
+    });
   }
 
   ionViewDidLoad() {
     this.premios$ = this.database.list('premio');
+    this.premios = [];
+    this.database.list('premio').subscribe(data => {
+
+      this.premios = data;
+      console.log(this.premios);
+      this.imagenes = Array(this.premios.length);
+      for (var index = 0; index < this.premios.length; index++) {
+        
+        
+        this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
+        this.generarFotos(index);
+
+      }
+    });
+   
   }
 
   menu1Active() {
@@ -43,6 +93,19 @@ export class ListaPremiosPage {
       accion: 1
     });
   }
+  generarFotos(index){
+    
+    //for (var index = 0; index < this.almacen.url.length; index++) {
+      let storageRef = firebase.storage().ref();
+      let imageRef = storageRef.child(this.imagenes[index]);
+      imageRef.getDownloadURL().then(url =>{
+        this.imagenes[index] = url;
+        console.log("contador"+this.imagenes[index]);
+      });
+        
+    //}
+  }
+  
 
   crearPremio(){
     this.navCtrl.setRoot('DetallePremiosPage',{
