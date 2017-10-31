@@ -33,4 +33,29 @@ page-lista-almacenes {
         }
     }
 
+    @media (max-width: 490px ) and (min-width: 340px){
+        .lista{
+            margin-top: 0em;
+            margin-left: 0em;
+        }
+        .boton{
+            font-size: 33px;
+        }
+        .titulo{
+            margin-left: -27px;
+            margin-top: 12px;
+        }
+
+    }
+
+    @media (max-width: 780px ) and (min-width: 500px){
+        .admin{
+            display: none;
+        }
+        .titulo{
+            margin-left: -27px;
+            margin-top: 12px;
+        }
+    }
+    
 }

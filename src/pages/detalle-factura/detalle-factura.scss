@@ -14,6 +14,31 @@ page-detalle-factura {
         text-align: center; 
     }
 
-  
+    @media (max-width: 500px ) and (min-width: 300px){
+        
+     .titulo{
+         margin-left: -21px;
+         
+     }
+   
+ }
+ 
+ @media (max-width: 490px ) and (min-width: 340px){
+     
+     .titulo{
+         margin-left: -21px;
+         
+     }
+ 
+ }
+ 
+ @media (max-width: 780px ) and (min-width: 500px){
+    
+    
+                 .titulo{
+                     margin-left: -21px;
+                     
+                 }
+         }
 
 }

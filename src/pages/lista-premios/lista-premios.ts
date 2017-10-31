@@ -86,7 +86,7 @@ export class ListaPremiosPage {
   }
   // este es para el editar, falta enviar parametros
   mostrarPremio(premio,premioId){
-    console.log("antes "+premio.valorpuntos)
+    
     this.navCtrl.setRoot('DetallePremiosPage',{
        premio : premio,
       id: premioId,
