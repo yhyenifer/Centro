@@ -20002,6 +20002,42 @@ page-detalle-almacen .area {
   max-width: 98%;
 }
 
+@media (max-width: 500px) and (min-width: 300px) {
+  page-detalle-almacen .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-almacen .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-almacen .guardar, page-detalle-almacen .actualizar, page-detalle-almacen .cancelar {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 490px) and (min-width: 340px) {
+  page-detalle-almacen .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-almacen .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-almacen .guardar, page-detalle-almacen .actualizar, page-detalle-almacen .cancelar {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-detalle-almacen .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-almacen .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-almacen .guardar, page-detalle-almacen .actualizar, page-detalle-almacen .cancelar {
+    font-size: 25px;
+  }
+}
+
 page-detalle-eventos .toolbar-title-md {
   color: white;
 }
@@ -20051,6 +20087,46 @@ page-detalle-eventos .area {
   max-width: 98%;
 }
 
+page-detalle-eventos .label {
+  margin-top: 22px;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-detalle-eventos .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-eventos .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-eventos .guardar, page-detalle-eventos .actualizar, page-detalle-eventos .cancelar {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 490px) and (min-width: 340px) {
+  page-detalle-eventos .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-eventos .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-eventos .guardar, page-detalle-eventos .actualizar, page-detalle-eventos .cancelar {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-detalle-eventos .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-eventos .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-eventos .guardar, page-detalle-eventos .actualizar, page-detalle-eventos .cancelar {
+    font-size: 25px;
+  }
+}
+
 page-detalle-factura .toolbar-title-md {
   color: white;
 }
@@ -20065,6 +20141,24 @@ page-detalle-factura .toolbar-background-md {
 
 page-detalle-factura .text-center {
   text-align: center;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-detalle-factura .titulo {
+    margin-left: -21px;
+  }
+}
+
+@media (max-width: 490px) and (min-width: 340px) {
+  page-detalle-factura .titulo {
+    margin-left: -21px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-detalle-factura .titulo {
+    margin-left: -21px;
+  }
 }
 
 page-detalle-factura-cliente .toolbar-background-md {
@@ -20094,6 +20188,12 @@ page-detalle-factura-cliente .row {
 
 page-detalle-factura-cliente .swiper-pagination-bullet-active {
   background: #f7ef36;
+}
+
+@media (min-width: 767px) {
+  page-detalle-factura-cliente .imagenFactura {
+    max-width: 500px;
+  }
 }
 
 page-detalle-premios .toolbar-title-md {
@@ -20143,6 +20243,42 @@ page-detalle-premios .divFoto {
 
 page-detalle-premios .area {
   max-width: 98%;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-detalle-premios .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-premios .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-premios .guardar, page-detalle-premios .actualizar, page-detalle-premios .cancelar {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 490px) and (min-width: 340px) {
+  page-detalle-premios .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-premios .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-premios .guardar, page-detalle-premios .actualizar, page-detalle-premios .cancelar {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-detalle-premios .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-premios .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-premios .guardar, page-detalle-premios .actualizar, page-detalle-premios .cancelar {
+    font-size: 25px;
+  }
 }
 
 page-facturas-aprobadas .toolbar-title-md {
@@ -20447,6 +20583,30 @@ page-lista-almacenes #new {
   }
 }
 
+@media (max-width: 490px) and (min-width: 340px) {
+  page-lista-almacenes .lista {
+    margin-top: 0em;
+    margin-left: 0em;
+  }
+  page-lista-almacenes .boton {
+    font-size: 33px;
+  }
+  page-lista-almacenes .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-lista-almacenes .admin {
+    display: none;
+  }
+  page-lista-almacenes .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
+  }
+}
+
 page-lista-eventos .toolbar-title-md {
   color: white;
 }
@@ -20488,6 +20648,30 @@ page-lista-eventos .imgEvento {
   }
 }
 
+@media (max-width: 490px) and (min-width: 340px) {
+  page-lista-eventos .lista {
+    margin-top: 0em;
+    margin-left: 0em;
+  }
+  page-lista-eventos .boton {
+    font-size: 33px;
+  }
+  page-lista-eventos .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-lista-eventos .admin {
+    display: none;
+  }
+  page-lista-eventos .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
+  }
+}
+
 page-lista-premios .toolbar-title-md {
   color: white;
 }
@@ -20526,6 +20710,34 @@ page-lista-premios .imgPremio {
   }
   page-lista-premios .adminVal {
     display: none;
+  }
+  page-lista-premios .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 490px) and (min-width: 340px) {
+  page-lista-premios .lista {
+    margin-top: 0em;
+    margin-left: 0em;
+  }
+  page-lista-premios .boton {
+    font-size: 33px;
+  }
+  page-lista-premios .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-lista-premios .admin {
+    display: none;
+  }
+  page-lista-premios .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
   }
 }
 

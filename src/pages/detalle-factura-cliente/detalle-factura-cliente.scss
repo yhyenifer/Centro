@@ -28,6 +28,10 @@ page-detalle-factura-cliente {
          background: #f7ef36;
      }
 
-
+     @media (min-width: 767px){
+         .imagenFactura{
+            max-width: 500px;
+         }
+     }
 
 }
