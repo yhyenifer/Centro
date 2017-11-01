@@ -20038,6 +20038,91 @@ page-detalle-almacen .area {
   }
 }
 
+page-detalle-clientes .toolbar-title-md {
+  color: white;
+}
+
+page-detalle-clientes .bar-button-default-md, page-detalle-clientes .bar-button-clear-md-default, page-detalle-clientes .bar-button-md-default {
+  color: white;
+}
+
+page-detalle-clientes .toolbar-background-md {
+  background: #F71515;
+}
+
+page-detalle-clientes .text-center {
+  text-align: center;
+}
+
+page-detalle-clientes .guardar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: yellow;
+  width: 52%;
+}
+
+page-detalle-clientes .modificar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: yellow;
+  width: 52%;
+}
+
+page-detalle-clientes .cancelar {
+  font-size: 35px;
+  margin-top: 1em;
+  background-color: red;
+  width: 52%;
+}
+
+page-detalle-clientes .text-center {
+  text-align: center;
+}
+
+page-detalle-clientes .divFoto {
+  margin-left: 1em;
+}
+
+page-detalle-clientes .area {
+  max-width: 98%;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-detalle-clientes .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-clientes .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-clientes .guardar, page-detalle-clientes .actualizar, page-detalle-clientes .cancelar {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 490px) and (min-width: 340px) {
+  page-detalle-clientes .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-clientes .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-clientes .guardar, page-detalle-clientes .actualizar, page-detalle-clientes .cancelar {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-detalle-clientes .titulo {
+    margin-left: -21px;
+  }
+  page-detalle-clientes .agregar {
+    margin-top: 12px;
+  }
+  page-detalle-clientes .guardar, page-detalle-clientes .actualizar, page-detalle-clientes .cancelar {
+    font-size: 25px;
+  }
+}
+
 page-detalle-eventos .toolbar-title-md {
   color: white;
 }
@@ -20602,6 +20687,66 @@ page-lista-almacenes #new {
     display: none;
   }
   page-lista-almacenes .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
+  }
+}
+
+page-lista-clientes .toolbar-title-md {
+  color: white;
+}
+
+page-lista-clientes .bar-button-default-md, page-lista-clientes .bar-button-clear-md-default, page-lista-clientes .bar-button-md-default {
+  color: white;
+}
+
+page-lista-clientes .toolbar-background-md {
+  background: #F71515;
+}
+
+page-lista-clientes .text-center {
+  text-align: center;
+}
+
+page-lista-clientes .izq {
+  float: right;
+}
+
+page-lista-clientes #new {
+  color: white;
+  background-color: #f71515;
+  font-size: 2rem;
+}
+
+@media (max-width: 500px) and (min-width: 300px) {
+  page-lista-clientes .tab {
+    margin-left: 0em;
+    font-size: 18px;
+  }
+  page-lista-clientes .adminVal {
+    display: none;
+  }
+}
+
+@media (max-width: 490px) and (min-width: 340px) {
+  page-lista-clientes .lista {
+    margin-top: 0em;
+    margin-left: 0em;
+  }
+  page-lista-clientes .boton {
+    font-size: 33px;
+  }
+  page-lista-clientes .titulo {
+    margin-left: -27px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 500px) {
+  page-lista-clientes .admin {
+    display: none;
+  }
+  page-lista-clientes .titulo {
     margin-left: -27px;
     margin-top: 12px;
   }

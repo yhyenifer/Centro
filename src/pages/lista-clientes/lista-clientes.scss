@@ -1,0 +1,62 @@
+page-lista-clientes {
+    .toolbar-title-md{
+        color: white;
+    }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+        color: white;
+    }
+
+    .toolbar-background-md {
+        
+        background: #F71515;
+    }
+    .text-center{
+        text-align: center; 
+    }
+    .izq{
+        float: right;
+    }
+    #new{
+        color: white;
+        background-color: #f71515;
+        font-size: 2rem;
+    }
+  
+
+    @media (max-width: 500px ) and (min-width: 300px){
+        .tab{
+            margin-left: 0em;
+            font-size: 18px;
+        }
+        .adminVal{
+            display: none;
+        }
+    }
+
+    @media (max-width: 490px ) and (min-width: 340px){
+        .lista{
+            margin-top: 0em;
+            margin-left: 0em;
+        }
+        .boton{
+            font-size: 33px;
+        }
+        .titulo{
+            margin-left: -27px;
+            margin-top: 12px;
+        }
+
+    }
+
+    @media (max-width: 780px ) and (min-width: 500px){
+        .admin{
+            display: none;
+        }
+        .titulo{
+            margin-left: -27px;
+            margin-top: 12px;
+        }
+    }
+
+}
+

@@ -1,14 +1,14 @@
 webpackJsonp([10],{
 
-/***/ 464:
+/***/ 467:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FacturasDenegadasPageModule", function() { return FacturasDenegadasPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeAdminPageModule", function() { return HomeAdminPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facturas_denegadas__ = __webpack_require__(481);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_admin__ = __webpack_require__(487);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var FacturasDenegadasPageModule = (function () {
-    function FacturasDenegadasPageModule() {
+var HomeAdminPageModule = (function () {
+    function HomeAdminPageModule() {
     }
-    return FacturasDenegadasPageModule;
+    return HomeAdminPageModule;
 }());
-FacturasDenegadasPageModule = __decorate([
+HomeAdminPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__facturas_denegadas__["a" /* FacturasDenegadasPage */],
+            __WEBPACK_IMPORTED_MODULE_2__home_admin__["a" /* HomeAdminPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__facturas_denegadas__["a" /* FacturasDenegadasPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home_admin__["a" /* HomeAdminPage */]),
         ],
     })
-], FacturasDenegadasPageModule);
+], HomeAdminPageModule);
 
-//# sourceMappingURL=facturas-denegadas.module.js.map
+//# sourceMappingURL=home-admin.module.js.map
 
 /***/ }),
 
-/***/ 481:
+/***/ 487:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FacturasDenegadasPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeAdminPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,56 +56,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
 /**
- * Generated class for the FacturasDenegadasPage page.
+ * Generated class for the HomeAdminPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var FacturasDenegadasPage = (function () {
-    function FacturasDenegadasPage(navCtrl, navParams, menu, database) {
+var HomeAdminPage = (function () {
+    function HomeAdminPage(navCtrl, navParams, menu) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menu = menu;
-        this.database = database;
         this.menu1Active();
-        this.facturas$ = this.database.list('/factura', {
-            query: {
-                orderByChild: 'estado',
-                equalTo: 'Denegada'
-            }
-        }).map(function (array) { return array.reverse(); });
     }
-    FacturasDenegadasPage.prototype.menu1Active = function () {
+    HomeAdminPage.prototype.ionViewDidLoad = function () {
+    };
+    HomeAdminPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
         this.menu.enable(false, 'menu1');
     };
-    FacturasDenegadasPage.prototype.openPage = function (page) {
+    HomeAdminPage.prototype.openPage = function (page) {
         this.navCtrl.setRoot(page);
     };
-    FacturasDenegadasPage.prototype.ionViewDidLoad = function () {
-    };
-    FacturasDenegadasPage.prototype.mostrarFactura = function (factura, facturaId) {
-        this.navCtrl.setRoot('DetalleFacturaPage', {
-            factura: factura,
-            id: facturaId
-        });
-    };
-    return FacturasDenegadasPage;
+    return HomeAdminPage;
 }());
-FacturasDenegadasPage = __decorate([
+HomeAdminPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-facturas-denegadas',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\facturas-denegadas\facturas-denegadas.html"*/'<!--\n\n  Generated template for the FacturasPendientesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    \n\n      <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Facturas\n\n        </ion-title>\n\n      </ion-navbar>\n\n      <ion-navbar>\n\n        <ion-row>\n\n          <ion-col class="groupTabs">\n\n            <button class="tab tab1" (click)="openPage(\'FacturasPendientesPage\')">Pendientes</button>\n\n          </ion-col>\n\n          <ion-col class="groupTabs">\n\n            <button class="tab tab2" (click)="openPage(\'FacturasAprobadasPage\')"> Aprobadas</button>\n\n          </ion-col>\n\n          <ion-col class="">\n\n            <button class="tab tab3" (click)="openPage(\'FacturasDenegadasPage\')">Denegadas</button>\n\n          </ion-col>\n\n        </ion-row>\n\n       </ion-navbar>\n\n    \n\n    </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n  <ion-row>\n\n    <ion-col>\n\n      <!-- se deben mostrar las 20 facturas en estado denegadas de  la mas reciente  a la mas antigua -->\n\n        <ion-list>\n\n          <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura, factura.$key)">\n\n            <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} - {{factura.almacen}} \n\n           </button>\n\n        \n\n                    \n\n          </ion-list>\n\n    </ion-col>\n\n    <ion-col>\n\n        <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fdenegar.png?alt=media&token=4d297288-d47c-438e-aea5-7d0f1d0ffb7c">      \n\n    </ion-col>\n\n  </ion-row>  \n\n    \n\n  </ion-content>\n\n  '/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\facturas-denegadas\facturas-denegadas.html"*/,
+        selector: 'page-home-admin',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-admin\home-admin.html"*/'<!--\n\n  Generated template for the HomeAdminPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Menú\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n <ion-row> \n\n <ion-col >\n\n<img class="admin" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fadministrador.png?alt=media&token=6a9ff6cb-d278-4597-8dce-aea70ca5200d">\n\n </ion-col> \n\n <ion-col class="lista" >\n\n    <ion-row> \n\n        <button class="boton" (click)="openPage(\'FacturasPendientesPage\')"> \n\n                Validar Facturas\n\n        </button> \n\n     </ion-row>    \n\n     <ion-row> \n\n        <button class="boton" (click)="openPage(\'ListaPremiosPage\')"> \n\n                Administrar Premios\n\n        </button > \n\n     </ion-row>\n\n     <ion-row> \n\n        <button class="boton" (click)="openPage(\'ListaEventosPage\')"> \n\n                Administrar Eventos\n\n        </button> \n\n     </ion-row>\n\n     <ion-row> \n\n        <button class="boton" (click)="openPage(\'ListaAlmacenesPage\')"> \n\n                Administrar Almacenes\n\n        </button> \n\n     </ion-row>\n\n     <ion-row> \n\n        <button class="boton" (click)="openPage(\'ListaClientesPage\')"> \n\n                Administrar Clientes\n\n        </button> \n\n     </ion-row>\n\n     <ion-row> \n\n        <button class="boton"> \n\n                Generar Reportes\n\n        </button> \n\n     </ion-row>\n\n</ion-col> \n\n</ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-admin\home-admin.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
-], FacturasDenegadasPage);
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]])
+], HomeAdminPage);
 
-//# sourceMappingURL=facturas-denegadas.js.map
+//# sourceMappingURL=home-admin.js.map
 
 /***/ })
 
