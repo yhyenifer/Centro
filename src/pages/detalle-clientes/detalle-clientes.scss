@@ -1,0 +1,94 @@
+page-detalle-clientes {
+    .toolbar-title-md{
+        color: white;
+    }
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+        color: white;
+    }
+
+    .toolbar-background-md {
+        
+        background: #F71515;
+    }
+    .text-center{
+        text-align: center; 
+    }
+
+    .guardar{
+        font-size: 35px;
+        margin-top: 1em;
+        background-color: yellow;
+        width: 52%;
+    }
+    .modificar{
+        font-size: 35px;
+        margin-top: 1em;
+        background-color: yellow;
+        width: 52%;
+       
+    }
+    .cancelar{
+        font-size: 35px;
+        margin-top: 1em;
+        background-color: red;
+        width: 52%;
+    }
+
+    .text-center{
+        text-align: center; 
+    }
+
+   .divFoto{
+    margin-left: 1em;
+   }
+
+   .area{
+    max-width: 98%;
+   }
+
+   @media (max-width: 500px ) and (min-width: 300px){
+    
+        .titulo{
+            margin-left: -21px;
+    
+        }
+        .agregar{
+            margin-top: 12px;
+        }
+        .guardar, .actualizar, .cancelar {
+            font-size: 25px;
+        }
+
+        }
+
+    @media (max-width: 490px ) and (min-width: 340px){
+    
+    .titulo{
+        margin-left: -21px;
+        
+    }
+    .agregar{
+        margin-top: 12px;
+    }
+    .guardar, .actualizar, .cancelar {
+        font-size: 25px;
+    }
+    }
+
+    @media (max-width: 780px ) and (min-width: 500px){
+
+
+                .titulo{
+                    margin-left: -21px;
+                    
+                }
+                .agregar{
+                    margin-top: 12px;
+                }
+
+                .guardar, .actualizar, .cancelar {
+                    font-size: 25px;
+                }
+        }
+
+}
