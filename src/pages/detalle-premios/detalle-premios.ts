@@ -9,6 +9,7 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/databa
 /**
  * Generated class for the DetallePremiosPage page.
  *
+ *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */

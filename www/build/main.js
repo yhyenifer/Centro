@@ -1,4 +1,4 @@
-webpackJsonp([17],{
+webpackJsonp([20],{
 
 /***/ 163:
 /***/ (function(module, exports) {
@@ -23,70 +23,82 @@ webpackEmptyAsyncContext.id = 163;
 var map = {
 	"../pages/detalle-almacen/detalle-almacen.module": [
 		458,
-		16
+		19
+	],
+	"../pages/detalle-clientes/detalle-clientes.module": [
+		459,
+		18
 	],
 	"../pages/detalle-eventos/detalle-eventos.module": [
-		459,
-		15
+		460,
+		17
 	],
 	"../pages/detalle-factura-cliente/detalle-factura-cliente.module": [
-		461,
-		14
+		462,
+		16
 	],
 	"../pages/detalle-factura/detalle-factura.module": [
-		460,
-		13
+		461,
+		15
 	],
 	"../pages/detalle-premios/detalle-premios.module": [
-		462,
-		12
+		463,
+		14
 	],
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
-		463,
-		11
+		464,
+		13
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
-		464,
-		10
+		465,
+		12
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
-		465,
-		9
+		466,
+		11
 	],
 	"../pages/home-admin/home-admin.module": [
-		466,
-		8
+		467,
+		10
 	],
 	"../pages/home-cliente/home-cliente.module": [
-		467,
-		7
+		468,
+		9
 	],
 	"../pages/lista-almacenes/lista-almacenes.module": [
-		468,
-		6
+		469,
+		8
+	],
+	"../pages/lista-clientes/lista-clientes.module": [
+		470,
+		7
 	],
 	"../pages/lista-eventos/lista-eventos.module": [
-		469,
-		5
+		471,
+		6
 	],
 	"../pages/lista-premios/lista-premios.module": [
-		470,
-		4
+		472,
+		5
 	],
 	"../pages/login/login.module": [
 		457,
-		3
+		4
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
-		471,
+		473,
+		3
+	],
+	"../pages/perfil/perfil.module": [
+		474,
 		2
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		472,
+		475,
 		1
 	],
 	"../pages/validar-facturas/validar-facturas.module": [
-		473,
+		476,
 		0
 	]
 };
@@ -257,7 +269,7 @@ var MyApp = (function () {
                 { title: 'Administrar Premios', component: 'ListaPremiosPage', icono: 'add-circle' },
                 { title: 'Administrar Almacenes', component: 'ListaAlmacenesPage', icono: 'cart' },
                 { title: 'Administrar Eventos', component: 'ListaEventosPage', icono: 'calendar' },
-                { title: 'Administrar Clientes', component: 'HomeAdminPage', icono: 'contacts' },
+                { title: 'Administrar Clientes', component: 'ListaClientesPage', icono: 'contacts' },
                 { title: 'Generar Reportes', component: 'HomeAdminPage', icono: 'clipboard' } // pendiente de cambio  el componente
             ];
         });
@@ -527,6 +539,7 @@ AppModule = __decorate([
                 links: [
                     { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-almacen/detalle-almacen.module#DetalleAlmacenPageModule', name: 'DetalleAlmacenPage', segment: 'detalle-almacen', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/detalle-clientes/detalle-clientes.module#DetalleClientesPageModule', name: 'DetalleClientesPage', segment: 'detalle-clientes', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-eventos/detalle-eventos.module#DetalleEventosPageModule', name: 'DetalleEventosPage', segment: 'detalle-eventos', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-factura/detalle-factura.module#DetalleFacturaPageModule', name: 'DetalleFacturaPage', segment: 'detalle-factura', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/detalle-factura-cliente/detalle-factura-cliente.module#DetalleFacturaClientePageModule', name: 'DetalleFacturaClientePage', segment: 'detalle-factura-cliente', priority: 'low', defaultHistory: [] },
@@ -537,9 +550,11 @@ AppModule = __decorate([
                     { loadChildren: '../pages/home-admin/home-admin.module#HomeAdminPageModule', name: 'HomeAdminPage', segment: 'home-admin', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home-cliente/home-cliente.module#HomeClientePageModule', name: 'HomeClientePage', segment: 'home-cliente', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/lista-almacenes/lista-almacenes.module#ListaAlmacenesPageModule', name: 'ListaAlmacenesPage', segment: 'lista-almacenes', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/lista-clientes/lista-clientes.module#ListaClientesPageModule', name: 'ListaClientesPage', segment: 'lista-clientes', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/lista-eventos/lista-eventos.module#ListaEventosPageModule', name: 'ListaEventosPage', segment: 'lista-eventos', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/lista-premios/lista-premios.module#ListaPremiosPageModule', name: 'ListaPremiosPage', segment: 'lista-premios', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/mis-facturas/mis-facturas.module#MisFacturasPageModule', name: 'MisFacturasPage', segment: 'mis-facturas', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/perfil/perfil.module#PerfilPageModule', name: 'PerfilPage', segment: 'perfil', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/validar-facturas/validar-facturas.module#ValidarFacturasPageModule', name: 'ValidarFacturasPage', segment: 'validar-facturas', priority: 'low', defaultHistory: [] }
                 ]

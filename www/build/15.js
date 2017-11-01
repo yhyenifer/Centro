@@ -1,14 +1,14 @@
 webpackJsonp([15],{
 
-/***/ 459:
+/***/ 461:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleEventosPageModule", function() { return DetalleEventosPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleFacturaPageModule", function() { return DetalleFacturaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_eventos__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_factura__ = __webpack_require__(481);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,27 +18,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var DetalleEventosPageModule = (function () {
-    function DetalleEventosPageModule() {
+var DetalleFacturaPageModule = (function () {
+    function DetalleFacturaPageModule() {
     }
-    return DetalleEventosPageModule;
+    return DetalleFacturaPageModule;
 }());
-DetalleEventosPageModule = __decorate([
+DetalleFacturaPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__detalle_eventos__["a" /* DetalleEventosPage */],
+            __WEBPACK_IMPORTED_MODULE_2__detalle_factura__["a" /* DetalleFacturaPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__detalle_eventos__["a" /* DetalleEventosPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__detalle_factura__["a" /* DetalleFacturaPage */]),
         ],
     })
-], DetalleEventosPageModule);
+], DetalleFacturaPageModule);
 
-//# sourceMappingURL=detalle-eventos.module.js.map
+//# sourceMappingURL=detalle-factura.module.js.map
 
 /***/ }),
 
-/***/ 476:
+/***/ 481:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64,7 +64,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the DetalleEventosPage page.
+ * Generated class for the DetalleFacturaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -337,9 +337,10 @@ var DetalleEventosPage = (function () {
                 }
             ]
         });
-        alert.present();
+    }
+    DetalleFacturaPage.prototype.ionViewDidLoad = function () {
     };
-    return DetalleEventosPage;
+    return DetalleFacturaPage;
 }());
 DetalleEventosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
