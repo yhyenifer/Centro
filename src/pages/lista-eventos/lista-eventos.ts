@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Evento } from '../../app/models/evento';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the ListaEventosPage page.
@@ -14,11 +16,16 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
   templateUrl: 'lista-eventos.html',
 })
 export class ListaEventosPage {
+  eventos: any[];
+  evento = {} as Evento;
+  eventos$: FirebaseListObservable<Evento[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-      public menu: MenuController) {
+      public menu: MenuController,
+      private database: AngularFireDatabase,) {
       this.menu1Active();
-  
+      this.eventos$ = this.database.list('eventos');
+      this.eventos = [];
   }
   menu1Active() {
     this.menu.enable(true, 'menu2');
@@ -29,8 +36,10 @@ export class ListaEventosPage {
   }
 
     // este es para el editar, falta enviar parametros
-  mostrarEvento(){
+  mostrarEvento(evento,eventoId){
     this.navCtrl.setRoot('DetalleEventosPage',{
+      evento: evento,
+      id: eventoId,
       accion: 1
     });
   }

@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { AlertController, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Evento } from '../../app/models/evento';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import firebase from 'firebase';
 
 /**
  * Generated class for the DetalleEventosPage page.
@@ -15,6 +18,12 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'detalle-eventos.html',
 })
 export class DetalleEventosPage {
+  url: string
+  id: any;
+  evento = {} as Evento;
+  infoEvento$: FirebaseListObservable<Evento[]>;
+  img: any;
+  file: any;
   ocultar1: boolean     = false;
   ocultar2: boolean     = false;
   accion: number;
@@ -30,10 +39,26 @@ export class DetalleEventosPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menu: MenuController,
     public alertCtrl : AlertController,
+    private database: AngularFireDatabase,
+    public zone: NgZone,
     public storage: Storage,) {
+      this.infoEvento$ = this.database.list('eventos');
     this.menu1Active();
     this.accion= navParams.get("accion");
     if(this.accion==1){ //opcion para cuando se va a modificar
+      this.evento = navParams.get("evento");
+      this.id = navParams.get("id");
+      this.nombreEvento = this.evento.nombre;
+      this.descEvento = this.evento.descripcion;
+      this.fechaEvento = this.evento.fecha;
+      this.horaEvento = this.evento.hora;
+      this.selectedEstado = this.evento.estado;
+      this.url = `img/eventos/${this.evento.nombre}/${this.evento.url}`;
+      let storageRef = firebase.storage().ref();
+      let imageRef = storageRef.child(this.url);
+      imageRef.getDownloadURL().then(url =>
+      this.eventoImagen = url);
+
       this.ocultar2= !this.ocultar2;
     }
     else{ //opcion para cuando se va a crear
@@ -53,7 +78,24 @@ export class DetalleEventosPage {
     this.menu.enable(true, 'menu2');
     this.menu.enable(false, 'menu1');
   }
-
+  seleccionarFoto(e){
+    this.file = e.target.files[0];
+    console.log(this.file);
+    this.readPhoto(this.file)
+  }
+  readPhoto(file) {
+    
+       let reader = new FileReader();
+       reader.onload = (e)=>{
+         this.zone.run(()=>{
+           let path:any = e.target;
+           this.eventoImagen = path.result;
+         });
+         
+       }
+        reader.readAsDataURL(file);
+       
+      }
 
   validarDatos(){
     this.campos=null;
@@ -131,7 +173,33 @@ export class DetalleEventosPage {
             handler: () => {
               console.log('si');
              //aqui va el codigo de modificar Evento
-
+             var name = "";
+             if (this.file != undefined){
+              console.log("cleto"+this.file.name);
+             let storageRef = firebase.storage().ref();
+             //this.url = this.file.name;
+             const imageRefBorrar = storageRef.child(`${this.url}`);
+             name = this.file.name;
+             imageRefBorrar.delete().then((snapshot)=> {
+              
+              });
+                const imageRef = storageRef.child(`img/eventos/${this.nombreEvento}/${this.file.name}`);
+                imageRef.put(this.file).then((snapshot)=> {
+              
+              });  
+            }else{
+              name = this.evento.url;
+            }
+              this.infoEvento$.update( this.id, {
+                
+                nombre: this.nombreEvento,
+                descripcion : this.descEvento,
+                fecha : this.fechaEvento,
+                hora : this.horaEvento,
+                estado : this.selectedEstado,
+                url: this.url
+                                   
+                    });
                 //notificacion de accion realizada
                 let alert = this.alertCtrl.create({
                   title: 'Notifiación',
@@ -174,7 +242,23 @@ export class DetalleEventosPage {
           handler: () => {
             console.log('si');
             //aqui va el codigo para guardar el evento
-        
+            let storageRef = firebase.storage().ref();
+            this.url = this.file.name;
+            const imageRef = storageRef.child(`img/eventos/${this.nombreEvento}/${this.file.name}`);
+            imageRef.put(this.file).then((snapshot)=> {
+            
+            });
+            
+            console.log("nombre"+this.url);
+
+            this.infoEvento$.push({
+              nombre: this.nombreEvento,
+              descripcion : this.descEvento,
+              fecha : this.fechaEvento,
+              hora : this.horaEvento,
+              estado : this.selectedEstado,
+              url: this.url
+            });
 
             //notificacion de accion realizada
              let alert = this.alertCtrl.create({

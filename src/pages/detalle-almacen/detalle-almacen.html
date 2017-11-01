@@ -70,12 +70,11 @@
                  <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" multiple/>
                  <button class="agregar" (click)="agregar()"> Agregar</button>
                  <div class="preview">
-                    <ion-list>
-                      
-                          <button ion-item *ngFor="let nombre of almacen.url; let idx = index " (click)="eliminarFoto(idx)">
+                    <ion-list>                      
+                          <button ion-item *ngFor="let nombre of almacen.url; let idx = index " (click)="eliminarFotoStorage(nombre,idx)">
                               <img class="brochure-poster" src="{{almacen.img[idx]}}"/> 
                               {{nombre}}                         </button>
-                          <button ion-item *ngFor="let f of file, let idx = index " (click)="eliminarFoto(idx)">
+                          <button ion-item *ngFor="let f of file, let idx = index " (click)="eliminarFotoFile(idx)">
                               <img class="brochure-poster"  src="{{filefoto[idx]}}"/> 
                               {{f.name}}                        </button>    
                       </ion-list>

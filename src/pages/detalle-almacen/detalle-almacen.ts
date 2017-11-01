@@ -187,9 +187,9 @@ readPhoto(file, index) {
     this.campos=this.campos + "Local, ";
     }
   }
-  if (this.localAlmacen*0==0){
+  if (this.localAlmacen*1==0){
     if(this.campos==null){
-      this.campos="Local, ";
+      this.campos="Local1, ";
     }
     else{
     this.campos=this.campos + "Local, ";
@@ -453,8 +453,34 @@ readPhoto(file, index) {
           alert.present();
       }
 
-      eliminarFoto(idx){
+      eliminarFotoStorage(nombre,idx){
         //aqui va el evento de eliminar la foto del almacen
+        let storageRef = firebase.storage().ref();
+        //console.log("amt "+this.almacen.url);
+        //this.url = this.file.name;1
+        const imageRefBorrar = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${nombre}`);
+        this.almacen.url.splice(idx,1);
+        //console.log("desp" + this.almacen.url);
+        //name = this.file.name;
+        imageRefBorrar.delete().then((snapshot)=> {
+        });
       }
-
+      eliminarFotoFile(idx){
+        var newList = [];
+        var newFileFoto = [];
+        
+        for(var i = 0; i < this.file.length; i++)
+        {
+            if(i !== idx)
+            {
+                newList.push(this.file[i]);
+                newFileFoto.push(this.filefoto[i]);
+            }
+        }
+        console.log(idx);
+        //this.file.slice(idx,1);
+        this.file = newList;
+        this.filefoto = newFileFoto;
+        console.log(newList);
+      }
 }

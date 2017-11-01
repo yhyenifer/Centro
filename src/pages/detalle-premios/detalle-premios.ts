@@ -269,20 +269,21 @@ export class DetallePremiosPage {
             let storageRef = firebase.storage().ref();
             this.url = this.file.name;
             const imageRef = storageRef.child(`img/premios/${this.nombrePremio}/${this.file.name}`);
+
             imageRef.put(this.file).then((snapshot)=> {
-            
+              this.infoPremio$.push({
+                nombre: this.nombrePremio,
+                descripcion : this.descPremio,
+                cantidad : this.cantidad,
+                valorPuntos : this.valorPuntos,
+                estado : this.selectedEstado,
+                url: this.url
+              });
             });
             
             console.log("nombre"+this.infoPremio$);
 
-            this.infoPremio$.push({
-              nombre: this.nombrePremio,
-              descripcion : this.descPremio,
-              cantidad : this.cantidad,
-              valorPuntos : this.valorPuntos,
-              estado : this.selectedEstado,
-              url: this.url
-            });
+            
             //notificacion de accion realizada
              let alert = this.alertCtrl.create({
             title: 'Notifiación',
