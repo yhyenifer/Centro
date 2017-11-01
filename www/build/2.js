@@ -1,14 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 474:
+/***/ 475:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PerfilPageModule", function() { return PerfilPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PremiosPageModule", function() { return PremiosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__perfil__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__premios__ = __webpack_require__(496);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PerfilPageModule = (function () {
-    function PerfilPageModule() {
+var PremiosPageModule = (function () {
+    function PremiosPageModule() {
     }
-    return PerfilPageModule;
+    return PremiosPageModule;
 }());
-PerfilPageModule = __decorate([
+PremiosPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__perfil__["a" /* PerfilPage */],
+            __WEBPACK_IMPORTED_MODULE_2__premios__["a" /* PremiosPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__perfil__["a" /* PerfilPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__premios__["a" /* PremiosPage */]),
         ],
     })
-], PerfilPageModule);
+], PremiosPageModule);
 
-//# sourceMappingURL=perfil.module.js.map
+//# sourceMappingURL=premios.module.js.map
 
 /***/ }),
 
-/***/ 494:
+/***/ 496:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PerfilPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PremiosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,35 +60,129 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
 /**
- * Generated class for the PerfilPage page.
+ * Generated class for the PremiosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var PerfilPage = (function () {
-    function PerfilPage(navCtrl, navParams) {
+var PremiosPage = (function () {
+    function PremiosPage(navCtrl, navParams, menu, alertCtrl, database, storage) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.menu = menu;
+        this.alertCtrl = alertCtrl;
+        this.database = database;
+        this.storage = storage;
+        this.premio = {};
+        this.puntosCliente = 0;
+        this.diferencia = 0;
+        this.menu1Active();
+        this.premios$ = this.database.list('premio');
+        this.premios = [];
+        this.database.list('premio').subscribe(function (data) {
+            _this.premios = data;
+            // console.log(this.premios);
+            _this.imagenes = Array(_this.premios.length);
+            for (var index = 0; index < _this.premios.length; index++) {
+                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
+                _this.generarFotos(index);
+            }
+        });
     }
-    PerfilPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad PerfilPage');
+    PremiosPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.storage.get('nombre').then(function (data) {
+            _this.nombre = data;
+        });
+        this.storage.get('puntos').then(function (data) {
+            _this.puntosCliente = data;
+        });
+        this.premios$ = this.database.list('premio');
+        this.premios = [];
+        this.database.list('premio').subscribe(function (data) {
+            _this.premios = data;
+            _this.imagenes = Array(_this.premios.length);
+            for (var index = 0; index < _this.premios.length; index++) {
+                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
+                _this.generarFotos(index);
+            }
+        });
     };
-    return PerfilPage;
+    PremiosPage.prototype.menu1Active = function () {
+        this.menu.enable(true, 'menu1');
+        this.menu.enable(false, 'menu2');
+    };
+    PremiosPage.prototype.generarFotos = function (index) {
+        var _this = this;
+        //for (var index = 0; index < this.almacen.url.length; index++) {
+        var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
+        var imageRef = storageRef.child(this.imagenes[index]);
+        imageRef.getDownloadURL().then(function (url) {
+            _this.imagenes[index] = url;
+            // console.log("contador"+this.imagenes[index]);
+        });
+    };
+    //validar que el cliente si tenga los puntos requeridos y validar que el premio si tenga cantidad dispobible
+    PremiosPage.prototype.validarDatos = function () {
+        return true;
+    };
+    PremiosPage.prototype.canjear = function (premio, premio_key) {
+        var _this = this;
+        if (this.validarDatos() == true) {
+            var alert = this.alertCtrl.create({
+                title: 'Confirmación',
+                subTitle: "¿" + this.nombre + " está seguro de Canjear éste Premio?",
+                buttons: [
+                    {
+                        text: 'Si',
+                        role: 'si',
+                        handler: function () {
+                            // console.log('si');
+                            //aqui va el codigo de canjear
+                            //notificacion de accion realizada
+                            var alert = _this.alertCtrl.create({
+                                title: 'Notifiación',
+                                subTitle: "Se ha canjeado exitosamente el Premio",
+                                buttons: [{
+                                        text: 'Aceptar',
+                                        role: 'Aceptar',
+                                        handler: function () {
+                                            _this.navCtrl.setRoot("PremiosPage");
+                                        }
+                                    }
+                                ]
+                            });
+                            alert.present();
+                        }
+                    },
+                    {
+                        text: 'No',
+                        role: 'no',
+                        handler: function () {
+                        }
+                    }
+                ]
+            });
+            alert.present();
+        }
+    };
+    return PremiosPage;
 }());
-PerfilPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-<<<<<<< HEAD
-        selector: 'page-mis-facturas',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\mis-facturas\mis-facturas.html"*/'<!--\n\n  Generated template for the MisFacturasPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n \n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Mis Facturas\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n        <ion-list>\n\n          <!-- se deben ordenar por fecha de la mas reciente a la mas antigua y deben ser las de cada usuario\n\n          -->\n\n            <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura, factura.$key)">\n\n             <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} \n\n            </button>\n\n        </ion-list>\n\n   \n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\mis-facturas\mis-facturas.html"*/,
-=======
-        selector: 'page-perfil',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\perfil\perfil.html"*/'<!--\n  Generated template for the PerfilPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>perfil</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\perfil\perfil.html"*/,
->>>>>>> b7eaa09739a99fa851fe5ccbf324b2483079eb55
+PremiosPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+        selector: 'page-premios',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/'<!--\n  Generated template for the PremiosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>\n          Premios\n        </ion-title>\n      </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-card ion-item *ngFor="let premio of premios$ | async; let i = index">\n        <img class="imagenPremio" [src]="imagenes[i]">\n        <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->\n        <ion-card-content>\n          <ion-card-title>\n            {{premio.nombre}}\n            </ion-card-title>\n          <p>\n            {{premio.descripcion}}\n          </p>\n        </ion-card-content>\n        <ion-row class="opciones">\n          <ion-col>\n          <button class="opcion puntos"><ion-icon name="star"></ion-icon><br>{{premio.valorPuntos}}</button>\n          </ion-col>\n          <ion-col>\n          <button class="opcion diferencia"><ion-icon name="star-outline"></ion-icon><br>{{puntosCliente}}</button>\n        </ion-col>\n        <ion-col>\n          <button class="opcion canjear" (click)="canjear(premio,premio.$key)"><ion-icon name="pricetags"></ion-icon><br>Canjear</button>\n        </ion-col>\n        </ion-row>\n      </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
-], PerfilPage);
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _f || Object])
+], PremiosPage);
 
-//# sourceMappingURL=perfil.js.map
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=premios.js.map
 
 /***/ })
 

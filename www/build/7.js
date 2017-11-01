@@ -1,14 +1,14 @@
 webpackJsonp([7],{
 
-/***/ 470:
+/***/ 471:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaClientesPageModule", function() { return ListaClientesPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaEventosPageModule", function() { return ListaEventosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_clientes__ = __webpack_require__(490);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_eventos__ = __webpack_require__(492);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ListaClientesPageModule = (function () {
-    function ListaClientesPageModule() {
+var ListaEventosPageModule = (function () {
+    function ListaEventosPageModule() {
     }
-    return ListaClientesPageModule;
+    return ListaEventosPageModule;
 }());
-ListaClientesPageModule = __decorate([
+ListaEventosPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__lista_clientes__["a" /* ListaClientesPage */],
+            __WEBPACK_IMPORTED_MODULE_2__lista_eventos__["a" /* ListaEventosPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__lista_clientes__["a" /* ListaClientesPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__lista_eventos__["a" /* ListaEventosPage */]),
         ],
     })
-], ListaClientesPageModule);
+], ListaEventosPageModule);
 
-//# sourceMappingURL=lista-clientes.module.js.map
+//# sourceMappingURL=lista-eventos.module.js.map
 
 /***/ }),
 
-/***/ 490:
+/***/ 492:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListaClientesPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListaEventosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
@@ -59,42 +59,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the ListaClientesPage page.
+ * Generated class for the ListaEventosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.k
- *
- *
+ * Ionic pages and navigation.
  */
-var ListaClientesPage = (function () {
-    function ListaClientesPage(navCtrl, navParams, menu, database) {
+var ListaEventosPage = (function () {
+    function ListaEventosPage(navCtrl, navParams, menu, database) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menu = menu;
         this.database = database;
+        this.evento = {};
         this.menu1Active();
+        this.eventos$ = this.database.list('eventos');
+        this.eventos = [];
     }
-    ListaClientesPage.prototype.ionViewDidLoad = function () {
-    };
-    ListaClientesPage.prototype.mostrar = function () {
-        this.navCtrl.setRoot('DetalleClientesPage');
-    };
-    ListaClientesPage.prototype.menu1Active = function () {
+    ListaEventosPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
         this.menu.enable(false, 'menu1');
     };
-    return ListaClientesPage;
+    ListaEventosPage.prototype.ionViewDidLoad = function () {
+    };
+    // este es para el editar, falta enviar parametros
+    ListaEventosPage.prototype.mostrarEvento = function (evento, eventoId) {
+        this.navCtrl.setRoot('DetalleEventosPage', {
+            evento: evento,
+            id: eventoId,
+            accion: 1
+        });
+    };
+    ListaEventosPage.prototype.crearEvento = function () {
+        this.navCtrl.setRoot('DetalleEventosPage', {
+            accion: 2
+        });
+    };
+    return ListaEventosPage;
 }());
-ListaClientesPage = __decorate([
+ListaEventosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home-cliente',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\home-cliente\home-cliente.html"*/'<!--\n\n  Generated template for the HomeClientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n  \n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Menú\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n     \n\n  <div class="text-center"> \n\n  <h4 class="text-center">Súbe aquí tú factura para que acumules puntos y redimas por grandes premios.</h4>\n\n  <img class="gana" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fgana.png?alt=media&token=c6d87ebf-ca83-40a6-a5e6-a54e0dba188f">\n\n  <p class="mobile">Tómale una foto a tú factura</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="tomarFoto()">\n\n    <ion-icon name="camera"></ion-icon>\n\n  </button>\n\n  <p class="mobile">O súbela desde tus imágenes</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="sacarFoto()" >\n\n      <ion-icon name="image"></ion-icon>\n\n  </button>\n\n  <div class="divFoto">\n\n    <ion-label >Seleccione la foto de tú Factura: </ion-label>\n\n    <input type="file" (change)="seleccionar($event)"  accept=".jpg, .jpeg, .png"  >\n\n   \n\n    \n\n   </div>\n\n\n\n  </div>\n\n  <div class="slide_eventos">\n\n    \n\n      <ion-slides pager  autoplay="2000" loop="true" speed="1000">\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento1</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento2</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                  <ion-col>\n\n                    <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                  </ion-col> \n\n                  <ion-col>\n\n                   <p class="letra12">Descripción del evento3</p>\n\n                  </ion-col>   \n\n                  </ion-row>\n\n            </ion-slide>\n\n          \n\n          </ion-slides>\n\n        \n\n  </div> \n\n\n\n \n\n  \n\n  \n\n  </ion-content>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\home-cliente\home-cliente.html"*/,
+        selector: 'page-lista-eventos',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\lista-eventos\lista-eventos.html"*/'<!--\n\n  Generated template for the ListaEventosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n          <ion-row>\n\n              <ion-col>\n\n                <ion-title  class="titulo">Eventos</ion-title>\n\n   \n\n               </ion-col>\n\n              <ion-col>\n\n                <div class="izq" >\n\n                 <button id="new" (click)="crearEvento()" ><b>Crear Nuevo Evento <ion-icon name="add"></ion-icon></b></button>\n\n                </div>\n\n              </ion-col>\n\n          </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-row>\n\n        <ion-col>\n\n            <!-- se deben mostrar los eventos en ordens cronologico, el mas proximo a realizar primero-->\n\n            <ion-list>\n\n                <button ion-item  *ngFor="let evento of eventos$ | async; let i = index" (click)="mostrarEvento(evento,evento.$key)">\n\n                  <ion-icon name="calendar"></ion-icon> {{evento.nombre}} \n\n                 </button>      \n\n                </ion-list>\n\n             \n\n        \n\n          </ion-col>\n\n          <ion-col class="imgEvento">\n\n              <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Feventos%20megacity.png?alt=media&token=4e43e539-25a1-4e22-a3c5-247a4268ed35">      \n\n          </ion-col>\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\lista-eventos\lista-eventos.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _d || Object])
-], ListaClientesPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
+], ListaEventosPage);
 
-var _a, _b, _c, _d;
-//# sourceMappingURL=lista-clientes.js.map
+//# sourceMappingURL=lista-eventos.js.map
 
 /***/ })
 

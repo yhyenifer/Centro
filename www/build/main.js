@@ -1,4 +1,4 @@
-webpackJsonp([20],{
+webpackJsonp([21],{
 
 /***/ 163:
 /***/ (function(module, exports) {
@@ -23,82 +23,86 @@ webpackEmptyAsyncContext.id = 163;
 var map = {
 	"../pages/detalle-almacen/detalle-almacen.module": [
 		458,
-		19
+		20
 	],
 	"../pages/detalle-clientes/detalle-clientes.module": [
 		459,
-		18
+		19
 	],
 	"../pages/detalle-eventos/detalle-eventos.module": [
 		460,
-		17
+		18
 	],
 	"../pages/detalle-factura-cliente/detalle-factura-cliente.module": [
 		462,
-		16
+		17
 	],
 	"../pages/detalle-factura/detalle-factura.module": [
 		461,
-		15
+		16
 	],
 	"../pages/detalle-premios/detalle-premios.module": [
 		463,
-		14
+		15
 	],
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
 		464,
-		13
+		14
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
 		465,
-		12
+		13
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
 		466,
-		11
+		12
 	],
 	"../pages/home-admin/home-admin.module": [
 		467,
-		10
+		11
 	],
 	"../pages/home-cliente/home-cliente.module": [
 		468,
-		9
+		10
 	],
 	"../pages/lista-almacenes/lista-almacenes.module": [
 		469,
-		8
+		9
 	],
 	"../pages/lista-clientes/lista-clientes.module": [
 		470,
-		7
+		8
 	],
 	"../pages/lista-eventos/lista-eventos.module": [
 		471,
-		6
+		7
 	],
 	"../pages/lista-premios/lista-premios.module": [
 		472,
-		5
+		6
 	],
 	"../pages/login/login.module": [
 		457,
-		4
+		5
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
 		473,
-		3
+		4
 	],
 	"../pages/perfil/perfil.module": [
 		474,
+		3
+	],
+	"../pages/premios/premios.module": [
+		475,
 		2
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		475,
+		476,
 		1
 	],
 	"../pages/validar-facturas/validar-facturas.module": [
-		476,
+		477,
 		0
 	]
 };
@@ -260,7 +264,7 @@ var MyApp = (function () {
                 { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio el componente
             ];
             _this.pagesCentro = [
-                { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' },
+                { title: 'Premios', component: 'PremiosPage', icono: 'heart-outline' },
                 { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' },
                 { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
             ];
@@ -269,7 +273,7 @@ var MyApp = (function () {
                 { title: 'Administrar Premios', component: 'ListaPremiosPage', icono: 'add-circle' },
                 { title: 'Administrar Almacenes', component: 'ListaAlmacenesPage', icono: 'cart' },
                 { title: 'Administrar Eventos', component: 'ListaEventosPage', icono: 'calendar' },
-                { title: 'Administrar Clientes', component: 'ListaClientesPage', icono: 'contacts' },
+                { title: 'Administrar Clientes', component: 'HomeAdminPage', icono: 'contacts' },
                 { title: 'Generar Reportes', component: 'HomeAdminPage', icono: 'clipboard' } // pendiente de cambio  el componente
             ];
         });
@@ -326,7 +330,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}\n\n      <br><button class="notifica" (click)="verNotificacion()"> <ion-icon name="mail"  item-start></ion-icon><p id="notifica">{{notificacion}}</p></button></p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar admin" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b><br>{{correo}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}\n\n      <br><button class="notifica" (click)="verNotificacion()"> <ion-icon name="mail"  item-start></ion-icon><p id="notifica">{{notificacion}}</p></button></p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar admin" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b><br>{{correo}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* Platform */],
         __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
@@ -555,6 +559,7 @@ AppModule = __decorate([
                     { loadChildren: '../pages/lista-premios/lista-premios.module#ListaPremiosPageModule', name: 'ListaPremiosPage', segment: 'lista-premios', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/mis-facturas/mis-facturas.module#MisFacturasPageModule', name: 'MisFacturasPage', segment: 'mis-facturas', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/perfil/perfil.module#PerfilPageModule', name: 'PerfilPage', segment: 'perfil', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/premios/premios.module#PremiosPageModule', name: 'PremiosPage', segment: 'premios', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/validar-facturas/validar-facturas.module#ValidarFacturasPageModule', name: 'ValidarFacturasPage', segment: 'validar-facturas', priority: 'low', defaultHistory: [] }
                 ]

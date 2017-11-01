@@ -60,7 +60,7 @@ export class MyApp {
        
         ];
       this.pagesCentro = [
-        { title: 'Premios', component: 'HomeClientePage', icono: 'heart-outline' }, // pendiente de cambio  el componente
+        { title: 'Premios', component: 'PremiosPage', icono: 'heart-outline' }, // pendiente de cambio  el componente
         { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio  el componente
         { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
       ]  
