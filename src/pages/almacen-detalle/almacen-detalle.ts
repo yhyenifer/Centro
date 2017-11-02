@@ -19,6 +19,7 @@ export class AlmacenDetallePage {
 
   id : string;
   almacen = {} as Almacen;
+  file:any[];
   public selectedCategoria;
   public nombreAlmacen;
   public descAlmacen;
@@ -31,6 +32,7 @@ export class AlmacenDetallePage {
     private iap: InAppBrowser,
     public menu: MenuController) {
     this.menu1Active();
+    this.file = [];
     this.almacen = navParams.get("almacen");
     this.id = navParams.get("id");
     this.descAlmacen = this.almacen.descripcion;

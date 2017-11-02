@@ -34,12 +34,8 @@ export class PremiosPage {
     public storage: Storage) {
       this.menu1Active();
       this.premios$ = this.database.list('premio');
-      
       this.premios = [];
-      
-
       this.database.list('premio').subscribe(data => {
-
         this.premios = data;
         // console.log(this.premios);
         this.imagenes = Array(this.premios.length);
