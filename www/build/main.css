@@ -20922,6 +20922,81 @@ page-mis-facturas .text-center {
   text-align: center;
 }
 
+page-perfil .toolbar-background-md {
+  background: #f7ef36;
+}
+
+page-perfil .text-center {
+  text-align: center;
+}
+
+page-perfil .gana {
+  max-width: 50%;
+}
+
+page-perfil .camara {
+  background-color: red;
+  border-radius: 25em;
+}
+
+page-perfil .letra12 {
+  font-size: 12px;
+}
+
+page-perfil .row {
+  margin-bottom: 20px;
+}
+
+page-perfil .swiper-pagination-bullet-active {
+  background: #f7ef36;
+}
+
+page-premios .toolbar-background-md {
+  background: #f7ef36;
+}
+
+page-premios .text-center {
+  text-align: center;
+}
+
+page-premios .gana {
+  max-width: 50%;
+}
+
+page-premios .camara {
+  background-color: red;
+  border-radius: 25em;
+}
+
+page-premios .letra12 {
+  font-size: 12px;
+}
+
+page-premios .row {
+  margin-bottom: 20px;
+}
+
+page-premios .opciones {
+  text-align: center;
+}
+
+page-premios .diferencia {
+  color: blue;
+}
+
+page-premios .imagenPremio {
+  max-height: 300px;
+}
+
+page-premios .opcion {
+  background-color: white;
+  font-size: 20px;
+}
+
+page-premios .swiper-pagination-bullet-active {
+  background: #f7ef36;
+}
+
 page-subir-factura .toolbar-background-md {
   background: #f7ef36;
 }

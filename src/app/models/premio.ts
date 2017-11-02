@@ -5,4 +5,5 @@ export interface Premio{
     valorPuntos: number;
     estado: string;
     url: string;
+    diferencia: number;
 }

@@ -1,14 +1,14 @@
 webpackJsonp([14],{
 
-/***/ 463:
+/***/ 464:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetallePremiosPageModule", function() { return DetallePremiosPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FacturasAprobadasPageModule", function() { return FacturasAprobadasPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_premios__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facturas_aprobadas__ = __webpack_require__(485);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var DetallePremiosPageModule = (function () {
-    function DetallePremiosPageModule() {
+var FacturasAprobadasPageModule = (function () {
+    function FacturasAprobadasPageModule() {
     }
-    return DetallePremiosPageModule;
+    return FacturasAprobadasPageModule;
 }());
-DetallePremiosPageModule = __decorate([
+FacturasAprobadasPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__detalle_premios__["a" /* DetallePremiosPage */],
+            __WEBPACK_IMPORTED_MODULE_2__facturas_aprobadas__["a" /* FacturasAprobadasPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__detalle_premios__["a" /* DetallePremiosPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__facturas_aprobadas__["a" /* FacturasAprobadasPage */]),
         ],
     })
-], DetallePremiosPageModule);
+], FacturasAprobadasPageModule);
 
-//# sourceMappingURL=detalle-premios.module.js.map
+//# sourceMappingURL=facturas-aprobadas.module.js.map
 
 /***/ }),
 
-/***/ 483:
+/***/ 485:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetallePremiosPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FacturasAprobadasPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,64 +58,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 /**
- * Generated class for the DetallePremiosPage page.
- *
+ * Generated class for the FacturasAprobadasPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var DetallePremiosPage = (function () {
-    function DetallePremiosPage(navCtrl, navParams, alertCtrl, zone, database, storage, menu) {
-        var _this = this;
+var FacturasAprobadasPage = (function () {
+    function FacturasAprobadasPage(navCtrl, navParams, menu, database) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.alertCtrl = alertCtrl;
-        this.zone = zone;
-        this.database = database;
-        this.storage = storage;
         this.menu = menu;
-        this.premio = {};
-        this.ocultar1 = false;
-        this.ocultar2 = false;
-        this.infoPremio$ = this.database.list('premio');
+        this.database = database;
         this.menu1Active();
-        this.accion = navParams.get("accion");
-        if (this.accion == 1) {
-            this.premio = navParams.get("premio");
-            this.id = navParams.get("id");
-            this.descPremio = this.premio.descripcion;
-            this.nombrePremio = this.premio.nombre;
-            this.cantidad = this.premio.cantidad;
-            console.log("premio " + this.premio.cantidad);
-            this.valorPuntos = this.premio.valorPuntos;
-            this.selectedEstado = this.premio.estado;
-            //this.url = this.premio.url;
-            this.url = "img/premios/" + this.premio.nombre + "/" + this.premio.url;
-            var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
-            var imageRef = storageRef.child(this.url);
-            imageRef.getDownloadURL().then(function (url) {
-                return _this.img = url;
-            });
-            this.ocultar2 = !this.ocultar2;
-        }
-        else {
-            this.descPremio = "";
-            this.ocultar1 = !this.ocultar1;
-        }
+        this.facturas$ = this.database.list('/factura', {
+            query: {
+                orderByChild: 'estado',
+                equalTo: 'Aprobada'
+            }
+        }).map(function (array) { return array.reverse(); });
     }
-    DetallePremiosPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.storage.get('nombre').then(function (data) {
-            _this.nombre = data;
-        });
-    };
-    DetallePremiosPage.prototype.menu1Active = function () {
+    FacturasAprobadasPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
         this.menu.enable(false, 'menu1');
     };
+<<<<<<< HEAD
     DetallePremiosPage.prototype.seleccionarFoto = function (e) {
         this.file = e.target.files[0];
         console.log(this.file);
@@ -336,36 +300,22 @@ var DetallePremiosPage = (function () {
             });
             alert_5.present();
         }
+=======
+    FacturasAprobadasPage.prototype.ionViewDidLoad = function () {
     };
-    DetallePremiosPage.prototype.cancelar = function () {
-        var _this = this;
-        var alert = this.alertCtrl.create({
-            title: 'Confirmación',
-            subTitle: "¿" + this.nombre + " está seguro que desea salir sin Guardar?",
-            buttons: [
-                {
-                    text: 'Si',
-                    role: 'si',
-                    handler: function () {
-                        _this.nombrePremio = " ";
-                        _this.descPremio = " ";
-                        _this.cantidad = null;
-                        _this.valorPuntos = null;
-                        _this.navCtrl.setRoot("ListaPremiosPage");
-                    }
-                },
-                {
-                    text: 'No',
-                    role: 'no',
-                    handler: function () {
-                    }
-                }
-            ]
+    FacturasAprobadasPage.prototype.openPage = function (page) {
+        this.navCtrl.setRoot(page);
+>>>>>>> ec8145499cc36a22e34ed55a1b11a22aeed9beb2
+    };
+    FacturasAprobadasPage.prototype.mostrarFactura = function (factura, facturaId) {
+        this.navCtrl.setRoot('DetalleFacturaPage', {
+            factura: factura,
+            id: facturaId
         });
-        alert.present();
     };
-    return DetallePremiosPage;
+    return FacturasAprobadasPage;
 }());
+<<<<<<< HEAD
 DetallePremiosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -380,6 +330,20 @@ DetallePremiosPage = __decorate([
 ], DetallePremiosPage);
 
 //# sourceMappingURL=detalle-premios.js.map
+=======
+FacturasAprobadasPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-facturas-aprobadas',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\facturas-aprobadas\facturas-aprobadas.html"*/'<!--\n\n  Generated template for the FacturasPendientesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    \n\n      <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Facturas\n\n        </ion-title>\n\n      </ion-navbar>\n\n      <ion-navbar>\n\n        <ion-row>\n\n          <ion-col class="groupTabs">\n\n            <button class="tab tab1" (click)="openPage(\'FacturasPendientesPage\')">Pendientes</button>\n\n          </ion-col>\n\n          <ion-col class="groupTabs">\n\n            <button class="tab tab2" (click)="openPage(\'FacturasAprobadasPage\')"> Aprobadas</button>\n\n          </ion-col>\n\n          <ion-col class="">\n\n            <button class="tab tab3" (click)="openPage(\'FacturasDenegadasPage\')">Denegadas</button>\n\n          </ion-col>\n\n        </ion-row>\n\n       </ion-navbar>\n\n    \n\n    </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n  <ion-row>\n\n    <ion-col>\n\n      <!-- se deben mostrar las 20 facturas en estado aprobadas de  la mas reciente  a la mas antigua -->\n\n        <ion-list>\n\n          <button ion-item  *ngFor="let factura of facturas$ | async; let i = index" (click)="mostrarFactura(factura)">\n\n            <ion-icon name="document"></ion-icon> Factura {{i+1}} - {{ factura.estado }} - {{factura.almacen}} \n\n           </button>\n\n        \n\n                    \n\n          </ion-list>\n\n    </ion-col>\n\n    <ion-col>\n\n        <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fvalidar.png?alt=media&token=3a31579e-ac19-42e4-bdd0-f35b1a24e1f5">      \n\n    </ion-col>\n\n  </ion-row>  \n\n    \n\n  </ion-content>\n\n  '/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\facturas-aprobadas\facturas-aprobadas.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
+], FacturasAprobadasPage);
+
+//# sourceMappingURL=facturas-aprobadas.js.map
+>>>>>>> ec8145499cc36a22e34ed55a1b11a22aeed9beb2
 
 /***/ })
 
