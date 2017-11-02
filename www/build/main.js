@@ -269,7 +269,7 @@ var MyApp = (function () {
                 { title: 'Administrar Premios', component: 'ListaPremiosPage', icono: 'add-circle' },
                 { title: 'Administrar Almacenes', component: 'ListaAlmacenesPage', icono: 'cart' },
                 { title: 'Administrar Eventos', component: 'ListaEventosPage', icono: 'calendar' },
-                { title: 'Administrar Clientes', component: 'ListaClientesPage', icono: 'contacts' },
+                { title: 'Administrar Clientes', component: 'HomeAdminPage', icono: 'contacts' },
                 { title: 'Generar Reportes', component: 'HomeAdminPage', icono: 'clipboard' } // pendiente de cambio  el componente
             ];
         });

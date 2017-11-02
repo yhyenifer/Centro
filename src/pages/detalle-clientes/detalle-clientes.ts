@@ -18,6 +18,13 @@ import { Storage } from '@ionic/storage';
 export class DetalleClientesPage {
  
   nombre : string;
+  apellido : string;
+  direccion: string;
+  notificacion: number;
+  puntos: number;
+  tipo: string;
+  estado: string;
+  foto: string;
   campos : string;
   selectedEstado : string;
   constructor(public navCtrl: NavController, public navParams: NavParams,

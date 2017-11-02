@@ -86,7 +86,12 @@ var SubirFacturaPage = (function () {
         this.base64Image = this.navParams.get("base64Image");
         this.alertCtrl = alertCtrl;
         this.infoFactura$ = this.database.list('factura');
-        this.almacenes = this.database.list('/Almacen');
+        this.almacenes = this.database.list('/Almacen', {
+            query: {
+                orderByChild: 'estado',
+                equalTo: 'Activo'
+            }
+        });
         console.log(this.selectedvalue);
     }
     SubirFacturaPage.prototype.menu1Active = function () {

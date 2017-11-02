@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
+import { Cliente } from '../../app/models/cliente';
 
 
 /**
@@ -19,11 +20,16 @@ import firebase from 'firebase';
   templateUrl: 'lista-clientes.html',
 })
 export class ListaClientesPage {
- 
+  clientes: any[];
+  cliente =  {} as Cliente;
+  clientes$: FirebaseListObservable<Cliente[]>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menu: MenuController,
     private database: AngularFireDatabase,) {
       this.menu1Active();
+      this.clientes$ = this.database.list('perfil');
+      this.clientes = []; 
      
   
   }
@@ -32,8 +38,12 @@ export class ListaClientesPage {
 
   }
 
-  mostrar(){
-    this.navCtrl.setRoot('DetalleClientesPage');
+  mostrarCliente(cliente,clienteId){
+    this.navCtrl.setRoot('DetalleClientesPage',{
+      cliente: cliente,
+      id: clienteId,
+      accion: 1
+    });
   }
 
 

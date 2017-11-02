@@ -44,7 +44,12 @@ export class SubirFacturaPage {
     
     this.alertCtrl = alertCtrl;
     this.infoFactura$ = this.database.list('factura');
-    this.almacenes = this.database.list('/Almacen');
+    this.almacenes = this.database.list('/Almacen', {
+      query: {
+        orderByChild: 'estado',
+        equalTo: 'Activo'
+      }
+    });
   
     console.log(this.selectedvalue);
     

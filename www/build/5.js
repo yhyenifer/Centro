@@ -46,6 +46,8 @@ ListaPremiosPageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,22 +60,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the ListaPremiosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ListaEventosPage = (function () {
-    function ListaEventosPage(navCtrl, navParams, menu, database) {
+var ListaPremiosPage = (function () {
+    function ListaPremiosPage(navCtrl, navParams, menu, database) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.menu = menu;
         this.database = database;
-        this.evento = {};
+        this.premio = {};
         this.menu1Active();
-        this.eventos$ = this.database.list('eventos');
-        this.eventos = [];
+        this.premios$ = this.database.list('premio');
+        this.premios = [];
+        this.database.list('premio').subscribe(function (data) {
+            _this.premios = data;
+            console.log(_this.premios);
+            _this.imagenes = Array(_this.premios.length);
+            for (var index = 0; index < _this.premios.length; index++) {
+                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
+                _this.generarFotos(index);
+            }
+        });
     }
     ListaPremiosPage.prototype.ionViewWillEnter = function () {
         var _this = this;
@@ -107,10 +120,10 @@ var ListaEventosPage = (function () {
         this.menu.enable(false, 'menu1');
     };
     // este es para el editar, falta enviar parametros
-    ListaEventosPage.prototype.mostrarEvento = function (evento, eventoId) {
-        this.navCtrl.setRoot('DetalleEventosPage', {
-            evento: evento,
-            id: eventoId,
+    ListaPremiosPage.prototype.mostrarPremio = function (premio, premioId) {
+        this.navCtrl.setRoot('DetallePremiosPage', {
+            premio: premio,
+            id: premioId,
             accion: 1
         });
     };
@@ -135,14 +148,13 @@ var ListaEventosPage = (function () {
 ListaPremiosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-lista-eventos',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\lista-eventos\lista-eventos.html"*/'<!--\n\n  Generated template for the ListaEventosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n          <ion-row>\n\n              <ion-col>\n\n                <ion-title  class="titulo">Eventos</ion-title>\n\n   \n\n               </ion-col>\n\n              <ion-col>\n\n                <div class="izq" >\n\n                 <button id="new" (click)="crearEvento()" ><b>Crear Nuevo Evento <ion-icon name="add"></ion-icon></b></button>\n\n                </div>\n\n              </ion-col>\n\n          </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-row>\n\n        <ion-col>\n\n            <!-- se deben mostrar los eventos en ordens cronologico, el mas proximo a realizar primero-->\n\n            <ion-list>\n\n                <button ion-item  *ngFor="let evento of eventos$ | async; let i = index" (click)="mostrarEvento(evento,evento.$key)">\n\n                  <ion-icon name="calendar"></ion-icon> {{evento.nombre}} \n\n                 </button>      \n\n                </ion-list>\n\n             \n\n        \n\n          </ion-col>\n\n          <ion-col class="imgEvento">\n\n              <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Feventos%20megacity.png?alt=media&token=4e43e539-25a1-4e22-a3c5-247a4268ed35">      \n\n          </ion-col>\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\lista-eventos\lista-eventos.html"*/,
+        selector: 'page-lista-premios',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\lista-premios\lista-premios.html"*/'<!--\n\n  Generated template for the ListaAlmacenesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n          <ion-row>\n\n              <ion-col>\n\n                <ion-title class="titulo">Premios</ion-title>\n\n   \n\n               </ion-col>\n\n              <ion-col>\n\n                <div class="izq" >\n\n                 <button id="new" (click)="crearPremio()" ><b>Crear Nuevo Premio <ion-icon name="add"></ion-icon></b></button>\n\n                </div>\n\n              </ion-col>\n\n          </ion-row>\n\n          \n\n  </ion-navbar>\n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n      <ion-row>\n\n          <ion-col>\n\n              <!-- se deben mostrar los almacenes en orden alfabetico-->\n\n              <ion-list>\n\n                <ion-item>\n\n                  <button ion-item *ngFor="let premio of premios$ | async; let i = index"  (click)="mostrarPremio(premio,premio.$key)">\n\n                    <ion-avatar item-start> \n\n                    <img [src]="imagenes[i]">\n\n                    </ion-avatar> \n\n                    <h2>{{premio.nombre}} </h2>\n\n                   </button> \n\n                  </ion-item>     \n\n                  </ion-list>\n\n              </ion-col>\n\n            <ion-col class="imgPremio">\n\n                <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fpremio.png?alt=media&token=d9c7997c-3139-4e69-8a19-faac5f5bde53">      \n\n            </ion-col>\n\n      </ion-row>\n\n  \n\n  </ion-content>\n\n  '/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\lista-premios\lista-premios.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
         __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
-], ListaEventosPage);
+], ListaPremiosPage);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=lista-premios.js.map
 
 /***/ })

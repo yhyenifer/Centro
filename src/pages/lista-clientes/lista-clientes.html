@@ -30,11 +30,11 @@
               <ion-item>
                 <button ion-item *ngFor="let cliente of clientes$ | async; let i = index"  (click)="mostrarCliente(cliente,cliente.$key)">
                   <ion-avatar item-start> 
-                  <img [src]="imagenes[i]">
+                  <img [src]="cliente.foto">
                   </ion-avatar> 
                   <h2>{{cliente.nombre}} </h2>
                  </button> 
-                </ion-item>     
+                </ion-item>
                 </ion-list>
             </ion-col>
           <ion-col>
