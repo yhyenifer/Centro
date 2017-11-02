@@ -69,7 +69,7 @@
              </ion-item>
              <ion-item>
               <ion-label floating>Teléfono:</ion-label>
-              <ion-input
+              <ion-input disabled="true"
                 [(ngModel)]="telefonoCliente" 
                 name="telefono" 
                 type="text"  
@@ -79,7 +79,6 @@
                     <br>
                     <div class="divFoto">
                    <ion-label >Foto: </ion-label>
-                   <input type="file" disabled="true" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" >
                    <div class="preview">
                      <img class="imgPremio" [src]="foto">
                    </div>
@@ -90,7 +89,7 @@
               <ion-item>
                       <ion-label floating>Puntos:</ion-label>
                       <ion-input disabled="true"
-                        [(ngModel)]="puntos" 
+                        [(ngModel)]="puntosCliente" 
                         name="puntos" 
                         type="number" 
                         autocapitalize="off" 

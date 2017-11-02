@@ -20466,6 +20466,56 @@ page-detalle-premios .area {
   }
 }
 
+page-eventos .toolbar-background-md {
+  background: #f7ef36;
+}
+
+page-eventos .text-center {
+  text-align: center;
+}
+
+page-eventos .gana {
+  max-width: 50%;
+}
+
+page-eventos .camara {
+  background-color: red;
+  border-radius: 25em;
+}
+
+page-eventos .letra12 {
+  font-size: 12px;
+}
+
+page-eventos .row {
+  margin-bottom: 20px;
+}
+
+page-eventos .opciones {
+  text-align: center;
+}
+
+page-eventos .diferencia {
+  color: blue;
+}
+
+page-eventos .imagenPremio {
+  max-height: 300px;
+}
+
+page-eventos .opcion {
+  background-color: white;
+  font-size: 20px;
+}
+
+page-eventos .rojo {
+  color: red;
+}
+
+page-eventos .swiper-pagination-bullet-active {
+  background: #f7ef36;
+}
+
 page-facturas-aprobadas .toolbar-title-md {
   color: white;
 }
