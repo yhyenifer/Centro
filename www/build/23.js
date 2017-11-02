@@ -1,14 +1,14 @@
 webpackJsonp([23],{
 
-/***/ 458:
+/***/ 459:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AlmacenDetallePageModule", function() { return AlmacenDetallePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AlmacenesListaPageModule", function() { return AlmacenesListaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__almacen_detalle__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__almacenes_lista__ = __webpack_require__(484);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,32 +18,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AlmacenDetallePageModule = (function () {
-    function AlmacenDetallePageModule() {
+var AlmacenesListaPageModule = (function () {
+    function AlmacenesListaPageModule() {
     }
-    return AlmacenDetallePageModule;
+    return AlmacenesListaPageModule;
 }());
-AlmacenDetallePageModule = __decorate([
+AlmacenesListaPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__almacen_detalle__["a" /* AlmacenDetallePage */],
+            __WEBPACK_IMPORTED_MODULE_2__almacenes_lista__["a" /* AlmacenesListaPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__almacen_detalle__["a" /* AlmacenDetallePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__almacenes_lista__["a" /* AlmacenesListaPage */]),
         ],
     })
-], AlmacenDetallePageModule);
+], AlmacenesListaPageModule);
 
-//# sourceMappingURL=almacen-detalle.module.js.map
+//# sourceMappingURL=almacenes-lista.module.js.map
 
 /***/ }),
 
-/***/ 482:
+/***/ 484:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlmacenDetallePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_in_app_browser__ = __webpack_require__(300);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlmacenesListaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(153);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -59,54 +59,76 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the AlmacenDetallePage page.
+ * Generated class for the AlmacenesListaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var AlmacenDetallePage = (function () {
-    function AlmacenDetallePage(navCtrl, navParams, iap, menu) {
+var AlmacenesListaPage = (function () {
+    function AlmacenesListaPage(navCtrl, navParams, database, menu) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.iap = iap;
+        this.database = database;
         this.menu = menu;
         this.almacen = {};
         this.menu1Active();
-        this.file = [];
-        this.almacen = navParams.get("almacen");
-        this.id = navParams.get("id");
-        this.descAlmacen = this.almacen.descripcion;
-        this.horarioAlmacen = this.almacen.horario;
-        this.telAlmacen = this.almacen.telefono;
-        this.webAlmacen = this.almacen.web;
-        this.nombreAlmacen = this.almacen.nombre;
-        this.selectedCategoria = this.almacen.categoria;
-        this.selectedEstado = this.almacen.estado;
-        this.localAlmacen = this.almacen.local;
+        this.almacenes$ = this.database.list('Almacen');
+        this.almacenes = [];
+        this.database.list('Almacen').subscribe(function (data) {
+            _this.almacenes = data;
+            _this.items = _this.almacenes;
+            _this.loadItems = _this.almacenes;
+        });
     }
-    AlmacenDetallePage.prototype.menu1Active = function () {
+    AlmacenesListaPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu1');
         this.menu.enable(false, 'menu2');
     };
-    AlmacenDetallePage.prototype.ionViewDidLoad = function () {
+    AlmacenesListaPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.almacenes$ = this.database.list('Almacen');
+        this.almacenes = [];
+        this.database.list('Almacen').subscribe(function (data) {
+            _this.almacenes = data;
+            console.log("yh " + _this.almacenes);
+        });
+        this.initializeItems();
     };
-    AlmacenDetallePage.prototype.url = function () {
-        // this.iap.create("https://megacity.herokuapp.com/");
-        this.iap.create(this.webAlmacen);
+    AlmacenesListaPage.prototype.mostrarAlmacen = function (almacen, almacenId) {
+        this.navCtrl.push('AlmacenDetallePage', {
+            almacen: almacen,
+            id: almacenId,
+        });
     };
-    return AlmacenDetallePage;
+    AlmacenesListaPage.prototype.initializeItems = function () {
+        this.items = this.loadItems;
+    };
+    AlmacenesListaPage.prototype.getItems = function (searchbar) {
+        // Reset items back to all of the items
+        this.initializeItems();
+        // set q to the value of the searchbar
+        var q = searchbar.target.value;
+        if (q && q.trim() != '') {
+            this.items = this.items.filter(function (item) {
+                return (item.nombre.toLowerCase().indexOf(q.toLowerCase()) > -1);
+            });
+            console.log("f " + q, this.items.length);
+        }
+    };
+    return AlmacenesListaPage;
 }());
-AlmacenDetallePage = __decorate([
+AlmacenesListaPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-almacen-detalle',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\almacen-detalle\almacen-detalle.html"*/'<!--\n\n  Generated template for the AlmacenDetallePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Alamacén\n\n        </ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-card >\n\n        <ion-item>\n\n          <ion-slides pager  autoplay="2000" loop="true" speed="1000">\n\n            <!-- aqui van las fotos del almacen-->\n\n              <ion-slide >\n\n                          <img src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/>\n\n\n\n                           <!-- [src]="imagenes[i]"> -->\n\n              </ion-slide> \n\n            </ion-slides>              \n\n          <ion-card-content>\n\n            <ion-row>\n\n              <ion-col >\n\n              <p class="titulo" ><b>{{nombreAlmacen}}</b></p>\n\n            </ion-col>\n\n            <ion-col class="derecha">\n\n              <p class="titulo"><b>{{selectedCategoria}}</b></p>\n\n            </ion-col>\n\n            </ion-row>\n\n            <p class="centro">\n\n            {{descAlmacen}}\n\n            </p>\n\n            <br>\n\n            <p class="centro rojo">\n\n              {{horarioAlmacen}}\n\n              </p>\n\n          <ion-row class="opciones">\n\n            <ion-col>\n\n            <button class="opcion puntos"><ion-icon name="paper-plane"></ion-icon><br>Local: {{localAlmacen}}</button>\n\n            </ion-col>\n\n            <ion-col>\n\n            <button class="opcion diferencia"><ion-icon name="call"></ion-icon><br>{{telAlmacen}}</button>\n\n          </ion-col>\n\n          <ion-col>\n\n            <button class="opcion canjear" (click)="url()"><ion-icon name="globe"></ion-icon><br>Sitio Web</button>\n\n          </ion-col>\n\n          </ion-row>\n\n        </ion-card-content>\n\n          </ion-item>\n\n        </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\almacen-detalle\almacen-detalle.html"*/,
+        selector: 'page-almacenes-lista',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\almacenes-lista\almacenes-lista.html"*/'<!--\n\n  Generated template for the AlmacenesListaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Almacenes\n\n        </ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getItems($event)"  placeholder="Buscar"></ion-searchbar>\n\n    <ion-list>\n\n        <button ion-item  *ngFor="let almacen of items let i = index" (click)="mostrarAlmacen(almacen,almacen.$key)">\n\n          <ion-icon name="home"></ion-icon> {{almacen.nombre}} \n\n         </button>      \n\n    </ion-list>    \n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\almacenes-lista\almacenes-lista.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_0__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+        __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */]])
-], AlmacenDetallePage);
+], AlmacenesListaPage);
 
-//# sourceMappingURL=almacen-detalle.js.map
+//# sourceMappingURL=almacenes-lista.js.map
 
 /***/ })
 

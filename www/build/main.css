@@ -21072,6 +21072,52 @@ page-mis-facturas .text-center {
   text-align: center;
 }
 
+page-mis-premios .toolbar-background-md {
+  background: #f7ef36;
+}
+
+page-mis-premios .text-center {
+  text-align: center;
+}
+
+page-mis-premios .gana {
+  max-width: 50%;
+}
+
+page-mis-premios .camara {
+  background-color: red;
+  border-radius: 25em;
+}
+
+page-mis-premios .letra12 {
+  font-size: 12px;
+}
+
+page-mis-premios .row {
+  margin-bottom: 20px;
+}
+
+page-mis-premios .opciones {
+  text-align: center;
+}
+
+page-mis-premios .diferencia {
+  color: blue;
+}
+
+page-mis-premios .imagenPremio {
+  max-height: 300px;
+}
+
+page-mis-premios .opcion {
+  background-color: white;
+  font-size: 20px;
+}
+
+page-mis-premios .swiper-pagination-bullet-active {
+  background: #f7ef36;
+}
+
 page-perfil .toolbar-background-md {
   background: #f7ef36;
 }

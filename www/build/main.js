@@ -1,4 +1,4 @@
-webpackJsonp([24],{
+webpackJsonp([25],{
 
 /***/ 163:
 /***/ (function(module, exports) {
@@ -23,98 +23,102 @@ webpackEmptyAsyncContext.id = 163;
 var map = {
 	"../pages/almacen-detalle/almacen-detalle.module": [
 		458,
-		23
+		24
 	],
 	"../pages/almacenes-lista/almacenes-lista.module": [
 		459,
-		22
+		23
 	],
 	"../pages/detalle-almacen/detalle-almacen.module": [
 		460,
-		21
+		22
 	],
 	"../pages/detalle-clientes/detalle-clientes.module": [
 		461,
-		20
+		21
 	],
 	"../pages/detalle-eventos/detalle-eventos.module": [
 		462,
-		19
+		20
 	],
 	"../pages/detalle-factura-cliente/detalle-factura-cliente.module": [
 		464,
-		18
+		19
 	],
 	"../pages/detalle-factura/detalle-factura.module": [
 		463,
-		17
+		18
 	],
 	"../pages/detalle-premios/detalle-premios.module": [
 		465,
-		16
+		17
 	],
 	"../pages/eventos/eventos.module": [
 		466,
-		15
+		16
 	],
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
 		467,
-		14
+		15
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
 		468,
-		13
+		14
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
 		469,
-		12
+		13
 	],
 	"../pages/home-admin/home-admin.module": [
 		470,
-		11
+		12
 	],
 	"../pages/home-cliente/home-cliente.module": [
 		471,
-		10
+		11
 	],
 	"../pages/lista-almacenes/lista-almacenes.module": [
 		472,
-		9
+		10
 	],
 	"../pages/lista-clientes/lista-clientes.module": [
 		473,
-		8
+		9
 	],
 	"../pages/lista-eventos/lista-eventos.module": [
 		474,
-		7
+		8
 	],
 	"../pages/lista-premios/lista-premios.module": [
 		475,
-		6
+		7
 	],
 	"../pages/login/login.module": [
 		457,
-		5
+		6
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
 		476,
+		5
+	],
+	"../pages/mis-premios/mis-premios.module": [
+		477,
 		4
 	],
 	"../pages/perfil/perfil.module": [
-		477,
+		478,
 		3
 	],
 	"../pages/premios/premios.module": [
-		478,
+		479,
 		2
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		479,
+		480,
 		1
 	],
 	"../pages/validar-facturas/validar-facturas.module": [
-		480,
+		481,
 		0
 	]
 };
@@ -273,7 +277,7 @@ var MyApp = (function () {
             _this.pages = [
                 { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
                 { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' },
-                { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio el componente
+                { title: 'Mis Premios', component: 'MisPremiosPage', icono: 'heart' } // pendiente de cambio el componente
             ];
             _this.pagesCentro = [
                 { title: 'Premios', component: 'PremiosPage', icono: 'heart-outline' },
@@ -339,15 +343,20 @@ var MyApp = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Nav */]),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Nav */]) === "function" && _a || Object)
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}\n\n      <br><button class="notifica" (click)="verNotificacion()"> <ion-icon name="mail"  item-start></ion-icon><p id="notifica">{{notificacion}}</p></button></p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar admin" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b><br>{{correo}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/'\n\n<ion-menu id="menu1" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar cliente" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b> - Puntos: {{puntos}}<br>{{correo}}\n\n      <br><button class="notifica" (click)="verNotificacion()"> <ion-icon name="mail"  item-start></ion-icon><p id="notifica">{{notificacion}}</p></button></p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name={{p.icono}}   item-start></ion-icon>{{p.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item *ngFor="let c of pagesCentro" (click)="openPage(c)">\n\n      <ion-icon name={{c.icono}}   item-start></ion-icon>{{c.title}}\n\n      <!-- Subir Facturas -->\n\n    </button>\n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<ion-menu id="menu2" [content]="content" padding> \n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title></ion-title>\n\n      <img class="avatar admin" src={{foto}}>\n\n       <p class="text-center"><b>{{nombre}}</b><br>{{correo}}</p>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let a of pagesAdmin" (click)="openPage(a)">\n\n        <ion-icon name={{a.icono}}   item-start></ion-icon>{{a.title}}\n\n        <!-- Subir Facturas -->\n\n      </button>\n\n   \n\n    <div class="separador"></div>\n\n    <button menuClose ion-item  (click)="salir()">\n\n      <ion-icon name="log-out"></ion-icon> Salir\n\n    </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\app\app.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */],
+        __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */],
+        __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__["a" /* AngularFireDatabase */]])
 ], MyApp);
 
-var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -568,6 +577,7 @@ AppModule = __decorate([
                     { loadChildren: '../pages/lista-eventos/lista-eventos.module#ListaEventosPageModule', name: 'ListaEventosPage', segment: 'lista-eventos', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/lista-premios/lista-premios.module#ListaPremiosPageModule', name: 'ListaPremiosPage', segment: 'lista-premios', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/mis-facturas/mis-facturas.module#MisFacturasPageModule', name: 'MisFacturasPage', segment: 'mis-facturas', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/mis-premios/mis-premios.module#MisPremiosPageModule', name: 'MisPremiosPage', segment: 'mis-premios', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/perfil/perfil.module#PerfilPageModule', name: 'PerfilPage', segment: 'perfil', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/premios/premios.module#PremiosPageModule', name: 'PremiosPage', segment: 'premios', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/subir-factura/subir-factura.module#SubirFacturaPageModule', name: 'SubirFacturaPage', segment: 'subir-factura', priority: 'low', defaultHistory: [] },

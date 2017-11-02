@@ -20,7 +20,7 @@
 
 
 <ion-content padding>
-    <ion-searchbar (ionInput)="getItems($event)" ></ion-searchbar>
+    <ion-searchbar (ionInput)="getItems($event)"  placeholder="Buscar" ></ion-searchbar>
     <!-- se deben listar en orden de posibilidad de canje -->
     <ion-list>
     <ion-card ion-item *ngFor="let evento of items let i = index">

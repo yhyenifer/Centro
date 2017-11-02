@@ -56,7 +56,7 @@ export class MyApp {
      
         { title: 'Subir Facturas', component: 'HomeClientePage', icono: 'document' },
         { title: 'Mis Facturas', component: 'MisFacturasPage', icono: 'basket' }, 
-        { title: 'Mis Premios', component: 'HomeClientePage', icono: 'heart' } // pendiente de cambio el componente
+        { title: 'Mis Premios', component: 'MisPremiosPage', icono: 'heart' } // pendiente de cambio el componente
        
         ];
       this.pagesCentro = [

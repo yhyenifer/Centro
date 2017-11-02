@@ -19,7 +19,7 @@
 
 
 <ion-content padding>
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="getItems($event)"  placeholder="Buscar"></ion-searchbar>
     <ion-list>
         <button ion-item  *ngFor="let almacen of items let i = index" (click)="mostrarAlmacen(almacen,almacen.$key)">
           <ion-icon name="home"></ion-icon> {{almacen.nombre}} 
