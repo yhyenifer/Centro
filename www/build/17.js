@@ -83,7 +83,7 @@ var DetalleEventosPage = (function () {
         this.ocultar1 = false;
         this.ocultar2 = false;
         this.eventos = {};
-        // this.infoEvento$ = this.database.list('eventos');
+        this.infoEvento$ = this.database.list('eventos');
         this.menu1Active();
         this.accion = navParams.get("accion");
         if (this.accion == 1) {

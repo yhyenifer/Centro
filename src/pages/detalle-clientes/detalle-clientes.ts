@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Cliente } from '../../app/models/cliente';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the DetalleClientesPage page.
@@ -17,21 +19,32 @@ import { Storage } from '@ionic/storage';
 })
 export class DetalleClientesPage {
  
+  cliente = {} as Cliente;
+  id : any;
+  infoCliente$: FirebaseListObservable<Cliente[]>;
   nombre : string;
-  apellido : string;
-  direccion: string;
-  notificacion: number;
-  puntos: number;
-  tipo: string;
-  estado: string;
+  nombresCliente : string;
+  apellidosCliente : string;
+  direccionCliente: string;
+  puntosCliente: number;
+  tipoCliente: string;
   foto: string;
   campos : string;
   selectedEstado : string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menu: MenuController,
+    private database: AngularFireDatabase,
     public storage: Storage,
     public alertCtrl : AlertController,) {
+      this.infoCliente$ = this.database.list('perfil');
       this.menu1Active();
+      this.cliente = navParams.get('cliente');
+      this.id = navParams.get('id');
+      this.nombresCliente = this.cliente.nombre;
+      this.apellidosCliente = this.cliente.apellido;
+      this.direccionCliente = this.cliente.direccion;
+      this.selectedEstado = this.cliente.estado;
+      this.foto = this.cliente.foto;
   }
 
   ionViewDidLoad() {
@@ -78,7 +91,12 @@ export class DetalleClientesPage {
               handler: () => {
                 console.log('si');
                //aqui va el codigo de modificar
+               this.infoCliente$.update( this.id, {
                 
+                  estado: this.selectedEstado, 
+                
+                                   
+                    });
                
                   //notificacion de accion realizada
                   let alert = this.alertCtrl.create({
@@ -88,7 +106,7 @@ export class DetalleClientesPage {
                       text: 'Aceptar',
                       role: 'Aceptar',
                       handler: () => {
-                        this.navCtrl.setRoot("ListaPremiosPage");
+                        this.navCtrl.setRoot("ListaClientesPage");
                     
                       } 
                     }

@@ -74,7 +74,12 @@ var ListaClientesPage = (function () {
         this.database = database;
         this.cliente = {};
         this.menu1Active();
-        this.clientes$ = this.database.list('perfil');
+        this.clientes$ = this.database.list('perfil', {
+            query: {
+                orderByChild: 'tipo',
+                equalTo: 'cliente'
+            }
+        });
         this.clientes = [];
     }
     ListaClientesPage.prototype.ionViewDidLoad = function () {
