@@ -75,6 +75,7 @@ var DetalleFacturaClientePage = (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.database = database;
+<<<<<<< HEAD
         this.firebaseService = firebaseService;
         this.valor = 0;
         this.puntos = 0;
@@ -87,6 +88,41 @@ var DetalleFacturaClientePage = (function () {
         var imageRef = storageRef.child(this.url);
         imageRef.getDownloadURL().then(function (url) {
             return _this.base64Image = url;
+=======
+        this.zone = zone;
+        this.storage = storage;
+        this.evento = {};
+        this.ocultar1 = false;
+        this.ocultar2 = false;
+        this.eventos = {};
+        this.infoEvento$ = this.database.list('eventos');
+        this.menu1Active();
+        this.accion = navParams.get("accion");
+        if (this.accion == 1) {
+            this.evento = navParams.get("evento");
+            this.id = navParams.get("id");
+            this.nombreEvento = this.evento.nombre;
+            this.descEvento = this.evento.descripcion;
+            this.fechaEvento = this.evento.fecha;
+            this.horaEvento = this.evento.hora;
+            this.selectedEstado = this.evento.estado;
+            this.url = "img/eventos/" + this.evento.nombre + "/" + this.evento.url;
+            var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
+            var imageRef = storageRef.child(this.url);
+            imageRef.getDownloadURL().then(function (url) {
+                return _this.eventoImagen = url;
+            });
+            this.ocultar2 = !this.ocultar2;
+        }
+        else {
+            this.ocultar1 = !this.ocultar1;
+        }
+    }
+    DetalleEventosPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.storage.get('nombre').then(function (data) {
+            _this.nombre = data;
+>>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
         });
         this.database.list('CentroComercial').subscribe(function (_data) {
             _this.politica = _data;

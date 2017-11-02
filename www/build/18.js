@@ -47,8 +47,11 @@ DetalleEventosPageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(87);
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
+=======
+>>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,13 +65,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
 /**
  * Generated class for the DetalleEventosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+<<<<<<< HEAD
 var DetalleEventosPage = (function () {
     function DetalleEventosPage(navCtrl, navParams, menu, alertCtrl, database, zone, storage) {
         var _this = this;
@@ -105,6 +112,26 @@ var DetalleEventosPage = (function () {
         else {
             this.ocultar1 = !this.ocultar1;
         }
+=======
+var DetalleClientesPage = (function () {
+    function DetalleClientesPage(navCtrl, navParams, menu, database, storage, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.menu = menu;
+        this.database = database;
+        this.storage = storage;
+        this.alertCtrl = alertCtrl;
+        this.cliente = {};
+        this.infoCliente$ = this.database.list('perfil');
+        this.menu1Active();
+        this.cliente = navParams.get('cliente');
+        this.id = navParams.get('id');
+        this.nombresCliente = this.cliente.nombre;
+        this.apellidosCliente = this.cliente.apellido;
+        this.direccionCliente = this.cliente.direccion;
+        this.selectedEstado = this.cliente.estado;
+        this.foto = this.cliente.foto;
+>>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
     }
     DetalleEventosPage.prototype.ionViewDidLoad = function () {
         var _this = this;
@@ -269,6 +296,7 @@ var DetalleEventosPage = (function () {
                         role: 'si',
                         handler: function () {
                             console.log('si');
+<<<<<<< HEAD
                             //aqui va el codigo para guardar el evento
                             var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
                             _this.url = _this.file.name;
@@ -283,6 +311,11 @@ var DetalleEventosPage = (function () {
                                 hora: _this.horaEvento,
                                 estado: _this.selectedEstado,
                                 url: _this.url
+=======
+                            //aqui va el codigo de modificar
+                            _this.infoCliente$.update(_this.id, {
+                                estado: _this.selectedEstado,
+>>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
                             });
                             //notificacion de accion realizada
                             var alert = _this.alertCtrl.create({
@@ -292,7 +325,11 @@ var DetalleEventosPage = (function () {
                                         text: 'Aceptar',
                                         role: 'Aceptar',
                                         handler: function () {
+<<<<<<< HEAD
                                             _this.navCtrl.setRoot("ListaEventosPage");
+=======
+                                            _this.navCtrl.setRoot("ListaClientesPage");
+>>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
                                         }
                                     }
                                 ]
@@ -344,6 +381,7 @@ var DetalleEventosPage = (function () {
 DetalleEventosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+<<<<<<< HEAD
         selector: 'page-detalle-eventos',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-eventos\detalle-eventos.html"*/'<!--\n\n  Generated template for the DetalleEventosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      <ion-title class="titulo">Evento</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    \n\n        <ion-row>\n\n            <ion-col>\n\n                <ion-item>\n\n                    <ion-label floating>*Nombre:</ion-label>\n\n                    <ion-input \n\n                      [(ngModel)]="nombreEvento" \n\n                      name="nombre" \n\n                      type="text" \n\n                      autocapitalize="off" \n\n                      required>\n\n                    </ion-input>\n\n                  </ion-item>\n\n            </ion-col> \n\n            <ion-col>\n\n                <ion-item class="label">\n\n                    <ion-label>*Fecha:</ion-label>\n\n                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="fechaEvento"></ion-datetime>                  </ion-item>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>\n\n                <ion-item>\n\n                        <ion-label floating>*Descripción:</ion-label>\n\n                        <ion-textarea\n\n                          [(ngModel)]="descEvento" \n\n                          name="descripcion" \n\n                          type="textArea" \n\n                          autocapitalize="off" \n\n                          class="area"\n\n                          >\n\n                        </ion-textarea>\n\n                      </ion-item>\n\n                   \n\n                      <br>\n\n                      <div class="divFoto">\n\n                     <ion-label >Foto: </ion-label>\n\n                     <input type="file" (change)="seleccionarFoto($event)"  accept=".jpg, .jpeg, .png" >\n\n                     <div class="preview">\n\n                       <img class="imgPremio" [src]="eventoImagen">\n\n                     </div>\n\n                    </div>   \n\n                   \n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label>*Hora:</ion-label>\n\n                <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="horaEvento"></ion-datetime>\n\n              </ion-item>\n\n                      \n\n                     \n\n                     <ion-item>\n\n                            <ion-label floating>*Estado:</ion-label>\n\n                            <ion-select [(ngModel)]="selectedEstado">\n\n                              <ion-option ><h2>Activo</h2></ion-option>\n\n                              <ion-option ><h2>Inactivo</h2></ion-option>\n\n                            </ion-select>\n\n                    </ion-item> \n\n                    <div class="text-center">\n\n                            <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>\n\n                            <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                            <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                            \n\n                    </div>\n\n        </ion-col> \n\n        </ion-row>\n\n  \n\n    \n\n    </ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-eventos\detalle-eventos.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
@@ -355,6 +393,15 @@ DetalleEventosPage = __decorate([
 ], DetalleEventosPage);
 
 //# sourceMappingURL=detalle-eventos.js.map
+=======
+        selector: 'page-detalle-clientes',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-clientes\detalle-clientes.html"*/'\n\n<!--\n\n  Generated template for the DetalleClientesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n      <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        \n\n    <ion-title class="titulo">Cliente</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  \n\n      <ion-row>\n\n          <ion-col>\n\n              <ion-item>\n\n                  <ion-label floating>Nombres:</ion-label>\n\n                  <ion-input disabled="true"\n\n                    [(ngModel)]="nombresCliente" \n\n                    name="nombre" \n\n                    type="text" \n\n                    autocapitalize="off" \n\n                    required>\n\n                  </ion-input>\n\n                </ion-item>\n\n          </ion-col> \n\n          <ion-col>\n\n              <ion-item>\n\n                  <ion-label floating>Correo Electrónico:</ion-label>\n\n                  <ion-input disabled="true"\n\n                    [(ngModel)]="correoCliente" \n\n                    name="correo" \n\n                    type="number" \n\n                    autocapitalize="off" \n\n                    required>\n\n                  </ion-input>\n\n                </ion-item>\n\n          </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n  \n\n              <ion-item>\n\n                      <ion-label floating>Apellidos:</ion-label>\n\n                      <ion-input disabled="true"\n\n                        [(ngModel)]="apellidosCliente" \n\n                        name="apellidos" \n\n                        type="text"  \n\n                        autocapitalize="off" \n\n                        \n\n                        >\n\n                      </ion-input>\n\n              </ion-item>\n\n              <ion-item>\n\n                <ion-label floating>Dirección:</ion-label>\n\n                <ion-input disabled="true"\n\n                  [(ngModel)]="direccionCliente" \n\n                  name="direccion" \n\n                  type="text"  \n\n                  autocapitalize="off">\n\n                </ion-input>\n\n             </ion-item>\n\n             <ion-item>\n\n              <ion-label floating>Teléfono:</ion-label>\n\n              <ion-input\n\n                [(ngModel)]="telefonoCliente" \n\n                name="telefono" \n\n                type="text"  \n\n                autocapitalize="off">\n\n              </ion-input>\n\n           </ion-item>\n\n                    <br>\n\n                    <div class="divFoto">\n\n                   <ion-label >Foto: </ion-label>\n\n                   <input type="file" disabled="true" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" >\n\n                   <div class="preview">\n\n                     <img class="imgPremio" [src]="foto">\n\n                   </div>\n\n                  </div>   \n\n                 \n\n      </ion-col> \n\n      <ion-col>\n\n              <ion-item>\n\n                      <ion-label floating>Puntos:</ion-label>\n\n                      <ion-input disabled="true"\n\n                        [(ngModel)]="puntos" \n\n                        name="puntos" \n\n                        type="number" \n\n                        autocapitalize="off" \n\n                        required>\n\n                      </ion-input>\n\n              </ion-item>\n\n                    \n\n                   \n\n                   <ion-item>\n\n                          <ion-label floating>*Estado:</ion-label>\n\n                          <ion-select [(ngModel)]="selectedEstado"\n\n                                      >\n\n                            <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->\n\n                            <ion-option ><h2>Activo</h2></ion-option>\n\n                            <ion-option ><h2>Inactivo</h2></ion-option>\n\n                          </ion-select>\n\n                  </ion-item> \n\n                  <div class="text-center">\n\n                      <button  class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                      <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                      \n\n                  </div>\n\n      </ion-col> \n\n      </ion-row>\n\n     \n\n  \n\n  </ion-content>\n\n  \n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-clientes\detalle-clientes.html"*/,
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object])
+], DetalleClientesPage);
+
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=detalle-clientes.js.map
+>>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
 
 /***/ })
 

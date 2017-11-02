@@ -72,8 +72,18 @@ var ListaEventosPage = (function () {
         this.database = database;
         this.evento = {};
         this.menu1Active();
+<<<<<<< HEAD
         this.eventos$ = this.database.list('eventos');
         this.eventos = [];
+=======
+        this.clientes$ = this.database.list('perfil', {
+            query: {
+                orderByChild: 'tipo',
+                equalTo: 'cliente'
+            }
+        });
+        this.clientes = [];
+>>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
     }
     ListaEventosPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');

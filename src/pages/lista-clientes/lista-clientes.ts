@@ -28,7 +28,12 @@ export class ListaClientesPage {
     public menu: MenuController,
     private database: AngularFireDatabase,) {
       this.menu1Active();
-      this.clientes$ = this.database.list('perfil');
+      this.clientes$ = this.database.list('perfil',{
+        query: {
+          orderByChild: 'tipo',
+          equalTo: 'cliente'
+        }
+      });
       this.clientes = []; 
      
   

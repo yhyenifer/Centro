@@ -42,7 +42,7 @@ export class DetalleEventosPage {
     private database: AngularFireDatabase,
     public zone: NgZone,
     public storage: Storage,) {
-     // this.infoEvento$ = this.database.list('eventos');
+      this.infoEvento$ = this.database.list('eventos');
     this.menu1Active();
     this.accion= navParams.get("accion");
     if(this.accion==1){ //opcion para cuando se va a modificar
