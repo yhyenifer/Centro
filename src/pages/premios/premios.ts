@@ -19,6 +19,7 @@ import firebase from 'firebase';
 })
 export class PremiosPage {
   premios: any[];
+  items: any[];
   imagenes: string[];
   premios$: FirebaseListObservable<Premio[]>;
   premio = {} as Premio;
@@ -32,6 +33,7 @@ export class PremiosPage {
     public storage: Storage) {
       this.menu1Active();
       this.premios$ = this.database.list('premio');
+      
       this.premios = [];
       this.database.list('premio').subscribe(data => {
 
@@ -40,6 +42,10 @@ export class PremiosPage {
         this.imagenes = Array(this.premios.length);
         for (var index = 0; index < this.premios.length; index++) {
           
+          this.premios[index].diferencia = Number(this.premios[index].valorPuntos) - Number(this.puntosCliente);
+          if(this.premios[index].diferencia<0){
+            this.premios[index].diferencia = 0;
+          }
           
           this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
           this.generarFotos(index);
@@ -59,10 +65,10 @@ export class PremiosPage {
     this.premios$ = this.database.list('premio');
     this.premios = [];
     this.database.list('premio').subscribe(data => {
-
       this.premios = data;
       this.imagenes = Array(this.premios.length);
       for (var index = 0; index < this.premios.length; index++) {
+        this.premios[index].diferencia = Number(this.premios[index].valorPuntos) - Number(this.puntosCliente);
         this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
         this.generarFotos(index);
 
@@ -77,12 +83,10 @@ export class PremiosPage {
 
   generarFotos(index){
     
-    //for (var index = 0; index < this.almacen.url.length; index++) {
       let storageRef = firebase.storage().ref();
       let imageRef = storageRef.child(this.imagenes[index]);
       imageRef.getDownloadURL().then(url =>{
         this.imagenes[index] = url;
-        // console.log("contador"+this.imagenes[index]);
       });
         
   
@@ -133,7 +137,30 @@ export class PremiosPage {
        }]
        });
        alert.present();
-}}
-  
-
 }
+}
+
+initializeItems() {
+  this.premios$=this.database.list('premio');
+}
+  
+  getItems(searchbar) {
+    // Reset items back to all of the items
+  this.initializeItems();
+  
+    // set q to the value of the searchbar
+    let q = searchbar.target.value;
+   if (q && q.trim()!= ''){
+    this.premios = this.premios.filter((item) => {
+        console.log("ye "+item.nombre.toLowerCase().indexOf(q.toLowerCase()) );
+        return (item.nombre.toLowerCase().indexOf(q.toLowerCase()) > -1);
+      
+    });
+  }
+}
+
+
+  }
+
+
+

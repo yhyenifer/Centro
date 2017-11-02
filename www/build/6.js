@@ -136,7 +136,6 @@ var ListaPremiosPage = (function () {
             _this.imagenes[index] = url;
             console.log("contador" + _this.imagenes[index]);
         });
-        //}
     };
     ListaPremiosPage.prototype.crearPremio = function () {
         this.navCtrl.setRoot('DetallePremiosPage', {

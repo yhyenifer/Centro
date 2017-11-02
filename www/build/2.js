@@ -89,6 +89,10 @@ var PremiosPage = (function () {
             // console.log(this.premios);
             _this.imagenes = Array(_this.premios.length);
             for (var index = 0; index < _this.premios.length; index++) {
+                _this.premios[index].diferencia = Number(_this.premios[index].valorPuntos) - Number(_this.puntosCliente);
+                if (_this.premios[index].diferencia < 0) {
+                    _this.premios[index].diferencia = 0;
+                }
                 _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
                 _this.generarFotos(index);
             }
@@ -108,6 +112,7 @@ var PremiosPage = (function () {
             _this.premios = data;
             _this.imagenes = Array(_this.premios.length);
             for (var index = 0; index < _this.premios.length; index++) {
+                _this.premios[index].diferencia = Number(_this.premios[index].valorPuntos) - Number(_this.puntosCliente);
                 _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
                 _this.generarFotos(index);
             }
@@ -119,12 +124,10 @@ var PremiosPage = (function () {
     };
     PremiosPage.prototype.generarFotos = function (index) {
         var _this = this;
-        //for (var index = 0; index < this.almacen.url.length; index++) {
         var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
         var imageRef = storageRef.child(this.imagenes[index]);
         imageRef.getDownloadURL().then(function (url) {
             _this.imagenes[index] = url;
-            // console.log("contador"+this.imagenes[index]);
         });
     };
     //validar que el cliente si tenga los puntos requeridos y validar que el premio si tenga cantidad dispobible
@@ -171,12 +174,27 @@ var PremiosPage = (function () {
             alert.present();
         }
     };
+    PremiosPage.prototype.initializeItems = function () {
+        this.premios$ = this.database.list('premio');
+    };
+    PremiosPage.prototype.getItems = function (searchbar) {
+        // Reset items back to all of the items
+        this.initializeItems();
+        // set q to the value of the searchbar
+        var q = searchbar.target.value;
+        if (q && q.trim() != '') {
+            this.premios = this.premios.filter(function (item) {
+                console.log("ye " + item.nombre.toLowerCase().indexOf(q.toLowerCase()));
+                return (item.nombre.toLowerCase().indexOf(q.toLowerCase()) > -1);
+            });
+        }
+    };
     return PremiosPage;
 }());
 PremiosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-premios',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/'<!--\n  Generated template for the PremiosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>\n          Premios\n        </ion-title>\n      </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-card ion-item *ngFor="let premio of premios$ | async; let i = index">\n        <img class="imagenPremio" [src]="imagenes[i]">\n        <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->\n        <ion-card-content>\n          <ion-card-title>\n            {{premio.nombre}}\n            </ion-card-title>\n          <p>\n            {{premio.descripcion}}\n          </p>\n        </ion-card-content>\n        <ion-row class="opciones">\n          <ion-col>\n          <button class="opcion puntos"><ion-icon name="star"></ion-icon><br>{{premio.valorPuntos}}</button>\n          </ion-col>\n          <ion-col>\n          <button class="opcion diferencia"><ion-icon name="star-outline"></ion-icon><br>{{puntosCliente}}</button>\n        </ion-col>\n        <ion-col>\n          <button class="opcion canjear" (click)="canjear(premio,premio.$key)"><ion-icon name="pricetags"></ion-icon><br>Canjear</button>\n        </ion-col>\n        </ion-row>\n      </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/,
+        selector: 'page-premios',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/'<!--\n  Generated template for the PremiosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n          <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>\n          Premios\n        </ion-title>\n      </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n    <!-- se deben listar en orden de posibilidad de canje -->\n    <ion-list>\n    <ion-card ion-item *ngFor="let premio of premios$ | async; let i = index">\n      <ion-item>\n        <img class="imagenPremio" [src]="imagenes[i]">\n        <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->\n        <ion-card-content>\n          <ion-card-title>\n            {{premio.nombre}}\n            </ion-card-title>\n          <p>\n            {{premio.descripcion}}\n          </p>\n        \n        <ion-row class="opciones">\n          <ion-col>\n          <button class="opcion puntos"><ion-icon name="star"></ion-icon><br>{{premio.valorPuntos}}</button>\n          </ion-col>\n          <ion-col>\n          <!-- <button class="opcion diferencia"><ion-icon name="star-outline"></ion-icon><br>{{premios[i].diferencia}}</button> -->\n        </ion-col>\n        <ion-col>\n          <button class="opcion canjear" (click)="canjear(premio,premio.$key)"><ion-icon name="pricetags"></ion-icon><br>Canjear</button>\n        </ion-col>\n        </ion-row>\n      </ion-card-content>\n        </ion-item>\n      </ion-card>\n    \n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/,
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _f || Object])
 ], PremiosPage);

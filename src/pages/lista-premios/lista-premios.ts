@@ -62,6 +62,7 @@ export class ListaPremiosPage {
   }
 
   ionViewDidLoad() {
+    
     this.premios$ = this.database.list('premio');
     this.premios = [];
     this.database.list('premio').subscribe(data => {
@@ -70,8 +71,6 @@ export class ListaPremiosPage {
       console.log(this.premios);
       this.imagenes = Array(this.premios.length);
       for (var index = 0; index < this.premios.length; index++) {
-        
-        
         this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
         this.generarFotos(index);
 
@@ -103,7 +102,7 @@ export class ListaPremiosPage {
         console.log("contador"+this.imagenes[index]);
       });
         
-    //}
+  
   }
   
 
