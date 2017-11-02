@@ -62,7 +62,7 @@ export class MyApp {
       this.pagesCentro = [
         { title: 'Premios', component: 'PremiosPage', icono: 'heart-outline' }, // pendiente de cambio  el componente
         { title: 'Almacenes', component: 'AlmacenesListaPage', icono: 'cart' }, // pendiente de cambio  el componente
-        { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
+        { title: 'Eventos', component: 'EventosPage', icono: 'calendar' } // pendiente de cambio  el componente
       ]  
       this.pagesAdmin = [
         { title: 'Validar Facturas', component: 'FacturasPendientesPage', icono: 'checkbox-outline' },

@@ -29,6 +29,8 @@ export class DetalleClientesPage {
   puntosCliente: number;
   tipoCliente: string;
   foto: string;
+  correoCliente: string;
+  telefonoCliente: string;
   campos : string;
   selectedEstado : string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -43,6 +45,9 @@ export class DetalleClientesPage {
       this.nombresCliente = this.cliente.nombre;
       this.apellidosCliente = this.cliente.apellido;
       this.direccionCliente = this.cliente.direccion;
+      this.puntosCliente= this.cliente.puntos;
+      this.correoCliente = this.cliente.correo;
+      this.telefonoCliente= this.cliente.telefono;
       this.selectedEstado = this.cliente.estado;
       this.foto = this.cliente.foto;
   }
@@ -51,6 +56,7 @@ export class DetalleClientesPage {
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
      });
+     
    
   }
 
@@ -127,7 +133,35 @@ export class DetalleClientesPage {
          });
          alert.present();
   }}
+   
+  cancelar(){
     
+        let alert = this.alertCtrl.create({
+          title: 'Confirmación',
+          subTitle: "¿"+ this.nombre +" está seguro que desea salir sin Guardar?",
+          buttons:[
+            {
+              text: 'Si',
+              role: 'si',
+              handler: () => {
+               
+               
+                this.selectedEstado=null;
+                this.navCtrl.setRoot("ListaClientesPage");
+            
+              } 
+             },
+          {
+            text: 'No',
+            role: 'no',
+            handler: () => {
+              
+            }
+          }]
+          });
+          alert.present();
+      }
+  
 
   
 }

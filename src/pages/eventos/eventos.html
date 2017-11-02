@@ -6,13 +6,43 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>eventos</ion-title>
-  </ion-navbar>
+  
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+          Eventos
+        </ion-title>
+      </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <!-- se deben listar en orden de posibilidad de canje -->
+    <ion-list>
+    <ion-card ion-item *ngFor="let evento of items let i = index">
+      <ion-item>
+        <img  [src]="imagenes[i]">
+        <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->
+        <ion-card-content>
+       <p><b>
+            {{evento.nombre}}
+          </b>
+          </p>
+          <p>
+            {{evento.descripcion}}
+          </p><br>
+          <p class="rojo">
+              {{evento.fecha}}  {{evento.hora}}
+            </p>
+      </ion-card-content>
+        </ion-item>
+      </ion-card>
+    
+    </ion-list>
+
 
 </ion-content>
