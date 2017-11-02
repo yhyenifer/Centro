@@ -4,6 +4,7 @@ import { AlertController, IonicPage, MenuController, NavController, NavParams } 
 import { Storage } from '@ionic/storage';
 import { Premio } from '../../app/models/premio';
 import firebase from 'firebase';
+import { Cliente } from '../../app/models/cliente';
 
 /**
  * Generated class for the PremiosPage page.
@@ -18,11 +19,16 @@ import firebase from 'firebase';
   templateUrl: 'premios.html',
 })
 export class PremiosPage {
+  
+  firebaseService: any;
   premios: any[];
   items: Array<any>;
   loadItems: Array<any>;
   imagenes: string[];
   premios$: FirebaseListObservable<Premio[]>;
+  premiosCanjeados$: FirebaseListObservable<any[]>;
+  usuarios$: FirebaseListObservable<Cliente[]>;
+  usuario : any;
   premio = {} as Premio;
   puntosCliente: number =0;
   diferencia: number =0;
@@ -33,12 +39,24 @@ export class PremiosPage {
     private database: AngularFireDatabase,
     public storage: Storage) {
       this.menu1Active();
-      this.premios$ = this.database.list('premio');
+      this.usuarios$ = this.database.list('perfil');
       
+      this.premios$ = this.database.list('premio',{
+        query: {
+          orderByChild: 'estado',
+          equalTo: 'Activo'
+        }
+      });
+      this.premiosCanjeados$ = this.database.list('premioCanjeado');
       this.premios = [];
-      
+        
 
-      this.database.list('premio').subscribe(data => {
+      this.database.list('premio',{
+        query: {
+          orderByChild: 'estado',
+          equalTo: 'Activo'
+        }
+      }).subscribe(data => {
 
         this.premios = data;
         // console.log(this.premios);
@@ -52,10 +70,12 @@ export class PremiosPage {
           
           this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
           this.generarFotos(index);
-  
+          this.premios[index].imagen = this.imagenes[index];
         }
         //
+
       this.items=this.premios;
+      console.log(this.premio.imagen);
       this.loadItems=this.premios;
       });
   }
@@ -68,11 +88,21 @@ export class PremiosPage {
       this.puntosCliente=data;
      });
     
-    this.premios$ = this.database.list('premio');
+    this.premios$ = this.database.list('premio',{
+      query: {
+        orderByChild: 'estado',
+        equalTo: 'Activo'
+      }
+    });
     this.premios = [];
     
 
-    this.database.list('premio').subscribe(data => {
+    this.database.list('premio',{
+      query: {
+        orderByChild: 'estado',
+        equalTo: 'Activo'
+      }
+    }).subscribe(data => {
       this.premios = data;
       this.imagenes = Array(this.premios.length);
       for (var index = 0; index < this.premios.length; index++) {
@@ -95,6 +125,7 @@ export class PremiosPage {
       let imageRef = storageRef.child(this.imagenes[index]);
       imageRef.getDownloadURL().then(url =>{
         this.imagenes[index] = url;
+        this.premios[index].imagen = url;
       });
         
   
@@ -104,6 +135,12 @@ export class PremiosPage {
     return true;
   }
   canjear(premio,premio_key){
+    var uid;
+    this.storage.get('uid').then((data)=>{
+      uid=data;
+     });
+
+
     if(this.validarDatos()==true){
       let alert = this.alertCtrl.create({
         title: 'Confirmación',
@@ -115,8 +152,29 @@ export class PremiosPage {
             handler: () => {
               // console.log('si');
              //aqui va el codigo de canjear
-              
+             if (premio.cantidad - 1 == 0){
+              this.premios$.update(premio_key,{
+                cantidad: premio.cantidad-1,
+                estado: 'Inactivo'
+             })
+             }else{
+              this.premios$.update(premio_key,{
+                cantidad: premio.cantidad-1,
+             })
+             }
              
+              this.premiosCanjeados$.push({
+                nombre: premio.nombre,
+                descripcion: premio.descripcion,
+                valorPuntos: premio.valorPuntos,
+                usuario: uid
+
+              })
+             
+              console.log("puntos "+premio.valorPuntos);
+              this.usuarios$.update(uid,{
+                  puntos: Number(this.puntosCliente) - Number(premio.valorPuntos)
+              })
                 //notificacion de accion realizada
                 let alert = this.alertCtrl.create({
                   title: 'Notifiación',

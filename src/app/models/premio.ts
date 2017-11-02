@@ -6,4 +6,6 @@ export interface Premio{
     estado: string;
     url: string;
     diferencia: number;
+    imagen: string;
+    
 }

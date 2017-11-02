@@ -24,7 +24,7 @@
     <ion-list>
     <ion-card ion-item *ngFor="let premio of items let i = index">
       <ion-item>
-        <img class="imagenPremio" [src]="imagenes[i]">
+        <img class="imagenPremio" [src]="premio.imagen">
         <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->
         <ion-card-content>
           <ion-card-title>
@@ -39,7 +39,7 @@
           <button class="opcion puntos"><ion-icon name="star"></ion-icon><br>{{premio.valorPuntos}}</button>
           </ion-col>
           <ion-col>
-          <!-- <button class="opcion diferencia"><ion-icon name="star-outline"></ion-icon><br>{{premios[i].diferencia}}</button> -->
+          <button class="opcion diferencia"><ion-icon name="star-outline"></ion-icon><br>{{premio.diferencia}}</button>
         </ion-col>
         <ion-col>
           <button class="opcion canjear" (click)="canjear(premio,premio.$key)"><ion-icon name="pricetags"></ion-icon><br>Canjear</button>

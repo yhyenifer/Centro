@@ -62,7 +62,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
  * Generated class for the DetalleEventosPage page.
  *
