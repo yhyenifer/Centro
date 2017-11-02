@@ -1,6 +1,6 @@
 webpackJsonp([7],{
 
-/***/ 471:
+/***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaEventosPageModule", function() { return ListaEventosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_eventos__ = __webpack_require__(492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_eventos__ = __webpack_require__(498);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ ListaEventosPageModule = __decorate([
 
 /***/ }),
 
-/***/ 492:
+/***/ 498:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72,18 +72,8 @@ var ListaEventosPage = (function () {
         this.database = database;
         this.evento = {};
         this.menu1Active();
-<<<<<<< HEAD
         this.eventos$ = this.database.list('eventos');
         this.eventos = [];
-=======
-        this.clientes$ = this.database.list('perfil', {
-            query: {
-                orderByChild: 'tipo',
-                equalTo: 'cliente'
-            }
-        });
-        this.clientes = [];
->>>>>>> 30eec77d635c7833485dc094dee3648550cd7b34
     }
     ListaEventosPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');

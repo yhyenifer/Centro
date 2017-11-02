@@ -61,7 +61,7 @@ export class MyApp {
         ];
       this.pagesCentro = [
         { title: 'Premios', component: 'PremiosPage', icono: 'heart-outline' }, // pendiente de cambio  el componente
-        { title: 'Almacenes', component: 'HomeClientePage', icono: 'cart' }, // pendiente de cambio  el componente
+        { title: 'Almacenes', component: 'AlmacenesListaPage', icono: 'cart' }, // pendiente de cambio  el componente
         { title: 'Eventos', component: 'HomeClientePage', icono: 'calendar' } // pendiente de cambio  el componente
       ]  
       this.pagesAdmin = [
@@ -69,7 +69,7 @@ export class MyApp {
         { title: 'Administrar Premios', component: 'ListaPremiosPage', icono: 'add-circle' }, // pendiente de cambio  el componente
         { title: 'Administrar Almacenes', component: 'ListaAlmacenesPage', icono: 'cart' }, // pendiente de cambio  el componente
         { title: 'Administrar Eventos', component: 'ListaEventosPage', icono: 'calendar' }, // pendiente de cambio  el componente
-        { title: 'Administrar Clientes', component: 'HomeAdminPage', icono: 'contacts' }, // pendiente de cambio  el componente        
+        { title: 'Administrar Clientes', component: 'ListaClientesPage', icono: 'contacts' }, // pendiente de cambio  el componente        
         { title: 'Generar Reportes', component: 'HomeAdminPage', icono: 'clipboard' } // pendiente de cambio  el componente
       ]
     });

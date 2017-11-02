@@ -19940,6 +19940,106 @@ ion-navbar.toolbar {
   margin-left: 1em;
 }
 
+page-almacen-detalle .toolbar-background-md {
+  background: #f7ef36;
+}
+
+page-almacen-detalle .text-center {
+  text-align: center;
+}
+
+page-almacen-detalle .gana {
+  max-width: 50%;
+}
+
+page-almacen-detalle .camara {
+  background-color: red;
+  border-radius: 25em;
+}
+
+page-almacen-detalle .letra12 {
+  font-size: 12px;
+}
+
+page-almacen-detalle .row {
+  margin-bottom: 20px;
+}
+
+page-almacen-detalle .opciones {
+  text-align: center;
+}
+
+page-almacen-detalle .derecha {
+  text-align: right;
+}
+
+page-almacen-detalle .centro {
+  text-align: center;
+}
+
+page-almacen-detalle .tiulo {
+  font-size: 20px;
+}
+
+page-almacen-detalle .opcion {
+  background-color: white;
+  font-size: 16px;
+}
+
+page-almacen-detalle .rojo {
+  color: red;
+}
+
+page-almacen-detalle .swiper-pagination-bullet-active {
+  background: #f7ef36;
+}
+
+page-almacenes-lista .toolbar-background-md {
+  background: #f7ef36;
+}
+
+page-almacenes-lista .text-center {
+  text-align: center;
+}
+
+page-almacenes-lista .gana {
+  max-width: 50%;
+}
+
+page-almacenes-lista .camara {
+  background-color: red;
+  border-radius: 25em;
+}
+
+page-almacenes-lista .letra12 {
+  font-size: 12px;
+}
+
+page-almacenes-lista .row {
+  margin-bottom: 20px;
+}
+
+page-almacenes-lista .opciones {
+  text-align: center;
+}
+
+page-almacenes-lista .diferencia {
+  color: blue;
+}
+
+page-almacenes-lista .imagenPremio {
+  max-height: 300px;
+}
+
+page-almacenes-lista .opcion {
+  background-color: white;
+  font-size: 20px;
+}
+
+page-almacenes-lista .swiper-pagination-bullet-active {
+  background: #f7ef36;
+}
+
 page-detalle-almacen .toolbar-title-md {
   color: white;
 }

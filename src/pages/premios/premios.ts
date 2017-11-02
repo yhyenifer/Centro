@@ -70,8 +70,7 @@ export class PremiosPage {
     
     this.premios$ = this.database.list('premio');
     this.premios = [];
-    //
-    this.items=this.premios;
+    
 
     this.database.list('premio').subscribe(data => {
       this.premios = data;
@@ -83,7 +82,7 @@ export class PremiosPage {
 
       }
     });
-    
+    this.initializeItems();
   }
   menu1Active() {
     this.menu.enable(true, 'menu1');

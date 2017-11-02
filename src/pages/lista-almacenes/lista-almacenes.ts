@@ -25,6 +25,7 @@ export class ListaAlmacenesPage {
     this.menu1Active();
     this.almacenes$ = this.database.list('Almacen');
   }
+  
 
   ionViewDidLoad() {
     this.almacenes$ = this.database.list('Almacen');
@@ -43,7 +44,7 @@ export class ListaAlmacenesPage {
   }
 
   crearAlmacen(){
-    this.navCtrl.setRoot('DetalleAlmacenPage',{
+    this.navCtrl.setRoot('AlmaenDetallePage',{
      
       accion: 2
     });
