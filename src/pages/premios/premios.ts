@@ -19,7 +19,8 @@ import firebase from 'firebase';
 })
 export class PremiosPage {
   premios: any[];
-  items: any[];
+  items: Array<any>;
+  loadItems: Array<any>;
   imagenes: string[];
   premios$: FirebaseListObservable<Premio[]>;
   premio = {} as Premio;
@@ -35,6 +36,8 @@ export class PremiosPage {
       this.premios$ = this.database.list('premio');
       
       this.premios = [];
+      
+
       this.database.list('premio').subscribe(data => {
 
         this.premios = data;
@@ -51,6 +54,9 @@ export class PremiosPage {
           this.generarFotos(index);
   
         }
+        //
+      this.items=this.premios;
+      this.loadItems=this.premios;
       });
   }
 
@@ -64,6 +70,9 @@ export class PremiosPage {
     
     this.premios$ = this.database.list('premio');
     this.premios = [];
+    //
+    this.items=this.premios;
+
     this.database.list('premio').subscribe(data => {
       this.premios = data;
       this.imagenes = Array(this.premios.length);
@@ -141,7 +150,7 @@ export class PremiosPage {
 }
 
 initializeItems() {
-  this.premios$=this.database.list('premio');
+ this.items=this.loadItems;
 }
   
   getItems(searchbar) {
@@ -151,11 +160,12 @@ initializeItems() {
     // set q to the value of the searchbar
     let q = searchbar.target.value;
    if (q && q.trim()!= ''){
-    this.premios = this.premios.filter((item) => {
-        console.log("ye "+item.nombre.toLowerCase().indexOf(q.toLowerCase()) );
+    this.items = this.items.filter((item) => {
         return (item.nombre.toLowerCase().indexOf(q.toLowerCase()) > -1);
       
     });
+    
+    console.log("f "+q, this.items.length);
   }
 }
 

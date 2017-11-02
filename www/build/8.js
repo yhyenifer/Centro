@@ -72,12 +72,19 @@ var ListaClientesPage = (function () {
         this.navParams = navParams;
         this.menu = menu;
         this.database = database;
+        this.cliente = {};
         this.menu1Active();
+        this.clientes$ = this.database.list('perfil');
+        this.clientes = [];
     }
     ListaClientesPage.prototype.ionViewDidLoad = function () {
     };
-    ListaClientesPage.prototype.mostrar = function () {
-        this.navCtrl.setRoot('DetalleClientesPage');
+    ListaClientesPage.prototype.mostrarCliente = function (cliente, clienteId) {
+        this.navCtrl.setRoot('DetalleClientesPage', {
+            cliente: cliente,
+            id: clienteId,
+            accion: 1
+        });
     };
     ListaClientesPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
@@ -85,17 +92,10 @@ var ListaClientesPage = (function () {
     };
     return ListaClientesPage;
 }());
-<<<<<<< HEAD
-ListaAlmacenesPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-lista-almacenes',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\lista-almacenes\lista-almacenes.html"*/'<!--\n\n  Generated template for the ListaAlmacenesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n      <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-row>\n\n            <ion-col>\n\n              <ion-title class="titulo">Almacenes</ion-title>\n\n \n\n             </ion-col>\n\n            <ion-col>\n\n              <div class="izq" >\n\n               <button id="new" (click)="crearAlmacen()" ><b>Crear Nuevo Almacén <ion-icon name="add"></ion-icon></b></button>\n\n              </div>\n\n            </ion-col>\n\n        </ion-row>\n\n</ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    \n\n    <ion-row>\n\n        <ion-col>\n\n            <!-- se deben mostrar los almacenes en orden alfabetico-->\n\n            <ion-list>\n\n                <button ion-item  *ngFor="let almacen of almacenes$ | async; let i = index" (click)="mostrarAlmacen(almacen,almacen.$key)">\n\n                  <ion-icon name="home"></ion-icon> {{almacen.nombre}} \n\n                 </button>      \n\n                </ion-list>\n\n             \n\n        \n\n          </ion-col>\n\n          <ion-col>\n\n              <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Falmacenes_mega.png?alt=media&token=0364831f-6e19-4ca1-aa21-b9b8fc2d4107">      \n\n          </ion-col>\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\lista-almacenes\lista-almacenes.html"*/,
-=======
 ListaClientesPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-lista-clientes',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\lista-clientes\lista-clientes.html"*/'<!--\n\n  Generated template for the ListaClientesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n          <ion-row>\n\n              <ion-col>\n\n                <ion-title class="titulo">Clientes</ion-title>\n\n                  <!-- <button (click)="mostrar()"> prueba</button> -->\n\n               </ion-col>\n\n            \n\n          </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-row>\n\n        <ion-col>\n\n            <!-- se deben mostrar los clientes en orden alfabetico  OJO solo Clientes-->\n\n            <ion-list>\n\n              <ion-item>\n\n                <button ion-item *ngFor="let cliente of clientes$ | async; let i = index"  (click)="mostrarCliente(cliente,cliente.$key)">\n\n                  <ion-avatar item-start> \n\n                  <img [src]="imagenes[i]">\n\n                  </ion-avatar> \n\n                  <h2>{{cliente.nombre}} </h2>\n\n                 </button> \n\n                </ion-item>     \n\n                </ion-list>\n\n            </ion-col>\n\n          <ion-col>\n\n              <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fclientes%20megacity.png?alt=media&token=771cb816-5363-4409-9b3a-be60f6d90168">      \n\n          </ion-col>\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\lista-clientes\lista-clientes.html"*/,
->>>>>>> ec8145499cc36a22e34ed55a1b11a22aeed9beb2
+        selector: 'page-lista-clientes',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\lista-clientes\lista-clientes.html"*/'<!--\n\n  Generated template for the ListaClientesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n          <ion-row>\n\n              <ion-col>\n\n                <ion-title class="titulo">Clientes</ion-title>\n\n                  <!-- <button (click)="mostrar()"> prueba</button> -->\n\n               </ion-col>\n\n            \n\n          </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-row>\n\n        <ion-col>\n\n            <!-- se deben mostrar los clientes en orden alfabetico  OJO solo Clientes-->\n\n            <ion-list>\n\n              <ion-item>\n\n                <button ion-item *ngFor="let cliente of clientes$ | async; let i = index"  (click)="mostrarCliente(cliente,cliente.$key)">\n\n                  <ion-avatar item-start> \n\n                  <img [src]="cliente.foto">\n\n                  </ion-avatar> \n\n                  <h2>{{cliente.nombre}} </h2>\n\n                 </button> \n\n                </ion-item>\n\n                </ion-list>\n\n            </ion-col>\n\n          <ion-col>\n\n              <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fclientes%20megacity.png?alt=media&token=771cb816-5363-4409-9b3a-be60f6d90168">      \n\n          </ion-col>\n\n    </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\lista-clientes\lista-clientes.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
