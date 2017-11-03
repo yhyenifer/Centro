@@ -20757,7 +20757,8 @@ page-home-cliente .camara {
 }
 
 page-home-cliente .letra12 {
-  font-size: 12px;
+  font-size: 15px;
+  margin-right: 50px;
 }
 
 page-home-cliente .row {
@@ -20770,6 +20771,8 @@ page-home-cliente .swiper-pagination-bullet-active {
 
 page-home-cliente .logoEvento {
   margin-bottom: 10px;
+  border-radius: 5%;
+  width: 100px;
 }
 
 page-home-cliente .divFoto {
@@ -21123,8 +21126,21 @@ page-mis-premios .opcion {
   font-size: 20px;
 }
 
+page-mis-premios .desc {
+  overflow: scroll;
+}
+
 page-mis-premios .swiper-pagination-bullet-active {
   background: #f7ef36;
+}
+
+@media (min-width: 767px) {
+  page-mis-premios .ancho {
+    max-width: 1080px;
+  }
+  page-mis-premios .imagenPremio {
+    max-width: 500px;
+  }
 }
 
 page-perfil .toolbar-background-md {

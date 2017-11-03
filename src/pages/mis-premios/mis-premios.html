@@ -21,7 +21,7 @@
 <ion-content padding>
     <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
     <!-- se deben listar en orden de posibilidad de canje -->
-    <ion-list>
+    <ion-list class="ancho">
     <ion-card ion-item *ngFor="let premio of items let i = index">
       <ion-item>
         <!-- <img class="imagenPremio" [src]="premio.imagen"> -->
@@ -30,7 +30,7 @@
           <ion-card-title>
             {{premio.nombre}}
             </ion-card-title>
-          <p>
+          <p  class="desc">
             {{premio.descripcion}}
           </p>
         
