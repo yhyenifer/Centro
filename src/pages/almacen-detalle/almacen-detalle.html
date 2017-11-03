@@ -21,12 +21,9 @@
 <ion-content padding>
     <ion-card >
         <ion-item>
-          <ion-slides pager  autoplay="2000" loop="false" speed="1000">
-            <!-- aqui van las fotos del almacen-->
+          <ion-slides pager  autoplay="2000"  speed="1000" effect="cube">
               <ion-slide *ngFor="let url of almacen.url  let i = index">
                    <img [src]="urls[i]"/>
-                    
-                           <!-- [src]="imagenes[i]"> -->
               </ion-slide> 
             </ion-slides>              
           <ion-card-content>

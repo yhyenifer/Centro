@@ -171,7 +171,6 @@ export class PremiosPage {
 
               })
              
-              console.log("puntos "+premio.valorPuntos);
               this.usuarios$.update(uid,{
                   puntos: Number(this.puntosCliente) - Number(premio.valorPuntos)
               })

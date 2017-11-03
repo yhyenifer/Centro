@@ -106,6 +106,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
  */
 var HomeClientePage = (function () {
     function HomeClientePage(camera, navCtrl, navParams, database, alertCtrl, menu, zone) {
+        var _this = this;
         this.camera = camera;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -114,6 +115,7 @@ var HomeClientePage = (function () {
         this.zone = zone;
         this.firestore = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref('/pushtokens');
         this.firemsg = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref('/messages');
+        this.evento = {};
         this.options1 = {
             quality: 25,
             destinationType: this.camera.DestinationType.DATA_URL,
@@ -133,7 +135,33 @@ var HomeClientePage = (function () {
         this.infoFactura$ = this.database.list('factura');
         this.alertCtrl = alertCtrl;
         this.uid = navParams.get("uid");
+        this.eventos$ = this.database.list('eventos');
+        this.eventos = [];
+        this.nombreEvento = [];
+        this.database.list('eventos').subscribe(function (data) {
+            _this.eventos = data;
+            _this.eventos.sort(function (a, b) {
+                a = new Date(a.fecha);
+                b = new Date(b.fecha);
+                return (a < b ? -1 : a > b ? 1 : 0);
+            });
+            _this.imagenes = Array(_this.eventos.length);
+            for (var index = 0; index <= 2; index++) {
+                _this.nombreEvento[index] = _this.eventos[index].nombre;
+                _this.imagenes[index] = "img/eventos/" + _this.eventos[index].nombre + "/" + _this.eventos[index].url;
+                _this.generarFotos(index);
+            }
+        });
     }
+    HomeClientePage.prototype.generarFotos = function (index) {
+        var _this = this;
+        var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
+        var imageRef = storageRef.child(this.imagenes[index]);
+        imageRef.getDownloadURL().then(function (url) {
+            _this.imagenes[index] = url;
+            _this.eventos[index].imagen = url;
+        });
+    };
     HomeClientePage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu1');
         this.menu.enable(false, 'menu2');
@@ -218,17 +246,12 @@ var HomeClientePage = (function () {
 HomeClientePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home-cliente',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-cliente\home-cliente.html"*/'<!--\n\n  Generated template for the HomeClientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Menú\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n     \n\n  <div class="text-center"> \n\n  <h4 class="text-center">Súbe aquí tú factura para que acumules puntos y redimas por grandes premios.</h4>\n\n  <img class="gana" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fgana.png?alt=media&token=c6d87ebf-ca83-40a6-a5e6-a54e0dba188f">\n\n  <p class="mobile">Tómale una foto a tú factura</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="tomarFoto()">\n\n    <ion-icon name="camera"></ion-icon>\n\n  </button>\n\n  <p class="mobile">O súbela desde tus imágenes</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="sacarFoto()" >\n\n      <ion-icon name="image"></ion-icon>\n\n  </button>\n\n  <div class="divFoto">\n\n    <ion-label >Seleccione la foto de tú Factura: </ion-label>\n\n    <input type="file" (change)="seleccionar($event)"  accept=".jpg, .jpeg, .png"  >\n\n   \n\n    \n\n   </div>\n\n\n\n  </div>\n\n  <div class="slide_eventos">\n\n    \n\n      <ion-slides pager  autoplay="2000" loop="true" speed="1000">\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento1</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">Descripción del evento2</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n          \n\n            <ion-slide >\n\n                <ion-row>\n\n                  <ion-col>\n\n                    <img class="logoEvento" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fevento.png?alt=media&token=46c3512d-f96a-48e3-88c7-72c3bcee1ea7">\n\n                  </ion-col> \n\n                  <ion-col>\n\n                   <p class="letra12">Descripción del evento3</p>\n\n                  </ion-col>   \n\n                  </ion-row>\n\n            </ion-slide>\n\n          \n\n          </ion-slides>\n\n        \n\n  </div> \n\n\n\n \n\n  \n\n  \n\n  </ion-content>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-cliente\home-cliente.html"*/,
+        selector: 'page-home-cliente',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-cliente\home-cliente.html"*/'<!--\n\n  Generated template for the HomeClientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n    <ion-navbar>\n\n      <button ion-button menuToggle>\n\n        <ion-icon name="menu"></ion-icon>\n\n      </button>\n\n      <ion-title>\n\n        Menú\n\n      </ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n     \n\n  <div class="text-center"> \n\n  <h4 class="text-center">Súbe aquí tú factura para que acumules puntos y redimas por grandes premios.</h4>\n\n  <img class="gana" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fgana.png?alt=media&token=c6d87ebf-ca83-40a6-a5e6-a54e0dba188f">\n\n  <p class="mobile">Tómale una foto a tú factura</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="tomarFoto()">\n\n    <ion-icon name="camera"></ion-icon>\n\n  </button>\n\n  <p class="mobile">O súbela desde tus imágenes</p>\n\n  <button ion-button icon-only class="camara mobile" (click)="sacarFoto()" >\n\n      <ion-icon name="image"></ion-icon>\n\n  </button>\n\n  <div class="divFoto">\n\n    <ion-label >Seleccione la foto de tú Factura: </ion-label>\n\n    <input type="file" (change)="seleccionar($event)"  accept=".jpg, .jpeg, .png"  >\n\n   \n\n    \n\n   </div>\n\n\n\n  </div>\n\n  <div class="slide_eventos">\n\n    \n\n      <ion-slides pager   speed="1000" >\n\n          <ion-slide  *ngFor="let evento of nombreEvento let i = index ">\n\n                <ion-row>\n\n                    <ion-col>\n\n                      <img class="logoEvento" [src]="imagenes[i]">\n\n                    </ion-col> \n\n                    <ion-col>\n\n                      <p class="letra12">{{evento}}</p>\n\n                    </ion-col>   \n\n                    </ion-row>\n\n            </ion-slide>\n\n                    \n\n          </ion-slides>\n\n  </div> \n\n\n\n \n\n  \n\n  \n\n  </ion-content>'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\home-cliente\home-cliente.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */]) === "function" && _g || Object])
 ], HomeClientePage);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=home-cliente.js.map
 
 /***/ })

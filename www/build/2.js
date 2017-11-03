@@ -173,13 +173,8 @@ var PremiosPage = (function () {
         this.storage.get('uid').then(function (data) {
             uid = data;
         });
-<<<<<<< HEAD
         if (this.validarDatos(premio) == true) {
             var alert_3 = this.alertCtrl.create({
-=======
-        if (this.validarDatos() == true) {
-            var alert_1 = this.alertCtrl.create({
->>>>>>> 6c2f7f0d5236b72950229d9eba5a1822666095a1
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de Canjear éste Premio?",
                 buttons: [
@@ -206,7 +201,6 @@ var PremiosPage = (function () {
                                 valorPuntos: premio.valorPuntos,
                                 usuario: uid
                             });
-                            console.log("puntos " + premio.valorPuntos);
                             _this.usuarios$.update(uid, {
                                 puntos: Number(_this.puntosCliente) - Number(premio.valorPuntos)
                             });
@@ -234,11 +228,7 @@ var PremiosPage = (function () {
                     }
                 ]
             });
-<<<<<<< HEAD
             alert_3.present();
-=======
-            alert_1.present();
->>>>>>> 6c2f7f0d5236b72950229d9eba5a1822666095a1
         }
     };
     PremiosPage.prototype.initializeItems = function () {
