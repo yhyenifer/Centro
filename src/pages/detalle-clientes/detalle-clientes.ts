@@ -49,7 +49,7 @@ export class DetalleClientesPage {
       this.apellidosCliente = this.cliente.apellido;
       this.direccionCliente = this.cliente.direccion;
       this.puntosCliente= this.cliente.puntos;
-      this.correoCliente = this.cliente.correo;
+      this.correoCliente = this.cliente.email;
       this.telefonoCliente= this.cliente.telefono;
       this.selectedEstado = this.cliente.estado;
       this.foto = this.cliente.foto;

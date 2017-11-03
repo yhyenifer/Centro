@@ -49,6 +49,9 @@ export class PremiosPage {
       }).subscribe(data1 => {
         
         this.premios = data1;
+        this.premios.sort((a, b) => {
+          return parseFloat(a.valorPuntos) - parseFloat(b.valorPuntos);
+        });
         this.imagenes = Array(this.premios.length);
         for (var index = 0; index < this.premios.length; index++) {
           this.hacerResta(index);
@@ -59,7 +62,7 @@ export class PremiosPage {
          
         }
         //
-
+        
       this.items=this.premios;
       this.loadItems=this.premios;
       });
@@ -70,8 +73,8 @@ export class PremiosPage {
           orderByChild: 'estado',
           equalTo: 'Activo'
         }
-      });
-      this.premiosCanjeados$ = this.database.list('premioCanjeado');
+      }).map((array) => array.reverse()) as FirebaseListObservable<Premio[]>;
+      this.premiosCanjeados$ = this.database.list('premioCanjeado'); 
       this.premios = [];     
   } 
 
@@ -148,6 +151,7 @@ export class PremiosPage {
         buttons:[
           {
             text: 'Si',
+          
             role: 'si',
             handler: () => {
               // console.log('si');
@@ -167,8 +171,8 @@ export class PremiosPage {
                 nombre: premio.nombre,
                 descripcion: premio.descripcion,
                 valorPuntos: premio.valorPuntos,
-                usuario: uid
-
+                usuario: uid,
+                url: premio.imagen
               })
              
               this.usuarios$.update(uid,{
