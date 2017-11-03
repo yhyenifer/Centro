@@ -6,7 +6,7 @@ export interface Cliente{
     notificacion: number;
     puntos: number;
     tipo: string;
-    correo:string;
+    email:string;
     estado: string;
     foto: string;
    }
