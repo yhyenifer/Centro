@@ -155,7 +155,7 @@ var LoginPage = (function () {
     LoginPage.prototype.login = function (user) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var alert_1;
+            var alert;
             return __generator(this, function (_a) {
                 if (user.email != null && user.password != null) {
                     this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
@@ -165,6 +165,7 @@ var LoginPage = (function () {
                             _this.nombre = _this.firebaseService.getUserName(auth.uid);
                             _this.puntos = _this.firebaseService.getUserPuntos(auth.uid);
                             _this.notificacion = _this.firebaseService.getUserNotificacion(auth.uid);
+                            _this.estado = _this.firebaseService.getUserEstado(auth.uid);
                             _this.foto = _this.firebaseService.getUserFoto(auth.uid);
                             _this.tipo.subscribe(function (usersnapshot) {
                                 _this.storage.set('uid', auth.uid);
@@ -179,44 +180,61 @@ var LoginPage = (function () {
                                 _this.global.puntos = usersnapshot.puntos;
                                 _this.global.foto = usersnapshot.foto;
                                 _this.global.notificacion = usersnapshot.notificacion;
-                                if (usersnapshot.tipo == "cliente") {
-                                    _this.navCtrl.setRoot('HomeClientePage', {
-                                        uid: auth.uid,
-                                        nombre: usersnapshot.nombre,
-                                        email: auth.email,
-                                        puntos: usersnapshot.puntos
-                                    });
-                                }
-                                if (usersnapshot.tipo == "admin") {
-                                    var plataforma = _this.device.platform;
-                                    if (plataforma == "Android") {
-                                        var alert_2 = _this.alertCtrl.create({
-                                            title: 'Error',
-                                            subTitle: "El acceso por esta aplicación es sólo para Clientes ",
-                                            buttons: [
-                                                {
-                                                    text: 'Ir al sitio',
-                                                    role: 'si',
-                                                    handler: function () {
-                                                        _this.openLink();
-                                                    }
-                                                },
-                                                {
-                                                    text: 'Aceptar',
-                                                    role: 'no',
-                                                    handler: function () {
-                                                    }
-                                                }
-                                            ]
-                                        });
-                                        alert_2.present();
-                                    }
-                                    else {
-                                        _this.navCtrl.setRoot('HomeAdminPage', {
+                                if (usersnapshot.estado == "Activo") {
+                                    if (usersnapshot.tipo == "cliente") {
+                                        _this.navCtrl.setRoot('HomeClientePage', {
+                                            uid: auth.uid,
                                             nombre: usersnapshot.nombre,
-                                            email: auth.email
+                                            email: auth.email,
+                                            puntos: usersnapshot.puntos
                                         });
                                     }
+                                    if (usersnapshot.tipo == "admin") {
+                                        var plataforma = _this.device.platform;
+                                        if (plataforma == "Android") {
+                                            var alert = _this.alertCtrl.create({
+                                                title: 'Error',
+                                                subTitle: "El acceso por esta aplicación es sólo para Clientes ",
+                                                buttons: [
+                                                    {
+                                                        text: 'Ir al sitio',
+                                                        role: 'si',
+                                                        handler: function () {
+                                                            _this.openLink();
+                                                        }
+                                                    },
+                                                    {
+                                                        text: 'Aceptar',
+                                                        role: 'no',
+                                                        handler: function () {
+                                                        }
+                                                    }
+                                                ]
+                                            });
+                                            alert.present();
+                                        }
+                                        else {
+                                            _this.navCtrl.setRoot('HomeAdminPage', {
+                                                nombre: usersnapshot.nombre,
+                                                email: auth.email
+                                            });
+                                        }
+                                    }
+                                }
+                                else {
+                                    var alert = _this.alertCtrl.create({
+                                        title: 'Error',
+                                        subTitle: "La cuenta con la que intentas ingresar a MegaCity no esta Activa ",
+                                        buttons: [
+                                            {
+                                                text: 'Aceptar',
+                                                role: 'no',
+                                                handler: function () {
+                                                }
+                                            }
+                                        ]
+                                    });
+                                    alert.present();
                                 }
                             });
                             authObserv.unsubscribe();
@@ -232,12 +250,12 @@ var LoginPage = (function () {
                     //pendiiente limpiar pagina de login al ir atras
                 }
                 else {
-                    alert_1 = this.alertCtrl.create({
+                    alert = this.alertCtrl.create({
                         title: 'Autenticación Incorrecta',
                         subTitle: "Faltan datos",
                         buttons: ['Aceptar']
                     });
-                    alert_1.present();
+                    alert.present();
                 }
                 return [2 /*return*/];
             });
@@ -253,21 +271,10 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  \n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n<ion-list>\n\n\n\n    <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Flogo.png?alt=media&token=8743287f-762a-42b0-ab73-d659ae302dbf">\n\n    <form class="autenticar">\n\n\n\n      <ion-item>\n\n        <ion-label floating>Correo</ion-label>\n\n        <ion-input \n\n          [(ngModel)]="user.email" \n\n          name="email" \n\n          type="text" \n\n          autocapitalize="off" \n\n          required\n\n\n\n        >\n\n        </ion-input>\n\n      </ion-item>\n\n     \n\n      <ion-item>\n\n        <ion-label floating>Contraseña</ion-label>\n\n        <ion-input \n\n          [(ngModel)]="user.password" \n\n          name="password" \n\n          type="password" \n\n          required\n\n        >\n\n        </ion-input>\n\n      </ion-item>\n\n      <div padding >\n\n        <button class="auth"\n\n\n\n            ion-button \n\n            (click)="login(user)" \n\n            type="submit" \n\n            color="primary"\n\n            block\n\n        >\n\n          Autentícate \n\n        </button> \n\n        <p></p>\n\n        <!-- <button  class="register"\n\n          ion-button \n\n          (click)="signin()" \n\n          type="submit" \n\n         color="primary"\n\n          block\n\n        >\n\n          Registráte\n\n        </button> -->\n\n      </div>\n\n    </form>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\login\login.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */],
-        __WEBPACK_IMPORTED_MODULE_7__ionic_native_device__["a" /* Device */],
-        __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__["a" /* AuthProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__app_app_component__["a" /* MyApp */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_native_device__["a" /* Device */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_native_device__["a" /* Device */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" && _o || Object])
 ], LoginPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
 //# sourceMappingURL=login.js.map
 
 /***/ })

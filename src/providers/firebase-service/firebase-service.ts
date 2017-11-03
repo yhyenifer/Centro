@@ -26,6 +26,18 @@ export class FirebaseServicePrivider {
           });
     return this.afd.object('/perfil/'+ userID);
   }
+  getUserEstado(userID: String){
+    this.afd.list('/perfil/',{
+     
+           query: {
+             orderByChild: 'estado',
+             equalTo: 'usuario'
+           }
+     
+     
+         });
+   return this.afd.object('/perfil/'+ userID);
+ }
 
   getUserName(userID: String){
     this.afd.list('/perfil/',{

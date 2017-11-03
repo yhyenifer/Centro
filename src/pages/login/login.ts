@@ -24,6 +24,7 @@ export class LoginPage {
 
   tipo: FirebaseObjectObservable<any>;
   nombre: FirebaseObjectObservable<any>;
+  estado: FirebaseObjectObservable<any>;
   puntos: FirebaseObjectObservable<any>;
   foto: FirebaseObjectObservable<any>;
   notificacion: FirebaseObjectObservable<any>;
@@ -87,7 +88,8 @@ export class LoginPage {
       this.tipo= this.firebaseService.getUserTipo(auth.uid);
       this.nombre=this.firebaseService.getUserName(auth.uid);
       this.puntos=this.firebaseService.getUserPuntos(auth.uid);
-      this.notificacion=this.firebaseService.getUserNotificacion(auth.uid);      
+      this.notificacion=this.firebaseService.getUserNotificacion(auth.uid); 
+      this.estado=this.firebaseService.getUserEstado(auth.uid);   
       this.foto=this.firebaseService.getUserFoto(auth.uid);
       this.tipo.subscribe(usersnapshot=>{
       this.storage.set('uid', auth.uid);
@@ -102,7 +104,7 @@ export class LoginPage {
       this.global.puntos= usersnapshot.puntos;
       this.global.foto= usersnapshot.foto;
       this.global.notificacion= usersnapshot.notificacion;
-     
+      if(usersnapshot.estado=="Activo"){
         if (usersnapshot.tipo=="cliente"){
          
           this.navCtrl.setRoot('HomeClientePage',{
@@ -146,6 +148,25 @@ export class LoginPage {
           });
         }
         }
+      }
+      else{
+        let alert = this.alertCtrl.create({
+          title: 'Error',
+          subTitle: "La cuenta con la que intentas ingresar a MegaCity no esta Activa " ,
+          buttons:[
+          
+            {
+              text: 'Aceptar',
+              role: 'no',
+              handler: () => {
+                
+              }
+            }
+          ]
+        });
+        alert.present();
+
+      }
       })
 
       authObserv.unsubscribe();

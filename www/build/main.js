@@ -174,6 +174,15 @@ var FirebaseServicePrivider = (function () {
         });
         return this.afd.object('/perfil/' + userID);
     };
+    FirebaseServicePrivider.prototype.getUserEstado = function (userID) {
+        this.afd.list('/perfil/', {
+            query: {
+                orderByChild: 'estado',
+                equalTo: 'usuario'
+            }
+        });
+        return this.afd.object('/perfil/' + userID);
+    };
     FirebaseServicePrivider.prototype.getUserName = function (userID) {
         this.afd.list('/perfil/', {
             query: {
