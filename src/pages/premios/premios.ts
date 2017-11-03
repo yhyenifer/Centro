@@ -30,7 +30,7 @@ export class PremiosPage {
   usuarios$: FirebaseListObservable<Cliente[]>;
   usuario : any;
   premio = {} as Premio;
-  puntosCliente: number =0;
+  puntosCliente: number;
   diferencia: number =0;
   nombre : string; //nombre del usuario autenticado
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -39,6 +39,32 @@ export class PremiosPage {
     private database: AngularFireDatabase,
     public storage: Storage) {
       this.menu1Active();
+       
+      
+      this.database.list('premio',{
+        query: {
+          orderByChild: 'estado',
+          equalTo: 'Activo'
+        }
+      }).subscribe(data1 => {
+        
+        this.premios = data1;
+        this.imagenes = Array(this.premios.length);
+        for (var index = 0; index < this.premios.length; index++) {
+          this.hacerResta(index);
+          if(this.premios[index].diferencia<0){
+            this.premios[index].diferencia = 0;
+          }
+          console.log('constructor '+this.premios[index].imagen);
+          this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
+          this.generarFotos(index);
+         
+        }
+        //
+
+      this.items=this.premios;
+      this.loadItems=this.premios;
+      });
       this.usuarios$ = this.database.list('perfil');
       
       this.premios$ = this.database.list('premio',{
@@ -50,73 +76,43 @@ export class PremiosPage {
       this.premiosCanjeados$ = this.database.list('premioCanjeado');
       this.premios = [];
         
-
-      this.database.list('premio',{
-        query: {
-          orderByChild: 'estado',
-          equalTo: 'Activo'
-        }
-      }).subscribe(data => {
-
-        this.premios = data;
-        // console.log(this.premios);
-        this.imagenes = Array(this.premios.length);
-        for (var index = 0; index < this.premios.length; index++) {
-          
-          this.premios[index].diferencia = Number(this.premios[index].valorPuntos) - Number(this.puntosCliente);
-          if(this.premios[index].diferencia<0){
-            this.premios[index].diferencia = 0;
-          }
-          
-          this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
-          this.generarFotos(index);
-          this.premios[index].imagen = this.imagenes[index];
-        }
-        //
-
-      this.items=this.premios;
-      console.log(this.premio.imagen);
-      this.loadItems=this.premios;
-      });
+      //this.refreshPage();
+      
   }
+  refreshPage() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
+  
+ 
 
   ionViewDidLoad() {
+    this.puntosCliente = 0;
+    
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
+      console.log('load2'+ this.puntosCliente)
      });
      this.storage.get('puntos').then((data)=>{
       this.puntosCliente=data;
+      console.log('load1'+ this.puntosCliente)
      });
+     
     
-    this.premios$ = this.database.list('premio',{
-      query: {
-        orderByChild: 'estado',
-        equalTo: 'Activo'
-      }
-    });
-    this.premios = [];
-    
-
-    this.database.list('premio',{
-      query: {
-        orderByChild: 'estado',
-        equalTo: 'Activo'
-      }
-    }).subscribe(data => {
-      this.premios = data;
-      this.imagenes = Array(this.premios.length);
-      for (var index = 0; index < this.premios.length; index++) {
-        this.premios[index].diferencia = Number(this.premios[index].valorPuntos) - Number(this.puntosCliente);
-        this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
-        this.generarFotos(index);
-
-      }
-    });
-    this.initializeItems();
   }
   menu1Active() {
     this.menu.enable(true, 'menu1');
     this.menu.enable(false, 'menu2');
+  }
+
+   hacerResta(index){
+    this.storage.get('puntos').then((data)=>{
+      this.puntosCliente=data;
+      this.premios[index].diferencia = Number(this.premios[index].valorPuntos) - Number(this.puntosCliente);
+      console.log("puntos cliente "+this.premios[index].diferencia);
+     });
+    
+    
+    
   }
 
   generarFotos(index){
@@ -125,9 +121,9 @@ export class PremiosPage {
       let imageRef = storageRef.child(this.imagenes[index]);
       imageRef.getDownloadURL().then(url =>{
         this.imagenes[index] = url;
-        this.premios[index].imagen = url;
+      this.premios[index].imagen = url;
+      //console.log("imagen" + url);
       });
-        
   
   }
 //validar que el cliente si tenga los puntos requeridos y validar que el premio si tenga cantidad dispobible
@@ -135,6 +131,7 @@ export class PremiosPage {
     return true;
   }
   canjear(premio,premio_key){
+    console.log("puntos cliente hpta "+this.puntosCliente);
     var uid;
     this.storage.get('uid').then((data)=>{
       uid=data;
@@ -222,7 +219,6 @@ initializeItems() {
       
     });
     
-    console.log("f "+q, this.items.length);
   }
 }
 

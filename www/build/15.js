@@ -99,17 +99,6 @@ var EventosPage = (function () {
         this.storage.get('nombre').then(function (data) {
             _this.nombre = data;
         });
-        this.eventos$ = this.database.list('evento');
-        this.eventos = [];
-        this.database.list('evento').subscribe(function (data) {
-            _this.eventos = data;
-            _this.imagenes = Array(_this.eventos.length);
-            for (var index = 0; index < _this.eventos.length; index++) {
-                _this.imagenes[index] = "img/eventos/" + _this.eventos[index].nombre + "/" + _this.eventos[index].url;
-                _this.generarFotos(index);
-            }
-        });
-        this.initializeItems();
     };
     EventosPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu1');
@@ -121,6 +110,7 @@ var EventosPage = (function () {
         var imageRef = storageRef.child(this.imagenes[index]);
         imageRef.getDownloadURL().then(function (url) {
             _this.imagenes[index] = url;
+            _this.eventos[index].imagen = url;
         });
     };
     EventosPage.prototype.initializeItems = function () {
@@ -143,7 +133,7 @@ var EventosPage = (function () {
 EventosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-eventos',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\eventos\eventos.html"*/'<!--\n\n  Generated template for the EventosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  \n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Eventos\n\n        </ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n\n    <!-- se deben listar en orden de posibilidad de canje -->\n\n    <ion-list>\n\n    <ion-card ion-item *ngFor="let evento of items let i = index">\n\n      <ion-item>\n\n        <img  [src]="imagenes[i]">\n\n        <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->\n\n        <ion-card-content>\n\n       <p><b>\n\n            {{evento.nombre}}\n\n          </b>\n\n          </p>\n\n          <p>\n\n            {{evento.descripcion}}\n\n          </p><br>\n\n          <p class="rojo">\n\n              {{evento.fecha}}  {{evento.hora}}\n\n            </p>\n\n      </ion-card-content>\n\n        </ion-item>\n\n      </ion-card>\n\n    \n\n    </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\eventos\eventos.html"*/,
+        selector: 'page-eventos',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\eventos\eventos.html"*/'<!--\n\n  Generated template for the EventosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  \n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Eventos\n\n        </ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getItems($event)" ></ion-searchbar>\n\n    <!-- se deben listar en orden de posibilidad de canje -->\n\n    <ion-list>\n\n    <ion-card ion-item *ngFor="let evento of items let i = index">\n\n      <ion-item>\n\n        <img  [src]="evento.imagen">\n\n        <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->\n\n        <ion-card-content>\n\n       <p><b>\n\n            {{evento.nombre}}\n\n          </b>\n\n          </p>\n\n          <p>\n\n            {{evento.descripcion}}\n\n          </p><br>\n\n          <p class="rojo">\n\n              {{evento.fecha}}  {{evento.hora}}\n\n            </p>\n\n      </ion-card-content>\n\n        </ion-item>\n\n      </ion-card>\n\n    \n\n    </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\eventos\eventos.html"*/,
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _f || Object])
 ], EventosPage);
