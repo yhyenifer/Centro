@@ -47,7 +47,7 @@ export class MisPremiosPage {
       }).subscribe(data => {
 
         this.premiosCanjeados = data;
-        this.imagenes = Array(this.premiosCanjeados.length);
+        //this.imagenes = Array(this.premiosCanjeados.length);
         // for (var index = 0; index < this.premiosCanjeados.length; index++) {
        
           
