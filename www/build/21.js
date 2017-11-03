@@ -93,6 +93,9 @@ var DetalleClientesPage = (function () {
         this.storage.get('nombre').then(function (data) {
             _this.nombre = data;
         });
+        this.storage.get('uid').then(function (data) {
+            _this.uid = data;
+        });
     };
     DetalleClientesPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');

@@ -38,7 +38,7 @@ export class EventosPage {
      
       this.database.list('eventos').subscribe(data => {
         this.eventos = data;
-        console.log("y "+data);
+       
         this.imagenes = Array(this.eventos.length);
         for (var index = 0; index < this.eventos.length; index++) {
                 

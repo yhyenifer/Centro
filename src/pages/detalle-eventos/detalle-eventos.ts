@@ -18,6 +18,7 @@ import firebase from 'firebase';
   templateUrl: 'detalle-eventos.html',
 })
 export class DetalleEventosPage {
+  conteo : number =0;
   url: string
   id: any;
   evento = {} as Evento;
@@ -57,9 +58,12 @@ export class DetalleEventosPage {
       let storageRef = firebase.storage().ref();
       let imageRef = storageRef.child(this.url);
       imageRef.getDownloadURL().then(url =>
-      this.eventoImagen = url);
+      this.eventoImagen = url
+    );
+      
 
       this.ocultar2= !this.ocultar2;
+      this.conteo=1;
     }
     else{ //opcion para cuando se va a crear
      
@@ -81,7 +85,8 @@ export class DetalleEventosPage {
   seleccionarFoto(e){
     this.file = e.target.files[0];
     console.log(this.file);
-    this.readPhoto(this.file)
+    this.readPhoto(this.file);
+    this.conteo=parseInt(e.target.files.length);
   }
   readPhoto(file) {
     
@@ -99,6 +104,16 @@ export class DetalleEventosPage {
 
   validarDatos(){
     this.campos=null;
+    if(this.conteo<1){
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle:  this.nombre +" el registro debe tener minímo (1) de archivo",
+        buttons:['Aceptar']
+      }
+    );
+    alert.present();
+    return false;
+    }
     if (this.nombreEvento==null){
       this.campos="Nombre, ";
     }
@@ -175,7 +190,6 @@ export class DetalleEventosPage {
              //aqui va el codigo de modificar Evento
              var name = "";
              if (this.file != undefined){
-              console.log("cleto"+this.file.name);
              let storageRef = firebase.storage().ref();
              //this.url = this.file.name;
              const imageRefBorrar = storageRef.child(`${this.url}`);
@@ -197,7 +211,7 @@ export class DetalleEventosPage {
                 fecha : this.fechaEvento,
                 hora : this.horaEvento,
                 estado : this.selectedEstado,
-                url: this.url
+                url: name
                                    
                     });
                 //notificacion de accion realizada

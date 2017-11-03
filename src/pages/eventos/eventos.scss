@@ -44,4 +44,13 @@ color: red;
          background: #f7ef36;
      }
 
+     @media (min-width: 767px){
+        .ancho{
+            max-width: 1080px;
+        }
+        .imagenPremio{
+         max-width: 500px;
+        }
+     }
+
 }

@@ -79,6 +79,7 @@ var DetalleEventosPage = (function () {
         this.database = database;
         this.zone = zone;
         this.storage = storage;
+        this.conteo = 0;
         this.evento = {};
         this.ocultar1 = false;
         this.ocultar2 = false;
@@ -101,6 +102,7 @@ var DetalleEventosPage = (function () {
                 return _this.eventoImagen = url;
             });
             this.ocultar2 = !this.ocultar2;
+            this.conteo = 1;
         }
         else {
             this.ocultar1 = !this.ocultar1;
@@ -120,6 +122,7 @@ var DetalleEventosPage = (function () {
         this.file = e.target.files[0];
         console.log(this.file);
         this.readPhoto(this.file);
+        this.conteo = parseInt(e.target.files.length);
     };
     DetalleEventosPage.prototype.readPhoto = function (file) {
         var _this = this;
@@ -134,6 +137,15 @@ var DetalleEventosPage = (function () {
     };
     DetalleEventosPage.prototype.validarDatos = function () {
         this.campos = null;
+        if (this.conteo < 1) {
+            var alert_1 = this.alertCtrl.create({
+                title: 'Error',
+                subTitle: this.nombre + " el registro debe tener minímo (1) de archivo",
+                buttons: ['Aceptar']
+            });
+            alert_1.present();
+            return false;
+        }
         if (this.nombreEvento == null) {
             this.campos = "Nombre, ";
         }
@@ -181,12 +193,12 @@ var DetalleEventosPage = (function () {
             }
         }
         if (this.campos != null) {
-            var alert_1 = this.alertCtrl.create({
+            var alert_2 = this.alertCtrl.create({
                 title: 'Error',
                 subTitle: "Verifica los datos ingresados, los campos " + this.campos + "son requeridos",
                 buttons: ['Aceptar']
             });
-            alert_1.present();
+            alert_2.present();
             return false;
         }
         else {
@@ -196,7 +208,7 @@ var DetalleEventosPage = (function () {
     DetalleEventosPage.prototype.modificar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert_2 = this.alertCtrl.create({
+            var alert_3 = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de Modificar éste Evento?",
                 buttons: [
@@ -208,7 +220,6 @@ var DetalleEventosPage = (function () {
                             //aqui va el codigo de modificar Evento
                             var name = "";
                             if (_this.file != undefined) {
-                                console.log("cleto" + _this.file.name);
                                 var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
                                 //this.url = this.file.name;
                                 var imageRefBorrar = storageRef.child("" + _this.url);
@@ -228,7 +239,7 @@ var DetalleEventosPage = (function () {
                                 fecha: _this.fechaEvento,
                                 hora: _this.horaEvento,
                                 estado: _this.selectedEstado,
-                                url: _this.url
+                                url: name
                             });
                             //notificacion de accion realizada
                             var alert = _this.alertCtrl.create({
@@ -254,13 +265,13 @@ var DetalleEventosPage = (function () {
                     }
                 ]
             });
-            alert_2.present();
+            alert_3.present();
         }
     };
     DetalleEventosPage.prototype.guardar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert_3 = this.alertCtrl.create({
+            var alert_4 = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de  Agregar éste Evento?",
                 buttons: [
@@ -309,7 +320,7 @@ var DetalleEventosPage = (function () {
                     }
                 ]
             });
-            alert_3.present();
+            alert_4.present();
         }
     };
     DetalleEventosPage.prototype.cancelar = function () {

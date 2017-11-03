@@ -52,9 +52,7 @@ export class PremiosPage {
         this.imagenes = Array(this.premios.length);
         for (var index = 0; index < this.premios.length; index++) {
           this.hacerResta(index);
-          if(this.premios[index].diferencia<0){
-            this.premios[index].diferencia = 0;
-          }
+         
           console.log('constructor '+this.premios[index].imagen);
           this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
           this.generarFotos(index);
@@ -74,30 +72,16 @@ export class PremiosPage {
         }
       });
       this.premiosCanjeados$ = this.database.list('premioCanjeado');
-      this.premios = [];
-        
-      //this.refreshPage();
-      
-  }
-  refreshPage() {
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
-  }
-  
- 
+      this.premios = [];     
+  } 
 
   ionViewDidLoad() {
-    this.puntosCliente = 0;
-    
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
-      console.log('load2'+ this.puntosCliente)
      });
      this.storage.get('puntos').then((data)=>{
       this.puntosCliente=data;
-      console.log('load1'+ this.puntosCliente)
      });
-     
-    
   }
   menu1Active() {
     this.menu.enable(true, 'menu1');
@@ -108,37 +92,56 @@ export class PremiosPage {
     this.storage.get('puntos').then((data)=>{
       this.puntosCliente=data;
       this.premios[index].diferencia = Number(this.premios[index].valorPuntos) - Number(this.puntosCliente);
-      console.log("puntos cliente "+this.premios[index].diferencia);
-     });
-    
-    
-    
+      if(this.premios[index].diferencia<0){
+        this.premios[index].diferencia = 0;
+      }
+     }); 
   }
 
   generarFotos(index){
-    
       let storageRef = firebase.storage().ref();
       let imageRef = storageRef.child(this.imagenes[index]);
       imageRef.getDownloadURL().then(url =>{
         this.imagenes[index] = url;
       this.premios[index].imagen = url;
-      //console.log("imagen" + url);
       });
-  
   }
 //validar que el cliente si tenga los puntos requeridos y validar que el premio si tenga cantidad dispobible
-  validarDatos(){
+  validarDatos(premio){
+   if (premio.cantidad<0){
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle:  this.nombre +" el premio que deseas canjear no esta disponible",
+      buttons:['Aceptar']
+    }
+  );
+  alert.present();
+     return false;
+   }
+   else{
+   if(this.puntosCliente<premio.valorPuntos){
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle:  this.nombre +" no tienes puntos suficientes para realizar el canje",
+      buttons:['Aceptar']
+    }
+  );
+  alert.present();
+     return false;
+   }
+   else{
     return true;
+   }
+  } 
   }
   canjear(premio,premio_key){
-    console.log("puntos cliente hpta "+this.puntosCliente);
     var uid;
     this.storage.get('uid').then((data)=>{
       uid=data;
      });
 
 
-    if(this.validarDatos()==true){
+    if(this.validarDatos(premio)==true){
       let alert = this.alertCtrl.create({
         title: 'Confirmación',
         subTitle: "¿"+ this.nombre +" está seguro de Canjear éste Premio?",

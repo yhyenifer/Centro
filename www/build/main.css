@@ -20516,6 +20516,15 @@ page-eventos .swiper-pagination-bullet-active {
   background: #f7ef36;
 }
 
+@media (min-width: 767px) {
+  page-eventos .ancho {
+    max-width: 1080px;
+  }
+  page-eventos .imagenPremio {
+    max-width: 500px;
+  }
+}
+
 page-facturas-aprobadas .toolbar-title-md {
   color: white;
 }
@@ -21189,8 +21198,21 @@ page-premios .opcion {
   font-size: 20px;
 }
 
+page-premios .desc {
+  overflow: scroll;
+}
+
 page-premios .swiper-pagination-bullet-active {
   background: #f7ef36;
+}
+
+@media (min-width: 767px) {
+  page-premios .ancho {
+    max-width: 1080px;
+  }
+  page-premios .imagenPremio {
+    max-width: 500px;
+  }
 }
 
 page-subir-factura .toolbar-background-md {

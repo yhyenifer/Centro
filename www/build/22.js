@@ -438,12 +438,8 @@ var DetalleAlmacenPage = (function () {
     DetalleAlmacenPage.prototype.eliminarFotoStorage = function (nombre, idx) {
         //aqui va el evento de eliminar la foto del almacen
         var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
-        //console.log("amt "+this.almacen.url);
-        //this.url = this.file.name;1
         var imageRefBorrar = storageRef.child("img/almacenes/" + this.nombreAlmacen + "/" + nombre);
         this.almacen.url.splice(idx, 1);
-        //console.log("desp" + this.almacen.url);
-        //name = this.file.name;
         imageRefBorrar.delete().then(function (snapshot) {
         });
     };

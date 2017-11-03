@@ -20,6 +20,7 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/databa
   templateUrl: 'detalle-premios.html',
 })
 export class DetallePremiosPage {
+  conteo : number =0;
   url: string
   id: any;
   premio = {} as Premio;
@@ -62,6 +63,7 @@ export class DetallePremiosPage {
       imageRef.getDownloadURL().then(url =>
       this.img = url);
       this.ocultar2= !this.ocultar2;
+      this.conteo=1;
     }
     else{ //opcion para cuando se va a crear
       this.descPremio = "";
@@ -84,6 +86,7 @@ export class DetallePremiosPage {
     this.file = e.target.files[0];
     console.log(this.file);
     this.readPhoto(this.file)
+    this.conteo=parseInt(e.target.files.length);
   }
   readPhoto(file) {
     
@@ -99,7 +102,18 @@ export class DetallePremiosPage {
        
       }
   validarDatos(){
+    
     this.campos=null;
+    if(this.conteo<1){
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle:  this.nombre +" el registro debe tener minímo (1) de archivo",
+        buttons:['Aceptar']
+      }
+    );
+    alert.present();
+    return false;
+    }
     if (this.nombrePremio==null){
       this.campos="Nombre, ";
     }

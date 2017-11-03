@@ -456,12 +456,10 @@ readPhoto(file, index) {
       eliminarFotoStorage(nombre,idx){
         //aqui va el evento de eliminar la foto del almacen
         let storageRef = firebase.storage().ref();
-        //console.log("amt "+this.almacen.url);
-        //this.url = this.file.name;1
+      
         const imageRefBorrar = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${nombre}`);
         this.almacen.url.splice(idx,1);
-        //console.log("desp" + this.almacen.url);
-        //name = this.file.name;
+ 
         imageRefBorrar.delete().then((snapshot)=> {
         });
       }

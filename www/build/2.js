@@ -91,9 +91,6 @@ var PremiosPage = (function () {
             _this.imagenes = Array(_this.premios.length);
             for (var index = 0; index < _this.premios.length; index++) {
                 _this.hacerResta(index);
-                if (_this.premios[index].diferencia < 0) {
-                    _this.premios[index].diferencia = 0;
-                }
                 console.log('constructor ' + _this.premios[index].imagen);
                 _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
                 _this.generarFotos(index);
@@ -111,44 +108,15 @@ var PremiosPage = (function () {
         });
         this.premiosCanjeados$ = this.database.list('premioCanjeado');
         this.premios = [];
-        //this.refreshPage();
     }
-    PremiosPage.prototype.refreshPage = function () {
-        this.navCtrl.setRoot(this.navCtrl.getActive().component);
-    };
     PremiosPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        this.puntosCliente = 0;
         this.storage.get('nombre').then(function (data) {
             _this.nombre = data;
-            console.log('load2' + _this.puntosCliente);
         });
         this.storage.get('puntos').then(function (data) {
             _this.puntosCliente = data;
-            console.log('load1' + _this.puntosCliente);
         });
-        this.premios$ = this.database.list('premio', {
-            query: {
-                orderByChild: 'estado',
-                equalTo: 'Activo'
-            }
-        });
-        this.premios = [];
-        this.database.list('premio', {
-            query: {
-                orderByChild: 'estado',
-                equalTo: 'Activo'
-            }
-        }).subscribe(function (data) {
-            _this.premios = data;
-            _this.imagenes = Array(_this.premios.length);
-            for (var index = 0; index < _this.premios.length; index++) {
-                _this.premios[index].diferencia = Number(_this.premios[index].valorPuntos) - Number(_this.puntosCliente);
-                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
-                _this.generarFotos(index);
-            }
-        });
-        this.initializeItems();
     };
     PremiosPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu1');
@@ -159,7 +127,9 @@ var PremiosPage = (function () {
         this.storage.get('puntos').then(function (data) {
             _this.puntosCliente = data;
             _this.premios[index].diferencia = Number(_this.premios[index].valorPuntos) - Number(_this.puntosCliente);
-            console.log("puntos cliente " + _this.premios[index].diferencia);
+            if (_this.premios[index].diferencia < 0) {
+                _this.premios[index].diferencia = 0;
+            }
         });
     };
     PremiosPage.prototype.generarFotos = function (index) {
@@ -169,22 +139,42 @@ var PremiosPage = (function () {
         imageRef.getDownloadURL().then(function (url) {
             _this.imagenes[index] = url;
             _this.premios[index].imagen = url;
-            //console.log("imagen" + url);
         });
     };
     //validar que el cliente si tenga los puntos requeridos y validar que el premio si tenga cantidad dispobible
-    PremiosPage.prototype.validarDatos = function () {
-        return true;
+    PremiosPage.prototype.validarDatos = function (premio) {
+        if (premio.cantidad < 0) {
+            var alert_1 = this.alertCtrl.create({
+                title: 'Error',
+                subTitle: this.nombre + " el premio que deseas canjear no esta disponible",
+                buttons: ['Aceptar']
+            });
+            alert_1.present();
+            return false;
+        }
+        else {
+            if (this.puntosCliente < premio.valorPuntos) {
+                var alert_2 = this.alertCtrl.create({
+                    title: 'Error',
+                    subTitle: this.nombre + " no tienes puntos suficientes para realizar el canje",
+                    buttons: ['Aceptar']
+                });
+                alert_2.present();
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
     };
     PremiosPage.prototype.canjear = function (premio, premio_key) {
         var _this = this;
-        console.log("puntos cliente hpta " + this.puntosCliente);
         var uid;
         this.storage.get('uid').then(function (data) {
             uid = data;
         });
-        if (this.validarDatos() == true) {
-            var alert = this.alertCtrl.create({
+        if (this.validarDatos(premio) == true) {
+            var alert_3 = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de Canjear éste Premio?",
                 buttons: [
@@ -239,7 +229,7 @@ var PremiosPage = (function () {
                     }
                 ]
             });
-            alert.present();
+            alert_3.present();
         }
     };
     PremiosPage.prototype.initializeItems = function () {
@@ -261,12 +251,15 @@ var PremiosPage = (function () {
 PremiosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-premios',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/'<!--\n\n  Generated template for the PremiosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Premios\n\n        </ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>\n\n    <!-- se deben listar en orden de posibilidad de canje -->\n\n    <ion-list>\n\n    <ion-card ion-item *ngFor="let premio of items let i = index">\n\n      <ion-item>\n\n        <img class="imagenPremio" [src]="premio.imagen">\n\n        <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->\n\n        <ion-card-content>\n\n          <ion-card-title>\n\n            {{premio.nombre}}\n\n            </ion-card-title>\n\n          <p>\n\n            {{premio.descripcion}}\n\n          </p>\n\n        \n\n        <ion-row class="opciones">\n\n          <ion-col>\n\n          <button class="opcion puntos"><ion-icon name="star"></ion-icon><br>{{premio.valorPuntos}}</button>\n\n          </ion-col>\n\n          <ion-col>\n\n          <button class="opcion diferencia"><ion-icon name="star-outline"></ion-icon><br>{{premio.diferencia}}</button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button class="opcion canjear" (click)="canjear(premio,premio.$key)"><ion-icon name="pricetags"></ion-icon><br>Canjear</button>\n\n        </ion-col>\n\n        </ion-row>\n\n      </ion-card-content>\n\n        </ion-item>\n\n      </ion-card>\n\n    \n\n    </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/,
+        selector: 'page-premios',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/'<!--\n\n  Generated template for the PremiosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n          <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>\n\n          Premios\n\n        </ion-title>\n\n      </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-searchbar class="ancho" (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>\n\n    <!-- se deben listar en orden de posibilidad de canje -->\n\n    <ion-list class="ancho">\n\n    <ion-card ion-item *ngFor="let premio of items let i = index">\n\n      <ion-item>\n\n        <img class="imagenPremio" [src]="premio.imagen">\n\n        <!-- "https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fpremios%2FBicicleta%2Fbici.jpg?alt=media&token=0850465b-cccd-4eef-9d06-1642aa5a145c"/> -->\n\n        <ion-card-content>\n\n          <ion-card-title>\n\n            {{premio.nombre}}\n\n            </ion-card-title>\n\n          <div class="desc">\n\n            {{premio.descripcion}}\n\n          </div>\n\n        \n\n        <ion-row class="opciones">\n\n          <ion-col>\n\n          <button class="opcion puntos"><ion-icon name="star"></ion-icon><br>{{premio.valorPuntos}}</button>\n\n          </ion-col>\n\n          <ion-col>\n\n          <button class="opcion diferencia"><ion-icon name="star-outline"></ion-icon><br>{{premio.diferencia}}</button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button class="opcion canjear" (click)="canjear(premio,premio.$key)"><ion-icon name="pricetags"></ion-icon><br>Canjear</button>\n\n        </ion-col>\n\n        </ion-row>\n\n      </ion-card-content>\n\n        </ion-item>\n\n      </ion-card>\n\n    \n\n    </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\premios\premios.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_0_angularfire2_database__["a" /* AngularFireDatabase */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
 ], PremiosPage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=premios.js.map
 
 /***/ })

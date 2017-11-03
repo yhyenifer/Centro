@@ -80,6 +80,7 @@ var DetallePremiosPage = (function () {
         this.database = database;
         this.storage = storage;
         this.menu = menu;
+        this.conteo = 0;
         this.premio = {};
         this.ocultar1 = false;
         this.ocultar2 = false;
@@ -103,6 +104,7 @@ var DetallePremiosPage = (function () {
                 return _this.img = url;
             });
             this.ocultar2 = !this.ocultar2;
+            this.conteo = 1;
         }
         else {
             this.descPremio = "";
@@ -123,6 +125,7 @@ var DetallePremiosPage = (function () {
         this.file = e.target.files[0];
         console.log(this.file);
         this.readPhoto(this.file);
+        this.conteo = parseInt(e.target.files.length);
     };
     DetallePremiosPage.prototype.readPhoto = function (file) {
         var _this = this;
@@ -137,6 +140,15 @@ var DetallePremiosPage = (function () {
     };
     DetallePremiosPage.prototype.validarDatos = function () {
         this.campos = null;
+        if (this.conteo < 1) {
+            var alert_1 = this.alertCtrl.create({
+                title: 'Error',
+                subTitle: this.nombre + " el registro debe tener minímo (1) de archivo",
+                buttons: ['Aceptar']
+            });
+            alert_1.present();
+            return false;
+        }
         if (this.nombrePremio == null) {
             this.campos = "Nombre, ";
         }
@@ -161,12 +173,12 @@ var DetallePremiosPage = (function () {
         }
         else {
             if (this.cantidad < 0) {
-                var alert_1 = this.alertCtrl.create({
+                var alert_2 = this.alertCtrl.create({
                     title: 'Error',
                     subTitle: "La Cantidad Disponible debe ser mayor a Cero",
                     buttons: ['Aceptar']
                 });
-                alert_1.present();
+                alert_2.present();
                 return false;
             }
         }
@@ -188,12 +200,12 @@ var DetallePremiosPage = (function () {
         }
         else {
             if (this.valorPuntos < 0) {
-                var alert_2 = this.alertCtrl.create({
+                var alert_3 = this.alertCtrl.create({
                     title: 'Error',
                     subTitle: "El Valor en Puntos debe ser mayor a Cero",
                     buttons: ['Aceptar']
                 });
-                alert_2.present();
+                alert_3.present();
                 return false;
             }
         }
@@ -206,12 +218,12 @@ var DetallePremiosPage = (function () {
             }
         }
         if (this.campos != null) {
-            var alert_3 = this.alertCtrl.create({
+            var alert_4 = this.alertCtrl.create({
                 title: 'Error',
                 subTitle: "Verifica los datos ingresados, los campos " + this.campos + "son requeridos",
                 buttons: ['Aceptar']
             });
-            alert_3.present();
+            alert_4.present();
             return false;
         }
         else {
@@ -221,7 +233,7 @@ var DetallePremiosPage = (function () {
     DetallePremiosPage.prototype.modificar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert_4 = this.alertCtrl.create({
+            var alert_5 = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de Modificar éste Premio?",
                 buttons: [
@@ -279,13 +291,13 @@ var DetallePremiosPage = (function () {
                     }
                 ]
             });
-            alert_4.present();
+            alert_5.present();
         }
     };
     DetallePremiosPage.prototype.guardar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert_5 = this.alertCtrl.create({
+            var alert_6 = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de  Agregar éste Premio?",
                 buttons: [
@@ -334,7 +346,7 @@ var DetallePremiosPage = (function () {
                     }
                 ]
             });
-            alert_5.present();
+            alert_6.present();
         }
     };
     DetallePremiosPage.prototype.cancelar = function () {

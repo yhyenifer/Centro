@@ -18,8 +18,11 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/databa
   templateUrl: 'detalle-clientes.html',
 })
 export class DetalleClientesPage {
- 
+  auth: any[];
+  auth$: FirebaseListObservable<any[]>;
+
   cliente = {} as Cliente;
+  uid: string;
   id : any;
   infoCliente$: FirebaseListObservable<Cliente[]>;
   nombre : string;
@@ -50,13 +53,17 @@ export class DetalleClientesPage {
       this.telefonoCliente= this.cliente.telefono;
       this.selectedEstado = this.cliente.estado;
       this.foto = this.cliente.foto;
+      
+     
   }
 
   ionViewDidLoad() {
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
      });
-     
+     this.storage.get('uid').then((data)=>{
+      this.uid=data;
+     });
    
   }
 
