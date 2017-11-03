@@ -6,5 +6,6 @@ export interface Evento{
     hora: string;
     estado: string;
     url: string;
+    imagen: string;
 
    }

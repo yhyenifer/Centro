@@ -56,21 +56,8 @@ export class EventosPage {
     this.storage.get('nombre').then((data)=>{
       this.nombre=data;
      });
+        
     
-    
-    this.eventos$ = this.database.list('evento');
-    this.eventos = [];
-    
-
-    this.database.list('evento').subscribe(data => {
-      this.eventos = data;
-      this.imagenes = Array(this.eventos.length);
-      for (var index = 0; index < this.eventos.length; index++) {
-        this.imagenes[index] = `img/eventos/`+this.eventos[index].nombre+`/`+this.eventos[index].url;
-        this.generarFotos(index);
-      }
-    });
-    this.initializeItems();
   }
    
   menu1Active() {
@@ -84,6 +71,7 @@ export class EventosPage {
       let imageRef = storageRef.child(this.imagenes[index]);
       imageRef.getDownloadURL().then(url =>{
         this.imagenes[index] = url;
+        this.eventos[index].imagen = url;
       });
         
   
