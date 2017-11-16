@@ -22,103 +22,103 @@ webpackEmptyAsyncContext.id = 163;
 
 var map = {
 	"../pages/almacen-detalle/almacen-detalle.module": [
-		458,
+		459,
 		24
 	],
 	"../pages/almacenes-lista/almacenes-lista.module": [
-		459,
+		460,
 		23
 	],
 	"../pages/detalle-almacen/detalle-almacen.module": [
-		460,
+		461,
 		22
 	],
 	"../pages/detalle-clientes/detalle-clientes.module": [
-		461,
+		462,
 		21
 	],
 	"../pages/detalle-eventos/detalle-eventos.module": [
-		462,
+		463,
 		20
 	],
 	"../pages/detalle-factura-cliente/detalle-factura-cliente.module": [
-		464,
+		465,
 		19
 	],
 	"../pages/detalle-factura/detalle-factura.module": [
-		463,
+		464,
 		18
 	],
 	"../pages/detalle-premios/detalle-premios.module": [
-		465,
+		466,
 		17
 	],
 	"../pages/eventos/eventos.module": [
-		466,
+		467,
 		16
 	],
 	"../pages/facturas-aprobadas/facturas-aprobadas.module": [
-		467,
+		468,
 		15
 	],
 	"../pages/facturas-denegadas/facturas-denegadas.module": [
-		468,
+		469,
 		14
 	],
 	"../pages/facturas-pendientes/facturas-pendientes.module": [
-		469,
+		470,
 		13
 	],
 	"../pages/home-admin/home-admin.module": [
-		470,
+		471,
 		12
 	],
 	"../pages/home-cliente/home-cliente.module": [
-		471,
+		472,
 		11
 	],
 	"../pages/lista-almacenes/lista-almacenes.module": [
-		472,
+		473,
 		10
 	],
 	"../pages/lista-clientes/lista-clientes.module": [
-		473,
+		474,
 		9
 	],
 	"../pages/lista-eventos/lista-eventos.module": [
-		474,
+		475,
 		8
 	],
 	"../pages/lista-premios/lista-premios.module": [
-		475,
+		476,
 		7
 	],
 	"../pages/login/login.module": [
-		457,
+		458,
 		6
 	],
 	"../pages/mis-facturas/mis-facturas.module": [
-		476,
+		477,
 		5
 	],
 	"../pages/mis-premios/mis-premios.module": [
-		477,
+		478,
 		4
 	],
 	"../pages/perfil/perfil.module": [
-		478,
+		479,
 		3
 	],
 	"../pages/premios/premios.module": [
-		479,
+		480,
 		2
 	],
 	"../pages/subir-factura/subir-factura.module": [
-		480,
+		481,
 		1
 	],
 	"../pages/validar-facturas/validar-facturas.module": [
-		481,
+		482,
 		0
 	]
 };
@@ -521,12 +521,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_almacen_service_almacen_service__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_storage__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_file_transfer__ = __webpack_require__(457);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -613,6 +615,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_12__providers_auth_auth__["a" /* AuthProvider */],
             __WEBPACK_IMPORTED_MODULE_13__providers_firebase_service_firebase_service__["a" /* FirebaseServicePrivider */],
             __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
+            __WEBPACK_IMPORTED_MODULE_18__ionic_native_file_transfer__["a" /* FileTransfer */],
             __WEBPACK_IMPORTED_MODULE_15__providers_almacen_service_almacen_service__["a" /* AlmacenServiceProvider */]]
     })
 ], AppModule);

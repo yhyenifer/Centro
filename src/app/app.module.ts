@@ -18,6 +18,7 @@ import { Camera } from '@ionic-native/camera';
 import { AlmacenServiceProvider } from '../providers/almacen-service/almacen-service';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 
 
@@ -45,6 +46,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     HttpModule,
     IonicStorageModule.forRoot(),
+    
        
   ],
   bootstrap: [IonicApp],
@@ -59,6 +61,7 @@ export const firebaseConfig = {
     AuthProvider,
     FirebaseServicePrivider,
     Camera,
+    FileTransfer,
     AlmacenServiceProvider  ]
   
 })

@@ -20,6 +20,7 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/databa
   templateUrl: 'detalle-premios.html',
 })
 export class DetallePremiosPage {
+  newPostRef: firebase.database.ThenableReference;
   conteo : number =0;
   url: string
   id: any;
@@ -57,7 +58,7 @@ export class DetallePremiosPage {
       this.valorPuntos = this.premio.valorPuntos;
       this.selectedEstado = this.premio.estado;
       //this.url = this.premio.url;
-      this.url = `img/premios/${this.premio.nombre}/${this.premio.url}`;
+      this.url = `img/premios/${this.id}/${this.premio.url}`;
       let storageRef = firebase.storage().ref();
       let imageRef = storageRef.child(this.url);
       imageRef.getDownloadURL().then(url =>
@@ -212,17 +213,18 @@ export class DetallePremiosPage {
               console.log('si');
              //aqui va el codigo de modificar
               
-              var name = "";
+             var name = "";
              if (this.file != undefined){
-              console.log("cleto"+this.file.name);
+              console.log("cleto" + this.url);
              let storageRef = firebase.storage().ref();
              //this.url = this.file.name;
              const imageRefBorrar = storageRef.child(`${this.url}`);
              name = this.file.name;
+             console.log("cleto5");
              imageRefBorrar.delete().then((snapshot)=> {
-              
+              console.log("cleto2");
               });
-                const imageRef = storageRef.child(`img/premios/${this.nombrePremio}/${this.file.name}`);
+                const imageRef = storageRef.child(`img/premios/${this.id}/${this.file.name}`);
                 imageRef.put(this.file).then((snapshot)=> {
               
               });  
@@ -247,7 +249,8 @@ export class DetallePremiosPage {
                     text: 'Aceptar',
                     role: 'Aceptar',
                     handler: () => {
-                      this.navCtrl.setRoot("ListaPremiosPage");
+                      console.log("cosas")
+                      this.navCtrl.setRoot("HomeAdminPage");
                   
                     } 
                   }
@@ -280,40 +283,42 @@ export class DetallePremiosPage {
           role: 'si',
           handler: () => {
             console.log('si');
+            this.url = this.file.name;
+            this.newPostRef = this.infoPremio$.push({
+              nombre: this.nombrePremio,
+              descripcion : this.descPremio,
+              cantidad : this.cantidad,
+              valorPuntos : this.valorPuntos,
+              estado : this.selectedEstado,
+              url: this.url
+            });
             //aqui va el codigo para guardar el premio
             let storageRef = firebase.storage().ref();
-            this.url = this.file.name;
-            const imageRef = storageRef.child(`img/premios/${this.nombrePremio}/${this.file.name}`);
-
+            const imageRef = storageRef.child(`img/premios/${this.newPostRef.key}/${this.file.name}`);
             imageRef.put(this.file).then((snapshot)=> {
-              this.infoPremio$.push({
-                nombre: this.nombrePremio,
-                descripcion : this.descPremio,
-                cantidad : this.cantidad,
-                valorPuntos : this.valorPuntos,
-                estado : this.selectedEstado,
-                url: this.url
+              
+              let alert = this.alertCtrl.create({
+                title: 'Notifiación',
+                subTitle: "Se ha creado exitosamente el Premio",
+                buttons: [{
+                  text: 'Aceptar',
+                  role: 'Aceptar',
+                  handler: () => {
+                    
+                    this.navCtrl.setRoot("HomeAdminPage");
+                
+                  } 
+                }
+                ]
               });
+              alert.present();
             });
             
-            console.log("nombre"+this.infoPremio$);
+           // console.log("nombre"+this.infoPremio$);
 
             
             //notificacion de accion realizada
-             let alert = this.alertCtrl.create({
-            title: 'Notifiación',
-            subTitle: "Se ha creado exitosamente el Premio",
-            buttons: [{
-              text: 'Aceptar',
-              role: 'Aceptar',
-              handler: () => {
-                this.navCtrl.setRoot("ListaPremiosPage");
             
-              } 
-            }
-            ]
-          });
-          alert.present();
                 } 
               },
             {
@@ -344,7 +349,7 @@ export class DetallePremiosPage {
             this.cantidad = null; 
             this.valorPuntos = null;
           
-            this.navCtrl.setRoot("ListaPremiosPage");
+            this.navCtrl.setRoot("HomeAdminPage");
         
           } 
          },

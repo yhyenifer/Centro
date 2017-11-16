@@ -44,7 +44,7 @@ export class ListaAlmacenesPage {
   }
 
   crearAlmacen(){
-    this.navCtrl.setRoot('AlmaenDetallePage',{
+    this.navCtrl.setRoot('DetalleAlmacenPage',{
      
       accion: 2
     });

@@ -21,6 +21,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'detalle-almacen.html',
 })
 export class DetalleAlmacenPage {
+  newPostRef: firebase.database.ThenableReference;
   accion: number;
   conteoFile:number =0;
   conteoURL: number =0;
@@ -120,7 +121,7 @@ export class DetalleAlmacenPage {
   volverReal(){
     
     for (var index = 0; index < this.almacen.url.length; index++) {
-      this.almacen.realurl[index] = `img/almacenes/${this.almacen.nombre}/${this.almacen.url[index]}`;
+      this.almacen.realurl[index] = `img/almacenes/${this.id}/${this.almacen.url[index]}`;
       
     }
     //this.almacen.realurl
@@ -265,7 +266,7 @@ readPhoto(file, index) {
               filenames[index]= ""+this.file[index].name;
               urlfotos[index]= `${filenames[index]}`;
               console.log(filenames[index]);
-              const imageRef = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${filenames[index]}`);
+              const imageRef = storageRef.child(`img/almacenes/${this.id}/${filenames[index]}`);
               imageRef.put(this.file[index]).then((snapshot)=> {
                 
               });
@@ -333,6 +334,7 @@ readPhoto(file, index) {
             role: 'si',
             handler: () => {
               console.log('si');
+              
              //aqui va el codigo de crear
                 let storageRef = firebase.storage().ref();
                 let filenames: string[] = new Array(10);
@@ -341,14 +343,8 @@ readPhoto(file, index) {
                 for (var index = 0; index < this.file.length; index++) {
                   filenames[index]= ""+this.file[index].name;
                   urlfotos[index]= `${filenames[index]}`;
-                  console.log(filenames[index]);
-                  const imageRef = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${filenames[index]}`);
-                  imageRef.put(this.file[index]).then((snapshot)=> {
-                    
-                  });
-                }      
-             
-                this.infoAlmacen$.push({
+                }
+                this.newPostRef = this.infoAlmacen$.push({
                   nombre: this.nombreAlmacen,
                   descripcion :this.descAlmacen,
                   horario: this.horarioAlmacen,
@@ -359,7 +355,15 @@ readPhoto(file, index) {
                   estado: this.selectedEstado,
                   url: urlfotos
                 });
-
+                  console.log(filenames[index]);
+                for (var index = 0; index < this.file.length; index++) {
+                  const imageRef = storageRef.child(`img/almacenes/${this.newPostRef.key}/${filenames[index]}`);
+                  imageRef.put(this.file[index]).then((snapshot)=> {
+                    
+                  });
+                }      
+             
+                
                 //notificacion de accion realizada
                 let alert = this.alertCtrl.create({
                   title: 'Notifiación',
@@ -457,7 +461,7 @@ readPhoto(file, index) {
         //aqui va el evento de eliminar la foto del almacen
         let storageRef = firebase.storage().ref();
       
-        const imageRefBorrar = storageRef.child(`img/almacenes/${this.nombreAlmacen}/${nombre}`);
+        const imageRefBorrar = storageRef.child(`img/almacenes/${this.id}/${nombre}`);
         this.almacen.url.splice(idx,1);
  
         imageRefBorrar.delete().then((snapshot)=> {

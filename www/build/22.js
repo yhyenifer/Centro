@@ -1,6 +1,6 @@
 webpackJsonp([22],{
 
-/***/ 460:
+/***/ 461:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleAlmacenPageModule", function() { return DetalleAlmacenPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_almacen__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_almacen__ = __webpack_require__(486);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ DetalleAlmacenPageModule = __decorate([
 
 /***/ }),
 
-/***/ 485:
+/***/ 486:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -138,7 +138,7 @@ var DetalleAlmacenPage = (function () {
     };
     DetalleAlmacenPage.prototype.volverReal = function () {
         for (var index = 0; index < this.almacen.url.length; index++) {
-            this.almacen.realurl[index] = "img/almacenes/" + this.almacen.nombre + "/" + this.almacen.url[index];
+            this.almacen.realurl[index] = "img/almacenes/" + this.id + "/" + this.almacen.url[index];
         }
         //this.almacen.realurl
     };
@@ -273,7 +273,7 @@ var DetalleAlmacenPage = (function () {
                                 filenames[index] = "" + _this.file[index].name;
                                 urlfotos[index] = "" + filenames[index];
                                 console.log(filenames[index]);
-                                var imageRef = storageRef.child("img/almacenes/" + _this.nombreAlmacen + "/" + filenames[index]);
+                                var imageRef = storageRef.child("img/almacenes/" + _this.id + "/" + filenames[index]);
                                 imageRef.put(_this.file[index]).then(function (snapshot) {
                                 });
                             }
@@ -340,12 +340,8 @@ var DetalleAlmacenPage = (function () {
                             for (var index = 0; index < _this.file.length; index++) {
                                 filenames[index] = "" + _this.file[index].name;
                                 urlfotos[index] = "" + filenames[index];
-                                console.log(filenames[index]);
-                                var imageRef = storageRef.child("img/almacenes/" + _this.nombreAlmacen + "/" + filenames[index]);
-                                imageRef.put(_this.file[index]).then(function (snapshot) {
-                                });
                             }
-                            _this.infoAlmacen$.push({
+                            _this.newPostRef = _this.infoAlmacen$.push({
                                 nombre: _this.nombreAlmacen,
                                 descripcion: _this.descAlmacen,
                                 horario: _this.horarioAlmacen,
@@ -356,6 +352,12 @@ var DetalleAlmacenPage = (function () {
                                 estado: _this.selectedEstado,
                                 url: urlfotos
                             });
+                            console.log(filenames[index]);
+                            for (var index = 0; index < _this.file.length; index++) {
+                                var imageRef = storageRef.child("img/almacenes/" + _this.newPostRef.key + "/" + filenames[index]);
+                                imageRef.put(_this.file[index]).then(function (snapshot) {
+                                });
+                            }
                             //notificacion de accion realizada
                             var alert = _this.alertCtrl.create({
                                 title: 'Notifiación',
@@ -438,7 +440,7 @@ var DetalleAlmacenPage = (function () {
     DetalleAlmacenPage.prototype.eliminarFotoStorage = function (nombre, idx) {
         //aqui va el evento de eliminar la foto del almacen
         var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
-        var imageRefBorrar = storageRef.child("img/almacenes/" + this.nombreAlmacen + "/" + nombre);
+        var imageRefBorrar = storageRef.child("img/almacenes/" + this.id + "/" + nombre);
         this.almacen.url.splice(idx, 1);
         imageRefBorrar.delete().then(function (snapshot) {
         });

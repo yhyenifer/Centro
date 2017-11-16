@@ -1,6 +1,6 @@
 webpackJsonp([17],{
 
-/***/ 465:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetallePremiosPageModule", function() { return DetallePremiosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_premios__ = __webpack_require__(490);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_premios__ = __webpack_require__(491);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ DetallePremiosPageModule = __decorate([
 
 /***/ }),
 
-/***/ 490:
+/***/ 491:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -97,7 +97,7 @@ var DetallePremiosPage = (function () {
             this.valorPuntos = this.premio.valorPuntos;
             this.selectedEstado = this.premio.estado;
             //this.url = this.premio.url;
-            this.url = "img/premios/" + this.premio.nombre + "/" + this.premio.url;
+            this.url = "img/premios/" + this.id + "/" + this.premio.url;
             var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
             var imageRef = storageRef.child(this.url);
             imageRef.getDownloadURL().then(function (url) {
@@ -141,12 +141,12 @@ var DetallePremiosPage = (function () {
     DetallePremiosPage.prototype.validarDatos = function () {
         this.campos = null;
         if (this.conteo < 1) {
-            var alert_1 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Error',
                 subTitle: this.nombre + " el registro debe tener minímo (1) de archivo",
                 buttons: ['Aceptar']
             });
-            alert_1.present();
+            alert.present();
             return false;
         }
         if (this.nombrePremio == null) {
@@ -173,12 +173,12 @@ var DetallePremiosPage = (function () {
         }
         else {
             if (this.cantidad < 0) {
-                var alert_2 = this.alertCtrl.create({
+                var alert = this.alertCtrl.create({
                     title: 'Error',
                     subTitle: "La Cantidad Disponible debe ser mayor a Cero",
                     buttons: ['Aceptar']
                 });
-                alert_2.present();
+                alert.present();
                 return false;
             }
         }
@@ -200,12 +200,12 @@ var DetallePremiosPage = (function () {
         }
         else {
             if (this.valorPuntos < 0) {
-                var alert_3 = this.alertCtrl.create({
+                var alert = this.alertCtrl.create({
                     title: 'Error',
                     subTitle: "El Valor en Puntos debe ser mayor a Cero",
                     buttons: ['Aceptar']
                 });
-                alert_3.present();
+                alert.present();
                 return false;
             }
         }
@@ -218,12 +218,12 @@ var DetallePremiosPage = (function () {
             }
         }
         if (this.campos != null) {
-            var alert_4 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Error',
                 subTitle: "Verifica los datos ingresados, los campos " + this.campos + "son requeridos",
                 buttons: ['Aceptar']
             });
-            alert_4.present();
+            alert.present();
             return false;
         }
         else {
@@ -233,7 +233,7 @@ var DetallePremiosPage = (function () {
     DetallePremiosPage.prototype.modificar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert_5 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de Modificar éste Premio?",
                 buttons: [
@@ -245,14 +245,16 @@ var DetallePremiosPage = (function () {
                             //aqui va el codigo de modificar
                             var name = "";
                             if (_this.file != undefined) {
-                                console.log("cleto" + _this.file.name);
+                                console.log("cleto" + _this.url);
                                 var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
                                 //this.url = this.file.name;
                                 var imageRefBorrar = storageRef.child("" + _this.url);
                                 name = _this.file.name;
+                                console.log("cleto5");
                                 imageRefBorrar.delete().then(function (snapshot) {
+                                    console.log("cleto2");
                                 });
-                                var imageRef = storageRef.child("img/premios/" + _this.nombrePremio + "/" + _this.file.name);
+                                var imageRef = storageRef.child("img/premios/" + _this.id + "/" + _this.file.name);
                                 imageRef.put(_this.file).then(function (snapshot) {
                                 });
                             }
@@ -275,7 +277,8 @@ var DetallePremiosPage = (function () {
                                         text: 'Aceptar',
                                         role: 'Aceptar',
                                         handler: function () {
-                                            _this.navCtrl.setRoot("ListaPremiosPage");
+                                            console.log("cosas");
+                                            _this.navCtrl.setRoot("HomeAdminPage");
                                         }
                                     }
                                 ]
@@ -291,13 +294,13 @@ var DetallePremiosPage = (function () {
                     }
                 ]
             });
-            alert_5.present();
+            alert.present();
         }
     };
     DetallePremiosPage.prototype.guardar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert_6 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de  Agregar éste Premio?",
                 buttons: [
@@ -306,35 +309,35 @@ var DetallePremiosPage = (function () {
                         role: 'si',
                         handler: function () {
                             console.log('si');
+                            _this.url = _this.file.name;
+                            _this.newPostRef = _this.infoPremio$.push({
+                                nombre: _this.nombrePremio,
+                                descripcion: _this.descPremio,
+                                cantidad: _this.cantidad,
+                                valorPuntos: _this.valorPuntos,
+                                estado: _this.selectedEstado,
+                                url: _this.url
+                            });
                             //aqui va el codigo para guardar el premio
                             var storageRef = __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.storage().ref();
-                            _this.url = _this.file.name;
-                            var imageRef = storageRef.child("img/premios/" + _this.nombrePremio + "/" + _this.file.name);
+                            var imageRef = storageRef.child("img/premios/" + _this.newPostRef.key + "/" + _this.file.name);
                             imageRef.put(_this.file).then(function (snapshot) {
-                                _this.infoPremio$.push({
-                                    nombre: _this.nombrePremio,
-                                    descripcion: _this.descPremio,
-                                    cantidad: _this.cantidad,
-                                    valorPuntos: _this.valorPuntos,
-                                    estado: _this.selectedEstado,
-                                    url: _this.url
-                                });
-                            });
-                            console.log("nombre" + _this.infoPremio$);
-                            //notificacion de accion realizada
-                            var alert = _this.alertCtrl.create({
-                                title: 'Notifiación',
-                                subTitle: "Se ha creado exitosamente el Premio",
-                                buttons: [{
-                                        text: 'Aceptar',
-                                        role: 'Aceptar',
-                                        handler: function () {
-                                            _this.navCtrl.setRoot("ListaPremiosPage");
+                                var alert = _this.alertCtrl.create({
+                                    title: 'Notifiación',
+                                    subTitle: "Se ha creado exitosamente el Premio",
+                                    buttons: [{
+                                            text: 'Aceptar',
+                                            role: 'Aceptar',
+                                            handler: function () {
+                                                _this.navCtrl.setRoot("HomeAdminPage");
+                                            }
                                         }
-                                    }
-                                ]
+                                    ]
+                                });
+                                alert.present();
                             });
-                            alert.present();
+                            // console.log("nombre"+this.infoPremio$);
+                            //notificacion de accion realizada
                         }
                     },
                     {
@@ -346,7 +349,7 @@ var DetallePremiosPage = (function () {
                     }
                 ]
             });
-            alert_6.present();
+            alert.present();
         }
     };
     DetallePremiosPage.prototype.cancelar = function () {
@@ -363,7 +366,7 @@ var DetallePremiosPage = (function () {
                         _this.descPremio = " ";
                         _this.cantidad = null;
                         _this.valorPuntos = null;
-                        _this.navCtrl.setRoot("ListaPremiosPage");
+                        _this.navCtrl.setRoot("HomeAdminPage");
                     }
                 },
                 {
@@ -383,14 +386,10 @@ DetallePremiosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-detalle-premios',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-premios\detalle-premios.html"*/'<!--\n\n  Generated template for the DetallePremiosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n          \n\n      <ion-title class="titulo">Premio</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Nombre:</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="nombrePremio" \n\n                  name="nombre" \n\n                  type="text" \n\n                  autocapitalize="off" \n\n                  required>\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label floating>*Cantidad Disponible:</ion-label>\n\n                <ion-input \n\n                  [(ngModel)]="cantidad" \n\n                  name="cantidad" \n\n                  type="number" \n\n                  autocapitalize="off" \n\n                  required>\n\n                </ion-input>\n\n              </ion-item>\n\n        </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n\n\n            <ion-item>\n\n                    <ion-label floating>Descripción:</ion-label>\n\n                    <ion-textarea\n\n                      [(ngModel)]="descPremio" \n\n                      name="descripcion" \n\n                      type="textArea" \n\n                      autocapitalize="off" \n\n                      class="area"\n\n                      >\n\n                    </ion-textarea>\n\n                  </ion-item>\n\n               \n\n                  <br>\n\n                  <div class="divFoto">\n\n                 <ion-label >Foto: </ion-label>\n\n                 <input type="file" (change)="seleccionarFoto($event)" accept=".jpg, .jpeg, .png" >\n\n                 <div class="preview">\n\n                   <img class="imgPremio" [src]="img">\n\n                 </div>\n\n                </div>   \n\n               \n\n    </ion-col> \n\n    <ion-col>\n\n            <ion-item>\n\n                    <ion-label floating>*Valor  en Puntos:</ion-label>\n\n                    <ion-input \n\n                      [(ngModel)]="valorPuntos" \n\n                      name="puntos" \n\n                      type="number" \n\n                      autocapitalize="off" \n\n                      required>\n\n                    </ion-input>\n\n            </ion-item>\n\n                  \n\n                 \n\n                 <ion-item>\n\n                        <ion-label floating>*Estado:</ion-label>\n\n                        <ion-select [(ngModel)]="selectedEstado"\n\n                                    >\n\n                          <!--  se debe crear estados de los almacenes (activo e inactivo) en la base de datos -->\n\n                          <ion-option ><h2>Activo</h2></ion-option>\n\n                          <ion-option ><h2>Inactivo</h2></ion-option>\n\n                        </ion-select>\n\n                </ion-item> \n\n                <div class="text-center">\n\n                    <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>\n\n                    <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                    <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                    \n\n                </div>\n\n    </ion-col> \n\n    </ion-row>\n\n   \n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-premios\detalle-premios.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */],
-        __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["a" /* AngularFireDatabase */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _g || Object])
 ], DetallePremiosPage);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=detalle-premios.js.map
 
 /***/ })

@@ -30,12 +30,12 @@ export class ListaPremiosPage {
       this.database.list('premio').subscribe(data => {
 
         this.premios = data;
-        console.log(this.premios);
+        
+       //console.log(data[0].$key);
         this.imagenes = Array(this.premios.length);
         for (var index = 0; index < this.premios.length; index++) {
           
-          
-          this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
+          this.imagenes[index] = `img/premios/`+data[index].$key+`/`+this.premios[index].url;
           this.generarFotos(index);
   
         }
@@ -44,40 +44,39 @@ export class ListaPremiosPage {
           
   }
   
-  ionViewWillEnter(){
-    this.premios = [];
-    this.database.list('premio').subscribe(data => {
+  // ionViewWillEnter(){
+  //   this.premios = [];
+  //   this.database.list('premio').subscribe(data => {
 
-      this.premios = data;
-      console.log(this.premios);
-      this.imagenes = Array(this.premios.length);
-      for (var index = 0; index < this.premios.length; index++) {
+  //     this.premios = data;
+  //     console.log(this.premios);
+  //     this.imagenes = Array(this.premios.length);
+  //     for (var index = 0; index < this.premios.length; index++) {
 
+  //       this.imagenes[index] = `img/premios/` + data[index].$key + `/` + this.premios[index].url;
+  //       this.generarFotos(index);
 
-        this.imagenes[index] = `img/premios/` + this.premios[index].nombre + `/` + this.premios[index].url;
-        this.generarFotos(index);
+  //     }
+  //   });
+  // }
 
-      }
-    });
-  }
-
-  ionViewDidLoad() {
+  // ionViewDidLoad() {
     
-    this.premios$ = this.database.list('premio');
-    this.premios = [];
-    this.database.list('premio').subscribe(data => {
+  //   this.premios$ = this.database.list('premio');
+  //   this.premios = [];
+  //   this.database.list('premio').subscribe(data => {
+  //     data.values();
+  //     this.premios = data;
+  //     console.log(this.premios);
+  //     this.imagenes = Array(this.premios.length);
+  //     for (var index = 0; index < this.premios.length; index++) {
+  //       this.imagenes[index] = `img/premios/`+data[index].$key+`/`+this.premios[index].url;
+  //       this.generarFotos(index);
 
-      this.premios = data;
-      console.log(this.premios);
-      this.imagenes = Array(this.premios.length);
-      for (var index = 0; index < this.premios.length; index++) {
-        this.imagenes[index] = `img/premios/`+this.premios[index].nombre+`/`+this.premios[index].url;
-        this.generarFotos(index);
-
-      }
-    });
+  //     }
+  //   });
    
-  }
+  // }
 
   menu1Active() {
     this.menu.enable(true, 'menu2');

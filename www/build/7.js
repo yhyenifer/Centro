@@ -1,6 +1,6 @@
 webpackJsonp([7],{
 
-/***/ 475:
+/***/ 476:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaPremiosPageModule", function() { return ListaPremiosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_premios__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_premios__ = __webpack_require__(501);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ ListaPremiosPageModule = __decorate([
 
 /***/ }),
 
-/***/ 500:
+/***/ 501:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -80,41 +80,40 @@ var ListaPremiosPage = (function () {
         this.premios = [];
         this.database.list('premio').subscribe(function (data) {
             _this.premios = data;
-            console.log(_this.premios);
+            //console.log(data[0].$key);
             _this.imagenes = Array(_this.premios.length);
             for (var index = 0; index < _this.premios.length; index++) {
-                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
+                _this.imagenes[index] = "img/premios/" + data[index].$key + "/" + _this.premios[index].url;
                 _this.generarFotos(index);
             }
         });
     }
-    ListaPremiosPage.prototype.ionViewWillEnter = function () {
-        var _this = this;
-        this.premios = [];
-        this.database.list('premio').subscribe(function (data) {
-            _this.premios = data;
-            console.log(_this.premios);
-            _this.imagenes = Array(_this.premios.length);
-            for (var index = 0; index < _this.premios.length; index++) {
-                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
-                _this.generarFotos(index);
-            }
-        });
-    };
-    ListaPremiosPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.premios$ = this.database.list('premio');
-        this.premios = [];
-        this.database.list('premio').subscribe(function (data) {
-            _this.premios = data;
-            console.log(_this.premios);
-            _this.imagenes = Array(_this.premios.length);
-            for (var index = 0; index < _this.premios.length; index++) {
-                _this.imagenes[index] = "img/premios/" + _this.premios[index].nombre + "/" + _this.premios[index].url;
-                _this.generarFotos(index);
-            }
-        });
-    };
+    // ionViewWillEnter(){
+    //   this.premios = [];
+    //   this.database.list('premio').subscribe(data => {
+    //     this.premios = data;
+    //     console.log(this.premios);
+    //     this.imagenes = Array(this.premios.length);
+    //     for (var index = 0; index < this.premios.length; index++) {
+    //       this.imagenes[index] = `img/premios/` + data[index].$key + `/` + this.premios[index].url;
+    //       this.generarFotos(index);
+    //     }
+    //   });
+    // }
+    // ionViewDidLoad() {
+    //   this.premios$ = this.database.list('premio');
+    //   this.premios = [];
+    //   this.database.list('premio').subscribe(data => {
+    //     data.values();
+    //     this.premios = data;
+    //     console.log(this.premios);
+    //     this.imagenes = Array(this.premios.length);
+    //     for (var index = 0; index < this.premios.length; index++) {
+    //       this.imagenes[index] = `img/premios/`+data[index].$key+`/`+this.premios[index].url;
+    //       this.generarFotos(index);
+    //     }
+    //   });
+    // }
     ListaPremiosPage.prototype.menu1Active = function () {
         this.menu.enable(true, 'menu2');
         this.menu.enable(false, 'menu1');
@@ -149,11 +148,10 @@ ListaPremiosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-lista-premios',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\lista-premios\lista-premios.html"*/'<!--\n\n  Generated template for the ListaAlmacenesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n          <ion-row>\n\n              <ion-col>\n\n                <ion-title class="titulo">Premios</ion-title>\n\n   \n\n               </ion-col>\n\n              <ion-col>\n\n                <div class="izq" >\n\n                 <button id="new" (click)="crearPremio()" ><b>Crear Nuevo Premio <ion-icon name="add"></ion-icon></b></button>\n\n                </div>\n\n              </ion-col>\n\n          </ion-row>\n\n          \n\n  </ion-navbar>\n\n  </ion-header>\n\n  \n\n  \n\n  <ion-content padding>\n\n      <ion-row>\n\n          <ion-col>\n\n              <!-- se deben mostrar los almacenes en orden alfabetico-->\n\n              <ion-list>\n\n                <ion-item>\n\n                  <button ion-item *ngFor="let premio of premios$ | async; let i = index"  (click)="mostrarPremio(premio,premio.$key)">\n\n                    <ion-avatar item-start> \n\n                    <img [src]="imagenes[i]">\n\n                    </ion-avatar> \n\n                    <h2>{{premio.nombre}} </h2>\n\n                   </button> \n\n                  </ion-item>     \n\n                  </ion-list>\n\n              </ion-col>\n\n            <ion-col class="imgPremio">\n\n                <img class="adminVal" src="https://firebasestorage.googleapis.com/v0/b/tiendq-3d47a.appspot.com/o/img%2Fadmin%2Fpremio.png?alt=media&token=d9c7997c-3139-4e69-8a19-faac5f5bde53">      \n\n            </ion-col>\n\n      </ion-row>\n\n  \n\n  </ion-content>\n\n  '/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\lista-premios\lista-premios.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _d || Object])
 ], ListaPremiosPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=lista-premios.js.map
 
 /***/ })

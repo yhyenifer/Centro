@@ -18,7 +18,8 @@ import firebase from 'firebase';
   templateUrl: 'detalle-eventos.html',
 })
 export class DetalleEventosPage {
-  conteo : number =0;
+  newPostRef: firebase.database.ThenableReference;
+  conteo: number = 0;
   url: string
   id: any;
   evento = {} as Evento;
@@ -30,6 +31,7 @@ export class DetalleEventosPage {
   accion: number;
   campos : string;
   nombreEvento : string;
+  nombreEventoOld : string;
   descEvento : string;
   fechaEvento : string;
   horaEvento : string;
@@ -50,11 +52,12 @@ export class DetalleEventosPage {
       this.evento = navParams.get("evento");
       this.id = navParams.get("id");
       this.nombreEvento = this.evento.nombre;
+      this.nombreEventoOld = this.evento.nombre
       this.descEvento = this.evento.descripcion;
       this.fechaEvento = this.evento.fecha;
       this.horaEvento = this.evento.hora;
       this.selectedEstado = this.evento.estado;
-      this.url = `img/eventos/${this.evento.nombre}/${this.evento.url}`;
+      this.url = `img/eventos/${this.id}/${this.evento.url}`;
       let storageRef = firebase.storage().ref();
       let imageRef = storageRef.child(this.url);
       imageRef.getDownloadURL().then(url =>
@@ -189,6 +192,17 @@ export class DetalleEventosPage {
               console.log('si');
              //aqui va el codigo de modificar Evento
              var name = "";
+
+              if (this.nombreEventoOld === this.nombreEvento){
+
+              }else{
+                let storageRef = firebase.storage().ref();
+                let imageRef = storageRef.child(this.url);
+                //this.file = imageRef.getFile();              
+                console.log("asdf " +this.file);
+              }
+
+              
              if (this.file != undefined){
              let storageRef = firebase.storage().ref();
              //this.url = this.file.name;
@@ -197,13 +211,15 @@ export class DetalleEventosPage {
              imageRefBorrar.delete().then((snapshot)=> {
               
               });
-                const imageRef = storageRef.child(`img/eventos/${this.nombreEvento}/${this.file.name}`);
-                imageRef.put(this.file).then((snapshot)=> {
+            const imageRef = storageRef.child(`img/eventos/${this.id}/${this.file.name}`);
+            imageRef.put(this.file).then((snapshot)=> {
               
               });  
             }else{
               name = this.evento.url;
             }
+          
+
               this.infoEvento$.update( this.id, {
                 
                 nombre: this.nombreEvento,
@@ -213,7 +229,7 @@ export class DetalleEventosPage {
                 estado : this.selectedEstado,
                 url: name
                                    
-                    });
+              });
                 //notificacion de accion realizada
                 let alert = this.alertCtrl.create({
                   title: 'Notifiación',
@@ -255,17 +271,8 @@ export class DetalleEventosPage {
           role: 'si',
           handler: () => {
             console.log('si');
-            //aqui va el codigo para guardar el evento
-            let storageRef = firebase.storage().ref();
             this.url = this.file.name;
-            const imageRef = storageRef.child(`img/eventos/${this.nombreEvento}/${this.file.name}`);
-            imageRef.put(this.file).then((snapshot)=> {
-            
-            });
-            
-            console.log("nombre"+this.url);
-
-            this.infoEvento$.push({
+            this.newPostRef = this.infoEvento$.push({
               nombre: this.nombreEvento,
               descripcion : this.descEvento,
               fecha : this.fechaEvento,
@@ -273,7 +280,14 @@ export class DetalleEventosPage {
               estado : this.selectedEstado,
               url: this.url
             });
-
+            //aqui va el codigo para guardar el evento
+            console.log("nombre"+this.newPostRef.key);
+            let storageRef = firebase.storage().ref();
+            
+            const imageRef = storageRef.child(`img/eventos/${this.newPostRef.key}/${this.file.name}`);
+            imageRef.put(this.file).then((snapshot)=> {
+              
+            });
             //notificacion de accion realizada
              let alert = this.alertCtrl.create({
             title: 'Notifiación',
