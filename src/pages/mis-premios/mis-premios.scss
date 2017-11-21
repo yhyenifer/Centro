@@ -1,0 +1,56 @@
+page-mis-premios {
+    .toolbar-background-md {
+        
+        background: #f7ef36;
+    }
+    .text-center{
+        text-align: center; 
+    }
+    .gana{
+        max-width: 50%;
+    }
+    .camara{
+        background-color: red;
+        border-radius: 25em;
+    }
+
+    .letra12{
+        
+        font-size: 12px;      
+    }
+
+   .row{
+       margin-bottom: 20px;
+   }
+
+   .opciones{
+       text-align: center;
+   }
+   .diferencia{
+    color: blue;
+   }
+   .imagenPremio{
+    max-height: 300px;
+   }
+
+   .opcion{
+       background-color: white;
+       font-size: 20px;
+   }
+   .desc{
+    overflow: scroll;
+}
+
+     .swiper-pagination-bullet-active{
+         background: #f7ef36;
+     }
+     @media (min-width: 767px){
+        .ancho{
+            max-width: 1080px;
+        }
+        .imagenPremio{
+         max-width: 500px;
+        }
+     }
+
+}

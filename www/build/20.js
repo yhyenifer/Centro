@@ -91,12 +91,11 @@ var DetalleEventosPage = (function () {
             this.evento = navParams.get("evento");
             this.id = navParams.get("id");
             this.nombreEvento = this.evento.nombre;
-            this.nombreEventoOld = this.evento.nombre;
             this.descEvento = this.evento.descripcion;
             this.fechaEvento = this.evento.fecha;
             this.horaEvento = this.evento.hora;
             this.selectedEstado = this.evento.estado;
-            this.url = "img/eventos/" + this.id + "/" + this.evento.url;
+            this.url = "img/eventos/" + this.evento.nombre + "/" + this.evento.url;
             var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
             var imageRef = storageRef.child(this.url);
             imageRef.getDownloadURL().then(function (url) {
@@ -139,12 +138,12 @@ var DetalleEventosPage = (function () {
     DetalleEventosPage.prototype.validarDatos = function () {
         this.campos = null;
         if (this.conteo < 1) {
-            var alert = this.alertCtrl.create({
+            var alert_1 = this.alertCtrl.create({
                 title: 'Error',
                 subTitle: this.nombre + " el registro debe tener minímo (1) de archivo",
                 buttons: ['Aceptar']
             });
-            alert.present();
+            alert_1.present();
             return false;
         }
         if (this.nombreEvento == null) {
@@ -194,12 +193,12 @@ var DetalleEventosPage = (function () {
             }
         }
         if (this.campos != null) {
-            var alert = this.alertCtrl.create({
+            var alert_2 = this.alertCtrl.create({
                 title: 'Error',
                 subTitle: "Verifica los datos ingresados, los campos " + this.campos + "son requeridos",
                 buttons: ['Aceptar']
             });
-            alert.present();
+            alert_2.present();
             return false;
         }
         else {
@@ -209,7 +208,7 @@ var DetalleEventosPage = (function () {
     DetalleEventosPage.prototype.modificar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert = this.alertCtrl.create({
+            var alert_3 = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de Modificar éste Evento?",
                 buttons: [
@@ -220,14 +219,6 @@ var DetalleEventosPage = (function () {
                             console.log('si');
                             //aqui va el codigo de modificar Evento
                             var name = "";
-                            if (_this.nombreEventoOld === _this.nombreEvento) {
-                            }
-                            else {
-                                var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
-                                var imageRef = storageRef.child(_this.url);
-                                //this.file = imageRef.getFile();              
-                                console.log("asdf " + _this.file);
-                            }
                             if (_this.file != undefined) {
                                 var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
                                 //this.url = this.file.name;
@@ -235,7 +226,7 @@ var DetalleEventosPage = (function () {
                                 name = _this.file.name;
                                 imageRefBorrar.delete().then(function (snapshot) {
                                 });
-                                var imageRef = storageRef.child("img/eventos/" + _this.id + "/" + _this.file.name);
+                                var imageRef = storageRef.child("img/eventos/" + _this.nombreEvento + "/" + _this.file.name);
                                 imageRef.put(_this.file).then(function (snapshot) {
                                 });
                             }
@@ -274,13 +265,13 @@ var DetalleEventosPage = (function () {
                     }
                 ]
             });
-            alert.present();
+            alert_3.present();
         }
     };
     DetalleEventosPage.prototype.guardar = function () {
         var _this = this;
         if (this.validarDatos() == true) {
-            var alert = this.alertCtrl.create({
+            var alert_4 = this.alertCtrl.create({
                 title: 'Confirmación',
                 subTitle: "¿" + this.nombre + " está seguro de  Agregar éste Evento?",
                 buttons: [
@@ -289,20 +280,20 @@ var DetalleEventosPage = (function () {
                         role: 'si',
                         handler: function () {
                             console.log('si');
+                            //aqui va el codigo para guardar el evento
+                            var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
                             _this.url = _this.file.name;
-                            _this.newPostRef = _this.infoEvento$.push({
+                            var imageRef = storageRef.child("img/eventos/" + _this.nombreEvento + "/" + _this.file.name);
+                            imageRef.put(_this.file).then(function (snapshot) {
+                            });
+                            console.log("nombre" + _this.url);
+                            _this.infoEvento$.push({
                                 nombre: _this.nombreEvento,
                                 descripcion: _this.descEvento,
                                 fecha: _this.fechaEvento,
                                 hora: _this.horaEvento,
                                 estado: _this.selectedEstado,
                                 url: _this.url
-                            });
-                            //aqui va el codigo para guardar el evento
-                            console.log("nombre" + _this.newPostRef.key);
-                            var storageRef = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.storage().ref();
-                            var imageRef = storageRef.child("img/eventos/" + _this.newPostRef.key + "/" + _this.file.name);
-                            imageRef.put(_this.file).then(function (snapshot) {
                             });
                             //notificacion de accion realizada
                             var alert = _this.alertCtrl.create({
@@ -329,7 +320,7 @@ var DetalleEventosPage = (function () {
                     }
                 ]
             });
-            alert.present();
+            alert_4.present();
         }
     };
     DetalleEventosPage.prototype.cancelar = function () {
@@ -364,12 +355,16 @@ var DetalleEventosPage = (function () {
 DetalleEventosPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-detalle-eventos',template:/*ion-inline-start:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-eventos\detalle-eventos.html"*/'<!--\n\n  Generated template for the DetalleEventosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      <ion-title class="titulo">Evento</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    \n\n        <ion-row>\n\n            <ion-col>\n\n                <ion-item>\n\n                    <ion-label floating>*Nombre:</ion-label>\n\n                    <ion-input \n\n                      [(ngModel)]="nombreEvento" \n\n                      name="nombre" \n\n                      type="text" \n\n                      autocapitalize="off" \n\n                      required>\n\n                    </ion-input>\n\n                  </ion-item>\n\n            </ion-col> \n\n            <ion-col>\n\n                <ion-item class="label">\n\n                    <ion-label>*Fecha:</ion-label>\n\n                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="fechaEvento"></ion-datetime>                  </ion-item>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>\n\n                <ion-item>\n\n                        <ion-label floating>*Descripción:</ion-label>\n\n                        <ion-textarea\n\n                          [(ngModel)]="descEvento" \n\n                          name="descripcion" \n\n                          type="textArea" \n\n                          autocapitalize="off" \n\n                          class="area"\n\n                          >\n\n                        </ion-textarea>\n\n                      </ion-item>\n\n                   \n\n                      <br>\n\n                      <div class="divFoto">\n\n                     <ion-label >Foto: </ion-label>\n\n                     <input type="file" (change)="seleccionarFoto($event)"  accept=".jpg, .jpeg, .png" >\n\n                     <div class="preview">\n\n                       <img class="imgPremio" [src]="eventoImagen">\n\n                     </div>\n\n                    </div>   \n\n                   \n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label>*Hora:</ion-label>\n\n                <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="horaEvento"></ion-datetime>\n\n              </ion-item>\n\n                      \n\n                     \n\n                     <ion-item>\n\n                            <ion-label floating>*Estado:</ion-label>\n\n                            <ion-select [(ngModel)]="selectedEstado">\n\n                              <ion-option ><h2>Activo</h2></ion-option>\n\n                              <ion-option ><h2>Inactivo</h2></ion-option>\n\n                            </ion-select>\n\n                    </ion-item> \n\n                    <div class="text-center">\n\n                            <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>\n\n                            <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                            <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                            \n\n                    </div>\n\n        </ion-col> \n\n        </ion-row>\n\n  \n\n    \n\n    </ion-content>\n\n'/*ion-inline-end:"C:\Users\MauricioAndres\proyectos\Centro\src\pages\detalle-eventos\detalle-eventos.html"*/,
+        selector: 'page-detalle-eventos',template:/*ion-inline-start:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-eventos\detalle-eventos.html"*/'<!--\n\n  Generated template for the DetalleEventosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n          </button>\n\n      <ion-title class="titulo">Evento</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    \n\n        <ion-row>\n\n            <ion-col>\n\n                <ion-item>\n\n                    <ion-label floating>*Nombre:</ion-label>\n\n                    <ion-input \n\n                      [(ngModel)]="nombreEvento" \n\n                      name="nombre" \n\n                      type="text" \n\n                      autocapitalize="off" \n\n                      required>\n\n                    </ion-input>\n\n                  </ion-item>\n\n            </ion-col> \n\n            <ion-col>\n\n                <ion-item class="label">\n\n                    <ion-label>*Fecha:</ion-label>\n\n                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="fechaEvento"></ion-datetime>                  </ion-item>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col>\n\n                <ion-item>\n\n                        <ion-label floating>*Descripción:</ion-label>\n\n                        <ion-textarea\n\n                          [(ngModel)]="descEvento" \n\n                          name="descripcion" \n\n                          type="textArea" \n\n                          autocapitalize="off" \n\n                          class="area"\n\n                          >\n\n                        </ion-textarea>\n\n                      </ion-item>\n\n                   \n\n                      <br>\n\n                      <div class="divFoto">\n\n                     <ion-label >Foto: </ion-label>\n\n                     <input type="file" (change)="seleccionarFoto($event)"  accept=".jpg, .jpeg, .png" >\n\n                     <div class="preview">\n\n                       <img class="imgPremio" [src]="eventoImagen">\n\n                     </div>\n\n                    </div>   \n\n                   \n\n        </ion-col> \n\n        <ion-col>\n\n            <ion-item>\n\n                <ion-label>*Hora:</ion-label>\n\n                <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="horaEvento"></ion-datetime>\n\n              </ion-item>\n\n                      \n\n                     \n\n                     <ion-item>\n\n                            <ion-label floating>*Estado:</ion-label>\n\n                            <ion-select [(ngModel)]="selectedEstado">\n\n                              <ion-option ><h2>Activo</h2></ion-option>\n\n                              <ion-option ><h2>Inactivo</h2></ion-option>\n\n                            </ion-select>\n\n                    </ion-item> \n\n                    <div class="text-center">\n\n                            <button *ngIf="ocultar1" class="guardar" (click)="guardar()"><ion-icon name="checkmark"></ion-icon> Guardar</button>\n\n                            <button *ngIf="ocultar2" class="modificar" (click)="modificar()"><ion-icon name="checkmark"></ion-icon> Modificar</button>\n\n                            <button class="cancelar" (click)="cancelar()"><ion-icon name="close"></ion-icon> Cancelar</button>               \n\n                            \n\n                    </div>\n\n        </ion-col> \n\n        </ion-row>\n\n  \n\n    \n\n    </ion-content>\n\n'/*ion-inline-end:"C:\Users\yenifer\Documents\uniquindio\SOFT2\Centro\src\pages\detalle-eventos\detalle-eventos.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */],
+        __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], DetalleEventosPage);
 
-var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=detalle-eventos.js.map
 
 /***/ })
